@@ -2,6 +2,7 @@
 	"name": "inspirevive/inspirevive",
 	"description": "Volunteer management platform to help organizations volunteer more effectively",
 	"type": "project",
+	"keywords": ["inspirevive", "volunteer", "charity", "hour", "time", "tracking", "management"],
 	"homepage": "https://github.com/inspirevive",
 	"authors": [
 		{
