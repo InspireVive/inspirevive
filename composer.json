@@ -3,6 +3,7 @@
 	"description": "Volunteer management platform to help organizations volunteer more effectively",
 	"type": "project",
 	"keywords": ["inspirevive", "volunteer", "charity", "hour", "time", "tracking", "management"],
+	"license": "GPL-3.0",
 	"homepage": "https://github.com/inspirevive",
 	"authors": [
 		{
@@ -11,6 +12,10 @@
 			"homepage": "http://jaredtking.com"
 		}
 	],
+	"support": {
+		"issues": "https://github.com/inspirevive/inspirevive/issues",
+		"source": "https://github.com/inspirevive/inspirevive"
+	},
     "autoload": {
         "psr-4": {"app\\": "app/"}
     },
