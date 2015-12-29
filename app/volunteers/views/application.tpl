@@ -1,10 +1,5 @@
 {extends file='parent-minimal.tpl'}
 {block name=htmlClass}lightbg{/block}
-{block name=header}
-<script type="text/javascript">
-	mixpanel.track("Volunteer Application");
-</script>
-{/block}
 {block name=main}
 
 <h1 class="logo">

@@ -1,11 +1,4 @@
 {extends file="parent-minimal.tpl"}
-{block name=header}
-<script type="text/javascript">
-	mixpanel.track("Switch Accounts", {
-		'Network': 'Facebook',
-	});	
-</script>
-{/block}
 {block name=main}
 
 <h1 class="logo">

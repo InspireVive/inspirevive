@@ -15,13 +15,6 @@
     <meta name="twitter:description" content="Online community for {$org.name} volunteers to coordinate their volunteer efforts." />
     <meta name="twitter:image" content="{$app.view_engine->asset_url('/img/inspirevive-icon-512.jpg')}" />
 {/block}
-{block name=header}
-	<script type="text/javascript">
-		mixpanel.track("Organization Profile", {
-			'Organization': '{$slug}'
-		});
-	</script>
-{/block}
 {block name=content}
 
 <div class="organization-profile">

@@ -2,11 +2,6 @@
 {block name=header}
 <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet"  type="text/css" />
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script type="text/javascript">
-	mixpanel.track("Report Hours - 2", {
-		organization: '{$org->id()}'
-	});
-</script>
 {/block}
 {block name=content}
 

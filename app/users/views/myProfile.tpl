@@ -1,9 +1,4 @@
 {extends file="parent.tpl"}
-{block name=header}
-<script type="text/javascript">
-	mixpanel.track("My Profile Page");
-</script>
-{/block}
 {block name=bodyClass}noBg{/block}
 {block name=content}
 

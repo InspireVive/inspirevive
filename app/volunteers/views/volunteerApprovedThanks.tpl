@@ -1,11 +1,4 @@
 {extends file="parent.tpl"}
-{block name=header}
-<script type="text/javascript">
-	mixpanel.track("Approve Volunteer - Thanks", {
-		organization: '{$org->id()}'
-	});
-</script>
-{/block}
 {block name=content}
 
 <h1 class="profile-title">

@@ -1,9 +1,4 @@
 {extends file="parent.tpl"}
-{block name=header}
-<script type="text/javascript">
-	mixpanel.track("User Profile Page");
-</script>
-{/block}
 {block name=content}
 	<div class="profile-toolbar">
 		<img src="{$userObj->profilePicture(90)}" class="img-circle user-profile-image" alt="{$user.username}" height="90" width="90" />

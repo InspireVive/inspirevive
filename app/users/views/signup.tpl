@@ -1,10 +1,5 @@
 {extends file='parent-minimal.tpl'}
 {block name=htmlClass}lightbg smallform{/block}
-{block name=header}
-<script type="text/javascript">
-	mixpanel.track("Signup Page");
-</script>
-{/block}
 {block name=main}
 
 <h1 class="logo">
