@@ -1,0 +1,39 @@
+{
+	"name": "inspirevive/inspirevive",
+	"description": "Volunteer management platform to help organizations volunteer more effectively",
+	"type": "project",
+	"homepage": "https://github.com/inspirevive",
+	"authors": [
+		{
+			"name": "jaredtking",
+			"email": "j@jaredtking.com",
+			"homepage": "http://jaredtking.com"
+		}
+	],
+    "autoload": {
+        "psr-4": {"app\\": "app/"}
+    },
+	"require": {
+		"php": ">=5.4.0",
+		"idealistsoft/framework-bootstrap": "~1.0",
+		"idealistsoft/framework-auth": "dev-master",
+		"idealistsoft/framework-admin": "dev-master",
+		"idealistsoft/framework-rest-api": "dev-master",
+		"idealistsoft/framework-cron": "dev-master",
+		"idealistsoft/framework-email": "~1.0",
+		"idealistsoft/framework-statistics": "dev-master",
+		"idealistsoft/framework-iron-mq": "~1.0",
+		"idealistsoft/framework-logstash": "~1.0",
+		"idealistsoft/framework-oauth2": "dev-master",
+		"idealistsoft/framework-facebook": "dev-master",
+		"idealistsoft/framework-instagram": "dev-master",
+		"idealistsoft/framework-twitter": "dev-master",
+
+		"aws/aws-sdk-php": "2.4.1",
+		"mandrill/mandrill": "1.0.36"
+	},
+	"require-dev": {
+		"mockery/mockery": "0.9.1"
+	},
+	"minimum-stability": "dev"
+}

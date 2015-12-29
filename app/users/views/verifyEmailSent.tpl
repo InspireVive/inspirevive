@@ -1,0 +1,23 @@
+{extends file='parent-minimal.tpl'}
+{block name=htmlClass}lightbg smallform{/block}
+{block name=main}
+
+<h1 class="logo">
+	<a href="/">
+		<img src="{$app.view_engine->asset_url('/img/logo.png')}" alt="InspireVive" class="img-responsive" />
+	</a>
+</h1>
+
+<div class="body skinny minimal container">
+	<h4 class="title">Verification Email Sent</h4>
+
+	<div class="alert alert-info">
+		We sent you another email to verify the email address you signed up with. Please check your inbox for the message and click the included verification link.
+	</div>
+
+	<p>
+		<a href="/" class="btn btn-block btn-primary btn-lg">Return to InspireVive</a>
+	</p>
+</div>
+
+{/block}

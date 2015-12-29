@@ -1,0 +1,37 @@
+language: php
+php:
+    - 7.0
+    - 5.6
+    - 5.5
+    - 5.4
+
+sudo: false
+
+services:
+  - redis-server
+
+addons:
+  apt:
+    sources:
+      - pov-wkhtmltopdf
+    packages:
+      - wkhtmltopdf
+      - xvfb
+
+before_script:
+    - composer install
+    - mv config.example.php config.php
+    - mysql -e 'create database mydb;'
+    - php infuse migrate
+    - mkdir -p build/logs
+    - composer require satooshi/php-coveralls:1.0.0
+
+script:
+    - phpunit
+
+after_script:
+    - vendor/bin/coveralls
+
+env:
+  global:
+    - WKHTMLTOPDF_CMD="xvfb-run --server-args='-screen 0, 640x480x16' --wait=0 --auto-servernum --server-num=1 wkhtmltopdf --print-media-type --disable-javascript  --disable-local-file-access --allow file:///usr/share/fonts/TTF/Arial-Unicode.ttf --margin-top 0.5cm --margin-left 0.5cm --margin-right 0.5cm --margin-bottom 2cm -s letter --encoding utf8 -q - -"

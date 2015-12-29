@@ -1,0 +1,14 @@
+{
+  "name": "inspirevive",
+  "devDependencies": {
+    "grunt-cli": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-filerev": "~0.2.1",
+    "grunt-usemin": "~2.3.0",
+    "grunt-filerev-assets": "~0.3.2"
+  }
+}

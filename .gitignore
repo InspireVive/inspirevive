@@ -1,0 +1,37 @@
+### Sensitive Files
+config.php
+/jwt_privkey.pem
+/jwt_pubkey.pem
+
+### Dependencies
+/composer.phar
+/vendor
+/node_modules
+/public/node_modules
+
+### Auto-generated Files
+/build
+/public/static
+/assets/static.assets.json
+/public/css/home.css
+/public/css/styles.css
+/public/css/org-management-styles.css
+/public/js/header.js
+/public/js/org-management-header.js
+
+### Local files
+/phpunit.xml
+/HEADER
+/headers.sh
+
+### Dev Setup - Vagrant + Puppet
+.vagrant
+Vagrantfile
+/puppet
+
+### Junk Files
+/temp
+._.DS_Store
+Thumbs.db 
+Desktop.ini
+.DS_Store

@@ -1,0 +1,186 @@
+h1.logo {
+	margin: 36px 0 0;
+	text-align: center;
+
+	img {
+		margin: 0 auto;
+	}
+
+	a {
+		color: #777;
+	}
+}
+
+.smallform {
+	h1.logo {
+		margin-top: 108px;
+	}
+}
+
+@bodyMinimalPadding: 18px;
+@loginSignupFormPadding: 18px;
+
+html.lightbg {
+	background: #eeeeee; /* Old browsers */
+	background: -moz-linear-gradient(top,  #eeeeee 0%, #eeeeee 71%, #dddddd 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(71%,#eeeeee), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #eeeeee 0%,#eeeeee 71%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #eeeeee 0%,#eeeeee 71%,#dddddd 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #eeeeee 0%,#eeeeee 71%,#dddddd 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #eeeeee 0%,#eeeeee 71%,#dddddd 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+	background-attachment: fixed;
+	height: 100%;
+}
+
+.body.minimal {
+	background: @backgroundColor;
+	margin: 36px auto 36px;
+	border-radius: 4px;
+	padding: 0 @bodyMinimalPadding;
+	position: relative;
+	text-align: left;
+	box-shadow: 1px 1px 10px #999;
+
+	h2 {
+		margin: 0 0 36px;
+		text-align: center;
+		font-size: 24px;
+
+		small {
+			a {
+				color: #999;
+			}
+		}
+	}
+	
+	h3, h4, h5, h6 {
+		margin: 0;
+	}
+
+	.title {
+		text-align: center;
+		margin: 18px 0 36px;
+	}
+
+	.title.text-left,.title.text-right,.title.text-center {
+		text-align: inherit;
+	}
+
+	label {
+		font-weight: bold;
+		color: #999;
+	}
+
+	p {
+		margin: 18px 0;
+	}
+
+	.alert {
+		margin: 18px 0;
+	}
+	
+	input[type=radio],input[type=checkbox] {
+		width: auto;
+		height: auto;
+		margin: 0 9px 0 0;
+	}
+
+	hr {
+		margin: 36px 0 18px;
+		border-color: #ccc;
+	}
+
+	.point-bubble {
+		position: absolute;
+		top: -27px;
+		right: -27px;
+	}
+
+	.actions {
+		margin: 18px -@bodyMinimalPadding 0;
+		padding: 9px @bodyMinimalPadding 0;
+		border-radius: 0 0 4px 4px;
+
+		label {
+			line-height: 36px;
+			margin: 0;
+		}
+
+		.btn-action {
+			font-size: 24px;
+			line-height: 36px;
+			width: 27px;
+			display: inline-block;
+			text-align: center;
+		}
+	}
+}
+
+.body.skinny {
+	max-width: 300px;
+}
+
+.body.fat {
+	max-width: 700px;
+
+	.divider {
+		position: absolute;
+		left: 345px;
+		top: 15%;
+		height: 70%;
+		width: 2px;
+		background: #eee;
+	}
+}
+
+.body.secondary {
+	padding: @bodyMinimalPadding;
+	text-align: center;
+	background: rgba(255,255,255,.25);
+	color: #999;
+	font-size: 1.1em;
+	margin: 36px auto 18px;
+	box-shadow: none;
+	border: 1px solid #ccc;
+
+	a {
+		color: #777;
+		text-decoration: underline;
+	}
+
+	a:hover {
+		color: #000;
+	}
+}
+
+@media (max-width: 991px) {
+	h1.logo {
+		margin: 18px auto !important;
+	}
+
+	.body.minimal {
+		margin: 18px auto;
+		width: 100%;
+		padding: 0 @bodyPaddingMobile;
+
+		h2 {
+			margin: 0 0 18px;
+		}
+
+		.point-bubble {
+			top: 9px;
+			right: 9px;
+		}
+	}
+
+	.body.secondary {
+		padding: @bodyPaddingMobile;
+	}	
+}
+
+@media (max-width: 320px) {
+	h1.logo {
+		display: none;
+	}
+}

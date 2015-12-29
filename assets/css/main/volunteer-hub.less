@@ -1,0 +1,129 @@
+.organization-profile {
+	.row {
+		margin: 0;
+	}
+
+	.kv-fields {
+		margin: 0 36px 36px;
+
+		.field {
+			.title {
+				width: 200px;
+			}
+		}
+	}
+
+	.organization-events {
+		margin: 18px 0 36px;
+
+		.event {
+			margin: 9px 36px;
+
+			.fields {
+				margin: 9px 0;
+
+				.field {
+					padding: 9px 0 9px 36px;
+					clear: both;
+
+					.icon {
+						margin-left: -27px;
+						font-size: 18px;
+						color: @inspireviveBlue;
+						float: left;
+					}
+
+					.icon.blue {
+						color: @inspireviveBlue;
+					}
+
+					.icon.red {
+						color: @inspireviveRed;
+					}
+
+					.icon.purple {
+						color: @inspirevivePurple;
+					}
+
+					.text {
+						float: left;
+						color: #777;
+						font-size: 14px;
+						line-height: 1.5em;
+					}
+				}
+			}
+
+			.description {
+				margin: 18px 36px 9px;
+				color: #555;
+				line-height: 1.5em;
+				font-size: 14px;
+				font-family: sans-serif;
+				max-width: 600px;
+			}
+
+			.action-row {
+				margin: 18px 36px;
+			}
+		}
+
+		.empty {
+			font-family: sans-serif;
+			color: #777 !important;
+			font-size: 18px;
+			padding: 36px inherit;
+			font-weight: 200;
+		}
+	}
+
+	.volunteers {
+		padding: 9px 0;
+
+		.volunteer {
+			margin: 9px;
+			text-align: center;
+			font-size: 13px;
+			width: 115px;
+
+			.hours {
+				font-weight: bold;
+				color: #777;
+			}
+		}
+	}
+
+	#disqus_thread {
+		margin: 0 36px 18px;
+	}
+}
+
+@media (max-width: 767px) {
+	.organization-profile {
+		.kv-fields {
+			margin: 9px 18px 36px;
+		}
+
+		.organization-events {
+			.event {
+				margin: 9px;
+
+				.description {
+					margin: 18px 9px 9px;
+				}
+			}
+
+			.empty {
+				
+			}
+		}
+
+		.volunteers {
+			padding: 9px 0;
+		}
+
+		#disqus_thread {
+			margin: 0 18px 18px;
+		}
+	}
+}
