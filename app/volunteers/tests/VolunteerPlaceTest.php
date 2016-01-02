@@ -118,7 +118,7 @@ class VolunteerPlaceTest extends \PHPUnit_Framework_TestCase
             'organization' => self::$org->id(),
             'name' => 'Internal',
             'address' => '83 West Miller Street, Orlando, FL 32806',
-            'place_type' => VOLUNTEER_PLACE_INTERNAL, ]));
+            'place_type' => VolunteerPlace::INTERNAL, ]));
 
         $errors = $errorStack->errors('VolunteerPlace.create');
         $expected = [[
@@ -136,7 +136,7 @@ class VolunteerPlaceTest extends \PHPUnit_Framework_TestCase
             'organization' => self::$org->id(),
             'name' => 'Internal',
             'address' => '83 West Miller Street, Orlando, FL 32806',
-            'place_type' => VOLUNTEER_PLACE_INTERNAL, ]));
+            'place_type' => VolunteerPlace::INTERNAL, ]));
 
         // NOTE requires internet access to pass
         $this->assertNotEquals('', self::$place->coordinates);
@@ -145,7 +145,7 @@ class VolunteerPlaceTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(self::$place2->create([
             'organization' => self::$org->id(),
             'name' => 'External',
-            'place_type' => VOLUNTEER_PLACE_EXTERNAL,
+            'place_type' => VolunteerPlace::EXTERNAL,
             'verify_name' => 'Blah blah',
             'verify_email' => 'test@example.com', ]));
     }
@@ -163,7 +163,7 @@ class VolunteerPlaceTest extends \PHPUnit_Framework_TestCase
             'organization' => self::$org->id(),
             'name' => 'Internal',
             'address' => '83 West Miller Street, Orlando, FL 32806',
-            'place_type' => VOLUNTEER_PLACE_INTERNAL, ]));
+            'place_type' => VolunteerPlace::INTERNAL, ]));
 
         $errors = $errorStack->errors('VolunteerPlace.create');
         $expected = [[

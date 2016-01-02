@@ -12,6 +12,7 @@ namespace app\reports;
 
 use app\organizations\models\Organization;
 use app\reports\libs\Report;
+use app\volunteers\models\Volunteer;
 
 class Controller
 {
@@ -21,7 +22,7 @@ class Controller
     {
         $organization = new Organization($req->params('organization'));
 
-        if ($organization->getRoleOfUser($this->app['user']) != ORGANIZATION_ROLE_ADMIN) {
+        if ($organization->getRoleOfUser($this->app['user']) != Volunteer::ROLE_ADMIN) {
             return $res->setCode(404);
         }
 

@@ -16,7 +16,11 @@ if ($cmd = getenv('WKHTMLTOPDF_CMD')) {
 	define('WKHTMLTOPDF_CMD', 'wkhtmltopdf --margin-top 0.5cm --margin-left 0.5cm --margin-right 0.5cm --margin-bottom 2cm -s letter --encoding utf8 -q - -');
 }
 
-// volunteer places
+define('ORGANIZATION_ROLE_NONE', -1);
+define('ORGANIZATION_ROLE_AWAITING_APPROVAL', 0);
+define('ORGANIZATION_ROLE_VOLUNTEER', 1);
+define('ORGANIZATION_ROLE_ADMIN', 2);
+
 define('VOLUNTEER_PLACE_INTERNAL', 0);
 define('VOLUNTEER_PLACE_EXTERNAL', 1);
 

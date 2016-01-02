@@ -83,7 +83,7 @@ class VolunteerHourTest extends \PHPUnit_Framework_TestCase
         self::$place->create([
             'name' => 'Test',
             'organization' => self::$org->id(),
-            'place_type' => VOLUNTEER_PLACE_EXTERNAL,
+            'place_type' => VolunteerPlace::EXTERNAL,
             'verify_approved' => true,
             'verify_name' => 'Jared',
             'verify_email' => 'test@example.com', ]);

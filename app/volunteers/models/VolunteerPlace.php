@@ -17,6 +17,9 @@ use app\organizations\models\Organization;
 
 class VolunteerPlace extends Model
 {
+    const INTERNAL = 0;
+    const EXTERNAL = 1;
+
     public static $scaffoldApi;
     public static $autoTimestamps;
 
@@ -34,12 +37,12 @@ class VolunteerPlace extends Model
        ],
         'place_type' => [
             'type' => 'number',
-            'default' => VOLUNTEER_PLACE_INTERNAL,
+            'default' => self::INTERNAL,
             'required' => true,
             'admin_type' => 'enum',
             'admin_enum' => [
-                VOLUNTEER_PLACE_INTERNAL => 'internal',
-                VOLUNTEER_PLACE_EXTERNAL => 'external',],
+                self::INTERNAL => 'internal',
+                self::EXTERNAL => 'external',],
        ],
         'address' => [
             'type' => 'string',
@@ -143,7 +146,7 @@ class VolunteerPlace extends Model
                 'name' => $name, ]) > 0) {
             $errorStack = $this->app['errors'];
             $errorStack->push([
-                'error' => ERROR_VOLUNTEER_PLACE_NAME_TAKEN,
+                'error' => ERROR_self::NAME_TAKEN,
                 'params' => [
                     'place_name' => $name, ], ]);
 
@@ -202,7 +205,7 @@ class VolunteerPlace extends Model
                 'name' => $name, ]) > 0) {
             $errorStack = $this->app['errors'];
             $errorStack->push([
-                'error' => ERROR_VOLUNTEER_PLACE_NAME_TAKEN,
+                'error' => ERROR_self::NAME_TAKEN,
                 'params' => [
                     'place_name' => $name, ], ]);
 
@@ -222,7 +225,7 @@ class VolunteerPlace extends Model
 
     protected function postSetHook()
     {
-        if ($this->place_type == VOLUNTEER_PLACE_EXTERNAL && $this->justApproved) {
+        if ($this->place_type == self::EXTERNAL && $this->justApproved) {
             // now that the place is approved
             // we can request verification of all
             // unapproved hours reported at this place

@@ -357,7 +357,7 @@ class Controller
         $volunteersAt = Volunteer::find([
             'where' => [
                 'organization IN ( SELECT id FROM Organizations WHERE volunteer_organization IS NOT NULL )',
-                'role >= '.ORGANIZATION_ROLE_VOLUNTEER,
+                'role >= '.Volunteer::ROLE_VOLUNTEER,
                 'uid' => $currentUser->id(), ], ])['models'];
 
         // recent volunteer hours

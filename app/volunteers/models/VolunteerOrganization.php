@@ -271,7 +271,7 @@ class VolunteerOrganization extends Model
     {
         return VolunteerPlace::totalRecords([
             'organization' => $this->organization,
-            'place_type' => VOLUNTEER_PLACE_EXTERNAL,
+            'place_type' => VolunteerPlace::EXTERNAL,
             'verify_approved' => false, ]);
     }
 

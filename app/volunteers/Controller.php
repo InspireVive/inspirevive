@@ -432,7 +432,7 @@ class Controller
 
         $input = $req->request();
         $input['organization'] = $org->id();
-        $input['place_type'] = VOLUNTEER_PLACE_EXTERNAL;
+        $input['place_type'] = VolunteerPlace::EXTERNAL;
         $input['verify_approved'] = false;
 
         $place = new VolunteerPlace();

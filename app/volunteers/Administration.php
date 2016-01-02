@@ -651,9 +651,9 @@ class Administration
         ];
 
         if ($showApproved) {
-            $query['where'][] = '(place_type = '.VOLUNTEER_PLACE_INTERNAL.' OR (place_type = '.VOLUNTEER_PLACE_EXTERNAL.' AND verify_approved = 1))';
+            $query['where'][] = '(place_type = '.VolunteerPlace::INTERNAL.' OR (place_type = '.VolunteerPlace::EXTERNAL.' AND verify_approved = 1))';
         } else {
-            $query['where']['place_type'] = VOLUNTEER_PLACE_EXTERNAL;
+            $query['where']['place_type'] = VolunteerPlace::EXTERNAL;
             $query['where']['verify_approved'] = false;
         }
 
@@ -684,7 +684,7 @@ class Administration
 
         $place = array_replace([
             'name' => '',
-            'place_type' => VOLUNTEER_PLACE_INTERNAL,
+            'place_type' => VolunteerPlace::INTERNAL,
             'address' => '', ], $req->request());
 
         return new View('admin/places/modify', [
@@ -850,7 +850,7 @@ class Administration
 
                 $unapprovedPlaces = VolunteerPlace::totalRecords([
                     'organization' => $org->organization,
-                    'place_type' => VOLUNTEER_PLACE_EXTERNAL,
+                    'place_type' => VolunteerPlace::EXTERNAL,
                     'verify_approved' => false, ]);
 
                 $this->app['view_engine']->setGlobalParameters([

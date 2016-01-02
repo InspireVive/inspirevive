@@ -13,6 +13,7 @@ namespace app\volunteers;
 use app\api\libs\ApiRoute;
 use app\organizations\models\Organization;
 use app\volunteers\models\Volunteer;
+use app\volunteers\models\VolunteerPlace;
 
 class API
 {
@@ -247,11 +248,11 @@ class API
                     $type = $route->getRequest()->query('type');
                     $where = $route->getQueryParams('where');
                     if ($type == 'internal') {
-                        $where['place_type'] = VOLUNTEER_PLACE_INTERNAL;
+                        $where['place_type'] = VolunteerPlace::INTERNAL;
                     } elseif ($type == 'external') {
-                        $where['place_type'] = VOLUNTEER_PLACE_EXTERNAL;
+                        $where['place_type'] = VolunteerPlace::EXTERNAL;
                     } elseif ($type == 'unapproved') {
-                        $where['place_type'] = VOLUNTEER_PLACE_EXTERNAL;
+                        $where['place_type'] = VolunteerPlace::EXTERNAL;
                         $where['verify_approved'] = false;
                     }
                     $route->addQueryParams(['where' => $where]);

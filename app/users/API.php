@@ -11,6 +11,7 @@
 namespace app\users;
 
 use app\api\libs\ApiRoute;
+use app\volunteers\models\Volunteer;
 
 class API
 {
@@ -47,7 +48,7 @@ class API
                 'where' => [
                     'organization IN ( SELECT id FROM Organizations WHERE volunteer_organization IS NOT NULL )',
                         'uid' => $user->id(),
-                        'role >= '.ORGANIZATION_ROLE_VOLUNTEER, ], ])
+                        'role >= '.Volunteer::ROLE_VOLUNTEER, ], ])
               ->addParseSteps([
                 'parseRequireJson',
                 'parseModelFindAllParameters', ])
