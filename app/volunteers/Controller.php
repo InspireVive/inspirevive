@@ -641,17 +641,6 @@ class Controller
     }
 
 /*
---- Background Tasks ---
-*/
-
-    public function cron($command)
-    {
-        if ($command == 'unapproved-hour-notifications') {
-            return Organization::processUnapprovedNotifications();
-        }
-    }
-
-/*
 --- Helper Functions ---
 */
 

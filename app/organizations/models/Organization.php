@@ -684,22 +684,21 @@ class Organization extends Model
     /**
      * Sends unapproved hour notifications.
      *
-     * @param bool $echoOutput
-     *
-     * @return bool
+     * @return int # of notifications sent
      */
-    public static function processUnapprovedNotifications($echoOutput = true)
+    public static function processUnapprovedNotifications()
     {
         $orgs = static::orgsWithUnapprovedHourNotifications();
 
+        $n = 0;
         foreach ($orgs as $org) {
             if ($org->sendUnapprovedNotification()) {
                 if ($echoOutput) {
-                    echo '--- Sent notification for org #'.$org->id()."\n";
+                    $n++;
                 }
             }
         }
 
-        return true;
+        return $n;
     }
 }

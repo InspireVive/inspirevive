@@ -10,14 +10,14 @@
 
 return [
     [
-        'module' => 'statistics',
-        'command' => 'capture-metrics',
-        'minute' => '10',
-        'hour' => '1',
+        'module' => 'organizations',
+        'command' => 'unapproved-hour-notifications',
+        'minute' => '0',
+        'hour' => '*',
         'day' => '*',
         'month' => '*',
         'week' => '*',
-        'expires' => 3600, // 1 hour
+        'expires' => 300, // 5 minutes
     ],
     [
         'module' => 'auth',
@@ -150,13 +150,13 @@ return [
         'expires' => 300, // 5 minutes
     ],
     [
-        'module' => 'volunteers',
-        'command' => 'processUnapprovedNotifications',
-        'minute' => '0',
-        'hour' => '*',
+        'module' => 'statistics',
+        'command' => 'capture-metrics',
+        'minute' => '10',
+        'hour' => '1',
         'day' => '*',
         'month' => '*',
         'week' => '*',
-        'expires' => 300, // 5 minutes
+        'expires' => 3600, // 1 hour
     ],
 ];

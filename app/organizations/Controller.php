@@ -19,4 +19,15 @@ class Controller
     ];
 
     public static $scaffoldAdmin;
+
+    public function cron($command)
+    {
+        if ($command == 'unapproved-hour-notifications') {
+            $n = Organization::processUnapprovedNotifications();
+
+            echo "--- Sent $n notifications\n";
+
+            return true;
+        }
+    }
 }

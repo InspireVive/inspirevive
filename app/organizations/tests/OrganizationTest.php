@@ -455,7 +455,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
      */
     public function testProcessUnapprovedNotifications()
     {
-        $this->assertTrue(Organization::processUnapprovedNotifications(false));
+        $this->assertEquals(1, Organization::processUnapprovedNotifications());
 
         self::$org->load();
         $this->assertEquals(0, self::$org->unapproved_hours_notify_count);
