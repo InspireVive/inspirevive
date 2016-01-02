@@ -392,7 +392,7 @@ class VolunteerHour extends Model
     ///////////////////////
 
     /**
-     * Returns metrics relevant to the activity, i.e. likes or retweets.
+     * Returns metrics generated from this activity.
      *
      * @return array
      */
