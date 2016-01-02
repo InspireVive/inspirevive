@@ -146,7 +146,7 @@ class VolunteerPlace extends Model
                 'name' => $name, ]) > 0) {
             $errorStack = $this->app['errors'];
             $errorStack->push([
-                'error' => ERROR_self::NAME_TAKEN,
+                'error' => ERROR_VOLUNTEER_PLACE_NAME_TAKEN,
                 'params' => [
                     'place_name' => $name, ], ]);
 
@@ -205,7 +205,7 @@ class VolunteerPlace extends Model
                 'name' => $name, ]) > 0) {
             $errorStack = $this->app['errors'];
             $errorStack->push([
-                'error' => ERROR_self::NAME_TAKEN,
+                'error' => ERROR_VOLUNTEER_PLACE_NAME_TAKEN,
                 'params' => [
                     'place_name' => $name, ], ]);
 
