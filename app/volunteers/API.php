@@ -33,15 +33,14 @@ class API
               ->addQueryStep('queryModelFindOne')
               ->addTransformSteps([
                 function (&$result, $route) use ($app) {
-                    $vOrg = $result->volunteerOrganization();
-
-                    if (!$vOrg) {
+                    $org = $result;
+                    if (!$org->exists()) {
                         $route->getResponse()->setCode(404);
 
                         return false;
                     }
 
-                    if (!$vOrg->can('admin', $app['user'])) {
+                    if (!$org->can('admin', $app['user'])) {
                         $route->getResponse()->setCode(403);
 
                         return false;
@@ -49,9 +48,9 @@ class API
 
                     $result = [
                         'unapproved' => [
-                            'volunteers' => $vOrg->numUnapprovedVolunteers(),
-                            'hours' => $vOrg->numUnapprovedHours(),
-                            'places' => $vOrg->numUnapprovedPlaces(), ], ];
+                            'volunteers' => $org->numUnapprovedVolunteers(),
+                            'hours' => $org->numUnapprovedHours(),
+                            'places' => $org->numUnapprovedPlaces(), ], ];
                 },
                 'transformOutputJson', ]);
 
@@ -72,15 +71,14 @@ class API
               ->addQueryStep('queryModelFindOne')
               ->addTransformSteps([
                 function (&$result, $route) use ($app) {
-                    $vOrg = $result->volunteerOrganization();
-
-                    if (!$vOrg) {
+                    $org = $result;
+                    if (!$org->exists) {
                         $route->getResponse()->setCode(404);
 
                         return false;
                     }
 
-                    if (!$vOrg->can('admin', $app['user'])) {
+                    if (!$org->can('admin', $app['user'])) {
                         $route->getResponse()->setCode(403);
 
                         return false;
@@ -92,11 +90,11 @@ class API
                     $result = [
                         'dashboard' => [
                             'totals' => [
-                                'volunteers' => $vOrg->numVolunteers(),
-                                'hours' => $vOrg->totalHoursVolunteered(),
-                                'places' => $vOrg->numPlaces(), ],
-                            'alerts' => $vOrg->alerts(),
-                            'period' => $vOrg->activityForPeriod($start, $end), ], ];
+                                'volunteers' => $org->numVolunteers(),
+                                'hours' => $org->totalHoursVolunteered(),
+                                'places' => $org->numPlaces(), ],
+                            'alerts' => $org->alerts(),
+                            'period' => $org->activityForPeriod($start, $end), ], ];
                 },
                 'transformOutputJson', ]);
 
@@ -179,13 +177,9 @@ class API
 
                     if ($volunteer instanceof $modelClass) {
                         $org = new Organization($route->getQueryParams('organization'));
-                        if (!$org->hasVolunteerOrganization()) {
-                            return $route->getResponse()->setCode(404);
-                        }
-                        $vOrg = $org->volunteerOrganization();
 
                         // look up volunteer hours using the organization
-                        $hIter = $vOrg->hours($route->getQueryParams('start'), $route->getQueryParams('end'), $volunteer);
+                        $hIter = $org->hours($route->getQueryParams('start'), $route->getQueryParams('end'), $volunteer);
                         $hours = [];
                         foreach ($hIter as $hour) {
                             $hours[] = $hour->toArray([], [], ['place']);

@@ -207,10 +207,6 @@ class Volunteer extends Model
         if ($this->needsApproveEmail) {
             $org = $this->relation('organization');
 
-            if (!$org->hasVolunteerOrganization()) {
-                return;
-            }
-
             $orgname = $org->name;
 
             $this->relation('uid')->sendEmail(
@@ -218,7 +214,7 @@ class Volunteer extends Model
                 [
                     'subject' => 'Your request to join '.$orgname.' was approved on InspireVive',
                     'orgname' => $orgname,
-                    'volunteerHubUrl' => $org->volunteerOrganization()->url(), ]);
+                    'volunteerHubUrl' => $org->url(), ]);
 
             $this->needsApproveEmail = false;
         }
@@ -299,7 +295,7 @@ class Volunteer extends Model
             return false;
         }
 
-        return $this->relation('organization')->volunteerOrganization()->url().'/volunteers/approve/'.$this->approval_link;
+        return $this->relation('organization')->url().'/volunteers/approve/'.$this->approval_link;
     }
 
     /**
@@ -313,7 +309,7 @@ class Volunteer extends Model
             return false;
         }
 
-        return $this->relation('organization')->volunteerOrganization()->url().'/volunteers/reject/'.$this->approval_link;
+        return $this->relation('organization')->url().'/volunteers/reject/'.$this->approval_link;
     }
 
     /**
@@ -325,10 +321,6 @@ class Volunteer extends Model
     public function emailOrganizationForApproval()
     {
         $org = $this->relation('organization');
-
-        if (!$org->hasVolunteerOrganization()) {
-            return false;
-        }
 
         $user = $this->relation('uid');
 
@@ -350,6 +342,6 @@ class Volunteer extends Model
             $info['full_name'] = $application->fullName();
         }
 
-        return $org->volunteerOrganization()->sendEmail('volunteer-approval-request', $info);
+        return $org->sendEmail('volunteer-approval-request', $info);
     }
 }

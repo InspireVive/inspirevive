@@ -119,6 +119,7 @@ class User extends AbstractUser
     public static $testUser = [
         'username' => 'testuser',
         'ip' => '127.0.0.1',
+        'about' => 'bio'
     ];
 
     public static $usernameProperties = ['username', 'user_email'];

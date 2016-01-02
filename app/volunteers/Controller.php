@@ -18,7 +18,6 @@ use infuse\Validate;
 use infuse\View;
 use app\organizations\models\Organization;
 use app\reports\libs\Report;
-use app\volunteers\models\VolunteerOrganization;
 use app\volunteers\models\Volunteer;
 use app\volunteers\models\VolunteerApplication;
 use app\volunteers\models\VolunteerHour;
@@ -30,7 +29,6 @@ class Controller
 
     public static $properties = [
         'models' => [
-            'VolunteerOrganization',
             'Volunteer',
             'VolunteerApplication',
             'VolunteerHour',
@@ -154,13 +152,11 @@ class Controller
         $req->setParams([
             'type' => 'organizations', ]);
 
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $periods = [
             [
@@ -177,23 +173,23 @@ class Controller
                 'start' => false,],];
 
         foreach ($periods as $k => $period) {
-            $periods[$k]['hoursVolunteered'] = $volunteerOrg->totalHoursVolunteered($period['start']);
-            $periods[$k]['volunteers'] = $volunteerOrg->numVolunteers($period['start']);
-            $topVolunteers = $volunteerOrg->topVolunteers(1, $period['start']);
+            $periods[$k]['hoursVolunteered'] = $org->totalHoursVolunteered($period['start']);
+            $periods[$k]['volunteers'] = $org->numVolunteers($period['start']);
+            $topVolunteers = $org->topVolunteers(1, $period['start']);
             $periods[$k]['topVolunteer'] = (count($topVolunteers) == 1) ? $topVolunteers[0] : false;
         }
 
         $role = $org->getRoleOfUser($this->app['user']);
 
         return new View('profile', [
-            'title' => $volunteerOrg->name().' Volunteer Hub',
-            'org' => $volunteerOrg->toArray(),
-            'orgObj' => $volunteerOrg,
+            'title' => $org->name.' Volunteer Hub',
+            'org' => $org->toArray(),
+            'orgObj' => $org,
             'username' => $org->username,
             'awaitingApproval' => $role == Volunteer::ROLE_AWAITING_APPROVAL,
             'isVolunteer' => $role >= Volunteer::ROLE_VOLUNTEER,
             'isVolunteerCoordinator' => $role == Volunteer::ROLE_ADMIN,
-            'topVolunteers' => $volunteerOrg->topVolunteers(6),
+            'topVolunteers' => $org->topVolunteers(6),
             'periods' => $periods,
             'rsvpd' => $req->query('rsvpd'),
        ]);
@@ -201,19 +197,17 @@ class Controller
 
     public function joinOrganization($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $currentUser = $this->app['user'];
 
         // make sure the user is logged in
         if (!$currentUser->isLoggedIn()) {
-            setcookie('redirect', $volunteerOrg->url(), time() + 3600, '/');
+            setcookie('redirect', $org->url(), time() + 3600, '/');
 
             return $res->redirect('/signup');
         }
@@ -249,21 +243,19 @@ class Controller
         }
 
         return new View('joinOrganization', [
-            'title' => 'Joined '.$volunteerOrg->name(),
-            'org' => $volunteerOrg->toArray(),
-            'orgObj' => $volunteerOrg,
+            'title' => 'Joined '.$org->name,
+            'org' => $org->toArray(),
+            'orgObj' => $org,
        ]);
     }
 
     public function approveVolunteer($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $volunteer = Volunteer::findOne([
             'where' => [
@@ -281,7 +273,7 @@ class Controller
         $user = $volunteer->relation('uid');
 
         return new View('volunteerApprovedThanks', [
-            'org' => $volunteerOrg,
+            'org' => $org,
             'title' => ($success) ? 'Volunteer Approved' : 'Could not approve volunteer',
             'success' => $success,
             'volunteer' => $volunteer->toArray(),
@@ -292,13 +284,11 @@ class Controller
 
     public function rejectVolunteer($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $volunteer = Volunteer::findOne([
             'where' => [
@@ -314,7 +304,7 @@ class Controller
         $success = $volunteer->delete();
 
         return new View('volunteerApprovedThanks', [
-            'org' => $volunteerOrg,
+            'org' => $org,
             'title' => ($success) ? 'Volunteer Denied' : 'Could not deny volunteer',
             'success' => $success,
             'volunteer' => $volunteer->toArray(),
@@ -324,13 +314,11 @@ class Controller
 
     public function unjoinOrganization($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $currentUser = $this->app['user'];
 
@@ -352,19 +340,17 @@ class Controller
 
     public function reportHoursStep1($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $currentUser = $this->app['user'];
 
         // make sure the user is logged in
         if (!$currentUser->isLoggedIn()) {
-            setcookie('redirect', $volunteerOrg->url().'/hours/report', time() + 3600, '/');
+            setcookie('redirect', $org->url().'/hours/report', time() + 3600, '/');
 
             return $res->redirect('/login');
         }
@@ -375,49 +361,47 @@ class Controller
             'sort' => 'name ASC', ]);
 
         return new View('reportHours', [
-            'org' => $volunteerOrg,
+            'org' => $org,
             'title' => 'Report Volunteer Hours',
             'places' => $places, ]);
     }
 
     public function addVolunteerPlaceForm($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
 
         $currentUser = $this->app['user'];
 
         // make sure the user is logged in
         if (!$currentUser->isLoggedIn()) {
-            setcookie('redirect', $volunteerOrg->url().'/places/add', time() + 3600, '/');
+            setcookie('redirect', $org->url().'/places/add', time() + 3600, '/');
 
             return $res->redirect('/login');
         }
 
         return new View('addPlace', [
-            'org' => $volunteerOrg,
+            'org' => $org,
             'title' => 'Add Volunteer Place',
             'place' => $req->request(), ]);
     }
 
     public function addVolunteerPlace($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $currentUser = $this->app['user'];
 
         // make sure the user is logged in
         if (!$currentUser->isLoggedIn()) {
-            setcookie('redirect', $volunteerOrg->url().'/places/add', time() + 3600, '/');
+            setcookie('redirect', $org->url().'/places/add', time() + 3600, '/');
 
             return $res->redirect('/login');
         }
@@ -439,7 +423,7 @@ class Controller
         $success = $place->create($input);
 
         if ($success) {
-            $res->redirect($volunteerOrg->url().'/hours/report/2?place='.$place->id());
+            $res->redirect($org->url().'/hours/report/2?place='.$place->id());
         } else {
             return $this->addVolunteerPlaceForm($req, $res);
         }
@@ -447,19 +431,17 @@ class Controller
 
     public function reportHoursStep2($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $currentUser = $this->app['user'];
 
         // make sure the user is logged in
         if (!$currentUser->isLoggedIn()) {
-            setcookie('redirect', $volunteerOrg->url().'/hours/report', time() + 3600, '/');
+            setcookie('redirect', $org->url().'/hours/report', time() + 3600, '/');
 
             return $res->redirect('/login');
         }
@@ -467,14 +449,14 @@ class Controller
         $place = $req->query('place');
         if ($place) {
             if ($place == -1) {
-                return $res->redirect($volunteerOrg->url().'/places/add');
+                return $res->redirect($org->url().'/places/add');
             }
 
             $place = new VolunteerPlace($place);
         }
 
         if (!$place || !$place->exists()) {
-            return $res->redirect($volunteerOrg->url().'/hours/add');
+            return $res->redirect($org->url().'/hours/add');
         }
 
         $dayTs = $req->request('timestamp');
@@ -491,7 +473,7 @@ class Controller
                 'limit' => 10, ]);
 
         return new View('reportHours2', [
-            'org' => $volunteerOrg,
+            'org' => $org,
             'title' => 'Report Volunteer Hours',
             'place' => $place,
             'tags' => $req->request('tags'),
@@ -502,19 +484,17 @@ class Controller
 
     public function reportHoursStep3($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $currentUser = $this->app['user'];
 
         // make sure the user is logged in
         if (!$currentUser->isLoggedIn()) {
-            setcookie('redirect', $volunteerOrg->url().'/hours/report', time() + 3600, '/');
+            setcookie('redirect', $org->url().'/hours/report', time() + 3600, '/');
 
             return $res->redirect('/login');
         }
@@ -525,7 +505,7 @@ class Controller
         }
 
         if (!$place || !$place->exists()) {
-            return $res->redirect($volunteerOrg->manageUrl().'/hours/add');
+            return $res->redirect($org->manageUrl().'/hours/add');
         }
 
         // validate tags
@@ -562,7 +542,7 @@ class Controller
             'tags' => $tags, ]);
 
         if ($success) {
-            $res->redirect($volunteerOrg->url().'/hours/thanks');
+            $res->redirect($org->url().'/hours/thanks');
         } else {
             return $this->reportHoursStep2($req, $res);
         }
@@ -570,10 +550,10 @@ class Controller
 
     public function reportHoursThanks($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
 
         $currentUser = $this->app['user'];
@@ -584,19 +564,17 @@ class Controller
         }
 
         return new View('reportHoursThanks', [
-            'org' => $volunteerOrg,
+            'org' => $org,
             'title' => 'Volunteer Hours Reported', ]);
     }
 
     public function approveHours($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $hour = VolunteerHour::findOne([
             'where' => [
@@ -605,7 +583,7 @@ class Controller
 
         if (!$hour) {
             return new View('hoursNotFound', [
-                'org' => $volunteerOrg,
+                'org' => $org,
                 'title' => 'Hours Not Found', ]);
         }
 
@@ -617,7 +595,7 @@ class Controller
         $place = $hour->place()->toArray();
 
         return new View('hoursApprovedThanks', [
-            'org' => $volunteerOrg,
+            'org' => $org,
             'title' => ($success) ? 'Volunteer Hours Approved' : 'Could not approve volunteer hours',
             'success' => $success,
             'hour' => $h,
@@ -628,13 +606,11 @@ class Controller
 
     public function rejectHours($req, $res)
     {
-        $volunteerOrg = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
-        if (!is_object($volunteerOrg)) {
-            return $volunteerOrg;
+        if (!is_object($org)) {
+            return $org;
         }
-
-        $org = $volunteerOrg->relation('organization');
 
         $hour = VolunteerHour::findOne([
             'where' => [
@@ -643,7 +619,7 @@ class Controller
 
         if (!$hour) {
             return new View('hoursNotFound', [
-                'org' => $volunteerOrg,
+                'org' => $org,
                 'title' => 'Hours Not Found', ]);
         }
 
@@ -655,7 +631,7 @@ class Controller
         $success = $hour->delete();
 
         return new View('hoursApprovedThanks', [
-            'org' => $volunteerOrg,
+            'org' => $org,
             'title' => ($success) ? 'Volunteer Hours Denied' : 'Could not reject volunteer hours',
             'success' => $success,
             'hour' => $h,
@@ -671,7 +647,7 @@ class Controller
     public function cron($command)
     {
         if ($command == 'unapproved-hour-notifications') {
-            return VolunteerOrganization::processUnapprovedNotifications();
+            return Organization::processUnapprovedNotifications();
         }
     }
 
@@ -692,24 +668,5 @@ class Controller
         }
 
         return $org;
-    }
-
-    private function getVolunteerOrg($req, $res)
-    {
-        $org = $this->getOrg($req, $res);
-
-        if (!is_object($org)) {
-            return $org;
-        }
-
-        $volunteerOrg = $org->volunteerOrganization();
-
-        if (!$volunteerOrg) {
-            $res->setCode(404);
-
-            return false;
-        }
-
-        return $volunteerOrg;
     }
 }

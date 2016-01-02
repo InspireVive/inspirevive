@@ -21,13 +21,11 @@ class HoursByVolunteer extends AbstractReport
 
     public function getSections()
     {
-        $vOrg = $this->organization->volunteerOrganization();
-
         $section = [
             'title' => 'Volunteers',
             'rows' => [], ];
 
-        $tagHeaders = $vOrg->hourTags();
+        $tagHeaders = $this->organization->hourTags();
 
         $section['header'] = ['Volunteer', 'Metadata', 'Hours'];
         // $section['header'] = array_merge( $section['header'], $tagHeaders );
@@ -49,8 +47,8 @@ class HoursByVolunteer extends AbstractReport
                 $metadata = urldecode(http_build_query($metadata));
             }
 
-            $volunteerHours = $vOrg->totalHoursVolunteered($this->start, $this->end, $volunteer);
-            $volunteerHoursBytag = $vOrg->totalHoursVolunteeredByTag($this->start, $this->end, $volunteer);
+            $volunteerHours = $this->organization->totalHoursVolunteered($this->start, $this->end, $volunteer);
+            $volunteerHoursBytag = $this->organization->totalHoursVolunteeredByTag($this->start, $this->end, $volunteer);
 
             $row = [
                 $volunteer->name(),

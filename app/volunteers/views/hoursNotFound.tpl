@@ -2,7 +2,7 @@
 {block name=content}
 
 <h1 class="profile-title">
-	{$org->name()}
+	{$org->name}
 	<small>
 		Verify Volunteer Hours
 	</small>
@@ -16,7 +16,7 @@
 
 <hr/>
 <p>
-	{$org->name()} thanks you for your participation.
+	{$org->name} thanks you for your participation.
 </p>
 
 {/block}

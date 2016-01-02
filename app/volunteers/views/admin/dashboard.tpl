@@ -1,7 +1,7 @@
 {extends file="$viewsDir/admin/parent.tpl"}
 {block name=content}
 
-<h2>Welcome, {$org->name()}!</h2>
+<h2>Welcome, {$org->name}!</h2>
 <hr/>
 <div class="stat-group-title">Shortcuts</div>
 

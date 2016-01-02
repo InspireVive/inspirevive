@@ -22,7 +22,9 @@
 
   <logging>
     <log type="coverage-clover" target="build/logs/clover.xml"/>
-    <log type="coverage-html" target="build/coverage" title="PHP_CodeCoverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70"/>
+    <log type="coverage-html" target="build/coverage" 
+      lowUpperBound="35" highLowerBound="70"/>
+      <log type="coverage-text" target="php://stdout" lowUpperBound="35" highLowerBound="70" showOnlySummary="true"/>
   </logging>
 
   <filter>
@@ -31,6 +33,8 @@
       <exclude>
         <directory suffix="Test.php">app</directory>
         <directory suffix="Controller.php">app</directory>
+        <directory suffix="API.php">app</directory>
+        <directory suffix="Administration.php">app</directory>
         <directory suffix=".php">app/*/migrations</directory>
       </exclude>
     </whitelist>

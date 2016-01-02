@@ -19,15 +19,13 @@ class HoursDetail extends AbstractReport
 
     public function getSections()
     {
-        $vOrg = $this->organization->volunteerOrganization();
-
         $section = [
             'title' => 'Hours Log',
             'rows' => [], ];
 
         $section['header'] = ['Date', 'Volunteer', 'Metadata', 'Hours', 'Place', 'Tags'];
 
-        $hours = $vOrg->hours($this->start, $this->end);
+        $hours = $this->organization->hours($this->start, $this->end);
         $count = 0;
 
         foreach ($hours as $hour) {

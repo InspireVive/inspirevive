@@ -11,13 +11,11 @@
 use app\organizations\models\Organization;
 use app\users\models\User;
 use app\volunteers\models\Volunteer;
-use app\volunteers\models\VolunteerOrganization;
 use app\volunteers\models\VolunteerApplication;
 
 class VolunteerTest extends \PHPUnit_Framework_TestCase
 {
     public static $org;
-    public static $volunteerOrg;
     public static $volunteer;
     public static $volunteer2;
     public static $app;
@@ -31,18 +29,11 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
             'email' => 'test@example.com',
             'username' => 'test'.time()
         ]);
-
-        TestBootstrap::app('user')->enableSU();
-        self::$volunteerOrg = new VolunteerOrganization();
-        self::$volunteerOrg->create([
-            'organization' => self::$org->id()
-        ]);
-        TestBootstrap::app('user')->disableSU();
     }
 
     protected function assertPreConditions()
     {
-        $this->assertGreaterThan(0, self::$volunteerOrg->id());
+        $this->assertGreaterThan(0, self::$org->id());
     }
 
     public static function tearDownAfterClass()
@@ -125,7 +116,7 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
         $volunteer = new Volunteer();
         $volunteer->organization = self::$org->id();
         $volunteer->approval_link = 'test';
-        $expected = self::$volunteerOrg->url().'/volunteers/approve/test';
+        $expected = self::$org->url().'/volunteers/approve/test';
 
         $this->assertEquals($expected, $volunteer->approvalLink());
     }
@@ -135,7 +126,7 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
         $volunteer = new Volunteer();
         $volunteer->organization = self::$org->id();
         $volunteer->approval_link = 'test';
-        $expected = self::$volunteerOrg->url().'/volunteers/reject/test';
+        $expected = self::$org->url().'/volunteers/reject/test';
 
         $this->assertEquals($expected, $volunteer->rejectLink());
     }

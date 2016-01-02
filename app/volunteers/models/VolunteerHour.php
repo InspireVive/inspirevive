@@ -247,17 +247,12 @@ class VolunteerHour extends Model
             // request verification from third party volunteer coordinator
             if ($place->canApproveHours()) {
                 $this->requestThirdPartyVerification();
-            }
 
             // notify organization of unapproved hours
-            else {
-                $volunteerOrg = $org->volunteerOrganization();
-                // they have a volunteer organization
-                if ($volunteerOrg) {
-                    $volunteerOrg->grantAllPermissions();
-                    $volunteerOrg->set('unapproved_hours_notify_count', $volunteerOrg->unapproved_hours_notify_count + 1);
-                    $volunteerOrg->enforcePermissions();
-                }
+            } else {
+                $org->grantAllPermissions();
+                $org->set('unapproved_hours_notify_count', $org->unapproved_hours_notify_count + 1);
+                $org->enforcePermissions();
             }
         }
     }
@@ -476,7 +471,7 @@ class VolunteerHour extends Model
             return false;
         }
 
-        return $this->relation('organization')->volunteerOrganization()->url().'/hours/approve/'.$this->approval_link;
+        return $this->relation('organization')->url().'/hours/approve/'.$this->approval_link;
     }
 
     /**
@@ -490,7 +485,7 @@ class VolunteerHour extends Model
             return false;
         }
 
-        return $this->relation('organization')->volunteerOrganization()->url().'/hours/reject/'.$this->approval_link;
+        return $this->relation('organization')->url().'/hours/reject/'.$this->approval_link;
     }
 
     /**

@@ -2,7 +2,7 @@
 {block name=content}
 
 <h1 class="profile-title">
-	{$org->name()}
+	{$org->name}
 	<small>
 		Approve Volunteer
 	</small>
@@ -11,7 +11,7 @@
 {if $success}
 	<h4>Thank you!</h4>
 	<p>
-		We have {if $approved}approved{else}denied{/if} <strong>{$name}'s</strong> request to join {$org->name()} and notified them over e-mail of your decision.
+		We have {if $approved}approved{else}denied{/if} <strong>{$name}'s</strong> request to join {$org->name} and notified them over e-mail of your decision.
 	</p>
 
 	{if $approved}
@@ -28,7 +28,7 @@
 			</a>
 		{else}
 			<a href="{$org->manageUrl()}" class="btn btn-primary">
-				Go to {$org->name()} Management
+				Go to {$org->name} Management
 			</a>
 		{/if}
 	</p>

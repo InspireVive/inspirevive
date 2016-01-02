@@ -37,15 +37,14 @@
 {foreach from=$volunteersAt item=volunteer}
 	{assign var=appShared value=$volunteer->application_shared}
 	{assign var=org value=$volunteer->relation('organization')}
-	{assign var=volunteerOrg value=$org->volunteerOrganization()}
 	<div class="profile-accordion {if $appShared}green{else}red{/if}">
 		<h3>
-			<a href="{$volunteerOrg->url()}">
-				{$volunteerOrg->name()}
+			<a href="{$org->url()}">
+				{$org->name}
 			</a>
 			<div class="pull-right">
 				{if !$appShared}
-					<form method="post" action="{$volunteerOrg->url()}/volunteers?redir=profile">
+					<form method="post" action="{$org->url()}/volunteers?redir=profile">
 						<input type="hidden" name="application_shared" value="1" />
 						<button type="submit" class="btn btn-inverse">
 							Grant Access
@@ -55,22 +54,22 @@
 			</div>
 		</h3>
 		{if $appShared}
-			<form method="post" action="{$volunteerOrg->url()}/volunteers?redir=profile">
+			<form method="post" action="{$org->url()}/volunteers?redir=profile">
 				<input type="hidden" name="application_shared" value="0" />
 				<p class="description">
 					{if $org->getRoleOfUser($app.user) == $smarty.const.ORGANIZATION_ROLE_ADMIN}
-						<a class="btn btn-link" href="{$volunteerOrg->manageUrl()}">
+						<a class="btn btn-link" href="{$org->manageUrl()}">
 							<span class="glyphicon glyphicon-cog"></span>
 							Manage
 						</a>
 						&middot;
 					{/if}
-					<a class="btn btn-link" href="{$volunteerOrg->url()}">
+					<a class="btn btn-link" href="{$org->url()}">
 						<span class="glyphicon glyphicon-home"></span>
 						Volunteer Hub
 					</a>
 					&middot;
-					<a href="{$volunteerOrg->url()}/hours/report" class="btn btn-link">
+					<a href="{$org->url()}/hours/report" class="btn btn-link">
 						<span class="glyphicon glyphicon-time"></span>
 						Report volunteer hours
 					</a>
@@ -78,8 +77,8 @@
 			</form>
 		{else}
 			<p class="description">
-				Before you are able to join as a volunteer you must grant {$volunteerOrg->name()} access to your volunteer application.<br/>
-				<form method="post" action="{$volunteerOrg->url()}/volunteers?redir=profile">
+				Before you are able to join as a volunteer you must grant {$org->name} access to your volunteer application.<br/>
+				<form method="post" action="{$org->url()}/volunteers?redir=profile">
 					<input type="hidden" name="method" value="DELETE" />
 					<p class="description">
 						<button class="btn btn-link" type="submit">

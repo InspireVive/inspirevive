@@ -6,7 +6,7 @@
 {block name=content}
 
 <h1 class="profile-title">
-	{$org->name()}
+	{$org->name}
 	<small>
 		Report Volunteer Hours
 	</small>

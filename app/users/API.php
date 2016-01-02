@@ -46,9 +46,9 @@ class API
         $route->addQueryParams([
                 'model' => 'app\volunteers\models\Volunteer',
                 'where' => [
-                    'organization IN ( SELECT id FROM Organizations WHERE volunteer_organization IS NOT NULL )',
-                        'uid' => $user->id(),
-                        'role >= '.Volunteer::ROLE_VOLUNTEER, ], ])
+                    'organization IN ( SELECT id FROM Organizations )',
+                    'uid' => $user->id(),
+                    'role >= '.Volunteer::ROLE_VOLUNTEER, ], ])
               ->addParseSteps([
                 'parseRequireJson',
                 'parseModelFindAllParameters', ])

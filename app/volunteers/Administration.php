@@ -17,7 +17,6 @@ use infuse\Validate;
 use infuse\View;
 use app\organizations\models\Organization;
 use app\reports\libs\Report;
-use app\volunteers\models\VolunteerOrganization;
 use app\volunteers\models\Volunteer;
 use app\volunteers\models\VolunteerApplication;
 use app\volunteers\models\VolunteerHour;
@@ -835,7 +834,7 @@ class Administration
 
     private function getOrgForAdmin($req, $res)
     {
-        $org = $this->getVolunteerOrg($req, $res);
+        $org = $this->getOrg($req, $res);
 
         if (is_object($org)) {
             if ($org->can('admin', $this->app['user'])) {
@@ -931,25 +930,6 @@ class Administration
         }
 
         return $org;
-    }
-
-    private function getVolunteerOrg($req, $res)
-    {
-        $org = $this->getOrg($req, $res);
-
-        if (!is_object($org)) {
-            return $org;
-        }
-
-        $volunteerOrg = $org->volunteerOrganization();
-
-        if (!$volunteerOrg) {
-            $res->setCode(404);
-
-            return false;
-        }
-
-        return $volunteerOrg;
     }
 
     private function daysArray($start, $end)

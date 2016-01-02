@@ -14,14 +14,11 @@ use app\volunteers\models\Volunteer;
 use app\volunteers\models\VolunteerHour;
 use app\volunteers\models\VolunteerHourTag;
 use app\volunteers\models\VolunteerPlace;
-use app\volunteers\models\VolunteerOrganization;
 
 class VolunteerHourTest extends \PHPUnit_Framework_TestCase
 {
     public static $org;
     public static $org2;
-    public static $volunteerOrg;
-    public static $volunteerOrg2;
     public static $place;
     public static $hour;
     public static $hour2;
@@ -68,16 +65,6 @@ class VolunteerHourTest extends \PHPUnit_Framework_TestCase
             'organization' => self::$org2->id(),
             'uid' => $uid,
             'role' => Volunteer::ROLE_VOLUNTEER, ]);
-
-        self::$volunteerOrg = new VolunteerOrganization();
-        self::$volunteerOrg->create([
-            'organization' => self::$org->id()
-        ]);
-
-        self::$volunteerOrg2 = new VolunteerOrganization();
-        self::$volunteerOrg2->create([
-            'organization' => self::$org2->id()
-        ]);
 
         TestBootstrap::app('user')->disableSU();
 
@@ -432,7 +419,7 @@ class VolunteerHourTest extends \PHPUnit_Framework_TestCase
         $hour->organization = self::$org->id();
         $hour->approval_link = 'test';
 
-        $this->assertEquals(self::$volunteerOrg->url().'/hours/approve/test', $hour->approvalLink());
+        $this->assertEquals(self::$org->url().'/hours/approve/test', $hour->approvalLink());
     }
 
     /**
@@ -444,7 +431,7 @@ class VolunteerHourTest extends \PHPUnit_Framework_TestCase
         $hour->organization = self::$org->id();
         $hour->approval_link = 'test';
 
-        $this->assertEquals(self::$volunteerOrg->url().'/hours/reject/test', $hour->rejectLink());
+        $this->assertEquals(self::$org->url().'/hours/reject/test', $hour->rejectLink());
     }
 
     /**

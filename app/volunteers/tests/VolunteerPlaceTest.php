@@ -11,13 +11,11 @@
 use app\organizations\models\Organization;
 use app\users\models\User;
 use app\volunteers\models\Volunteer;
-use app\volunteers\models\VolunteerOrganization;
 use app\volunteers\models\VolunteerPlace;
 
 class VolunteerPlaceTest extends \PHPUnit_Framework_TestCase
 {
     public static $org;
-    public static $volunteerOrg;
     public static $place;
     public static $place2;
     public static $ogUserId;
@@ -34,10 +32,6 @@ class VolunteerPlaceTest extends \PHPUnit_Framework_TestCase
 
         $uid = TestBootstrap::app('user')->id();
         TestBootstrap::app('user')->enableSU();
-        self::$volunteerOrg = new VolunteerOrganization();
-        self::$volunteerOrg->create([
-            'organization' => self::$org->id()
-        ]);
 
         $volunteer = new Volunteer();
         $volunteer->create([
@@ -51,7 +45,7 @@ class VolunteerPlaceTest extends \PHPUnit_Framework_TestCase
 
     protected function assertPreConditions()
     {
-        $this->assertGreaterThan(0, self::$volunteerOrg->id());
+        $this->assertGreaterThan(0, self::$org->id());
     }
 
     public function assertPostConditions()

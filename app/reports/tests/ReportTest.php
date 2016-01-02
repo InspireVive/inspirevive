@@ -9,13 +9,11 @@
  */
 
 use app\organizations\models\Organization;
-use app\volunteers\models\VolunteerOrganization;
 use app\reports\libs\Report;
 
 class ReportTest extends \PHPUnit_Framework_TestCase
 {
     public static $org;
-    public static $volunteerOrg;
 
     public static function setUpBeforeClass()
     {
@@ -26,14 +24,6 @@ class ReportTest extends \PHPUnit_Framework_TestCase
             'email' => 'test@example.com',
             'username' => 'test'
         ]);
-
-        TestBootstrap::app('user')->enableSU();
-        self::$volunteerOrg = new VolunteerOrganization();
-        self::$volunteerOrg->create([
-            'organization' => self::$org->id(),
-            'volunteer_coordinator_email' => 'test@example.com',
-            'city' => 'Tulsa', ]);
-        TestBootstrap::app('user')->disableSU();
     }
 
     public static function tearDownAfterClass()
@@ -47,7 +37,6 @@ class ReportTest extends \PHPUnit_Framework_TestCase
     public function assertPreConditions()
     {
         $this->assertGreaterThan(0, self::$org->id());
-        $this->assertGreaterThan(0, self::$volunteerOrg->id());
     }
 
     public function testAvailableReports()

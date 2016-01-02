@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html {if isset($ngAppModule)}ng-app="{$ngAppModule}"{/if}>
 	<head>
-		<title>{if isset($title)}{$title} :: {$org->name()} - InspireVive{else}InspireVive{/if}</title>
+		<title>{if isset($title)}{$title} :: {$org->name} - InspireVive{else}InspireVive{/if}</title>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		
@@ -31,7 +31,7 @@
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="{$org->url()}/admin">
-					{$org->name()}
+					{$org->name}
 					<small>Management</small>
 				</a>
 			</div>
