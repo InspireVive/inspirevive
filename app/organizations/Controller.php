@@ -10,6 +10,8 @@
 
 namespace app\organizations;
 
+use app\organizations\models\Organization;
+
 class Controller
 {
     public static $properties = [
