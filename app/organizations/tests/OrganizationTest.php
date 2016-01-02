@@ -95,7 +95,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($volunteer->create([
             'uid' => $uid,
             'organization' => self::$org2->id(),
-            'role' => ORGANIZATION_ROLE_ADMIN, ]));
+            'role' => Volunteer::ROLE_ADMIN, ]));
         TestBootstrap::app('user')->disableSU();
 
         $volunteer = new Volunteer();
@@ -120,9 +120,9 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRoleOfUser()
     {
-        $this->assertEquals(ORGANIZATION_ROLE_NONE, self::$org->getRoleOfUser(new User(-1)));
+        $this->assertEquals(Volunteer::ROLE_NONE, self::$org->getRoleOfUser(new User(-1)));
 
-        $this->assertEquals(ORGANIZATION_ROLE_ADMIN, self::$org2->getRoleOfUser(TestBootstrap::app('user')));
+        $this->assertEquals(Volunteer::ROLE_ADMIN, self::$org2->getRoleOfUser(TestBootstrap::app('user')));
     }
 
     /**

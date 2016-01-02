@@ -107,7 +107,7 @@ class Organization extends Model
     {
         $volunteer = new Volunteer([$user->id(), $this->_id]);
 
-        return ($volunteer->exists()) ? $volunteer->role : ORGANIZATION_ROLE_NONE;
+        return ($volunteer->exists()) ? $volunteer->role : Volunteer::ROLE_NONE;
     }
 
     /**

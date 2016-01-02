@@ -59,12 +59,12 @@ class VolunteerOrganization extends Model
         $orgModel = $this->relation('organization');
 
         if ($permission == 'view' && $orgModel &&
-            $orgModel->getRoleOfUser($requester) >= ORGANIZATION_ROLE_VOLUNTEER) {
+            $orgModel->getRoleOfUser($requester) >= Volunteer::ROLE_VOLUNTEER) {
             return true;
         }
 
         if (in_array($permission, ['admin', 'edit']) && $orgModel &&
-            $orgModel->getRoleOfUser($requester) == ORGANIZATION_ROLE_ADMIN) {
+            $orgModel->getRoleOfUser($requester) == Volunteer::ROLE_ADMIN) {
             return true;
         }
 
@@ -80,7 +80,7 @@ class VolunteerOrganization extends Model
         $org = new Organization(U::array_value($data, 'organization'));
 
         // cannot create volunteer org unless an organization admin
-        if ($org->getRoleOfUser($this->app['user']) < ORGANIZATION_ROLE_ADMIN &&
+        if ($org->getRoleOfUser($this->app['user']) < Volunteer::ROLE_ADMIN &&
             !$this->app['user']->isAdmin()) {
             $this->app['errors']->push(['error' => ERROR_NO_PERMISSION]);
 
@@ -129,7 +129,7 @@ class VolunteerOrganization extends Model
         }
 
         $where = [
-            $prefix.'uid IN ( SELECT uid FROM Volunteers WHERE organization = '.$this->organization.' AND role >= '.ORGANIZATION_ROLE_VOLUNTEER.' )',
+            $prefix.'uid IN ( SELECT uid FROM Volunteers WHERE organization = '.$this->organization.' AND role >= '.Volunteer::ROLE_VOLUNTEER.' )',
        ];
 
         $where[$prefix.'organization'] = $this->organization;
@@ -257,7 +257,7 @@ class VolunteerOrganization extends Model
     {
         return Volunteer::totalRecords([
             'organization' => $this->organization,
-            'role' => ORGANIZATION_ROLE_AWAITING_APPROVAL, ]);
+            'role' => Volunteer::ROLE_AWAITING_APPROVAL, ]);
     }
 
     public function numUnapprovedHours()
@@ -298,7 +298,7 @@ class VolunteerOrganization extends Model
             'organization' => $this->organization,
             'created_at >= '.$start,
             'created_at <= '.$end,
-            'role >= '.ORGANIZATION_ROLE_VOLUNTEER, ]);
+            'role >= '.Volunteer::ROLE_VOLUNTEER, ]);
     }
 
     /**
@@ -611,7 +611,7 @@ class VolunteerOrganization extends Model
             'organization' => $org,
             'application_shared' => true,
             'active' => true,
-            'role' => ORGANIZATION_ROLE_VOLUNTEER, ]);
+            'role' => Volunteer::ROLE_VOLUNTEER, ]);
 
         $base = $this->app['base_url'];
 

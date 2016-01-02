@@ -59,20 +59,20 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
         $volunteer->create([
             'uid' => $uid,
             'organization' => self::$org->id(),
-            'role' => ORGANIZATION_ROLE_ADMIN, ]);
+            'role' => Volunteer::ROLE_ADMIN, ]);
         TestBootstrap::app('user')->disableSU();
 
         $volunteer = new Volunteer();
         $volunteer->create([
             'uid' => -2,
             'organization' => self::$org->id(),
-            'role' => ORGANIZATION_ROLE_AWAITING_APPROVAL, ]);
+            'role' => Volunteer::ROLE_AWAITING_APPROVAL, ]);
 
         $volunteer = new Volunteer();
         $volunteer->create([
             'uid' => -3,
             'organization' => self::$org->id(),
-            'role' => ORGANIZATION_ROLE_VOLUNTEER, ]);
+            'role' => Volunteer::ROLE_VOLUNTEER, ]);
 
         $volunteer = new Volunteer();
         $volunteer->create([
@@ -424,15 +424,15 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
     {
         // invite an existing user by an email address
         $this->assertInstanceOf('app\volunteers\models\Volunteer', self::$volunteerOrg->inviteVolunteer('test+volunteer@example.com'));
-        $this->assertEquals(ORGANIZATION_ROLE_VOLUNTEER, self::$volunteerOrg->relation('organization')->getRoleOfUser(self::$user));
+        $this->assertEquals(Volunteer::ROLE_VOLUNTEER, self::$volunteerOrg->relation('organization')->getRoleOfUser(self::$user));
 
         // invite an existing user by an email address again
         $this->assertInstanceOf('app\volunteers\models\Volunteer', self::$volunteerOrg->inviteVolunteer('test+volunteer@example.com'));
-        $this->assertEquals(ORGANIZATION_ROLE_VOLUNTEER, self::$volunteerOrg->relation('organization')->getRoleOfUser(self::$user));
+        $this->assertEquals(Volunteer::ROLE_VOLUNTEER, self::$volunteerOrg->relation('organization')->getRoleOfUser(self::$user));
 
         // invite an existing user by username
         $this->assertInstanceOf('app\volunteers\models\Volunteer', self::$volunteerOrg->inviteVolunteer('testvolunteer2'));
-        $this->assertEquals(ORGANIZATION_ROLE_VOLUNTEER, self::$volunteerOrg->relation('organization')->getRoleOfUser(self::$user2));
+        $this->assertEquals(Volunteer::ROLE_VOLUNTEER, self::$volunteerOrg->relation('organization')->getRoleOfUser(self::$user2));
 
         // invite a non-existent user by email address
         $this->assertInstanceOf('app\volunteers\models\Volunteer', self::$volunteerOrg->inviteVolunteer('temporary+volunteer@example.com'));
@@ -443,7 +443,7 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(self::$tempUser->exists());
         $this->assertTrue(self::$tempUser->isTemporary());
         $this->assertEquals(self::$org->id(), self::$tempUser->invited_by);
-        $this->assertEquals(ORGANIZATION_ROLE_VOLUNTEER, self::$volunteerOrg->relation('organization')->getRoleOfUser(self::$tempUser));
+        $this->assertEquals(Volunteer::ROLE_VOLUNTEER, self::$volunteerOrg->relation('organization')->getRoleOfUser(self::$tempUser));
 
         // invite a non-existent user by username
         $this->assertFalse(self::$volunteerOrg->inviteVolunteer('badusername'));

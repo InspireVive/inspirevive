@@ -69,7 +69,7 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($volunteer->create([
             'uid' => -100,
             'organization' => self::$org->id(),
-            'role' => ORGANIZATION_ROLE_ADMIN, ]));
+            'role' => Volunteer::ROLE_ADMIN, ]));
     }
 
     public function testCannotCreateBeyondCurrentRole()
@@ -78,7 +78,7 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($volunteer->create([
             'uid' => TestBootstrap::app('user')->id(),
             'organization' => self::$org->id(),
-            'role' => ORGANIZATION_ROLE_ADMIN, ]));
+            'role' => Volunteer::ROLE_ADMIN, ]));
     }
 
     public function testName()
@@ -96,10 +96,10 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
         $volunteer = new Volunteer();
         $volunteer->uid = TestBootstrap::app('user')->id();
 
-        $volunteer->role = ORGANIZATION_ROLE_ADMIN;
+        $volunteer->role = Volunteer::ROLE_ADMIN;
         $this->assertEquals('volunteer_coordinator', $volunteer->status());
 
-        $volunteer->role = ORGANIZATION_ROLE_VOLUNTEER;
+        $volunteer->role = Volunteer::ROLE_VOLUNTEER;
         $volunteer->active = false;
         $this->assertEquals('inactive_volunteer', $volunteer->status());
 
@@ -112,10 +112,10 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
         $volunteer->uid = -3;
         $this->assertEquals('not_registered', $volunteer->status());
 
-        $volunteer->role = ORGANIZATION_ROLE_AWAITING_APPROVAL;
+        $volunteer->role = Volunteer::ROLE_AWAITING_APPROVAL;
         $this->assertEquals('awaiting_approval', $volunteer->status());
 
-        $volunteer->role = ORGANIZATION_ROLE_NONE;
+        $volunteer->role = Volunteer::ROLE_NONE;
         $this->assertEquals('not_volunteer', $volunteer->status());
     }
 
@@ -164,7 +164,7 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
             'organization' => self::$org->id(),
             'application_shared' => true,
             'active' => true,
-            'role' => ORGANIZATION_ROLE_AWAITING_APPROVAL,
+            'role' => Volunteer::ROLE_AWAITING_APPROVAL,
             'last_email_sent_about_hours' => null,
             'metadata' => null,
             'name' => TestBootstrap::app('user')->name(),
@@ -190,7 +190,7 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
     {
         TestBootstrap::app('user')->enableSU();
         $this->assertTrue(self::$volunteer->set([
-            'role' => ORGANIZATION_ROLE_VOLUNTEER,
+            'role' => Volunteer::ROLE_VOLUNTEER,
             'approval_link' => '', ]));
     }
 
@@ -200,7 +200,7 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
     public function testCannotPromoteBeyondCurrentRole()
     {
         self::$volunteer->enforcePermissions();
-        $this->assertFalse(self::$volunteer->set('role', ORGANIZATION_ROLE_VOLUNTEER));
+        $this->assertFalse(self::$volunteer->set('role', Volunteer::ROLE_VOLUNTEER));
     }
 
     /**

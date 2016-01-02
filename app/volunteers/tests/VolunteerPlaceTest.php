@@ -42,7 +42,7 @@ class VolunteerPlaceTest extends \PHPUnit_Framework_TestCase
         $volunteer->create([
             'organization' => self::$org->id(),
             'uid' => $uid,
-            'role' => ORGANIZATION_ROLE_ADMIN, ]);
+            'role' => Volunteer::ROLE_ADMIN, ]);
         TestBootstrap::app('user')->disableSU();
 
         self::$ogUserId = $uid;

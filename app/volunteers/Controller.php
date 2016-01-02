@@ -190,9 +190,9 @@ class Controller
             'org' => $volunteerOrg->toArray(),
             'orgObj' => $volunteerOrg,
             'slug' => $org->slug,
-            'awaitingApproval' => $role == ORGANIZATION_ROLE_AWAITING_APPROVAL,
-            'isVolunteer' => $role >= ORGANIZATION_ROLE_VOLUNTEER,
-            'isVolunteerCoordinator' => $role == ORGANIZATION_ROLE_ADMIN,
+            'awaitingApproval' => $role == Volunteer::ROLE_AWAITING_APPROVAL,
+            'isVolunteer' => $role >= Volunteer::ROLE_VOLUNTEER,
+            'isVolunteerCoordinator' => $role == Volunteer::ROLE_ADMIN,
             'topVolunteers' => $volunteerOrg->topVolunteers(6),
             'periods' => $periods,
             'rsvpd' => $req->query('rsvpd'),
@@ -227,7 +227,7 @@ class Controller
 
         // make sure the application has been shared with the org
         if ($volunteer->exists()) {
-            $role = max($volunteer->role, ORGANIZATION_ROLE_VOLUNTEER);
+            $role = max($volunteer->role, Volunteer::ROLE_VOLUNTEER);
             $volunteer->grantAllPermissions();
             $volunteer->set([
                 'application_shared' => $applicationShared,
@@ -241,7 +241,7 @@ class Controller
                 'organization' => $org->id(),
                 'application_shared' => $applicationShared,
                 'active' => true,
-                'role' => ORGANIZATION_ROLE_AWAITING_APPROVAL, ]);
+                'role' => Volunteer::ROLE_AWAITING_APPROVAL, ]);
         }
 
         if ($req->query('redir') == 'profile') {
@@ -269,14 +269,14 @@ class Controller
             'where' => [
                 'organization' => $org->id(),
                 'approval_link' => $req->params('approval_link'),
-                'role' => ORGANIZATION_ROLE_AWAITING_APPROVAL, ], ]);
+                'role' => Volunteer::ROLE_AWAITING_APPROVAL, ], ]);
 
         if (!$volunteer) {
             return $res->setCode(404);
         }
 
         $volunteer->grantAllPermissions();
-        $success = $volunteer->set('role', ORGANIZATION_ROLE_VOLUNTEER);
+        $success = $volunteer->set('role', Volunteer::ROLE_VOLUNTEER);
 
         $user = $volunteer->relation('uid');
 
@@ -304,7 +304,7 @@ class Controller
             'where' => [
                 'organization' => $org->id(),
                 'approval_link' => $req->params('approval_link'),
-                'role' => ORGANIZATION_ROLE_AWAITING_APPROVAL, ], ]);
+                'role' => Volunteer::ROLE_AWAITING_APPROVAL, ], ]);
 
         if (!$volunteer) {
             return $res->setCode(404);
@@ -343,7 +343,7 @@ class Controller
 
         $volunteer->grantAllPermissions();
         $volunteer->set([
-            'role' => ORGANIZATION_ROLE_NONE, ]);
+            'role' => Volunteer::ROLE_NONE, ]);
 
         if ($req->query('redir') == 'profile') {
             return $res->redirect('/profile');

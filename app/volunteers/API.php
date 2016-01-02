@@ -12,6 +12,7 @@ namespace app\volunteers;
 
 use app\api\libs\ApiRoute;
 use app\organizations\models\Organization;
+use app\volunteers\models\Volunteer;
 
 class API
 {
@@ -116,15 +117,15 @@ class API
                     $status = $route->getRequest()->query('status');
                     $where = $route->getQueryParams('where');
                     if ($status == 'awaiting_approval') {
-                        $where['role'] = ORGANIZATION_ROLE_AWAITING_APPROVAL;
+                        $where['role'] = Volunteer::ROLE_AWAITING_APPROVAL;
                     } elseif ($status == 'volunteer') {
-                        $where['role'] = ORGANIZATION_ROLE_VOLUNTEER;
+                        $where['role'] = Volunteer::ROLE_VOLUNTEER;
                     } elseif ($status == 'missing_application') {
                         // TODO
                     } elseif ($status == 'not_registered') {
                         // TODO
                     } elseif ($status == 'volunteer_coordinator') {
-                        $where['role'] = ORGANIZATION_ROLE_ADMIN;
+                        $where['role'] = Volunteer::ROLE_ADMIN;
                     }
                     $route->addQueryParams(['where' => $where]);
                 }, ])

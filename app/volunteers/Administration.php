@@ -100,7 +100,7 @@ class Administration
         $query = [
             'where' => [
                 'organization' => $org->organization,
-                'role >= '.($showApproved ? ORGANIZATION_ROLE_VOLUNTEER : ORGANIZATION_ROLE_AWAITING_APPROVAL),
+                'role >= '.($showApproved ? Volunteer::ROLE_VOLUNTEER : Volunteer::ROLE_AWAITING_APPROVAL),
                 'active' => !$showInactive,
                 'uid IS NOT NULL',
             ],
@@ -423,7 +423,7 @@ class Administration
         $volunteers = Volunteer::findAll([
             'where' => [
                 'organization' => $org->organization,
-                'role >= '.ORGANIZATION_ROLE_VOLUNTEER, ],
+                'role >= '.Volunteer::ROLE_VOLUNTEER, ],
             'sort' => 'id ASC', ]);
 
         $availableTags = (array) Database::select(
@@ -842,7 +842,7 @@ class Administration
                 // calculate the number of unapproved volunteers, places, and hours
                 $unapprovedVolunteers = Volunteer::totalRecords([
                     'organization' => $org->organization,
-                    'role' => ORGANIZATION_ROLE_AWAITING_APPROVAL, ]);
+                    'role' => Volunteer::ROLE_AWAITING_APPROVAL, ]);
 
                 $unapprovedHours = VolunteerHour::totalRecords([
                     'organization' => $org->organization,

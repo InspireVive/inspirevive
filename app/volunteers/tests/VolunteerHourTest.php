@@ -57,13 +57,13 @@ class VolunteerHourTest extends \PHPUnit_Framework_TestCase
         $volunteer->create([
             'organization' => self::$org->id(),
             'uid' => $uid,
-            'role' => ORGANIZATION_ROLE_ADMIN, ]);
+            'role' => Volunteer::ROLE_ADMIN, ]);
 
         $volunteer = new Volunteer();
         $volunteer->create([
             'organization' => self::$org2->id(),
             'uid' => $uid,
-            'role' => ORGANIZATION_ROLE_VOLUNTEER, ]);
+            'role' => Volunteer::ROLE_VOLUNTEER, ]);
 
         self::$volunteerOrg = new VolunteerOrganization();
         self::$volunteerOrg->create([

@@ -112,7 +112,7 @@ class VolunteerHour extends Model
 
         if (in_array($permission, ['view', 'edit', 'delete']) &&
             $orgModel &&
-            $orgModel->getRoleOfUser($requester) == ORGANIZATION_ROLE_ADMIN) {
+            $orgModel->getRoleOfUser($requester) == Volunteer::ROLE_ADMIN) {
             return true;
         }
 
@@ -128,7 +128,7 @@ class VolunteerHour extends Model
             if (!isset($params['where']['approval_link'])) {
                 $org = new Organization($params['where']['organization']);
 
-                if ($org->getRoleOfUser($user) != ORGANIZATION_ROLE_ADMIN) {
+                if ($org->getRoleOfUser($user) != Volunteer::ROLE_ADMIN) {
                     $params['where']['uid'] = $user->id();
                 }
             }
@@ -152,14 +152,14 @@ class VolunteerHour extends Model
         // check creator permission
         $requester = $this->app['user'];
         $role = $org->getRoleOfUser($requester);
-        if ($role < ORGANIZATION_ROLE_VOLUNTEER && !$requester->isAdmin()) {
+        if ($role < Volunteer::ROLE_VOLUNTEER && !$requester->isAdmin()) {
             $this->app['errors']->push(['error' => ERROR_NO_PERMISSION]);
 
             return false;
         }
 
         // volunteers cannot approve own hours
-        if ($role < ORGANIZATION_ROLE_ADMIN && !$requester->isAdmin()) {
+        if ($role < Volunteer::ROLE_ADMIN && !$requester->isAdmin()) {
             $data['approved'] = false;
         }
 

@@ -17,6 +17,11 @@ use app\users\models\User;
 
 class Volunteer extends Model
 {
+    const ROLE_NONE = -1;
+    const ROLE_AWAITING_APPROVAL = 0;
+    const ROLE_VOLUNTEER = 1;
+    const ROLE_ADMIN = 2;
+
     public static $scaffoldApi;
     public static $autoTimestamps;
 
@@ -46,13 +51,13 @@ class Volunteer extends Model
         ],
         'role' => [
             'type' => 'number',
-            'default' => ORGANIZATION_ROLE_AWAITING_APPROVAL,
+            'default' => self::ROLE_AWAITING_APPROVAL,
             'admin_type' => 'enum',
             'admin_enum' => [
-                ORGANIZATION_ROLE_NONE => 'none',
-                ORGANIZATION_ROLE_AWAITING_APPROVAL => 'awaiting_approval',
-                ORGANIZATION_ROLE_VOLUNTEER => 'volunteer',
-                ORGANIZATION_ROLE_ADMIN => 'admin', ],
+                self::ROLE_NONE => 'none',
+                self::ROLE_AWAITING_APPROVAL => 'awaiting_approval',
+                self::ROLE_VOLUNTEER => 'volunteer',
+                self::ROLE_ADMIN => 'admin', ],
         ],
         'last_email_sent_about_hours' => [
             'type' => 'date',
@@ -94,7 +99,7 @@ class Volunteer extends Model
         $orgModel = $this->relation('organization');
         if (in_array($permission, ['view', 'edit', 'delete']) &&
             is_object($orgModel) &&
-            $orgModel->getRoleOfUser($requester) == ORGANIZATION_ROLE_ADMIN) {
+            $orgModel->getRoleOfUser($requester) == self::ROLE_ADMIN) {
             return true;
         }
 
@@ -110,7 +115,7 @@ class Volunteer extends Model
             if (isset($params['where']['organization'])) {
                 $org = new Organization($params['where']['organization']);
 
-                if ($org->getRoleOfUser($user) < ORGANIZATION_ROLE_VOLUNTEER) {
+                if ($org->getRoleOfUser($user) < self::ROLE_VOLUNTEER) {
                     $params['where']['uid'] = $user->id();
                 }
             } else {
@@ -135,7 +140,7 @@ class Volunteer extends Model
         //  ii) current user creating a volunteer model for themselves
         $uid = U::array_value($data, 'uid');
         $currentRole = $organization->getRoleOfUser($this->app['user']);
-        $isAdmin = $this->app['user']->isAdmin() || $currentRole == ORGANIZATION_ROLE_ADMIN;
+        $isAdmin = $this->app['user']->isAdmin() || $currentRole == self::ROLE_ADMIN;
 
         if (!$isAdmin && $uid != $this->app['user']->id()) {
             $this->app['errors']->push(['error' => ERROR_NO_PERMISSION]);
@@ -145,8 +150,8 @@ class Volunteer extends Model
 
         // volunteers cannot be promoted beyond the role of the current user
         $maxLevel = ($isAdmin) ?
-            ORGANIZATION_ROLE_ADMIN :
-            max(ORGANIZATION_ROLE_AWAITING_APPROVAL, $currentRole);
+            self::ROLE_ADMIN :
+            max(self::ROLE_AWAITING_APPROVAL, $currentRole);
 
         $role = U::array_value($data, 'role');
         if ($role  > $maxLevel) {
@@ -156,7 +161,7 @@ class Volunteer extends Model
         }
 
         // approval link
-        if ($role == ORGANIZATION_ROLE_AWAITING_APPROVAL) {
+        if ($role == self::ROLE_AWAITING_APPROVAL) {
             $data['approval_link'] = U::guid(false);
         }
 
@@ -165,7 +170,7 @@ class Volunteer extends Model
 
     public function postCreateHook()
     {
-        if ($this->role == ORGANIZATION_ROLE_AWAITING_APPROVAL) {
+        if ($this->role == self::ROLE_AWAITING_APPROVAL) {
             $this->emailOrganizationForApproval();
         }
     }
@@ -176,10 +181,10 @@ class Volunteer extends Model
 
         $currentUser = $this->app['user'];
         $currentRole = $organization->getRoleOfUser($currentUser);
-        $isAdmin = $currentUser->isAdmin() || $currentRole == ORGANIZATION_ROLE_ADMIN;
+        $isAdmin = $currentUser->isAdmin() || $currentRole == self::ROLE_ADMIN;
 
         // volunteers can only be promoted if current user is admin
-        $maxLevel = ($isAdmin) ? ORGANIZATION_ROLE_ADMIN : ORGANIZATION_ROLE_AWAITING_APPROVAL;
+        $maxLevel = ($isAdmin) ? self::ROLE_ADMIN : self::ROLE_AWAITING_APPROVAL;
 
         $role = U::array_value($data, 'role');
         if ($role > $maxLevel) {
@@ -189,7 +194,7 @@ class Volunteer extends Model
         }
 
         // email user if going from not approved to approved
-        if ($role >= ORGANIZATION_ROLE_VOLUNTEER && $this->role == ORGANIZATION_ROLE_AWAITING_APPROVAL) {
+        if ($role >= self::ROLE_VOLUNTEER && $this->role == self::ROLE_AWAITING_APPROVAL) {
             $data['approval_link'] = null;
             $this->needsApproveEmail = true;
         }
@@ -263,9 +268,9 @@ class Volunteer extends Model
     {
         $role = $this->role;
 
-        if ($role == ORGANIZATION_ROLE_ADMIN) {
+        if ($role == self::ROLE_ADMIN) {
             return 'volunteer_coordinator';
-        } elseif ($role == ORGANIZATION_ROLE_VOLUNTEER) {
+        } elseif ($role == self::ROLE_VOLUNTEER) {
             $user = $this->relation('uid');
             if ($user->hasCompletedVolunteerApplication()) {
                 return (($this->active) ? 'active' : 'inactive').'_volunteer';
@@ -276,7 +281,7 @@ class Volunteer extends Model
                     return 'incomplete_application';
                 }
             }
-        } elseif ($role == ORGANIZATION_ROLE_AWAITING_APPROVAL) {
+        } elseif ($role == self::ROLE_AWAITING_APPROVAL) {
             return 'awaiting_approval';
         }
 
@@ -290,7 +295,7 @@ class Volunteer extends Model
      */
     public function approvalLink()
     {
-        if ($this->role != ORGANIZATION_ROLE_AWAITING_APPROVAL) {
+        if ($this->role != self::ROLE_AWAITING_APPROVAL) {
             return false;
         }
 
@@ -304,7 +309,7 @@ class Volunteer extends Model
      */
     public function rejectLink()
     {
-        if ($this->role != ORGANIZATION_ROLE_AWAITING_APPROVAL) {
+        if ($this->role != self::ROLE_AWAITING_APPROVAL) {
             return false;
         }
 
