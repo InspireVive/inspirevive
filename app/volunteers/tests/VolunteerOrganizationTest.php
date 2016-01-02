@@ -45,13 +45,17 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
         self::$org->grantAllPermissions();
         self::$org->create([
             'name' => 'Test Organization',
-            'email' => 'test@example.com', ]);
+            'email' => 'test@example.com',
+            'username' => 'test'.time()
+        ]);
 
         self::$officialOrg = new Organization();
         self::$officialOrg->grantAllPermissions();
         self::$officialOrg->create([
             'name' => 'Test Org',
-            'email' => 'test@example.com', ]);
+            'email' => 'test@example.com',
+            'username' => 'test2'.time()
+        ]);
 
         $uid = TestBootstrap::app('user')->id();
         TestBootstrap::app('user')->enableSU();

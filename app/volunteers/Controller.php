@@ -189,7 +189,7 @@ class Controller
             'title' => $volunteerOrg->name().' Volunteer Hub',
             'org' => $volunteerOrg->toArray(),
             'orgObj' => $volunteerOrg,
-            'slug' => $org->slug,
+            'username' => $org->username,
             'awaitingApproval' => $role == Volunteer::ROLE_AWAITING_APPROVAL,
             'isVolunteer' => $role >= Volunteer::ROLE_VOLUNTEER,
             'isVolunteerCoordinator' => $role == Volunteer::ROLE_ADMIN,
@@ -683,7 +683,7 @@ class Controller
     {
         $org = Organization::findOne([
             'where' => [
-                'slug' => $req->params('slug'), ], ]);
+                'username' => $req->params('username'), ], ]);
 
         if (!$org) {
             $res->setCode(404);

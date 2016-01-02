@@ -144,7 +144,7 @@ class VolunteerOrganization extends Model
      */
     public function url()
     {
-        return $this->app['base_url'].'organizations/'.$this->relation('organization')->slug;
+        return $this->app['base_url'].'organizations/'.$this->relation('organization')->username;
     }
 
     /**
@@ -154,7 +154,7 @@ class VolunteerOrganization extends Model
      */
     public function manageUrl()
     {
-        return $this->app['base_url'].'organizations/'.$this->relation('organization')->slug.'/admin';
+        return $this->url().'/admin';
     }
 
     /**

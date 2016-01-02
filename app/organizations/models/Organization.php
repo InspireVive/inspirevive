@@ -12,7 +12,6 @@ namespace app\organizations\models;
 
 use infuse\Database;
 use infuse\Model;
-use infuse\Utility as U;
 use app\users\models\User;
 use app\volunteers\models\Volunteer;
 
@@ -40,8 +39,10 @@ class Organization extends Model
             'admin_html' => '<a href="mailto:{email}">{email}</a>',
             'searchable' => true,
         ],
-        'slug' => [
+        'username' => [
             'type' => 'string',
+            'required' => true,
+            'unique' => true,
             'admin_hidden_property' => true,
         ],
         'address' => [
@@ -59,24 +60,6 @@ class Organization extends Model
     //////////////////////
     // HOOKS
     //////////////////////
-
-    protected function preCreateHook(&$data)
-    {
-        // set slug
-        $data['slug'] = U::seoify($data['name']);
-
-        return true;
-    }
-
-    protected function preSetHook(&$data)
-    {
-        // update slug
-        if (isset($data['name'])) {
-            $data['slug'] = U::seoify($data['name']);
-        }
-
-        return true;
-    }
 
     protected function postDeleteHook()
     {

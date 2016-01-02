@@ -870,7 +870,7 @@ class Administration
     private function getModelForAdmin($req, $res)
     {
         // lookup model class
-        // index derived from /:type/:slug/admin/SECTION/....
+        // index derived from /:type/:username/admin/SECTION/....
         $section = $req->paths(3);
         $modelClass = U::array_value(self::$sectionModels, $section);
 
@@ -922,7 +922,7 @@ class Administration
     {
         $org = Organization::findOne([
             'where' => [
-                'slug' => $req->params('slug'), ], ]);
+                'username' => $req->params('username'), ], ]);
 
         if (!$org) {
             $res->setCode(404);

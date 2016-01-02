@@ -44,13 +44,17 @@ class VolunteerHourTest extends \PHPUnit_Framework_TestCase
         self::$org->grantAllPermissions();
         self::$org->create([
             'name' => 'Test',
-            'email' => 'test@example.com', ]);
+            'email' => 'test@example.com',
+            'username' => 'test'.time()
+        ]);
 
         self::$org2 = new Organization();
         self::$org2->grantAllPermissions();
         self::$org2->create([
             'name' => 'Test 2',
-            'email' => 'test2@example.com', ]);
+            'email' => 'test2@example.com',
+            'username' => 'test2'.time()
+        ]);
 
         TestBootstrap::app('user')->enableSU();
         $volunteer = new Volunteer();

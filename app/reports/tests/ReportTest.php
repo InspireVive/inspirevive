@@ -23,7 +23,9 @@ class ReportTest extends \PHPUnit_Framework_TestCase
         self::$org->grantAllPermissions();
         self::$org->create([
             'name' => 'Test Organization',
-            'email' => 'test@example.com', ]);
+            'email' => 'test@example.com',
+            'username' => 'test'
+        ]);
 
         TestBootstrap::app('user')->enableSU();
         self::$volunteerOrg = new VolunteerOrganization();

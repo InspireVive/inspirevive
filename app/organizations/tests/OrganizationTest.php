@@ -71,17 +71,21 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         self::$org->grantAllPermissions();
         $this->assertTrue(self::$org->create([
             'name' => 'Test',
-            'email' => 'test@example.com', ]));
+            'email' => 'test@example.com',
+            'username' => 'test'
+        ]));
 
-        $this->assertEquals('test', self::$org->slug);
+        $this->assertEquals('test', self::$org->username);
 
         self::$org2 = new Organization();
         self::$org2->grantAllPermissions();
         $this->assertTrue(self::$org2->create([
             'name' => 'Test 2',
-            'email' => 'test2@example.com', ]));
+            'email' => 'test2@example.com',
+            'username' => 'test2'
+        ]));
 
-        $this->assertEquals('test-2', self::$org2->slug);
+        $this->assertEquals('test2', self::$org2->username);
 
         TestBootstrap::app('user')->enableSU();
         $volunteer = new Volunteer();
@@ -112,7 +116,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         self::$org->grantAllPermissions();
         $this->assertTrue(self::$org->set('name', 'Testing 1 2 3'));
 
-        $this->assertEquals('testing-1-2-3', self::$org->slug);
+        $this->assertEquals('testing-1-2-3', self::$org->username);
     }
 
     /**
