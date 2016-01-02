@@ -132,16 +132,6 @@
 
 		<div class="form-group">
 			<div class="col-md-8">
-				<label>Would you like to receive text messages from organizations you volunteer at with important updates? (Usually changed or canceled volunteer events)</label><br/>
-			</div>
-			<div class="col-md-4">
-				<input type="checkbox" name="has_sms" value="1" {if isset($application.has_sms)&&$application.has_sms}checked="checked"{/if} id="has_sms" />
-				<label for="has_sms">Yes</label>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<div class="col-md-8">
 				<label>Were you a volunteer before joining InspireVive?</label><br/>
 			</div>
 			<div class="col-md-4">

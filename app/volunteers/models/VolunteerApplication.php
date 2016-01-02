@@ -73,12 +73,6 @@ class VolunteerApplication extends Model
             'validate' => 'string:10',
             'admin_hidden_property' => true,
         ],
-        'has_sms' => [
-            'type' => 'boolean',
-            'default' => false,
-            'validate' => 'boolean',
-            'admin_hidden_property' => true,
-        ],
         'alternate_phone' => [
             'type' => 'string',
             'admin_hidden_property' => true,

@@ -91,19 +91,6 @@
 					{$application.phone}
 				</p>
 			</div>
-			<div class="col-md-6">
-				<p>
-				{if $application.has_sms}
-					<span class="text text-success">
-						Would like to receive text messages
-					</span>
-				{else}
-					<span class="text text-danger">
-						Would not like to receive text messages
-					</span>
-				{/if}
-				</p>
-			</div>
 		</div>
 
 		<div class="row">
