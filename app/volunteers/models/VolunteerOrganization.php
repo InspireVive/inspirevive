@@ -32,11 +32,6 @@ class VolunteerOrganization extends Model
 
         /* organization profile */
 
-        'city' => [
-            'type' => 'string',
-            'required' => true,
-            'searchable' => true,
-       ],
         'volunteer_coordinator_email' => [
             'type' => 'string',
             'required' => true,

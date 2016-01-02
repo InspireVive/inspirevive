@@ -226,8 +226,8 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
         $vOrg = new VolunteerOrganization();
         $this->assertFalse($vOrg->create([
             'organization' => self::$org->id(),
-            'volunteer_coordinator_email' => 'test@example.com',
-            'city' => 'Tulsa', ]));
+            'volunteer_coordinator_email' => 'test@example.com'
+        ]));
 
         $errors = $errorStack->errors('VolunteerOrganization.create');
         $expected = [[
@@ -243,8 +243,8 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
         self::$volunteerOrg = new VolunteerOrganization();
         $this->assertTrue(self::$volunteerOrg->create([
             'organization' => self::$org->id(),
-            'volunteer_coordinator_email' => 'test@example.com',
-            'city' => 'Tulsa', ]));
+            'volunteer_coordinator_email' => 'test@example.com'
+        ]));
     }
 
     /**
@@ -252,7 +252,7 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
      */
     public function testEdit()
     {
-        $this->assertTrue(self::$volunteerOrg->set('city', 'Austin'));
+        $this->assertTrue(self::$volunteerOrg->set('volunteer_coordinator_email', 'coordinator@example.com'));
     }
 
     /**

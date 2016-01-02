@@ -14,15 +14,12 @@ class VolunteerOrganization extends AbstractMigration
 {
     public function change()
     {
-        if (!$this->hasTable('VolunteerOrganizations')) {
-            $table = $this->table('VolunteerOrganizations');
-            $table->addColumn('organization', 'integer')
-              ->addColumn('unapproved_hours_notify_count', 'integer')
-              ->addColumn('volunteer_coordinator_email', 'string')
-              ->addColumn('city', 'string', ['length' => 30])
-              ->addColumn('created_at', 'integer')
-              ->addColumn('updated_at', 'integer', ['null' => true, 'default' => null])
-              ->create();
-        }
+        $table = $this->table('VolunteerOrganizations');
+        $table->addColumn('organization', 'integer')
+          ->addColumn('unapproved_hours_notify_count', 'integer')
+          ->addColumn('volunteer_coordinator_email', 'string')
+          ->addColumn('created_at', 'integer')
+          ->addColumn('updated_at', 'integer', ['null' => true, 'default' => null])
+          ->create();
     }
 }
