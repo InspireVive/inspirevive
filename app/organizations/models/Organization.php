@@ -693,9 +693,7 @@ class Organization extends Model
         $n = 0;
         foreach ($orgs as $org) {
             if ($org->sendUnapprovedNotification()) {
-                if ($echoOutput) {
-                    $n++;
-                }
+                $n++;
             }
         }
 
