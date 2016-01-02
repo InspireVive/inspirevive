@@ -114,7 +114,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
     public function testEdit()
     {
         self::$org->grantAllPermissions();
-        $this->assertTrue(self::$org->set('name', 'Testing 1 2 3'));
+        $this->assertTrue(self::$org->set('username', 'testing-1-2-3'));
 
         $this->assertEquals('testing-1-2-3', self::$org->username);
     }

@@ -22,6 +22,8 @@ class user extends AbstractMigration
               ->addColumn('twitter_id', 'biginteger', ['length' => 20, 'null' => true, 'default' => null])
               ->addColumn('instagram_id', 'biginteger', ['length' => 20, 'null' => true, 'default' => null])
               ->addColumn('volunteer_hours', 'integer')
+              ->removeColumn('first_name')
+              ->removeColumn('last_name')
               ->update();
     }
 }

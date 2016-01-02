@@ -45,11 +45,6 @@ class Organization extends Model
             'unique' => true,
             'admin_hidden_property' => true,
         ],
-        'address' => [
-            'type' => 'string',
-            'admin_type' => 'textarea',
-            'admin_hidden_property' => true,
-        ],
     ];
 
     protected function hasPermission($permission, Model $requester)
