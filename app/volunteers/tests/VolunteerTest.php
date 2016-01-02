@@ -35,9 +35,8 @@ class VolunteerTest extends \PHPUnit_Framework_TestCase
         TestBootstrap::app('user')->enableSU();
         self::$volunteerOrg = new VolunteerOrganization();
         self::$volunteerOrg->create([
-            'organization' => self::$org->id(),
-            'volunteer_coordinator_email' => 'test@example.com',
-            'city' => 'Tulsa', ]);
+            'organization' => self::$org->id()
+        ]);
         TestBootstrap::app('user')->disableSU();
     }
 

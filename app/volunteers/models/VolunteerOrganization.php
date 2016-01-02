@@ -30,16 +30,6 @@ class VolunteerOrganization extends Model
             'required' => true,
        ],
 
-        /* organization profile */
-
-        'volunteer_coordinator_email' => [
-            'type' => 'string',
-            'required' => true,
-            'validate' => 'email',
-            'admin_hidden_property' => true,
-            'admin_html' => '<a href="mailto:{volunteer_coordinator_email}">{volunteer_coordinator_email}</a>',
-       ],
-
         /* computed properties */
 
         'unapproved_hours_notify_count' => [
@@ -103,6 +93,8 @@ class VolunteerOrganization extends Model
         if (!in_array('name', $exclude)) {
             $result['name'] = $this->name();
         }
+
+        $result['email'] = $this->relation('organization')->email;
     }
 
     //////////////////////
@@ -669,9 +661,9 @@ class VolunteerOrganization extends Model
      */
     public function sendEmail($template, $message = [])
     {
-        $email = $this->volunteer_coordinator_email;
-
-        $orgName = $this->relation('organization')->name;
+        $organization = $this->relation('organization');
+        $email = $organization->email;
+        $orgName = $organization->name;
 
         $message['message'] = $template;
         $message['baseUrl'] = $this->app['base_url'];

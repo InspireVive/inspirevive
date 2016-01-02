@@ -26,7 +26,7 @@
 
 <p>
 	You can reach the volunteer coordinator for {$org.name} at:<br/>
-	<a href="mailto:{$org.volunteer_coordinator_email}">{$org.volunteer_coordinator_email}</a>
+	<a href="mailto:{$org.email}">{$org.email}</a>
 </p>
 
 {/block}

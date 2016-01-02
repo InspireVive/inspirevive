@@ -230,7 +230,6 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
         $vOrg = new VolunteerOrganization();
         $this->assertFalse($vOrg->create([
             'organization' => self::$org->id(),
-            'volunteer_coordinator_email' => 'test@example.com'
         ]));
 
         $errors = $errorStack->errors('VolunteerOrganization.create');
@@ -247,16 +246,7 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
         self::$volunteerOrg = new VolunteerOrganization();
         $this->assertTrue(self::$volunteerOrg->create([
             'organization' => self::$org->id(),
-            'volunteer_coordinator_email' => 'test@example.com'
         ]));
-    }
-
-    /**
-     * @depends testCreate
-     */
-    public function testEdit()
-    {
-        $this->assertTrue(self::$volunteerOrg->set('volunteer_coordinator_email', 'coordinator@example.com'));
     }
 
     /**
@@ -268,6 +258,7 @@ class VolunteerOrganizationTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($arr));
         $this->assertEquals(self::$org->name, $arr['name']);
+        $this->assertEquals(self::$org->email, $arr['email']);
     }
 
     public function testName()

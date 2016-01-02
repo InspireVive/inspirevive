@@ -63,7 +63,7 @@
 					Volunteer Coordinator
 				</div>
 				<div class="value">
-					<a href="mailto:{$org.volunteer_coordinator_email}">{$org.volunteer_coordinator_email}</a>
+					<a href="mailto:{$org.email}">{$org.email}</a>
 				</div>
 			</div>
 		</div>
