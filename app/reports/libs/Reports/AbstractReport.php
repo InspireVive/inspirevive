@@ -40,7 +40,7 @@ abstract class AbstractReport
 
     public function baseFilename()
     {
-        $name = $this->organization->get('name').' '.$this->name().' '.date($this->df, $this->start).'|'.date($this->df, $this->end);
+        $name = $this->organization->name.' '.$this->name().' '.date($this->df, $this->start).'|'.date($this->df, $this->end);
 
         return str_replace([' ', '/'], ['-', '-'], $name);
     }
@@ -190,7 +190,7 @@ abstract class AbstractReport
     {
         return [
             'Title' => $this->name(),
-            'Organization' => $this->organization->get('name'),
+            'Organization' => $this->organization->name,
             'Start Date' => date($this->df, $this->start),
             'End Date' => date($this->df, $this->end),
         ];

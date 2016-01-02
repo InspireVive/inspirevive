@@ -5,7 +5,7 @@
 	Generate reports to effectively analyze the activity and effectiveness of your volunteer base.
 </p>
 
-<form method="get" action="/api/reports/{$org->organization}" target="_blank" class="form-horizontal">
+<form method="get" action="/api/reports/{$org->id()}" target="_blank" class="form-horizontal">
 	<div class="form-group">
 		<div class="col-sm-10 col-sm-offset-2">
 			<h4>Report Type</h4>

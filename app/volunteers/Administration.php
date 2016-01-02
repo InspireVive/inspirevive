@@ -98,7 +98,7 @@ class Administration
 
         $query = [
             'where' => [
-                'organization' => $org->organization,
+                'organization' => $org->id(),
                 'role >= '.($showApproved ? Volunteer::ROLE_VOLUNTEER : Volunteer::ROLE_AWAITING_APPROVAL),
                 'active' => !$showInactive,
                 'uid IS NOT NULL',
@@ -332,7 +332,7 @@ class Administration
 
         $query = [
             'where' => [
-                'organization' => $org->organization,
+                'organization' => $org->id(),
                 'approved' => $showApproved,
             ],
             'sort' => 'timestamp DESC',
@@ -369,7 +369,7 @@ class Administration
 
         $places = VolunteerPlace::findAll([
             'where' => [
-                'organization' => $org->organization, ],
+                'organization' => $org->id(), ],
             'sort' => 'name ASC', ]);
 
         return new View('admin/hours/add', [
@@ -421,7 +421,7 @@ class Administration
 
         $volunteers = Volunteer::findAll([
             'where' => [
-                'organization' => $org->organization,
+                'organization' => $org->id(),
                 'role >= '.Volunteer::ROLE_VOLUNTEER, ],
             'sort' => 'id ASC', ]);
 
@@ -430,7 +430,7 @@ class Administration
             'tag',
             [
                 'where' => [
-                    'organization' => $org->organization, ],
+                    'organization' => $org->id(), ],
                 'fetchStyle' => 'singleColumn',
                 'orderBy' => 'RAND()',
                 'groupBy' => 'tag',
@@ -571,7 +571,7 @@ class Administration
                 }
 
                 $hourMeta = [
-                    'organization' => $org->organization,
+                    'organization' => $org->id(),
                     'hours' => $n,
                     'timestamp' => $days[$d],
                     'place' => $place->id(),
@@ -642,7 +642,7 @@ class Administration
 
         $query = [
             'where' => [
-                'organization' => $org->organization,
+                'organization' => $org->id(),
             ],
             'sort' => 'name ASC',
             'limit' => $limit,
@@ -703,7 +703,7 @@ class Administration
         }
 
         $input = $req->request();
-        $input['organization'] = $org->organization;
+        $input['organization'] = $org->id();
         $input['verify_approved'] = true;
 
         $place = new VolunteerPlace();
@@ -840,15 +840,15 @@ class Administration
             if ($org->can('admin', $this->app['user'])) {
                 // calculate the number of unapproved volunteers, places, and hours
                 $unapprovedVolunteers = Volunteer::totalRecords([
-                    'organization' => $org->organization,
+                    'organization' => $org->id(),
                     'role' => Volunteer::ROLE_AWAITING_APPROVAL, ]);
 
                 $unapprovedHours = VolunteerHour::totalRecords([
-                    'organization' => $org->organization,
+                    'organization' => $org->id(),
                     'approved' => false, ]);
 
                 $unapprovedPlaces = VolunteerPlace::totalRecords([
-                    'organization' => $org->organization,
+                    'organization' => $org->id(),
                     'place_type' => VolunteerPlace::EXTERNAL,
                     'verify_approved' => false, ]);
 
@@ -892,7 +892,7 @@ class Administration
         $model = new $modelClass($req->params('id'));
 
         if ($modelClass == $prefix.'Volunteer') {
-            $model = new $modelClass([$req->params('id'), $org->organization]);
+            $model = new $modelClass([$req->params('id'), $org->id()]);
         }
 
         if (!$model->exists()) {
