@@ -96,10 +96,14 @@ class Administration
         $showInactive = !!$req->query('inactive');
         $showApproved = !!$req->query('approved');
 
+        $roleSql = $showApproved ?
+            'role >= '.Volunteer::ROLE_VOLUNTEER :
+            'role = '.Volunteer::ROLE_AWAITING_APPROVAL;
+
         $query = [
             'where' => [
                 'organization' => $org->id(),
-                'role >= '.($showApproved ? Volunteer::ROLE_VOLUNTEER : Volunteer::ROLE_AWAITING_APPROVAL),
+                $roleSql,
                 'active' => !$showInactive,
                 'uid IS NOT NULL',
             ],
