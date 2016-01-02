@@ -125,21 +125,7 @@
 				</select>
 			</div>
 		</div>
-		<hr/>
-
-		<h4>Optional Questions</h4>
 		<br/>
-
-		<div class="form-group">
-			<div class="col-md-8">
-				<label>Were you a volunteer before joining InspireVive?</label><br/>
-			</div>
-			<div class="col-md-4">
-				<input type="checkbox" name="volunteered_before" value="1" {if isset($application.first_time_volunteer)&&!$application.first_time_volunteer}checked="checked"{/if} id="volunteered_before" />
-				<label for="volunteered_before">Yes</label>
-			</div>
-		</div>
-		<br />
 
 		<div class="form-group">
 			<div class="col-md-4">

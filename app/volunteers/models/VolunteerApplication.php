@@ -82,12 +82,6 @@ class VolunteerApplication extends Model
             'required' => true,
             'admin_hidden_property' => true,
         ],
-        'first_time_volunteer' => [
-            'type' => 'boolean',
-            'default' => false,
-            'validate' => 'boolean',
-            'admin_hidden_property' => true,
-        ],
     ];
 
     public static $defaults = [
