@@ -8,6 +8,7 @@
   box-shadow: none;
   font-size: 14px;
   border-radius: 4px;
+  border-width: 0 0 2px 0;
 }
 
 .btn-xs {
@@ -23,29 +24,45 @@
   font-size: 16px;
 }
 
-.btn-default,.btn-white {
-  border: 1px solid @btnDefaultBorder;
-  background: @btnDefaultBg;
-  color: @btnDarkColor;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
+.btn-xlg {
+  font-size: 22px;
+  padding: 14px 18px;
 }
 
-.btn-default.active,.btn-white.active {
+.btn-white {
+  border-color: @btnDefaultBorder;
+  background: #fff;
   color: @btnDarkColor;
 }
 
-.btn-default:hover,.btn-white:hover {
+.btn-white.active {
+  color: @btnDarkColor;
+}
+
+.btn-white:hover {
   background: @btnDefaultBg;
+  color: @btnDarkColor;
+}
+
+.btn-default {
+  border-color: @btnDefaultBorder;
+  background: @btnDefaultBg;
+  color: @btnDarkColor;
+}
+
+.btn-default.active {
+  color: @btnDarkColor;
+}
+
+.btn-default:hover {
+  background: @btnDefaultHoverBg;
   color: @btnDarkColor;
 }
 
 .btn-info {
   color: @btnLightColor;
   background: @btnInfoBg;
-  border: 1px solid @btnInfoBorder;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
+  border-color: @btnInfoBorder;
 }
 
 .btn-info.active {
@@ -60,9 +77,7 @@
 .btn-primary {
   color: @btnLightColor;
   background: @btnPrimaryBg;
-  border: 1px solid @btnPrimaryBorder;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
+  border-color: @btnPrimaryBorder;
 }
 
 .btn-primary.active {
@@ -78,9 +93,7 @@
 .btn-danger {
   color: @btnLightColor;
   background: @btnDangerBg;
-  border: 1px solid @btnDangerBorder;
-  border-right-width: 2px;
-  border-bottom-width: 2px;
+  border-color: @btnDangerBorder;
 }
 
 .btn-danger.active {
@@ -95,9 +108,7 @@
 .btn-warning {
   color: @btnLightColor;
   background: @btnWarningBg;
-  border: 1px solid @btnWarningBorder;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
+  border-color: @btnWarningBorder;
 }
 
 .btn-warning.active {
@@ -112,9 +123,7 @@
 .btn-success {
   color: @btnLightColor;
   background: @btnSuccessBg;
-  border: 1px solid @btnSuccessBorder;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
+  border-color: @btnSuccessBorder;
 }
 
 .btn-success.active {
@@ -129,9 +138,7 @@
 .btn-inverse {
   color: @btnLightColor !important;
   background: @btnInverseBg;
-  border: 1px solid @btnInverseBorder;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
+  border-color: @btnInverseBorder;
 }
 
 .btn-inverse.active {
@@ -146,13 +153,18 @@
 .btn-outline {
   background: none !important;
   color: @btnDarkColor;
-  border-bottom-width: 1px;
-  border-right-width: 1px;
+  border-width: 2px;
+  border-radius: 4px;
+}
+
+.btn-outline.btn-default {
+  border-color: #fff;
 }
 
 .btn-outline:hover {
   background: none !important;
   color: inherit;
+  opacity: 0.75;
 }
 
 .btn.light-text {
@@ -165,6 +177,13 @@
 
 .btn.green-border {
   border-color: @btnSuccessBorder;
+}
+
+.btn-more {
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  color: #999;
 }
 
 /* Bootstrap Switch */

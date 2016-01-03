@@ -7,24 +7,36 @@
 	</p>
 {/if}
 
-<ul class="nav nav-pills">
-	<li class="{if $showApproved}active{/if}">
-		<a href="?approved=1">
-			Approved
+<div class="row browse-params">
+	<div class="col-sm-6">
+		<ul class="nav nav-pills">
+			<li class="{if $showApproved}active{/if}">
+				<a href="?approved=1">
+					Approved
+				</a>
+			</li>
+			<li class="{if !$showApproved}active{/if}">
+				<a href="?approved=0">
+					Awaiting Approval
+					{if $hoursAwaitingApproval > 0}
+						<span class="badge">
+							{$hoursAwaitingApproval}
+						</span>
+					{/if}
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-sm-3">
+
+	</div>
+	<div class="col-sm-3 new-btn">
+		<a href="{$org->url()}/admin/hours/add" class="btn btn-success">
+			<span class="glyphicon glyphicon-time"></span>
+			Record Hours
 		</a>
-	</li>
-	<li class="{if !$showApproved}active{/if}">
-		<a href="?approved=0">
-			Awaiting Approval
-			{if $hoursAwaitingApproval > 0}
-				<span class="badge">
-					{$hoursAwaitingApproval}
-				</span>
-			{/if}
-		</a>
-	</li>
-</ul>
-<hr/>
+	</div>
+</div>
 
 {if count($hours) == 0}
 	<p class="empty">
@@ -36,11 +48,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>
-					<a href="{$org->url()}/admin/hours/add" class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span> Add Hours
-					</a>
-				</th>
+				<th></th>
 				<th>
 					Name
 				</th>

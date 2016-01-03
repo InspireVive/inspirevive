@@ -11,36 +11,46 @@
 	<p class="alert alert-danger">{$error}</p>
 {/foreach}
 
-<ul class="nav nav-pills">
-	<li class="{if $showApproved}active{/if}">
-		<a href="?approved=1">
-			Approved
+<div class="row browse-params">
+	<div class="col-sm-6">
+		<ul class="nav nav-pills">
+			<li class="{if $showApproved}active{/if}">
+				<a href="?approved=1">
+					Approved
+				</a>
+			</li>
+			<li class="{if !$showApproved}active{/if}">
+				<a href="?approved=0">
+					Awaiting Approval
+					{if $volunteersAwaitingApproval > 0}
+						<span class="badge">
+							{$volunteersAwaitingApproval}
+						</span>
+					{/if}
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="col-sm-3">
+
+	</div>
+	<div class="col-sm-3 new-btn">
+		<a href="{$org->url()}/admin/volunteers/add" class="btn btn-success">
+			<span class="glyphicon glyphicon-user"></span>
+			Add Volunteers
 		</a>
-	</li>
-	<li class="{if !$showApproved}active{/if}">
-		<a href="?approved=0">
-			Awaiting Approval
-			{if $volunteersAwaitingApproval > 0}
-				<span class="badge">
-					{$volunteersAwaitingApproval}
-				</span>
-			{/if}
-		</a>
-	</li>
-</ul>
-<hr/>
+	</div>
+</div>
 
 {if $showApproved}
-	<div class="row">
-		<div class="col-sm-3">
-			<label>Show Inactive Volunteers:</label>
-		</div>
-		<div class="col-sm-3">
+	<div class="show-inactive-toggle">
+		<label>
 			<div class="switch">
 				<input id="switch-show-inactive" class="cmn-toggle cmn-toggle-round" type="checkbox" {if $showInactive}checked="checked"{/if} />
 				<label for="switch-show-inactive"></label>
 			</div>
-		</div>
+			Show Inactive
+		</label>
 	</div>
 {/if}
 
@@ -54,11 +64,7 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>
-					<a href="{$org->url()}/admin/volunteers/add" class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span> Add Volunteers
-					</a>
-				</th>
+				<th></th>
 				<th>Username</th>
 				<th>Full Name</th>
 				<th>Age</th>

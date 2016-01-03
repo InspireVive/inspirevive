@@ -108,9 +108,7 @@
 		</div>
 
 		<footer>
-			<p class="copyright">
-				<a href="https://github.com/inspirevive/inspirevive">Powered by InspireVive</a>
-			</p>
+			<a href="https://github.com/inspirevive/inspirevive">Powered by InspireVive</a>
 		</footer>		
 	</div>
 </body>

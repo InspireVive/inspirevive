@@ -111,7 +111,12 @@ nav.navbar {
 			text-overflow: ellipsis;
 		}
 	}
-		
+
+	.navbar-collapse {
+		background: #fff;
+		border-bottom: 1px solid #ccc;
+	}
+
 	ul.nav {
 		margin: 23px 0 0;
 		padding: 0;
@@ -400,7 +405,7 @@ hr {
 
 /* Generic Administration Section */
 
-.admin-section {
+.organization-admin {
 	#thebar {
 		background: @inspireviveGreen;
 	}
@@ -518,36 +523,19 @@ hr {
 	}
 
 	footer {
-		padding: 0;
+		padding: 18px 0;
+		text-align: center;
+		font-size: 13px;
 
-		p {
-			padding: 18px 36px;
-			margin: 0;
-			text-align: left;
-			font-size: 13px;
-		}
-
-		.copyright {
-			font-style: italic;
-		}
-
-		.warning {
-			span {
-				color: #A94442;
-				font-size: 18px;
-				float: left;
-				margin-right: 9px;
-				line-height: 36px;
-			}
-
+		a,a:active,a:visited {
 			color: #fff;
 		}
+
+		a:hover {
+			color: @inspireviveRed;
+		}
 	}
-}
 
-/* Charity Administration */
-
-.organization-admin {
 	.record-hours-holder {
 		overflow-x: scroll;
 		max-width: 100%;
@@ -605,6 +593,30 @@ hr {
 				border-radius: 0 4px 4px 0;
 			}
 		}
+	}
+
+	.browse-params {
+		margin: 0 0 18px;
+
+		ul.nav {
+			padding: 0;
+		}
+
+		.new-btn {
+			text-align: right;
+		}
+	}
+}
+
+/* Volunteers */
+
+.show-inactive-toggle {
+	padding: 0 18px;
+	line-height: 30px;
+
+	.switch {
+		float: left;
+		margin-right: 10px;
 	}
 }
 

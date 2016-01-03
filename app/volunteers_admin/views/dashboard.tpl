@@ -2,13 +2,11 @@
 {block name=content}
 
 <h2>Welcome, {$org->name}!</h2>
-<hr/>
-<div class="stat-group-title">Shortcuts</div>
 
 <div class="row">
 	<div class="col-md-3">
 		<p>
-			<a href="{$org->url()}/admin/volunteers/add" class="btn btn-primary btn-block">
+			<a href="{$org->url()}/admin/volunteers/add" class="btn btn-success btn-block">
 				<span class="glyphicon glyphicon-user"></span>
 				Add Volunteers
 			</a>
@@ -16,17 +14,17 @@
 	</div>
 	<div class="col-md-3">
 		<p>
-			<a href="{$org->url()}/admin/hours/add" class="btn btn-danger btn-block">
+			<a href="{$org->url()}/admin/hours/add" class="btn btn-success btn-block">
 				<span class="glyphicon glyphicon-time"></span>
-				Input Volunteer Hours
+				Record Hours
 			</a>
 		</p>
 	</div>
 	<div class="col-md-3">
 		<p>
-			<a href="{$org->url()}/admin/places/add" class="btn btn-info btn-block">
+			<a href="{$org->url()}/admin/places/add" class="btn btn-success btn-block">
 				<span class="glyphicon glyphicon-map-marker"></span>
-				Add Volunteer Place
+				New Volunteer Place
 			</a>
 		</p>
 	</div>

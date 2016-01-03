@@ -181,7 +181,7 @@ class Controller
             $success = count($emails) == $n;
 
             if (!$success) {
-                return $this->adminAddVolunteerForm($req, $res);
+                return $this->addVolunteerForm($req, $res);
             }
         } elseif ($req->files('import')) {
             $file = $req->files('import');
@@ -263,12 +263,12 @@ class Controller
             }
 
             if (!$success) {
-                return $this->adminAddVolunteerImportForm($req, $res);
+                return $this->addVolunteerImportForm($req, $res);
             }
         }
 
         if ($success) {
-            return $this->adminVolunteersBrowse($req, $res);
+            return $this->volunteersBrowse($req, $res);
         }
     }
 
@@ -334,7 +334,7 @@ class Controller
 
         $limit = 100;
         $page = max(0, $req->query('page'));
-        $showApproved = !!$req->query('approved');
+        $showApproved = $req->query('approved');
         $showApproved = ($showApproved === '0') ? false : true;
 
         $query = [
@@ -516,7 +516,7 @@ class Controller
 
         // no entries?
         if (empty($input['hours'])) {
-            return $this->adminRecordHoursStep2($req, $res);
+            return $this->recordHoursStep2($req, $res);
         }
 
         // validate tags
@@ -525,7 +525,7 @@ class Controller
             if (!Validate::is($tag, 'alpha_dash')) {
                 $this->app['errors']->push(['error' => 'invalid_volunteer_hour_tags']);
 
-                return $this->adminRecordHoursStep2($req, $res);
+                return $this->recordHoursStep2($req, $res);
             }
         }
 
@@ -552,7 +552,7 @@ class Controller
 
         // go back to the edit screen
         if ($req->request('edit')) {
-            return $this->adminRecordHoursStep2($req, $res);
+            return $this->recordHoursStep2($req, $res);
         }
 
         $place = new VolunteerPlace($req->query('place'));
@@ -604,9 +604,9 @@ class Controller
             'numVolunteers' => count($volunteers), ]);
 
         if ($numHours > 0) {
-            return $this->adminHoursBrowse($req, $res);
+            return $this->hoursBrowse($req, $res);
         } else {
-            return $this->adminRecordHoursStep2($req, $res);
+            return $this->recordHoursStep2($req, $res);
         }
     }
 
@@ -645,7 +645,7 @@ class Controller
 
         $limit = 100;
         $page = max(0, $req->query('page'));
-        $showApproved = !!$req->query('approved');
+        $showApproved = $req->query('approved');
         $showApproved = ($showApproved === '0') ? false : true;
 
         $query = [
@@ -720,7 +720,7 @@ class Controller
         if ($place) {
             $res->redirect($org->url().'/admin/places?success=t');
         } else {
-            return $this->adminAddPlaceForm($req, $res);
+            return $this->addPlaceForm($req, $res);
         }
     }
 
