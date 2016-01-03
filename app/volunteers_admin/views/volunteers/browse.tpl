@@ -65,7 +65,6 @@
 				<th></th>
 				<th>Username</th>
 				<th>Full Name</th>
-				<th>Age</th>
 				<th>Active</th>
 			</tr>
 		</thead>
@@ -83,14 +82,14 @@
 				</td>
 				{if !$user->hasCompletedVolunteerApplication()}
 					{if $user->isTemporary()}
-						<td colspan="2">
+						<td>
 							<span class="text-danger">
 								<span class="glyphicon glyphicon-exclamation-sign"></span>
 								Not registered on InspireVive
 							</span>
 						</td>
 					{else}
-						<td colspan="2">
+						<td>
 							<span class="text-danger">
 								<span class="glyphicon glyphicon-exclamation-sign"></span>
 								Volunteer application not yet completed
@@ -98,7 +97,7 @@
 						</td>
 					{/if}
 				{elseif !$volunteer->application_shared}
-					<td colspan="2">
+					<td>
 						<span class="text-danger">
 							<span class="glyphicon glyphicon-exclamation-sign"></span>
 							Volunteer has not granted access to volunteer application
@@ -108,9 +107,6 @@
 					{assign var=application value=$user->volunteerApplication()}
 					<td>
 						{$application->fullName()}
-					</td>
-					<td>
-						{$application->age()}
 					</td>
 				{/if}
 				<td>
