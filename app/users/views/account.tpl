@@ -20,9 +20,7 @@
 			</div>
 		{/foreach}
 
-		{if $deleteError}
-			<div class="alert alert-error">There was a problem when deleting your account. Is the password right?</div>
-		{else if $success}
+		{if $success}
 			<div class="alert alert-success">Thank you for updating your account.</div>
 		{/if}
 
@@ -158,56 +156,8 @@
 						</div>
 					</div>
 				</form>
-
-				<hr/>
-
-				<h3>Delete Your Account</h3>
-
-				<p>
-	                <a href="#" id="delete-account-btn" class="btn btn-danger">
-	                	Delete My Account
-	                </a>
-				 </p>
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-                <div class="modal-content">
-                        <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 id="myModalLabel">Delete Account</h3>
-                        </div>
-                        <div class="modal-body"><p>Are you sure you want to delete your account? This will delete all of your data. This cannot be undone.</p></div>
-                        <div class="modal-footer">
-                                <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-                                <button id="delete-account-yes" class="btn btn-primary btn-danger">Yes</button>
-                        </div>
-                </div>
-        </div>
-</div>
-
-<div class="modal fade" id="deleteAccountModal2">
-        <div class="modal-dialog">
-                <div class="modal-content">
-                        <form action="/users/account" method="post" style="padding:0;margin:0;" id="delete-account-form">
-                                <input type="hidden" name="delete" value="true" />
-                                <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h3 id="myModalLabel">Delete Account</h3>
-                                </div>
-                                <div class="modal-body">
-                                        <p>Please enter your password to confirm:</p>
-                                        <input type="password" name="password" id="delete-account-password" class="form-control" />
-                                </div>
-                                <div class="modal-footer">
-                                        <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
-                                        <input type="submit" id="delete-account-yes-2" class="btn btn-primary btn-danger" value="Delete My Account" />
-                                </div>
-                        </form>
-                </div>
-        </div>
 </div>
 {/block}

@@ -278,34 +278,21 @@ class Controller
             return $res->setCode(403);
         }
 
-        if ($req->request('delete')) {
-            $success = $user->deleteConfirm($req->request('password'), $req);
+        $success = $user->set($req->request());
 
-            if ($success) {
-                $this->app['auth']->logout();
-                $res->redirect('/');
-            } else {
-                $req->setParams(['deleteError' => true]);
+        if ($success) {
+            if ($req->isHtml()) {
+                $req->setParams(['success' => true]);
 
                 return $this->accountSettings($req, $res);
+            } elseif ($req->isJson()) {
+                $res->json(['success' => true]);
             }
         } else {
-            $success = $user->set($req->request());
-
-            if ($success) {
-                if ($req->isHtml()) {
-                    $req->setParams(['success' => true]);
-
-                    return $this->accountSettings($req, $res);
-                } elseif ($req->isJson()) {
-                    $res->json(['success' => true]);
-                }
-            } else {
-                if ($req->isHtml()) {
-                    return $this->accountSettings($req, $res);
-                } elseif ($req->isJson()) {
-                    $res->json(['error' => true]);
-                }
+            if ($req->isHtml()) {
+                return $this->accountSettings($req, $res);
+            } elseif ($req->isJson()) {
+                $res->json(['error' => true]);
             }
         }
     }
@@ -393,7 +380,6 @@ class Controller
 
         return new View('account', [
             'success' => $req->params('success'),
-            'deleteError' => $req->params('deleteError'),
             'title' => 'Account Settings',
             'section' => $req->params('section'),
             'facebookConnected' => $user->facebookConnected(),
