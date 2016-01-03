@@ -6,13 +6,6 @@
 		<div class="col-md-8">
 			<h3>
 				{$name}
-				{if $user.username}
-					<small>
-						<a href="/users/{$user.username}" target="_blank">
-							<span class="glyphicon glyphicon-new-window"></span>
-						</a>
-					</small>
-				{/if}
 			</h3>
 		</div>
 		<div class="col-md-4">
@@ -30,7 +23,7 @@
 
 {if !$volunteer.application_shared}
 		<p class="alert alert-warning">
-			{$name} has not shared the InspireVive Volunteer Application with you yet. They must agree to share the application before we show it here.
+			{$name} has not shared the volunteer application with you yet. They must agree to share the application before we show it here.
 		</p>
 {else}	
 	<div class="row">
@@ -41,7 +34,13 @@
 		</div>
 		<div class="col-md-6">
 			<p>
-				{$name}
+				{if $user.username}
+					<a href="/users/{$user.username}" target="_blank">
+						{$name}
+					</a>
+				{else}
+					{$name}
+				{/if}
 			</p>
 		</div>
 	</div>
@@ -63,7 +62,7 @@
 
 	{if !$completed}
 		<p class="alert alert-warning">
-			{$name} has not filled out the InspireVive Volunteer Application yet. Once they complete the application we will show it here.
+			{$name} has not filled out the volunteer application yet. Once they complete the application we will show it here.
 		</p>
 	{else}
 		<div class="row">
@@ -175,15 +174,15 @@
 	<div class="row">
 		<div class="col-md-3 text-right">
 			<p class="text-right">
-				<strong>Active</strong>
+				<strong>Status</strong>
 			</p>
 		</div>
 		<div class="col-md-6">
 			<p>
 				{if $volunteer.active}
-					<span class="text-success">Active</span>
+					<span class="label label-success">Active</span>
 				{else}
-					<span class="text-danger">Inactive</span>
+					<span class="label label-default">Inactive</span>
 			{/if}
 			</p>
 			<form method="post" action="{$org->url()}/admin/volunteers/{$volunteer.uid}">
@@ -212,8 +211,7 @@
 		</div>
 	</div>
 {/if}
-
-<hr/>
+<br/>
 
 <h4>Volunteer Activity</h4>
 
@@ -225,32 +223,32 @@
 	</p>
 {else}
 	<br/>
-	<table class="table table-striped">
-		<thead>
+	<div class="volunteer-activity">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Day
+					</th>
+					<th>
+						# Hours
+					</th>
+				</tr>
+			</thead>
+		{foreach from=$hours item=hour}
+			{assign var=hours value=$hour->hours}
 			<tr>
-				<th>
-					Day
-				</th>
-				<th>
-					Hours Volunteered
-				</th>
-			</tr>
-		</thead>
-	{foreach from=$hours item=hour}
-		{assign var=hours value=$hour->hours}
-		<tr>
-		<div class="col-md-4">
-			<td>
-				<em>{$hour->timestamp|date_format:'l, M j, Y'}</em>
-			</td>
-			<td>
-				<strong>
+			<div class="col-md-4">
+				<td>
+					<em>{$hour->timestamp|date_format:'M j, Y'}</em>
+				</td>
+				<td>
 					{$hours} {$app.locale->p($hours,'hour','hours')}
-				</strong>
-			</td>
-		</tr>
-	{/foreach}
-	</table>
+				</td>
+			</tr>
+		{/foreach}
+		</table>
+	</div>
 {/if}
 
 {/block}

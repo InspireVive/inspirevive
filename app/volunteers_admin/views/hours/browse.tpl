@@ -50,19 +50,16 @@
 			<tr>
 				<th></th>
 				<th>
-					Name
+					Volunteer
 				</th>
 				<th>
-					Day
+					Date
 				</th>
 				<th>
 					Place
 				</th>
 				<th>
-					Hours
-				</th>
-				<th>
-					Tags
+					# Hours
 				</th>
 				<th>
 					Status
@@ -83,18 +80,13 @@
 				</a>
 			</td>
 			<td>
-				{$hour->timestamp|date_format:'l, M d, Y'}
+				{$hour->timestamp|date_format:'M d, Y'}
 			</td>
 			<td>
 				{$hour->relation('place')->name}
 			</td>
 			<td>
 				{$hour->hours}
-			</td>
-			<td>
-				{foreach from=$hour->tags() item=tag}
-					<span class="label label-default">{$tag}</span>
-				{/foreach}
 			</td>
 			<td>
 				{if $hour->approved}

@@ -56,7 +56,7 @@
 					Type
 				</th>
 				<th>
-					Approved?
+					Status
 				</th>
 				<th></th>
 			</tr>
@@ -82,9 +82,9 @@
 				{if $place->place_type == $smarty.const.VOLUNTEER_PLACE_EXTERNAL}
 					<td>
 						{if $place->verify_approved}
-							<label class="label label-success">Approved</label>
+							<span class="label label-success">Approved</span>
 						{else}
-							<label class="label label-danger">Not Approved</label>
+							<span class="label label-danger">Not Approved</span>
 						{/if}
 					</td>
 					<td>
@@ -98,7 +98,7 @@
 						{/if}
 					</td>
 				{else}
-					<td><em>N/A</em></td>
+					<td><span class="label label-success">Approved</span></td>
 					<td></td>
 				{/if}
 			</tr>

@@ -106,6 +106,8 @@
 		<p>
 			{foreach from=$tags item=tag}
 				<span class="label label-default">{$tag}</span>
+			{foreachelse}
+				<em>None</em>
 			{/foreach}
 		</p>
 	</div>

@@ -52,18 +52,20 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-3 text-right">
-		<p class="text-right">
-			<strong>Address</strong>
-		</p>
+{if $place.address}
+	<div class="row">
+		<div class="col-md-3 text-right">
+			<p class="text-right">
+				<strong>Address</strong>
+			</p>
+		</div>
+		<div class="col-md-6">
+			<p>
+				{$place.address}
+			</p>
+		</div>
 	</div>
-	<div class="col-md-6">
-		<p>
-			{$place.address}
-		</p>
-	</div>
-</div>
+{/if}
 
 {if $place.place_type == $smarty.const.VOLUNTEER_PLACE_EXTERNAL}
 	<div class="row">

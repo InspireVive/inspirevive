@@ -63,9 +63,9 @@
 		<thead>
 			<tr>
 				<th></th>
+				<th>Name</th>
 				<th>Username</th>
-				<th>Full Name</th>
-				<th>Active</th>
+				<th>Status</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -76,9 +76,6 @@
 					<a href="{$org->url()}/admin/volunteers/{$user->id()}" class="btn btn-default">
 						Details
 					</a>
-				</td>
-				<td>
-					{$user->name(true)}
 				</td>
 				{if !$user->hasCompletedVolunteerApplication()}
 					{if $user->isTemporary()}
@@ -92,7 +89,7 @@
 						<td>
 							<span class="text-danger">
 								<span class="glyphicon glyphicon-exclamation-sign"></span>
-								Volunteer application not yet completed
+								Missing volunteer application
 							</span>
 						</td>
 					{/if}
@@ -100,7 +97,7 @@
 					<td>
 						<span class="text-danger">
 							<span class="glyphicon glyphicon-exclamation-sign"></span>
-							Volunteer has not granted access to volunteer application
+							Volunteer application not shared
 						</span>
 					</td>
 				{else}
@@ -110,11 +107,14 @@
 					</td>
 				{/if}
 				<td>
+					{$user->username}
+				</td>
+				<td>
 					{if $volunteer->role >= $smarty.const.VOLUNTEER_ROLE_VOLUNTEER}
 						{if $volunteer->active}
-							<span class="text-success">Active</span>
+							<span class="label label-success">Active</span>
 						{else}
-							<span class="text-danger">Inactive</span>
+							<span class="label label-default">Inactive</span>
 						{/if}
 					{else}
 						<form method="post" action="{$org->url()}/admin/volunteers/{$volunteer->id()}?redir=browse">
