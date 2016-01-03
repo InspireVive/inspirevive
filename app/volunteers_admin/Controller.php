@@ -28,6 +28,12 @@ class Controller
 
     public static $viewsDir;
 
+    static $sectionModels = [
+        'volunteers' => 'app\volunteers\models\Volunteer',
+        'hours' => 'app\volunteers\models\VolunteerHour',
+        'places' => 'app\volunteers\models\VolunteerPlace',
+    ];
+
     public function __construct()
     {
         self::$viewsDir = __DIR__.'/views';
@@ -885,12 +891,9 @@ class Controller
             return false;
         }
 
-        $prefix = 'app\volunteers\models\\';
-        $modelClass = $prefix.$modelClass;
-
         $model = new $modelClass($req->params('id'));
 
-        if ($modelClass == $prefix.'Volunteer') {
+        if ($section == 'volunteers') {
             $model = new $modelClass([$req->params('id'), $org->id()]);
         }
 

@@ -13,7 +13,7 @@ use app\users\models\User;
 use app\volunteers\models\Volunteer;
 use app\volunteers\models\VolunteerApplication;
 
-class VolunteerTest extends \PHPUnit_Framework_TestCase
+class VolunteerTest extends PHPUnit_Framework_TestCase
 {
     public static $org;
     public static $volunteer;

@@ -14,7 +14,7 @@ use app\users\models\User;
 use app\volunteers\models\Volunteer;
 use app\volunteers\models\VolunteerHour;
 
-class OrganizationTest extends \PHPUnit_Framework_TestCase
+class OrganizationTest extends PHPUnit_Framework_TestCase
 {
     public static $org;
     public static $org2;

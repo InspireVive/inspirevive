@@ -11,7 +11,7 @@
 use app\organizations\models\Organization;
 use app\reports\libs\Report;
 
-class ReportTest extends \PHPUnit_Framework_TestCase
+class ReportTest extends PHPUnit_Framework_TestCase
 {
     public static $org;
 

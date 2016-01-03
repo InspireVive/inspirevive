@@ -13,7 +13,7 @@ use app\instagram\models\InstagramProfile;
 use app\twitter\models\TwitterProfile;
 use app\users\models\User;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+class UserTest extends PHPUnit_Framework_TestCase
 {
     public static $user;
     public static $twitterProfile;

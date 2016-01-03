@@ -15,7 +15,7 @@ use app\volunteers\models\VolunteerHour;
 use app\volunteers\models\VolunteerHourTag;
 use app\volunteers\models\VolunteerPlace;
 
-class VolunteerHourTest extends \PHPUnit_Framework_TestCase
+class VolunteerHourTest extends PHPUnit_Framework_TestCase
 {
     public static $org;
     public static $org2;

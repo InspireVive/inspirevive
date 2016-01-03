@@ -12,7 +12,7 @@ use infuse\Database;
 use app\users\models\User;
 use app\volunteers\models\VolunteerApplication;
 
-class VolunteerApplicationTest extends \PHPUnit_Framework_TestCase
+class VolunteerApplicationTest extends PHPUnit_Framework_TestCase
 {
     public static $app;
 
