@@ -114,7 +114,7 @@ class Organization extends Model
         }
 
         $where = [
-            $prefix.'uid IN ( SELECT uid FROM Volunteers WHERE organization = '.$this->id().' AND role >= '.Volunteer::ROLE_VOLUNTEER.' )',
+            $prefix.'uid IN ( SELECT uid FROM Volunteers WHERE organization = "'.$this->id().'" AND role >= '.(string) Volunteer::ROLE_VOLUNTEER.' )',
        ];
 
         $where[$prefix.'organization'] = $this->id();

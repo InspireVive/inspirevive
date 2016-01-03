@@ -247,10 +247,10 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         $org = new Organization(100);
 
         $this->assertEquals([
-            'uid IN ( SELECT uid FROM Volunteers WHERE organization = 100 AND role >= 1 )',
+            'uid IN ( SELECT uid FROM Volunteers WHERE organization = "100" AND role >= 1 )',
             'organization' => 100, ], $org->hourWhereParams());
         $this->assertEquals([
-            'h.uid IN ( SELECT uid FROM Volunteers WHERE organization = 100 AND role >= 1 )',
+            'h.uid IN ( SELECT uid FROM Volunteers WHERE organization = "100" AND role >= 1 )',
             'h.organization' => 100, ], $org->hourWhereParams('h'));
     }
 
