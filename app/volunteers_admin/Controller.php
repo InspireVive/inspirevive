@@ -8,7 +8,7 @@
  * @license GNU GPLv3
  */
 
-namespace app\volunteers;
+namespace app\volunteers_admin;
 
 use infuse\Database;
 use infuse\Request;
@@ -22,16 +22,11 @@ use app\volunteers\models\VolunteerApplication;
 use app\volunteers\models\VolunteerHour;
 use app\volunteers\models\VolunteerPlace;
 
-class Administration
+class Controller
 {
     use \InjectApp;
 
     public static $viewsDir;
-
-    private static $sectionModels = [
-        'volunteers' => 'Volunteer',
-        'hours' => 'VolunteerHour',
-        'places' => 'VolunteerPlace', ];
 
     public function __construct()
     {
@@ -42,7 +37,7 @@ class Administration
 --- Admin: Dashboard ---
 */
 
-    public function adminIndex($req, $res)
+    public function index($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -71,7 +66,7 @@ class Administration
             $periods[$k]['topVolunteer'] = (count($topVolunteers) == 1) ? $topVolunteers[0] : false;
         }
 
-        return new View('admin/dashboard', [
+        return new View('dashboard', [
             'org' => $org,
             'title' => 'Pulse',
             'periods' => $periods,
@@ -83,7 +78,7 @@ class Administration
 --- Admin: Volunteers ---
 */
 
-    public function adminVolunteersBrowse($req, $res)
+    public function volunteersBrowse($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -120,7 +115,7 @@ class Administration
             $this->app['errors']->push(['error' => 'As a volunteer coordinator, you cannot remove yourself.']);
         }
 
-        return new View('admin/volunteers/browse', [
+        return new View('volunteers/browse', [
             'org' => $org,
             'title' => 'Volunteers',
             'volunteersPage' => true,
@@ -135,7 +130,7 @@ class Administration
         ]);
     }
 
-    public function adminAddVolunteerForm($req, $res)
+    public function addVolunteerForm($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -143,7 +138,7 @@ class Administration
             return;
         }
 
-        return new View('admin/volunteers/add', [
+        return new View('volunteers/add', [
             'org' => $org,
             'title' => 'Add Volunteers',
             'volunteersPage' => true,
@@ -151,7 +146,7 @@ class Administration
             'numAdded' => $req->params('numAdded'), ]);
     }
 
-    public function adminAddVolunteer($req, $res)
+    public function addVolunteer($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -270,7 +265,7 @@ class Administration
         }
     }
 
-    public function adminAddVolunteerImportForm($req, $res)
+    public function addVolunteerImportForm($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -278,7 +273,7 @@ class Administration
             return;
         }
 
-        return new View('admin/volunteers/addImport', [
+        return new View('volunteers/addImport', [
             'org' => $org,
             'title' => 'Import Volunteers',
             'volunteersPage' => true,
@@ -287,7 +282,7 @@ class Administration
             'numAdded' => $req->params('numAdded'), ]);
     }
 
-    public function adminVolunteersView($req, $res)
+    public function volunteersView($req, $res)
     {
         $lookup = $this->getModelForAdmin($req, $res);
 
@@ -305,7 +300,7 @@ class Administration
 
         $name = $user->name(true);
 
-        return new View('admin/volunteers/view', [
+        return new View('volunteers/view', [
             'org' => $org,
             'volunteer' => $volunteer->toArray(),
             'user' => $user->toArray(['user_password']),
@@ -322,7 +317,7 @@ class Administration
  --- Admin: Hours ---
  */
 
-    public function adminHoursBrowse($req, $res)
+    public function hoursBrowse($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -348,7 +343,7 @@ class Administration
         $hours = $result['models'];
         $count = $result['count'];
 
-        return new View('admin/hours/browse', [
+        return new View('hours/browse', [
             'org' => $org,
             'title' => 'Volunteer Hours',
             'hoursPage' => true,
@@ -363,7 +358,7 @@ class Administration
         ]);
     }
 
-    public function adminRecordHoursStep1($req, $res)
+    public function recordHoursStep1($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -376,7 +371,7 @@ class Administration
                 'organization' => $org->id(), ],
             'sort' => 'name ASC', ]);
 
-        return new View('admin/hours/add', [
+        return new View('hours/add', [
             'org' => $org,
             'title' => 'Add Volunteer Hours',
             'hoursPage' => true,
@@ -384,7 +379,7 @@ class Administration
         ]);
     }
 
-    public function adminRecordHoursStep2($req, $res)
+    public function recordHoursStep2($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -440,7 +435,7 @@ class Administration
                 'groupBy' => 'tag',
                 'limit' => 10, ]);
 
-        return new View('admin/hours/add2', [
+        return new View('hours/add2', [
             'org' => $org,
             'title' => 'Add Volunteer Hours',
             'hoursPage' => true,
@@ -453,7 +448,7 @@ class Administration
         ]);
     }
 
-    public function adminRecordHoursStep3($req, $res)
+    public function recordHoursStep3($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -526,7 +521,7 @@ class Administration
             }
         }
 
-        return new View('admin/hours/add3', [
+        return new View('hours/add3', [
             'org' => $org,
             'title' => 'Confirm Volunteer Hours',
             'hoursPage' => true,
@@ -539,7 +534,7 @@ class Administration
         ]);
     }
 
-    public function adminRecordHoursStep4($req, $res)
+    public function recordHoursStep4($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -607,7 +602,7 @@ class Administration
         }
     }
 
-    public function adminHoursView($req, $res)
+    public function hoursView($req, $res)
     {
         $lookup = $this->getModelForAdmin($req, $res);
 
@@ -617,7 +612,7 @@ class Administration
 
         list($org, $hour, $section) = $lookup;
 
-        return new View('admin/hours/view', [
+        return new View('hours/view', [
             'org' => $org,
             'hour' => $hour->toArray(),
             'tags' => $hour->tags(),
@@ -632,7 +627,7 @@ class Administration
 --- Admin: Places ---
 */
 
-    public function adminPlacesBrowse($req, $res)
+    public function placesBrowse($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -664,7 +659,7 @@ class Administration
         $places = $result['models'];
         $count = $result['count'];
 
-        return new View('admin/places/browse', [
+        return new View('places/browse', [
             'org' => $org,
             'title' => 'Places',
             'placesPage' => true,
@@ -677,7 +672,7 @@ class Administration
             'success' => $req->query('success'), ]);
     }
 
-    public function adminPlacesAddForm($req, $res)
+    public function placesAddForm($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -690,7 +685,7 @@ class Administration
             'place_type' => VolunteerPlace::INTERNAL,
             'address' => '', ], $req->request());
 
-        return new View('admin/places/modify', [
+        return new View('places/modify', [
             'org' => $org,
             'title' => 'Add Volunteer Places',
             'placesPage' => true,
@@ -698,7 +693,7 @@ class Administration
         ]);
     }
 
-    public function adminPlacesAdd($req, $res)
+    public function placesAdd($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -720,7 +715,7 @@ class Administration
         }
     }
 
-    public function adminPlacesView($req, $res)
+    public function placesView($req, $res)
     {
         $lookup = $this->getModelForAdmin($req, $res);
 
@@ -730,14 +725,14 @@ class Administration
 
         list($org, $place, $section) = $lookup;
 
-        return new View('admin/places/view', [
+        return new View('places/view', [
             'org' => $org,
             'title' => $place->name.' :: Places',
             'placesPage' => true,
             'place' => $place->toArray(), ]);
     }
 
-    public function adminPlacesEditForm($req, $res)
+    public function placesEditForm($req, $res)
     {
         $lookup = $this->getModelForAdmin($req, $res);
 
@@ -747,7 +742,7 @@ class Administration
 
         list($org, $place, $section) = $lookup;
 
-        return new View('admin/places/modify', [
+        return new View('places/modify', [
             'org' => $org,
             'title' => $place->name.' :: Places',
             'placesPage' => true,
@@ -758,7 +753,7 @@ class Administration
 --- Admin: Generic Model Routes ---
 */
 
-    public function adminModelEdit($req, $res)
+    public function modelEdit($req, $res)
     {
         $lookup = $this->getModelForAdmin($req, $res);
 
@@ -787,7 +782,7 @@ class Administration
         }
     }
 
-    public function adminModelDelete($req, $res)
+    public function modelDelete($req, $res)
     {
         $lookup = $this->getModelForAdmin($req, $res);
 
@@ -815,7 +810,7 @@ class Administration
 --- Admin: Reports ---
 */
 
-    public function adminReports($req, $res)
+    public function reports($req, $res)
     {
         $org = $this->getOrgForAdmin($req, $res);
 
@@ -823,7 +818,7 @@ class Administration
             return;
         }
 
-        return new View('admin/reports', [
+        return new View('reports', [
             'org' => $org,
             'title' => 'Reports',
             'reportsPage' => true,
@@ -873,7 +868,7 @@ class Administration
     private function getModelForAdmin($req, $res)
     {
         // lookup model class
-        // index derived from /:type/:username/admin/SECTION/....
+        // index derived from /organizations/:username/admin/SECTION/....
         $section = $req->paths(3);
         $modelClass = U::array_value(self::$sectionModels, $section);
 

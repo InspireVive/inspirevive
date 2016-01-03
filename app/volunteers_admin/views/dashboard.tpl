@@ -1,4 +1,4 @@
-{extends file="$viewsDir/admin/parent.tpl"}
+{extends file="$viewsDir//parent.tpl"}
 {block name=content}
 
 <h2>Welcome, {$org->name}!</h2>
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<div class="col-md-4 stat">
-			<div class="number">{$period.volunteers}</div>
+			<div class="number">{$period.volunteers|number_format}</div>
 			<div class="title">
 				{if $period.title != 'All Time'}New {/if}{$app.locale->p($period.volunteers,'Volunteer','Volunteers')}
 			</div>

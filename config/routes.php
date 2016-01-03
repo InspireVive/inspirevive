@@ -188,127 +188,127 @@ return array_merge($apiRoutes, [
 
   // dashboard
   'get /organizations/:username/admin' => [
-    'volunteers\Administration',
-    'adminIndex',
+    'volunteers_admin\Controller',
+    'index',
   ],
 
   // volunteers
   'get /organizations/:username/admin/volunteers' => [
-    'volunteers\Administration',
-    'adminVolunteersBrowse',
+    'volunteers_admin\Controller',
+    'volunteersBrowse',
   ],
   'get /organizations/:username/admin/groups' => [
-    'volunteers\Administration',
-    'adminVolunteersBrowse',
+    'volunteers_admin\Controller',
+    'volunteersBrowse',
   ],
   'get /organizations/:username/admin/volunteers/add' => [
-    'volunteers\Administration',
-    'adminAddVolunteerForm',
+    'volunteers_admin\Controller',
+    'addVolunteerForm',
   ],
   'post /organizations/:username/admin/volunteers' => [
-    'volunteers\Administration',
-    'adminAddVolunteer',
+    'volunteers_admin\Controller',
+    'addVolunteer',
   ],
   'get /organizations/:username/admin/volunteers/add/import' => [
-    'volunteers\Administration',
-    'adminAddVolunteerImportForm',
+    'volunteers_admin\Controller',
+    'addVolunteerImportForm',
   ],
   'get /organizations/:username/admin/volunteers/add/group' => [
-    'volunteers\Administration',
-    'adminAddVolunteerGroupForm',
+    'volunteers_admin\Controller',
+    'addVolunteerGroupForm',
   ],
   'get /organizations/:username/admin/volunteers/:id' => [
-    'volunteers\Administration',
-    'adminVolunteersView',
+    'volunteers_admin\Controller',
+    'volunteersView',
   ],
   'get /organizations/:username/admin/groups/:id' => [
-    'volunteers\Administration',
-    'adminVolunteersViewGroup',
+    'volunteers_admin\Controller',
+    'volunteersViewGroup',
   ],
   'post /organizations/:username/admin/volunteers/:id' => [
-    'volunteers\Administration',
-    'adminModelEdit',
+    'volunteers_admin\Controller',
+    'modelEdit',
   ],
   'post /organizations/:username/admin/groups/:id' => [
-    'volunteers\Administration',
-    'adminModelEdit',
+    'volunteers_admin\Controller',
+    'modelEdit',
   ],
   'delete /organizations/:username/admin/volunteers/:id' => [
-    'volunteers\Administration',
-    'adminModelDelete',
+    'volunteers_admin\Controller',
+    'modelDelete',
   ],
   'delete /organizations/:username/admin/groups/:id' => [
-    'volunteers\Administration',
-    'adminModelDelete',
+    'volunteers_admin\Controller',
+    'modelDelete',
   ],
 
   // hours
   'get /organizations/:username/admin/hours/add' => [
-    'volunteers\Administration',
-    'adminRecordHoursStep1',
+    'volunteers_admin\Controller',
+    'recordHoursStep1',
   ],
   'get /organizations/:username/admin/hours/add/2' => [
-    'volunteers\Administration',
-    'adminRecordHoursStep2',
+    'volunteers_admin\Controller',
+    'recordHoursStep2',
   ],
   'post /organizations/:username/admin/hours/add' => [
-    'volunteers\Administration',
-    'adminRecordHoursStep3',
+    'volunteers_admin\Controller',
+    'recordHoursStep3',
   ],
   'post /organizations/:username/admin/hours/add/confirm' => [
-    'volunteers\Administration',
-    'adminRecordHoursStep4',
+    'volunteers_admin\Controller',
+    'recordHoursStep4',
   ],
   'get /organizations/:username/admin/hours' => [
-    'volunteers\Administration',
-    'adminHoursBrowse',
+    'volunteers_admin\Controller',
+    'hoursBrowse',
   ],
   'get /organizations/:username/admin/hours/:id' => [
-    'volunteers\Administration',
-    'adminHoursView',
+    'volunteers_admin\Controller',
+    'hoursView',
   ],
   'post /organizations/:username/admin/hours/:id' => [
-    'volunteers\Administration',
-    'adminModelEdit',
+    'volunteers_admin\Controller',
+    'modelEdit',
   ],
   'delete /organizations/:username/admin/hours/:id' => [
-    'volunteers\Administration',
-    'adminModelDelete',
+    'volunteers_admin\Controller',
+    'modelDelete',
   ],
 
   // places
   'get /organizations/:username/admin/places' => [
-    'volunteers\Administration',
-    'adminPlacesBrowse',
+    'volunteers_admin\Controller',
+    'placesBrowse',
   ],
   'get /organizations/:username/admin/places/add' => [
-    'volunteers\Administration',
-    'adminPlacesAddForm',
+    'volunteers_admin\Controller',
+    'placesAddForm',
   ],
   'post /organizations/:username/admin/places' => [
-    'volunteers\Administration',
-    'adminPlacesAdd',
+    'volunteers_admin\Controller',
+    'placesAdd',
   ],
   'get /organizations/:username/admin/places/:id' => [
-    'volunteers\Administration',
-    'adminPlacesView',
+    'volunteers_admin\Controller',
+    'placesView',
   ],
   'get /organizations/:username/admin/places/:id/edit' => [
-    'volunteers\Administration',
-    'adminPlacesEditForm',
+    'volunteers_admin\Controller',
+    'placesEditForm',
   ],
   'post /organizations/:username/admin/places/:id' => [
-    'volunteers\Administration',
-    'adminModelEdit',
+    'volunteers_admin\Controller',
+    'modelEdit',
   ],
   'delete /organizations/:username/admin/places/:id' => [
-    'volunteers\Administration',
-    'adminModelDelete',
+    'volunteers_admin\Controller',
+    'modelDelete',
   ],
 
   // reports
   'get /organizations/:username/admin/reports' => [
-    'volunteers\Administration',
-    'adminReports',
+    'volunteers_admin\Controller',
+    'reports',
   ],
 ]);
