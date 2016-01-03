@@ -32,6 +32,39 @@
 		</ul>
 	</div>
 	<div class="col-md-5">
+	</div>
+	<div class="col-md-3 new-btn">
+		<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-success">
+			<span class="glyphicon glyphicon-user"></span>
+			Add Volunteers
+		</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		{if $usernameNotFound}
+			<p class="alert alert-danger">
+				Could not find a volunteer with the username <strong>{$username|htmlspecialchars}</strong>.
+			</p>
+		{/if}
+		<form action="{$org->manageUrl()}/volunteers/lookupUsername">
+			<label>
+				Look up volunteer by username:
+			</label>
+			<div class="lookup-username">
+				<div class="input-group">
+					<input type="text" class="form-control" name="username" placeholder="Search for..." />
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-default">
+							Go!
+						</button>
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-4">
 		{if $showApproved}
 			<div class="show-inactive-toggle">
 				<label>
@@ -44,34 +77,7 @@
 			</div>
 		{/if}
 	</div>
-	<div class="col-md-3 new-btn">
-		<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-success">
-			<span class="glyphicon glyphicon-user"></span>
-			Add Volunteers
-		</a>
-	</div>
 </div>
-
-{if $usernameNotFound}
-	<p class="alert alert-danger">
-		Could not find a volunteer with the username <strong>{$username|htmlspecialchars}</strong>.
-	</p>
-{/if}
-<form action="{$org->manageUrl()}/volunteers/lookupUsername">
-	<label>
-		Look up volunteer by username:
-	</label>
-	<div class="lookup-username">
-		<div class="input-group">
-			<input type="text" class="form-control" name="username" placeholder="Search for..." />
-			<span class="input-group-btn">
-				<button type="submit" class="btn btn-default">
-					Go!
-				</button>
-			</span>
-		</div>
-	</div>
-</form>
 
 {if count($volunteers) == 0}
 	<p class="empty">
