@@ -95,7 +95,8 @@ class Controller
         $limit = 100;
         $page = max(0, $req->query('page'));
         $showInactive = !!$req->query('inactive');
-        $showApproved = !!$req->query('approved');
+        $showApproved = $req->query('approved');
+        $showApproved = ($showApproved === '0') ? false : true;
 
         $roleSql = $showApproved ?
             'role >= '.Volunteer::ROLE_VOLUNTEER :
@@ -334,6 +335,7 @@ class Controller
         $limit = 100;
         $page = max(0, $req->query('page'));
         $showApproved = !!$req->query('approved');
+        $showApproved = ($showApproved === '0') ? false : true;
 
         $query = [
             'where' => [
@@ -644,6 +646,7 @@ class Controller
         $limit = 100;
         $page = max(0, $req->query('page'));
         $showApproved = !!$req->query('approved');
+        $showApproved = ($showApproved === '0') ? false : true;
 
         $query = [
             'where' => [
