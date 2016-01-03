@@ -77,35 +77,28 @@
 						Details
 					</a>
 				</td>
-				{if !$user->hasCompletedVolunteerApplication()}
-					{if $user->isTemporary()}
-						<td>
+				<td>
+					{if !$user->hasCompletedVolunteerApplication()}
+						{if $user->isTemporary()}
 							<span class="text-danger">
 								<span class="glyphicon glyphicon-exclamation-sign"></span>
 								Not registered on InspireVive
 							</span>
-						</td>
-					{else}
-						<td>
+						{else}
 							<span class="text-danger">
 								<span class="glyphicon glyphicon-exclamation-sign"></span>
 								Missing volunteer application
 							</span>
-						</td>
-					{/if}
-				{elseif !$volunteer->application_shared}
-					<td>
+						{/if}
+					{elseif !$volunteer->application_shared}
 						<span class="text-danger">
 							<span class="glyphicon glyphicon-exclamation-sign"></span>
 							Volunteer application not shared
 						</span>
-					</td>
-				{else}
-					{assign var=application value=$user->volunteerApplication()}
-					<td>
-						{$application->fullName()}
-					</td>
-				{/if}
+					{else}
+						{$user->volunteerApplication()->fullName()}
+					{/if}
+				</td>
 				<td>
 					{if $user->username}
 						{$user->username}

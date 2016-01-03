@@ -230,7 +230,7 @@
 			<thead>
 				<tr>
 					<th>
-						Day
+						Date
 					</th>
 					<th>
 						# Hours
