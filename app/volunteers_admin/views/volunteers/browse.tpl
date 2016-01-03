@@ -52,6 +52,27 @@
 	</div>
 </div>
 
+{if $usernameNotFound}
+	<p class="alert alert-danger">
+		Could not find a volunteer with the username <strong>{$username|htmlspecialchars}</strong>.
+	</p>
+{/if}
+<form action="{$org->manageUrl()}/volunteers/lookupUsername">
+	<label>
+		Look up volunteer by username:
+	</label>
+	<div class="lookup-username">
+		<div class="input-group">
+			<input type="text" class="form-control" name="username" placeholder="Search for..." />
+			<span class="input-group-btn">
+				<button type="submit" class="btn btn-default">
+					Go!
+				</button>
+			</span>
+		</div>
+	</div>
+</form>
+
 {if count($volunteers) == 0}
 	<p class="empty">
 		<span class="glyphicon glyphicon-user"></span>

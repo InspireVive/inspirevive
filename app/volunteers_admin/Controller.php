@@ -17,6 +17,7 @@ use infuse\Validate;
 use infuse\View;
 use app\organizations\models\Organization;
 use app\reports\libs\Report;
+use app\users\models\User;
 use app\volunteers\models\Volunteer;
 use app\volunteers\models\VolunteerApplication;
 use app\volunteers\models\VolunteerHour;
@@ -134,7 +135,31 @@ class Controller
             'page' => $page,
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
+            'usernameNotFound' => $req->params('usernameNotFound'),
+            'username' => $req->query('username')
         ]);
+    }
+
+    function volunteersLookupByUsername($req, $res)
+    {
+        $org = $this->getOrgForAdmin($req, $res);
+
+        if (!is_object($org)) {
+            return $org;
+        }
+
+        $username = $req->query('username');
+
+        $user = User::findOne(['where' => [
+            'username' => $username]]);
+
+        if ($user && $org->getRoleOfUser($user) >= Volunteer::ROLE_AWAITING_APPROVAL) {
+            return $res->redirect($org->manageUrl().'/volunteers/'.$user->id());
+        }
+
+        $req->setParams(['usernameNotFound' => true]);
+
+        return $this->volunteersBrowse($req, $res);
     }
 
     public function addVolunteerForm($req, $res)

@@ -197,6 +197,10 @@ return array_merge($apiRoutes, [
     'volunteers_admin\Controller',
     'volunteersBrowse',
   ],
+  'get /organizations/:username/admin/volunteers/lookupUsername' => [
+    'volunteers_admin\Controller',
+    'volunteersLookupByUsername',
+  ],
   'get /organizations/:username/admin/groups' => [
     'volunteers_admin\Controller',
     'volunteersBrowse',
