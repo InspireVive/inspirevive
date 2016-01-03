@@ -12,7 +12,7 @@
 {/foreach}
 
 <div class="row browse-params">
-	<div class="col-sm-6">
+	<div class="col-md-4">
 		<ul class="nav nav-pills">
 			<li class="{if $showApproved}active{/if}">
 				<a href="?approved=1">
@@ -31,28 +31,26 @@
 			</li>
 		</ul>
 	</div>
-	<div class="col-sm-3">
-
+	<div class="col-md-5">
+		{if $showApproved}
+			<div class="show-inactive-toggle">
+				<label>
+					<div class="switch">
+						<input id="switch-show-inactive" class="cmn-toggle cmn-toggle-round" type="checkbox" {if $showInactive}checked="checked"{/if} />
+						<label for="switch-show-inactive"></label>
+					</div>
+					Show Inactive
+				</label>
+			</div>
+		{/if}
 	</div>
-	<div class="col-sm-3 new-btn">
+	<div class="col-md-3 new-btn">
 		<a href="{$org->url()}/admin/volunteers/add" class="btn btn-success">
 			<span class="glyphicon glyphicon-user"></span>
 			Add Volunteers
 		</a>
 	</div>
 </div>
-
-{if $showApproved}
-	<div class="show-inactive-toggle">
-		<label>
-			<div class="switch">
-				<input id="switch-show-inactive" class="cmn-toggle cmn-toggle-round" type="checkbox" {if $showInactive}checked="checked"{/if} />
-				<label for="switch-show-inactive"></label>
-			</div>
-			Show Inactive
-		</label>
-	</div>
-{/if}
 
 {if count($volunteers) == 0}
 	<p class="empty">
@@ -138,7 +136,7 @@
 
 	<!-- Pagination -->
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			{if $hasLess}
 				<a href="{$org->url()}/admin/volunteers?inactive={$showInactive}&amp;approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
 					<span class="glyphicon glyphicon-arrow-left"></span>
@@ -146,10 +144,10 @@
 				</a>
 			{/if}
 		</div>
-		<div class="col-sm-6 text-center">
-			Page: <em>{$page+1}</em>, Total: <em>{$count|number_format}</em>
+		<div class="col-md-6 text-center">
+			Page: <em>{$page+1}</em>, Total Volunteers: <em>{$count|number_format}</em>
 		</div>
-		<div class="col-sm-3 text-right">
+		<div class="col-md-3 text-right">
 			{if $hasMore}
 				<a href="{$org->url()}/admin/volunteers?inactive={$showInactive}&amp;approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
 					Next Page

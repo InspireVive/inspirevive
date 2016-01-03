@@ -3,31 +3,19 @@
 
 <h2>Welcome, {$org->name}!</h2>
 
-<div class="row">
-	<div class="col-md-3">
-		<p>
-			<a href="{$org->url()}/admin/volunteers/add" class="btn btn-success btn-block">
-				<span class="glyphicon glyphicon-user"></span>
-				Add Volunteers
-			</a>
-		</p>
-	</div>
-	<div class="col-md-3">
-		<p>
-			<a href="{$org->url()}/admin/hours/add" class="btn btn-success btn-block">
-				<span class="glyphicon glyphicon-time"></span>
-				Record Hours
-			</a>
-		</p>
-	</div>
-	<div class="col-md-3">
-		<p>
-			<a href="{$org->url()}/admin/places/add" class="btn btn-success btn-block">
-				<span class="glyphicon glyphicon-map-marker"></span>
-				New Volunteer Place
-			</a>
-		</p>
-	</div>
+<div class="btn-toolbar dashboard hidden-xs">
+	<a href="{$org->url()}/admin/volunteers/add" class="btn btn-link">
+		<span class="glyphicon glyphicon-user"></span>
+		Add Volunteers
+	</a>
+	<a href="{$org->url()}/admin/hours/add" class="btn btn-link">
+		<span class="glyphicon glyphicon-time"></span>
+		Record Hours
+	</a>
+	<a href="{$org->url()}/admin/places/add" class="btn btn-link">
+		<span class="glyphicon glyphicon-map-marker"></span>
+		New Volunteer Place
+	</a>
 </div>
 <br/>
 

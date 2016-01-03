@@ -31,21 +31,22 @@
 @footerHeadingColor: #999;
 @footerTextColor: #ccc;
 @footerTextColorHover: #fff;
+
 /* Buttons */
 @btnDarkColor: rgba(0,0,0,.65);
 @btnLightColor: rgba(255,255,255,.95);
 
-@btnDefaultBg: #fff;
+@btnDefaultBg: #f5f5f5;
 @btnDefaultBorder: #ccc;
-@btnDefaultHoverBg: #888;
+@btnDefaultHoverBg: #fff;
 
 @btnDangerBg: @inspireviveRed;
 @btnDangerBorder: #D43F3A;
 @btnDangerHoverBg: #fc6060;
 
-@btnPrimaryBg: #009ee0;
-@btnPrimaryBorder: #357EBD;
-@btnPrimaryHoverBg: #00b4ff;
+@btnPrimaryBg: @inspireviveBlue;
+@btnPrimaryBorder: #2D6A94;
+@btnPrimaryHoverBg: #6EACD7;
 
 @btnSuccessBg: #63c378;
 @btnSuccessBorder: #4CAE4C;
@@ -55,9 +56,9 @@
 @btnInfoBorder: #43abca;
 @btnInfoHoverBg: #06eacd;
 
-@btnWarningBg: #dfc936;
-@btnWarningBorder: #EEA236;
-@btnWarningHoverBg: #fee648;
+@btnWarningBg: #F9C182;
+@btnWarningBorder: #F8B262;
+@btnWarningHoverBg: #EFBD84;
 
 @btnInverseBg: #333;
 @btnInverseBorder: #313131;
@@ -604,19 +605,28 @@ hr {
 
 		.new-btn {
 			text-align: right;
+			line-height: 40px;
 		}
 	}
+}
+
+/* Dashboard */
+
+.btn-toolbar.dashboard {
+	padding: 0 36px;
+	margin: 0 0 18px;
 }
 
 /* Volunteers */
 
 .show-inactive-toggle {
 	padding: 0 18px;
-	line-height: 30px;
+	line-height: 40px;
 
 	.switch {
 		float: left;
 		margin-right: 10px;
+		margin-top: 5px;
 	}
 }
 

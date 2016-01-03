@@ -1,16 +1,6 @@
 {extends file="$viewsDir//parent.tpl"}
 {block name=content}
 
-<div class="top-nav">
-	<div class="row">
-		<div class="col-sm-3">
-			<a href="{$org->url()}/admin/hours" class="btn btn-link btn-block">
-				&larr; Cancel
-			</a>
-		</div>
-	</div>
-</div>
-
 <h4>Add Volunteer Hours <small>step 1 of 3</small></h4>
 
 <p class="lead">

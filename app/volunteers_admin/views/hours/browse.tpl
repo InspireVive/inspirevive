@@ -8,7 +8,7 @@
 {/if}
 
 <div class="row browse-params">
-	<div class="col-sm-6">
+	<div class="col-md-4">
 		<ul class="nav nav-pills">
 			<li class="{if $showApproved}active{/if}">
 				<a href="?approved=1">
@@ -27,10 +27,10 @@
 			</li>
 		</ul>
 	</div>
-	<div class="col-sm-3">
+	<div class="col-md-5">
 
 	</div>
-	<div class="col-sm-3 new-btn">
+	<div class="col-md-3 new-btn">
 		<a href="{$org->url()}/admin/hours/add" class="btn btn-success">
 			<span class="glyphicon glyphicon-time"></span>
 			Record Hours
@@ -114,7 +114,7 @@
 
 	<!-- Pagination -->
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			{if $hasLess}
 				<a href="{$org->url()}/admin/hours?approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
 					<span class="glyphicon glyphicon-arrow-left"></span>
@@ -122,10 +122,10 @@
 				</a>
 			{/if}
 		</div>
-		<div class="col-sm-6 text-center">
-			Page: <em>{$page+1}</em>, Total: <em>{$count|number_format}</em>
+		<div class="col-md-6 text-center">
+			Page: <em>{$page+1}</em>, Total Hours: <em>{$count|number_format}</em>
 		</div>
-		<div class="col-sm-3 text-right">
+		<div class="col-md-3 text-right">
 			{if $hasMore}
 				<a href="{$org->url()}/admin/hours?approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
 					Next Page

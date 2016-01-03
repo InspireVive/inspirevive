@@ -1,21 +1,21 @@
 {extends file="$viewsDir//parent.tpl"}
 {block name=content}
 
-<div class="top-nav">
-	<div class="row">
-		<div class="col-sm-3">
-			<a href="{$org->url()}/admin/places{if isset($place.id)}/{$place.id}{/if}" class="btn btn-link btn-block">
-				&larr; Cancel
-			</a>
-		</div>
-	</div>
-</div>
-
 {foreach from=$app.errors->messages() item=error}
 	<p class="alert alert-danger">{$error}</p>
 {/foreach}
 
 <form method="post" action="{$org->url()}/admin/places{if isset($place.id)}/{$place.id}{/if}" role="form" class="form-horizontal">
+	<div class="form-group">
+		<div class="col-md-8 col-md-offset-4">
+			{if isset($place.id)}
+				<h4>Edit Place</h4>
+			{else}
+				<h4>New Place</h4>
+			{/if}
+		</div>
+	</div>
+
 	<div class="form-group">
 		<label class="control-label col-md-4">
 			Name

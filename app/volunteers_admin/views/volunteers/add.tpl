@@ -1,16 +1,6 @@
 {extends file="$viewsDir//parent.tpl"}
 {block name=content}
 
-<div class="top-nav">
-	<div class="row">
-		<div class="col-sm-3">
-			<a href="{$org->url()}/admin/volunteers" class="btn btn-link btn-block">
-				&larr; Cancel
-			</a>
-		</div>
-	</div>
-</div>
-
 {foreach from=$app.errors->messages() item=error}
 	<p class="alert alert-danger">{$error}</p>
 {/foreach}
