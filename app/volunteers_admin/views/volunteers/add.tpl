@@ -15,13 +15,13 @@
 <div class="row">
 	<div class="col-md-8">
 		<p>
-			In order to add volunteers to your organization on InspireVive just enter the e-mail address or InspireVive username of one or more volunteers. If a volunteer has not joined InspireVive yet, we will send them a personalized invitation e-mail and request they fill out the InspireVive volunteer application.
+			In order to add volunteers to your organization on InspireVive just enter the email address or InspireVive username of one or more volunteers. If a volunteer has not joined InspireVive yet, we will send them a personalized invitation email and request they fill out the InspireVive volunteer application.
 		</p>
 
 		<form role="form" method="post" action="{$org->manageUrl()}/volunteers">
 			<div class="form-group">
-				<label class="control-label">E-mail addresses and/or usernames (max. 1 per line)</label>
-				<textarea class="form-control" name="emails" placeholder="One e-mail or username per line..." rows="8">{$emails}</textarea>
+				<label class="control-label">Email addresses and/or usernames (max. 1 per line)</label>
+				<textarea class="form-control" name="emails" placeholder="One email or username per line..." rows="8">{$emails}</textarea>
 			</div>
 			<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Add Volunteers" />

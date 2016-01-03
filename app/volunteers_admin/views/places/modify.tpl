@@ -57,7 +57,7 @@
 
 		<div class="form-group">
 			<label class="control-label col-md-4">
-				Volunteer Coordinator's E-mail Address
+				Volunteer Coordinator's Email Address
 			</label>
 			<div class="col-md-4">
 				<input type="text" name="verify_email" class="form-control" value="{if isset($place.verify_email)}{$place.verify_email}{/if}">

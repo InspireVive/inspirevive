@@ -48,7 +48,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<p class="text-right">
-				<strong>E-mail</strong>
+				<strong>Email</strong>
 			</p>
 		</div>
 		<div class="col-md-6">
@@ -234,22 +234,43 @@
 						Date
 					</th>
 					<th>
+						Place
+					</th>
+					<th>
 						# Hours
+					</th>
+					<th>
+						Status
 					</th>
 				</tr>
 			</thead>
 		{foreach from=$hours item=hour}
-			{assign var=hours value=$hour->hours}
 			<tr>
 				<td>
 					<a href="{$org->manageUrl()}/hours/{$hour->id()}" class="btn btn-default">
 						Details
 					</a>
-				<td>
-					{$hour->timestamp|date_format:'M j, Y'}
 				</td>
 				<td>
-					{$hours}
+					{$hour->timestamp|date_format:'M d, Y'}
+				</td>
+				<td>
+					{$hour->relation('place')->name}
+				</td>
+				<td>
+					{$hour->hours}
+				</td>
+				<td>
+					{if $hour->approved}
+						<label class="label label-success">Approved</label>
+					{else}
+						<form method="post" action="{$org->manageUrl()}/hours/{$hour->id()}?redir=volunteers,{$volunteer.uid}">
+							<input type="hidden" name="approved" value="1" />
+							<button type="submit" class="btn btn-success">
+								Approve
+							</button>
+						</form>
+					{/if}
 				</td>
 			</tr>
 		{foreachelse}

@@ -404,7 +404,7 @@ class Controller
         }
 
         if (!$place) {
-            return $res->redirect($org->url().'/admin/hours/add');
+            return $res->redirect($org->manageUrl().'/hours/add');
         }
 
         // check for previous input
@@ -470,7 +470,7 @@ class Controller
         }
 
         if (!$place || !$place->exists()) {
-            return $res->redirect($org->url().'/admin/hours/add');
+            return $res->redirect($org->manageUrl().'/hours/add');
         }
 
         $input = $req->request();
@@ -718,7 +718,7 @@ class Controller
         $place->create($input);
 
         if ($place) {
-            $res->redirect($org->url().'/admin/places?success=t');
+            $res->redirect($org->manageUrl().'/places?success=t');
         } else {
             return $this->addPlaceForm($req, $res);
         }
@@ -774,12 +774,16 @@ class Controller
 
         $model->set($req->request());
 
-        if ($req->query('redir') == 'browse') {
+        $redir = $req->query('redir');
+        if ($redir == 'browse') {
             if (in_array($section, ['volunteers', 'hours', 'places'])) {
-                $res->redirect($org->url().'/admin/'.$section.'?unapproved=1');
+                $res->redirect($org->manageUrl().'/'.$section.'?unapproved=1');
             } else {
-                $res->redirect($org->url().'/admin/'.$section);
+                $res->redirect($org->manageUrl().'/'.$section);
             }
+        } else if (strpos($redir, ',') !== false) {
+            list($section, $id) = explode(',', $redir);
+            $res->redirect($org->manageUrl()."/$section/$id");
         } else {
             $id = $model->id();
 
@@ -787,7 +791,7 @@ class Controller
                 $id = $model->uid;
             }
 
-            $res->redirect($org->url().'/admin/'.$section.'/'.$id);
+            $res->redirect($org->manageUrl().'/'.$section.'/'.$id);
         }
     }
 
@@ -803,15 +807,15 @@ class Controller
 
         // volunteer coordinator cannot delete themselves
         if ($section == 'volunteers' && $model->uid == $this->app['user']->id()) {
-            return $res->redirect($org->url().'/admin/'.$section.'?error=cannot_delete_self');
+            return $res->redirect($org->manageUrl().'/'.$section.'?error=cannot_delete_self');
         }
 
         $model->delete();
 
         if ($section == 'hours') {
-            $res->redirect($org->url().'/admin/'.$section.'?unapproved=t');
+            $res->redirect($org->manageUrl().'/'.$section.'?unapproved=t');
         } else {
-            $res->redirect($org->url().'/admin/'.$section);
+            $res->redirect($org->manageUrl().'/'.$section);
         }
     }
 

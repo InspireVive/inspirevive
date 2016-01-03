@@ -17,7 +17,7 @@
 </p>
 
 <p>
-	The <strong>e-mail</strong> column is the only column required and it can be an e-mail address or username of existing user.
+	The <strong>email</strong> column is the only column required and it can be an email address or username of existing user.
 	Any columns in additonal to <strong>email</strong> will be added as meta-data to the volunteer's profile.
 </p>
 

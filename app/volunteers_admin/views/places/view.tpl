@@ -84,7 +84,7 @@
 	<div class="row">
 		<div class="col-md-3 text-right">
 			<p class="text-right">
-				<strong>Volunteer Coordinator E-mail</strong>
+				<strong>Volunteer Coordinator Email</strong>
 			</p>
 		</div>
 		<div class="col-md-6">
