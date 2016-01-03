@@ -190,7 +190,7 @@ class VolunteerPlace extends Model
                     'coordinator_name' => $p['verify_name'],
                     'coordinator_email' => $p['verify_email'],
                     'place_name' => $p['name'],
-                    'place_admin_url' => $org->manageUrl().'/places/'.$this->_id, ]);
+                    'place_admin_url' => $org->manageUrl().'/places/'.$this->id(), ]);
         }
     }
 

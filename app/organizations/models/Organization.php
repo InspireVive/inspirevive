@@ -57,6 +57,19 @@ class Organization extends Model
 
     protected function hasPermission($permission, Model $requester)
     {
+        if ($permission == 'create') {
+            return true;
+        }
+
+        $userRole = $this->getRoleOfUser($requester);
+        if ($permission == 'view' && $userRole >= Volunteer::ROLE_VOLUNTEER) {
+            return true;
+        }
+
+        if (in_array($permission, ['admin', 'edit']) && $userRole == Volunteer::ROLE_ADMIN) {
+            return true;
+        }
+
         return $requester->isAdmin();
     }
 
@@ -77,7 +90,7 @@ class Organization extends Model
             Database::delete(
                 $tablename,
                 [
-                    'organization' => $this->_id, ]);
+                    'organization' => $this->id(), ]);
         }
     }
 
@@ -94,7 +107,7 @@ class Organization extends Model
      */
     public function getRoleOfUser(User $user)
     {
-        $volunteer = new Volunteer([$user->id(), $this->_id]);
+        $volunteer = new Volunteer([$user->id(), $this->id()]);
 
         return ($volunteer->exists()) ? $volunteer->role : Volunteer::ROLE_NONE;
     }

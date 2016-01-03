@@ -148,7 +148,7 @@ class User extends AbstractUser
      */
     public function name($full = false)
     {
-        if ($this->_id == GUEST) {
+        if ($this->id() == GUEST) {
             return 'Guest';
         } else {
             if ($full && $this->hasCompletedVolunteerApplication()) {
@@ -244,7 +244,7 @@ class User extends AbstractUser
     public function volunteerApplication()
     {
         if (!$this->application) {
-            $this->application = new VolunteerApplication($this->_id);
+            $this->application = new VolunteerApplication($this->id());
         }
 
         return $this->application;

@@ -207,7 +207,7 @@ class VolunteerHour extends Model
                 $tagModel->grantAllPermissions();
                 $tagModel->create([
                     'tag' => $tag,
-                    'hour' => $this->_id,
+                    'hour' => $this->id(),
                     'organization' => $this->organization, ]);
             }
 
@@ -304,7 +304,7 @@ class VolunteerHour extends Model
         // update tags
         if ($this->setTags) {
             // remove existing tags
-            Database::delete('VolunteerHourTags', ['hour' => $this->_id]);
+            Database::delete('VolunteerHourTags', ['hour' => $this->id()]);
 
             $tags = array_unique($this->setTags);
 
@@ -313,7 +313,7 @@ class VolunteerHour extends Model
                 $tagModel->grantAllPermissions();
                 $tagModel->create([
                     'tag' => $tag,
-                    'hour' => $this->_id,
+                    'hour' => $this->id(),
                     'organization' => $this->organization, ]);
             }
 
@@ -454,7 +454,7 @@ class VolunteerHour extends Model
             'tag',
             [
                 'where' => [
-                    'hour' => $this->_id, ],
+                    'hour' => $this->id(), ],
                 'fetchStyle' => 'singleColumn',
                 'orderBy' => 'tag ASC',
                 'groupBy' => 'tag', ]);

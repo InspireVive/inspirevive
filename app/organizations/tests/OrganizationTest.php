@@ -88,7 +88,11 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
     public function testPermissions()
     {
         $org = new Organization();
-        $this->assertFalse($org->can('view', TestBootstrap::app('user')));
+        $user = TestBootstrap::app('user');
+        $this->assertTrue($org->can('create', $user));
+        $this->assertFalse($org->can('view', $user));
+        $this->assertFalse($org->can('edit', $user));
+        $this->assertFalse($org->can('admin', $user));
     }
 
     public function testCreate()
@@ -111,15 +115,16 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
 
         /* Create some volunteers */
 
-        $uid = TestBootstrap::app('user')->id();
-        TestBootstrap::app('user')->enableSU();
+        $user = TestBootstrap::app('user');
+        $uid = $user->id();
+        $user->enableSU();
         $volunteer = new Volunteer();
         $this->assertTrue($volunteer->create([
             'uid' => $uid,
             'organization' => self::$org->id(),
             'role' => Volunteer::ROLE_ADMIN,
         ]));
-        TestBootstrap::app('user')->disableSU();
+        $user->disableSU();
 
         $volunteer = new Volunteer();
         $this->assertTrue($volunteer->create([
@@ -207,7 +212,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
         ]));
 
         // official, outside hours
-        TestBootstrap::app('user')->enableSU();
+        $user->enableSU();
         $hour = new VolunteerHour();
         $this->assertTrue($hour->create([
             'organization' => self::$org2->id(),
@@ -216,7 +221,7 @@ class OrganizationTest extends \PHPUnit_Framework_TestCase
             'hours' => 12,
             'approved' => true,
         ]));
-        TestBootstrap::app('user')->disableSU();
+        $user->disableSU();
 
         self::$ogUserId = $uid;
     }
