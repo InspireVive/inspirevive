@@ -107,7 +107,11 @@
 					</td>
 				{/if}
 				<td>
-					{$user->username}
+					{if $user->username}
+						{$user->username}
+					{else}
+						{$user->user_email}
+					{/if}
 				</td>
 				<td>
 					{if $volunteer->role >= $smarty.const.VOLUNTEER_ROLE_VOLUNTEER}

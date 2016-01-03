@@ -92,18 +92,20 @@
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-3 text-right">
-				<p class="text-right">
-					<strong>Alternate Phone #</strong>
-				</p>
+		{if $application.alternate_phone}
+			<div class="row">
+				<div class="col-md-3 text-right">
+					<p class="text-right">
+						<strong>Alternate Phone #</strong>
+					</p>
+				</div>
+				<div class="col-md-6">
+					<p>
+						{$application.alternate_phone}
+					</p>
+				</div>
 			</div>
-			<div class="col-md-6">
-				<p>
-					{$application.alternate_phone}
-				</p>
-			</div>
-		</div>
+		{/if}
 
 		<div class="row">
 			<div class="col-md-3 text-right">

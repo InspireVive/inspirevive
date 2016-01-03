@@ -87,7 +87,7 @@
 				<label class="label label-success">Approved</label>
 			{else}
 				{if $hour.verification_requested}
-					<label class="label label-primary">Verification Requested from {$place->name}</label>
+					<label class="label label-primary">Verification Requested from {$place->verify_email}</label>
 				{else}
 					<label class="label label-danger">Not Approved</label>
 				{/if}
