@@ -240,12 +240,17 @@
 		{foreach from=$hours item=hour}
 			{assign var=hours value=$hour->hours}
 			<tr>
-			<div class="col-md-4">
 				<td>
 					<em>{$hour->timestamp|date_format:'M j, Y'}</em>
 				</td>
 				<td>
 					{$hours} {$app.locale->p($hours,'hour','hours')}
+				</td>
+			</tr>
+		{foreachelse}
+			<tr>
+				<td colspan="2">
+					<em>No volunteer activity yet.</em>
 				</td>
 			</tr>
 		{/foreach}
