@@ -9,10 +9,10 @@
 			</h3>
 		</div>
 		<div class="col-md-4 text-right">
-			<a href="{$org->url()}/admin/places/{$place.id}/edit" class="btn btn-default">
+			<a href="{$org->manageUrl()}/places/{$place.id}/edit" class="btn btn-default">
 				Edit Place
 			</a>
-			<form method="post" action="{$org->url()}/admin/places/{$place.id}" class="inline">
+			<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger">
 					Delete Place
@@ -109,13 +109,13 @@
 				</p>
 			{else}
 				<div class="btn-group-form btn-group">
-					<form method="post" action="{$org->url()}/admin/places/{$place.id}" class="inline">
+					<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
 						<input type="hidden" name="verify_approved" value="1" />
 						<button type="submit" class="btn btn-success">
 							Approve
 						</button>
 					</form>
-					<form method="post" action="{$org->url()}/admin/places/{$place.id}" class="inline">
+					<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
 						<input type="hidden" name="method" value="DELETE" />
 						<button type="submit" class="btn btn-danger">
 							Deny

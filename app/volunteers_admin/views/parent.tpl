@@ -30,7 +30,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{$org->url()}/admin">
+				<a class="navbar-brand" href="{$org->manageUrl()}">
 					{$org->name}
 					<small>Management</small>
 				</a>
@@ -58,13 +58,13 @@
 			<div id="thebar"></div>
 			<ul class="nav nav-tabs">
 				<li class="{if isset($dashboardPage)&&$dashboardPage}active{/if}">
-					<a href="{$org->url()}/admin">
+					<a href="{$org->manageUrl()}">
 						<span class="glyphicon glyphicon-heart"></span>
 						<span class="title">Pulse</span>
 					</a>
 				</li>
 				<li class="{if isset($volunteersPage)&&$volunteersPage}active{/if}">
-					<a href="{$org->url()}/admin/volunteers">
+					<a href="{$org->manageUrl()}/volunteers">
 						<span class="glyphicon glyphicon-user"></span>
 						<span class="title">Volunteers</span>
 						{if $volunteersAwaitingApproval > 0}
@@ -75,7 +75,7 @@
 					</a>
 				</li>
 				<li class="{if isset($hoursPage)&&$hoursPage}active{/if}">
-					<a href="{$org->url()}/admin/hours">
+					<a href="{$org->manageUrl()}/hours">
 						<span class="glyphicon glyphicon-time"></span>
 						<span class="title">Hours</span>
 						{if $hoursAwaitingApproval > 0}
@@ -86,7 +86,7 @@
 					</a>
 				</li>
 				<li class="{if isset($placesPage)&&$placesPage}active{/if}">
-					<a href="{$org->url()}/admin/places">
+					<a href="{$org->manageUrl()}/places">
 						<span class="glyphicon glyphicon-map-marker"></span>
 						<span class="title">Places</span>
 						{if $placesAwaitingApproval > 0}
@@ -97,7 +97,7 @@
 					</a>
 				</li>
 				<li class="{if isset($reportsPage)&&$reportsPage}active{/if}">
-					<a href="{$org->url()}/admin/reports">
+					<a href="{$org->manageUrl()}/reports">
 						<span class="glyphicon glyphicon-file"></span>
 						<span class="title">Reports</span>
 					</a>

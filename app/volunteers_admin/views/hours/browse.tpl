@@ -31,7 +31,7 @@
 
 	</div>
 	<div class="col-md-3 new-btn">
-		<a href="{$org->url()}/admin/hours/add" class="btn btn-success">
+		<a href="{$org->manageUrl()}/hours/add" class="btn btn-success">
 			<span class="glyphicon glyphicon-time"></span>
 			Record Hours
 		</a>
@@ -42,7 +42,7 @@
 	<p class="empty">
 		<span class="glyphicon glyphicon-time"></span>
 		None found.
-		<a href="{$org->url()}/admin/hours/add">Record hours</a>
+		<a href="{$org->manageUrl()}/hours/add">Record hours</a>
 	</p>
 {else}
 	<table class="table table-striped">
@@ -69,13 +69,13 @@
 	{foreach from=$hours item=hour}
 		<tr>
 			<td>
-				<a href="{$org->url()}/admin/hours/{$hour->id()}" class="btn btn-default">
+				<a href="{$org->manageUrl()}/hours/{$hour->id()}" class="btn btn-default">
 					Details
 				</a>
 			</td>
 			<td>
 				{assign var=user value=$hour->relation('uid')}
-				<a href="{$org->url()}/admin/volunteers/{$user->id()}">
+				<a href="{$org->manageUrl()}/volunteers/{$user->id()}">
 					{$user->name(true)}
 				</a>
 			</td>
@@ -92,7 +92,7 @@
 				{if $hour->approved}
 					<label class="label label-success">Approved</label>
 				{else}
-					<form method="post" action="{$org->url()}/admin/hours/{$hour->id()}?redir=browse">
+					<form method="post" action="{$org->manageUrl()}/hours/{$hour->id()}?redir=browse">
 						<input type="hidden" name="approved" value="1" />
 						<button type="submit" class="btn btn-success">
 							Approve
@@ -108,7 +108,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			{if $hasLess}
-				<a href="{$org->url()}/admin/hours?approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
+				<a href="{$org->manageUrl()}/hours?approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
 					<span class="glyphicon glyphicon-arrow-left"></span>
 					Previous Page
 				</a>
@@ -119,7 +119,7 @@
 		</div>
 		<div class="col-md-3 text-right">
 			{if $hasMore}
-				<a href="{$org->url()}/admin/hours?approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
+				<a href="{$org->manageUrl()}/hours?approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
 					Next Page
 					<span class="glyphicon glyphicon-arrow-right"></span>
 				</a>

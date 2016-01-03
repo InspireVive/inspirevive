@@ -45,7 +45,7 @@
 		{/if}
 	</div>
 	<div class="col-md-3 new-btn">
-		<a href="{$org->url()}/admin/volunteers/add" class="btn btn-success">
+		<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-success">
 			<span class="glyphicon glyphicon-user"></span>
 			Add Volunteers
 		</a>
@@ -56,7 +56,7 @@
 	<p class="empty">
 		<span class="glyphicon glyphicon-user"></span>
 		None found.
-		<a href="{$org->url()}/admin/volunteers/add">Add one</a>
+		<a href="{$org->manageUrl()}/volunteers/add">Add one</a>
 	</p>
 {else}
 	<table class="table table-striped">
@@ -73,7 +73,7 @@
 			{assign var=user value=$volunteer->relation('uid')}
 			<tr>
 				<td>
-					<a href="{$org->url()}/admin/volunteers/{$user->id()}" class="btn btn-default">
+					<a href="{$org->manageUrl()}/volunteers/{$user->id()}" class="btn btn-default">
 						Details
 					</a>
 				</td>
@@ -114,7 +114,7 @@
 							<span class="label label-default">Inactive</span>
 						{/if}
 					{else}
-						<form method="post" action="{$org->url()}/admin/volunteers/{$volunteer->id()}?redir=browse">
+						<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer->id()}?redir=browse">
 							<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
 							<button type="submit" class="btn btn-success">
 								Approve
@@ -131,7 +131,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			{if $hasLess}
-				<a href="{$org->url()}/admin/volunteers?inactive={$showInactive}&amp;approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
+				<a href="{$org->manageUrl()}/volunteers?inactive={$showInactive}&amp;approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
 					<span class="glyphicon glyphicon-arrow-left"></span>
 					Previous Page
 				</a>
@@ -142,7 +142,7 @@
 		</div>
 		<div class="col-md-3 text-right">
 			{if $hasMore}
-				<a href="{$org->url()}/admin/volunteers?inactive={$showInactive}&amp;approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
+				<a href="{$org->manageUrl()}/volunteers?inactive={$showInactive}&amp;approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
 					Next Page
 					<span class="glyphicon glyphicon-arrow-right"></span>
 				</a>
@@ -157,7 +157,7 @@
 
 	$('#switch-show-inactive').change(function() {
 		showingInactive = !showingInactive;
- 		window.location = '{$org->url()}/admin/volunteers?inactive='+(showingInactive+0)+'&approved='+(showingApproved+0);
+ 		window.location = '{$org->manageUrl()}/volunteers?inactive='+(showingInactive+0)+'&approved='+(showingApproved+0);
 	});
 </script>
 {/block}

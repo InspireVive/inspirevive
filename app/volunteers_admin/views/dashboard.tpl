@@ -4,15 +4,15 @@
 <h2>Welcome, {$org->name}!</h2>
 
 <div class="btn-toolbar dashboard hidden-xs">
-	<a href="{$org->url()}/admin/volunteers/add" class="btn btn-link">
+	<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-link">
 		<span class="glyphicon glyphicon-user"></span>
 		Add Volunteers
 	</a>
-	<a href="{$org->url()}/admin/hours/add" class="btn btn-link">
+	<a href="{$org->manageUrl()}/hours/add" class="btn btn-link">
 		<span class="glyphicon glyphicon-time"></span>
 		Record Hours
 	</a>
-	<a href="{$org->url()}/admin/places/add" class="btn btn-link">
+	<a href="{$org->manageUrl()}/places/add" class="btn btn-link">
 		<span class="glyphicon glyphicon-map-marker"></span>
 		New Volunteer Place
 	</a>
@@ -37,7 +37,7 @@
 		<div class="col-md-4 stat">
 			{if $period.topVolunteer}
 				<div class="name">
-					<a href="{$org->url()}/admin/volunteers/{$period.topVolunteer.user->id()}">
+					<a href="{$org->manageUrl()}/volunteers/{$period.topVolunteer.user->id()}">
 						{$period.topVolunteer.user->name()}</strong>
 					</a>:
 					{$period.topVolunteer.hours|number_format} {$app.locale->p($period.topVolunteer.hours,'hour','hours')}

@@ -31,7 +31,7 @@
 
 	</div>
 	<div class="col-md-3 new-btn">
-		<a href="{$org->url()}/admin/places/add" class="btn btn-success">
+		<a href="{$org->manageUrl()}/places/add" class="btn btn-success">
 			<span class="glyphicon glyphicon-map-marker"></span>
 			New Place
 		</a>
@@ -42,7 +42,7 @@
 	<p class="empty">
 		<span class="glyphicon glyphicon-map-marker"></span>
 		None found.
-		<a href="{$org->url()}/admin/places/add">Add one</a>
+		<a href="{$org->manageUrl()}/places/add">Add one</a>
 	</p>
 {else}
 	<table class="table table-striped">
@@ -65,7 +65,7 @@
 		{foreach from=$places item=place}
 			<tr>
 				<td>
-					<a href="{$org->url()}/admin/places/{$place->id()}" class="btn btn-default">
+					<a href="{$org->manageUrl()}/places/{$place->id()}" class="btn btn-default">
 						Details
 					</a>
 				</td>
@@ -89,7 +89,7 @@
 					</td>
 					<td>
 						{if !$place->verify_approved}
-							<form method="post" action="{$org->url()}/admin/places/{$place->id()}?redir=browse">
+							<form method="post" action="{$org->manageUrl()}/places/{$place->id()}?redir=browse">
 								<input type="hidden" name="verify_approved" value="1" />
 								<button type="submit" class="btn btn-success">
 									Approve
@@ -110,7 +110,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			{if $hasLess}
-				<a href="{$org->url()}/admin/places?approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
+				<a href="{$org->manageUrl()}/places?approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
 					<span class="glyphicon glyphicon-arrow-left"></span>
 					Previous Page
 				</a>
@@ -121,7 +121,7 @@
 		</div>
 		<div class="col-md-3 text-right">
 			{if $hasMore}
-				<a href="{$org->url()}/admin/places?approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
+				<a href="{$org->manageUrl()}/places?approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
 					Next Page
 					<span class="glyphicon glyphicon-arrow-right"></span>
 				</a>

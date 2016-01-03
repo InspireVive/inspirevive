@@ -5,7 +5,7 @@
 	<p class="alert alert-danger">{$error}</p>
 {/foreach}
 
-<form method="post" action="{$org->url()}/admin/places{if isset($place.id)}/{$place.id}{/if}" role="form" class="form-horizontal">
+<form method="post" action="{$org->manageUrl()}/places{if isset($place.id)}/{$place.id}{/if}" role="form" class="form-horizontal">
 	<div class="form-group">
 		<div class="col-md-8 col-md-offset-4">
 			{if isset($place.id)}

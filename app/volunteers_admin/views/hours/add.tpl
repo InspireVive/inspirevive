@@ -9,12 +9,12 @@
 <br/>
 
 <div class="well clearfix">
-	<form action="{$org->url()}/admin/hours/add/2" method="get" role="form">
+	<form action="{$org->manageUrl()}/hours/add/2" method="get" role="form">
 		<div class="form-group">
 			<h4>Select Place</h4>
 			{if count($places) == 0}
 				<div class="alert alert-danger">
-					First you must create a place. <a href="{$org->url()}/admin/places/add">Add one</a>
+					First you must create a place. <a href="{$org->manageUrl()}/places/add">Add one</a>
 				</div>
 			{else}
 				<div class="col-md-4">

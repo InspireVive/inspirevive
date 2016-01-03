@@ -10,7 +10,7 @@
 		</div>
 		<div class="col-md-4">
 		{if $volunteer.uid != $app.user->id()}
-			<form method="post" action="{$org->url()}/admin/volunteers/{$volunteer.uid}">
+			<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger pull-right">
 					Remove Volunteer
@@ -133,7 +133,7 @@
 			<p>
 				<span class="label label-danger">Awaiting Approval</span>
 			</p>
-			<form method="post" action="{$org->url()}/admin/volunteers/{$volunteer.uid}">
+			<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
 				<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
 				<button type="submit" class="btn btn-success">
 					Approve
@@ -153,7 +153,7 @@
 				{if $volunteer.role == $smarty.const.ORGANIZATION_ROLE_ADMIN}
 					<span class="label label-success">Volunteer Coordinator</span>
 					{if $volunteer.uid != $app.user->id()}
-						<form method="post" action="{$org->url()}/admin/volunteers/{$volunteer.uid}">
+						<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
 							<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
 							<button type="submit" class="btn btn-danger">
 								Demote to Volunteer
@@ -162,7 +162,7 @@
 					{/if}
 				{else}
 					<span class="label label-primary">Volunteer</span>
-					<form method="post" action="{$org->url()}/admin/volunteers/{$volunteer.uid}">
+					<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
 						<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_ADMIN}" />
 						<button type="submit" class="btn btn-success">
 							Promote to Volunteer Coordinator
@@ -187,7 +187,7 @@
 					<span class="label label-default">Inactive</span>
 			{/if}
 			</p>
-			<form method="post" action="{$org->url()}/admin/volunteers/{$volunteer.uid}">
+			<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
 				<input type="hidden" name="active" value="{if $volunteer.active}0{else}1{/if}" />
 				<button type="submit" class="btn {if $volunteer.active}btn-danger{else}btn-success{/if}">
 					{if $volunteer.active}Make Inactive{else}Make Active{/if}
@@ -221,7 +221,7 @@
 	<p class="empty">
 		<span class="glyphicon glyphicon-time"></span>
 		No volunteer hours have been recorded yet for {$name}!
-		<a href="{$org->url()}/admin/hours/add">Record hours</a>
+		<a href="{$org->manageUrl()}/hours/add">Record hours</a>
 	</p>
 {else}
 	<br/>
@@ -229,6 +229,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th></th>
 					<th>
 						Date
 					</th>
@@ -241,15 +242,19 @@
 			{assign var=hours value=$hour->hours}
 			<tr>
 				<td>
-					<em>{$hour->timestamp|date_format:'M j, Y'}</em>
+					<a href="{$org->manageUrl()}/hours/{$hour->id()}" class="btn btn-default">
+						Details
+					</a>
+				<td>
+					{$hour->timestamp|date_format:'M j, Y'}
 				</td>
 				<td>
-					{$hours} {$app.locale->p($hours,'hour','hours')}
+					{$hours}
 				</td>
 			</tr>
 		{foreachelse}
 			<tr>
-				<td colspan="2">
+				<td colspan="3">
 					<em>No volunteer activity yet.</em>
 				</td>
 			</tr>

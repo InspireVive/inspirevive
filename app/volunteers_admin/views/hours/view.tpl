@@ -9,7 +9,7 @@
 			</h3>
 		</div>
 		<div class="col-md-4">
-			<form method="post" action="{$org->url()}/admin/hours/{$hour.id}">
+			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}">
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger pull-right">
 					Delete Hour Entry
@@ -27,7 +27,7 @@
 	</div>
 	<div class="col-md-6">
 		<p>
-			<a href="{$org->url()}/admin/volunteers/{$volunteer->id()}">
+			<a href="{$org->manageUrl()}/volunteers/{$volunteer->id()}">
 				{$volunteer->name(true)}
 			</a>
 		</p>
@@ -55,7 +55,7 @@
 	</div>
 	<div class="col-md-6">
 		<p>
-			<a href="{$org->url()}/admin/places/{$place->id()}">
+			<a href="{$org->manageUrl()}/places/{$place->id()}">
 				{$place->name}
 			</a>
 		</p>
@@ -122,13 +122,13 @@
 	</div>
 	<div class="col-md-6">
 		<div class="btn-group-form btn-group">
-			<form method="post" action="{$org->url()}/admin/hours/{$hour.id}" class="inline">
+			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}" class="inline">
 				<input type="hidden" name="approved" value="1" />
 				<button type="submit" class="btn btn-success">
 					Approve
 				</button>
 			</form>
-			<form method="post" action="{$org->url()}/admin/hours/{$hour.id}" class="inline">
+			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}" class="inline">
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger pull-right">
 					Deny

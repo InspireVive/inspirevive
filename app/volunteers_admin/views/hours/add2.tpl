@@ -18,17 +18,17 @@
 
 {if count($volunteers) == 0}
 	<p class="empty">
-		No volunteers found. <a href="{$org->url()}/admin/volunteers/add">Add one</a>
+		No volunteers found. <a href="{$org->manageUrl()}/volunteers/add">Add one</a>
 	</p>
 {else}
-	<form action="{$org->url()}/admin/hours/add?place={$place->id()}" method="post" class="form-horizontal">
+	<form action="{$org->manageUrl()}/hours/add?place={$place->id()}" method="post" class="form-horizontal">
 		<div class="form-group">
 			<label class="control-label col-md-2">
 				Place
 			</label>
 			<div class="col-md-4 form-control-static">
 				<strong>{$place->name}</strong>
-				(<a href="{$org->url()}/admin/hours/add">change</a>)
+				(<a href="{$org->manageUrl()}/hours/add">change</a>)
 			</div>
 		</div>
 

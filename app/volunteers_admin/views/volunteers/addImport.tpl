@@ -4,7 +4,7 @@
 <div class="top-nav">
 	<div class="row">
 		<div class="col-sm-3">
-			<a href="{$org->url()}/admin/volunteers/add" class="btn btn-link btn-block">
+			<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-link btn-block">
 				&larr; Cancel
 			</a>
 		</div>
@@ -37,7 +37,7 @@
 	<div class="alert alert-danger">{$error}</div>
 {/foreach}
 
-<form class="form-horizontal" method="post" action="{$org->url()}/admin/volunteers" enctype="multipart/form-data">
+<form class="form-horizontal" method="post" action="{$org->manageUrl()}/volunteers" enctype="multipart/form-data">
 	<div class="form-group">
 		<label class="control-label col-md-2">CSV File to Import</label>
 		<div class="col-md-3 form-control-static">

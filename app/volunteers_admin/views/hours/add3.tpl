@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-<form action="{$org->url()}/admin/hours/add/confirm?place={$place->id()}" method="post" class="form-horizontal">
+<form action="{$org->manageUrl()}/hours/add/confirm?place={$place->id()}" method="post" class="form-horizontal">
 	<input type="hidden" name="json" value='{$json}' />
 
 	<div class="form-group">
