@@ -35,3 +35,6 @@ Vagrantfile
 Thumbs.db 
 Desktop.ini
 .DS_Store
+
+### Phpstorm
+.idea
