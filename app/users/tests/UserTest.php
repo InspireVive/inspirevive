@@ -22,7 +22,8 @@ class UserTest extends PHPUnit_Framework_TestCase
 
     public static function tearDownAfterClass()
     {
-        self::$user->grantAllPermissions()->delete();
+        self::$user->grantAllPermissions();
+        self::$user->delete();
     }
 
     public function testRegisterUser()
