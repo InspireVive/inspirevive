@@ -1,17 +1,16 @@
-<phpunit colors="true">
+<phpunit colors="true" bootstrap="test_bootstrap.php">
   <php>
     <const name="INFUSE_BASE_DIR" value="." />
+    <env name="PHPUNIT" value="true" />
   </php>
 
   <listeners>
-    <listener file="assets/constants.php"></listener>
-    <listener file="vendor/autoload.php"></listener>
     <listener class="\TestBootstrap">
       <arguments>
         <boolean>false</boolean>
       </arguments>
     </listener>
-    <listener class="\Mockery\Adapter\Phpunit\TestListener"></listener>
+    <listener class="Mockery\Adapter\Phpunit\TestListener"></listener>
   </listeners>
 
   <testsuites>
