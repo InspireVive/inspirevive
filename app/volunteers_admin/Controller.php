@@ -371,7 +371,7 @@ class Controller
                 'organization' => $org->id(),
                 'approved' => $showApproved,
             ],
-            'sort' => 'timestamp DESC',
+            'sort' => $showApproved ? 'timestamp DESC' : 'timestamp ASC',
             'limit' => $limit,
             'start' => $page * $limit,
         ];
