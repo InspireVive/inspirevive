@@ -14,7 +14,7 @@
 	{foreach from=$app.errors->errors() item=error}
 		<div class="alert alert-danger">
 			{if $error.error == 'user_login_no_match'}
-				We do not have a match for that username and password.<br/>
+				We do not have a match for that email address and password.<br/>
 				<a href="/forgot">Did you forget your password?</a>
 			{elseif $error.error == 'user_login_unverified'}
 				You must verify your email address before you can log in.<br/>
@@ -28,8 +28,8 @@
 	<form action="/login" method="post">
 		<input type="hidden" name="redir" value="{$redir|htmlspecialchars}" />
 		<div class="form-group">
-			<label class="placeholder">Username or e-mail</label>
-			<input type="text" name="user_email" id="login_username" value="{$loginUsername}" class="form-control input-lg" placeholder="Username or E-mail" />
+			<label class="placeholder">Email address</label>
+			<input type="text" name="user_email" id="login_username" value="{$loginUsername}" class="form-control input-lg" placeholder="Email address" />
 		</div>
 		<div class="form-group">
 			<label class="placeholder">Password</label>

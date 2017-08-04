@@ -98,7 +98,7 @@ class User extends AbstractUser
         'about' => 'bio'
     ];
 
-    public static $usernameProperties = ['username', 'user_email'];
+    public static $usernameProperties = ['user_email'];
 
     protected static $verifyTimeWindow = 86400; // one day
 
