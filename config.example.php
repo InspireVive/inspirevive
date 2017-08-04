@@ -56,9 +56,7 @@ return  [
   ],
   'sessions' => [
     'enabled' => true,
-    'adapter' => 'redis',
     'lifetime' => 86400,
-    'prefix' => 'inspirevive:',
   ],
   'queue' => [
     'type' => 'synchronous',
