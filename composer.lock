@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "94c0a355bb7f241da45ad0e0b75eecc0",
+    "content-hash": "ab7f89e1a186a0eac2615b7f5ba9445d",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -70,7 +70,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2013-07-09 05:40:13"
+            "time": "2013-07-09T05:40:13+00:00"
         },
         {
             "name": "bshaffer/oauth2-server-php",
@@ -78,21 +78,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bshaffer/oauth2-server-php.git",
-                "reference": "82caca6fcdd7058ef9950e05438bd3ff75100df2"
+                "reference": "e826aaf653b3a88c5a0b4f4b1fc9ff50e09c1fe7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bshaffer/oauth2-server-php/zipball/82caca6fcdd7058ef9950e05438bd3ff75100df2",
-                "reference": "82caca6fcdd7058ef9950e05438bd3ff75100df2",
+                "url": "https://api.github.com/repos/bshaffer/oauth2-server-php/zipball/e826aaf653b3a88c5a0b4f4b1fc9ff50e09c1fe7",
+                "reference": "e826aaf653b3a88c5a0b4f4b1fc9ff50e09c1fe7",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
+            "require-dev": {
+                "aws/aws-sdk-php": "~2.8",
+                "firebase/php-jwt": "~2.2",
+                "mongodb/mongodb": "^1.1",
+                "phpunit/phpunit": "^4.0",
+                "predis/predis": "dev-master",
+                "thobbs/phpcassa": "dev-master"
+            },
             "suggest": {
-                "aws/aws-sdk-php": "Required to use the DynamoDB storage engine",
-                "predis/predis": "Required to use the Redis storage engine",
-                "thobbs/phpcassa": "Required to use the Cassandra storage engine"
+                "aws/aws-sdk-php": "~2.8 is required to use DynamoDB storage",
+                "firebase/php-jwt": "~2.2 is required to use JWT features",
+                "mongodb/mongodb": "^1.1 is required to use MongoDB storage",
+                "predis/predis": "Required to use Redis storage",
+                "thobbs/phpcassa": "Required to use Cassandra storage"
             },
             "type": "library",
             "autoload": {
@@ -118,20 +128,20 @@
                 "oauth",
                 "oauth2"
             ],
-            "time": "2014-09-16 17:41:58"
+            "time": "2017-05-04 18:15:43"
         },
         {
             "name": "facebook/php-sdk",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/facebook/facebook-php-sdk.git",
-                "reference": "3388ec541761b93651614b48766608c22daad981"
+                "url": "https://github.com/facebookarchive/facebook-php-sdk.git",
+                "reference": "8e7e7951e99d86b68ce1135537d559663d759af0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk/zipball/3388ec541761b93651614b48766608c22daad981",
-                "reference": "3388ec541761b93651614b48766608c22daad981",
+                "url": "https://api.github.com/repos/facebookarchive/facebook-php-sdk/zipball/8e7e7951e99d86b68ce1135537d559663d759af0",
+                "reference": "8e7e7951e99d86b68ce1135537d559663d759af0",
                 "shasum": ""
             },
             "require": {
@@ -164,7 +174,8 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2014-06-19 19:18:38"
+            "abandoned": "facebook/graph-sdk",
+            "time": "2015-01-13 19:27:37"
         },
         {
             "name": "guzzle/guzzle",
@@ -256,7 +267,8 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-10-02 20:47:00"
+            "abandoned": "guzzlehttp/guzzle",
+            "time": "2013-10-02T20:47:00+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -431,7 +443,7 @@
         },
         {
             "name": "icanboogie/inflector",
-            "version": "v1.2",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ICanBoogie/Inflector.git",
@@ -477,19 +489,19 @@
                 "singularize",
                 "underscore"
             ],
-            "time": "2014-01-03 11:19:15"
+            "time": "2014-01-03T11:19:15+00:00"
         },
         {
             "name": "idealistsoft/framework-admin",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-admin.git",
+                "url": "git@github.com:infusephp/framework-admin.git",
                 "reference": "b7db835e87b6fea2968f5fc1ef0eeca98aa553d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-admin/zipball/b7db835e87b6fea2968f5fc1ef0eeca98aa553d4",
+                "url": "https://api.github.com/repos/infusephp/framework-admin/zipball/b7db835e87b6fea2968f5fc1ef0eeca98aa553d4",
                 "reference": "b7db835e87b6fea2968f5fc1ef0eeca98aa553d4",
                 "shasum": ""
             },
@@ -519,6 +531,7 @@
                 "framework",
                 "idealist"
             ],
+            "abandoned": "infuse/admin",
             "time": "2014-09-30 13:42:28"
         },
         {
@@ -526,12 +539,12 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-auth.git",
+                "url": "git@github.com:infusephp/framework-auth.git",
                 "reference": "0ed616e09bf27af8b784e8aef79f1076a939bc11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-auth/zipball/0ed616e09bf27af8b784e8aef79f1076a939bc11",
+                "url": "https://api.github.com/repos/infusephp/framework-auth/zipball/0ed616e09bf27af8b784e8aef79f1076a939bc11",
                 "reference": "0ed616e09bf27af8b784e8aef79f1076a939bc11",
                 "shasum": ""
             },
@@ -569,6 +582,7 @@
                 "framework",
                 "idealist"
             ],
+            "abandoned": "infuse/auth",
             "time": "2014-09-30 14:51:23"
         },
         {
@@ -576,12 +590,12 @@
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-bootstrap.git",
+                "url": "https://github.com/infusephp/bootstrap.git",
                 "reference": "9e6f327113ae1a0e204cc3d6399aedfeef9a5c8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-bootstrap/zipball/9e6f327113ae1a0e204cc3d6399aedfeef9a5c8f",
+                "url": "https://api.github.com/repos/infusephp/bootstrap/zipball/9e6f327113ae1a0e204cc3d6399aedfeef9a5c8f",
                 "reference": "9e6f327113ae1a0e204cc3d6399aedfeef9a5c8f",
                 "shasum": ""
             },
@@ -620,19 +634,20 @@
                 "framework",
                 "idealist"
             ],
-            "time": "2014-09-25 17:44:34"
+            "abandoned": "infuse/bootstrap",
+            "time": "2014-09-25T17:44:34+00:00"
         },
         {
             "name": "idealistsoft/framework-cron",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-cron.git",
+                "url": "git@github.com:infusephp/framework-cron.git",
                 "reference": "9a284568d196de8a3d98fc9f61b778164586fc34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-cron/zipball/9a284568d196de8a3d98fc9f61b778164586fc34",
+                "url": "https://api.github.com/repos/infusephp/framework-cron/zipball/9a284568d196de8a3d98fc9f61b778164586fc34",
                 "reference": "9a284568d196de8a3d98fc9f61b778164586fc34",
                 "shasum": ""
             },
@@ -671,6 +686,7 @@
                 "idealist",
                 "scheduled"
             ],
+            "abandoned": "infuse/cron",
             "time": "2014-09-26 16:35:34"
         },
         {
@@ -678,12 +694,12 @@
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-email.git",
+                "url": "https://github.com/infusephp/framework-email.git",
                 "reference": "2407c1ffd0f0408095ff39dbf0fd3425b6574dbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-email/zipball/2407c1ffd0f0408095ff39dbf0fd3425b6574dbd",
+                "url": "https://api.github.com/repos/infusephp/framework-email/zipball/2407c1ffd0f0408095ff39dbf0fd3425b6574dbd",
                 "reference": "2407c1ffd0f0408095ff39dbf0fd3425b6574dbd",
                 "shasum": ""
             },
@@ -718,30 +734,31 @@
                 "framework",
                 "idealist"
             ],
-            "time": "2014-09-25 17:56:16"
+            "abandoned": "infuse/email",
+            "time": "2014-09-25T17:56:16+00:00"
         },
         {
             "name": "idealistsoft/framework-facebook",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-facebook.git",
-                "reference": "f3c6294bc71d79fe3e6ee7e581c1dc2ae2bc2b42"
+                "url": "git@github.com:infusephp/framework-facebook.git",
+                "reference": "49d19da6bf38f54e7fa50540ac3f714ed8bdb9f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-facebook/zipball/f3c6294bc71d79fe3e6ee7e581c1dc2ae2bc2b42",
-                "reference": "f3c6294bc71d79fe3e6ee7e581c1dc2ae2bc2b42",
+                "url": "https://api.github.com/repos/infusephp/framework-facebook/zipball/49d19da6bf38f54e7fa50540ac3f714ed8bdb9f3",
+                "reference": "49d19da6bf38f54e7fa50540ac3f714ed8bdb9f3",
                 "shasum": ""
             },
             "require": {
                 "facebook/php-sdk": "dev-master",
-                "idealistsoft/framework-social": "~1.0",
+                "infuse/social": "~1.0",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "idealistsoft/framework-auth": "~1.0",
-                "idealistsoft/framework-bootstrap": "~1.0",
+                "infuse/auth": "~1.0",
+                "infuse/bootstrap": "~1.1",
                 "mockery/mockery": "0.9.1",
                 "robmorgan/phinx": "~0.3",
                 "satooshi/php-coveralls": "0.6.1"
@@ -763,37 +780,38 @@
                     "homepage": "http://jaredtking.com"
                 }
             ],
-            "description": "Facebook integration for Idealist Framework",
+            "description": "Facebook integration for Infuse Framework",
             "keywords": [
                 "facebook",
                 "framework",
-                "idealist",
+                "infuse",
                 "social"
             ],
-            "time": "2014-09-25 18:47:56"
+            "abandoned": "infuse/facebook",
+            "time": "2015-02-03 04:49:45"
         },
         {
             "name": "idealistsoft/framework-instagram",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-instagram.git",
-                "reference": "101fdbceb60ed9dc8576f42ba5962c00bae2c067"
+                "url": "git@github.com:infusephp/framework-instagram.git",
+                "reference": "80c0af2e2bf64592005aeb777de6e3f26b4bd0ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-instagram/zipball/101fdbceb60ed9dc8576f42ba5962c00bae2c067",
-                "reference": "101fdbceb60ed9dc8576f42ba5962c00bae2c067",
+                "url": "https://api.github.com/repos/infusephp/framework-instagram/zipball/80c0af2e2bf64592005aeb777de6e3f26b4bd0ef",
+                "reference": "80c0af2e2bf64592005aeb777de6e3f26b4bd0ef",
                 "shasum": ""
             },
             "require": {
-                "idealistsoft/framework-social": "~1.0",
+                "infuse/social": "~1.0",
                 "instaphp/instaphp": "2.0.10",
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "idealistsoft/framework-auth": "~1.0",
-                "idealistsoft/framework-bootstrap": "~1.0",
+                "infuse/auth": "~1.0",
+                "infuse/bootstrap": "~1.1",
                 "mockery/mockery": "0.9.1",
                 "robmorgan/phinx": "~0.3",
                 "satooshi/php-coveralls": "0.6.1"
@@ -815,26 +833,27 @@
                     "homepage": "http://jaredtking.com"
                 }
             ],
-            "description": "Instagram integration for Idealist Framework",
+            "description": "Instagram integration for Infuse Framework",
             "keywords": [
                 "framework",
-                "idealist",
+                "infuse",
                 "instagram",
                 "social"
             ],
-            "time": "2014-09-25 18:48:23"
+            "abandoned": "infuse/instagram",
+            "time": "2015-02-03 04:50:06"
         },
         {
             "name": "idealistsoft/framework-iron-mq",
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-iron-mq.git",
+                "url": "https://github.com/infusephp/framework-iron-mq.git",
                 "reference": "1e8bb6975783bb0190e9532cd0432d83bc7855da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-iron-mq/zipball/1e8bb6975783bb0190e9532cd0432d83bc7855da",
+                "url": "https://api.github.com/repos/infusephp/framework-iron-mq/zipball/1e8bb6975783bb0190e9532cd0432d83bc7855da",
                 "reference": "1e8bb6975783bb0190e9532cd0432d83bc7855da",
                 "shasum": ""
             },
@@ -869,63 +888,21 @@
                 "message",
                 "queue"
             ],
-            "time": "2014-09-11 16:19:39"
-        },
-        {
-            "name": "idealistsoft/framework-logstash",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/idealistsoft/framework-logstash.git",
-                "reference": "2b8683217aa2d05d495ceed0564b6d32b1309936"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-logstash/zipball/2b8683217aa2d05d495ceed0564b6d32b1309936",
-                "reference": "2b8683217aa2d05d495ceed0564b6d32b1309936",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\logstash\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "Logstash module for Idealist Framework",
-            "keywords": [
-                "framework",
-                "idealist",
-                "logstash",
-                "middleware"
-            ],
-            "time": "2014-09-16 20:57:46"
+            "abandoned": "infuse/iron-mq",
+            "time": "2014-09-11T16:19:39+00:00"
         },
         {
             "name": "idealistsoft/framework-oauth2",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-oauth2.git",
-                "reference": "df12d07403db0de534db0eb1ae93a7ddd8f62035"
+                "url": "git@github.com:infusephp/framework-oauth2.git",
+                "reference": "01dbf0d1c9234c3ee2ffe65608229f5f6be9b2ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-oauth2/zipball/df12d07403db0de534db0eb1ae93a7ddd8f62035",
-                "reference": "df12d07403db0de534db0eb1ae93a7ddd8f62035",
+                "url": "https://api.github.com/repos/infusephp/framework-oauth2/zipball/01dbf0d1c9234c3ee2ffe65608229f5f6be9b2ef",
+                "reference": "01dbf0d1c9234c3ee2ffe65608229f5f6be9b2ef",
                 "shasum": ""
             },
             "require": {
@@ -933,8 +910,8 @@
                 "php": ">=5.4.0"
             },
             "require-dev": {
-                "idealistsoft/framework-auth": "dev-master",
-                "idealistsoft/framework-bootstrap": "~1.0",
+                "infuse/auth": "dev-master",
+                "infuse/bootstrap": "dev-master",
                 "robmorgan/phinx": "~0.3",
                 "satooshi/php-coveralls": "0.6.1"
             },
@@ -955,29 +932,30 @@
                     "homepage": "http://jaredtking.com"
                 }
             ],
-            "description": "OAuth2 module for Idealist Framework",
+            "description": "OAuth2 module for Infuse Framework",
             "keywords": [
                 "Authentication",
                 "auth",
                 "framework",
-                "idealist",
+                "infuse",
                 "jwt",
                 "oauth",
                 "oauth2"
             ],
-            "time": "2014-09-29 22:06:04"
+            "abandoned": "infuse/oauth2",
+            "time": "2015-02-03 05:27:46"
         },
         {
             "name": "idealistsoft/framework-rest-api",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-rest-api.git",
+                "url": "git@github.com:infusephp/framework-rest-api.git",
                 "reference": "8df68d0fb6f7ebab9541fda0bf806f9d54bff02b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-rest-api/zipball/8df68d0fb6f7ebab9541fda0bf806f9d54bff02b",
+                "url": "https://api.github.com/repos/infusephp/framework-rest-api/zipball/8df68d0fb6f7ebab9541fda0bf806f9d54bff02b",
                 "reference": "8df68d0fb6f7ebab9541fda0bf806f9d54bff02b",
                 "shasum": ""
             },
@@ -1013,67 +991,20 @@
                 "idealist",
                 "rest"
             ],
+            "abandoned": "infuse/rest-api",
             "time": "2014-09-29 21:36:31"
-        },
-        {
-            "name": "idealistsoft/framework-social",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/idealistsoft/framework-social.git",
-                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-social/zipball/6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
-                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "idealistsoft/framework-auth": "dev-master",
-                "idealistsoft/framework-bootstrap": "dev-master",
-                "robmorgan/phinx": "*",
-                "satooshi/php-coveralls": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\social\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "Helper library for social media profiles on Idealist Framework",
-            "keywords": [
-                "framework",
-                "idealist",
-                "social"
-            ],
-            "time": "2014-09-25 16:49:49"
         },
         {
             "name": "idealistsoft/framework-statistics",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-statistics.git",
+                "url": "git@github.com:infusephp/framework-statistics.git",
                 "reference": "19079f2b39b75334078f848ef92c2ddc6cac4c74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-statistics/zipball/19079f2b39b75334078f848ef92c2ddc6cac4c74",
+                "url": "https://api.github.com/repos/infusephp/framework-statistics/zipball/19079f2b39b75334078f848ef92c2ddc6cac4c74",
                 "reference": "19079f2b39b75334078f848ef92c2ddc6cac4c74",
                 "shasum": ""
             },
@@ -1109,6 +1040,7 @@
                 "idealist",
                 "statistics"
             ],
+            "abandoned": "infuse/statistics",
             "time": "2014-09-30 13:42:34"
         },
         {
@@ -1116,23 +1048,23 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/idealistsoft/framework-twitter.git",
-                "reference": "822f9e810d5d1f4cfb48167066d9715d0dcd1717"
+                "url": "git@github.com:infusephp/framework-twitter.git",
+                "reference": "a03f68048251958125a1c5353393d5f10749c60b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/idealistsoft/framework-twitter/zipball/822f9e810d5d1f4cfb48167066d9715d0dcd1717",
-                "reference": "822f9e810d5d1f4cfb48167066d9715d0dcd1717",
+                "url": "https://api.github.com/repos/infusephp/framework-twitter/zipball/a03f68048251958125a1c5353393d5f10749c60b",
+                "reference": "a03f68048251958125a1c5353393d5f10749c60b",
                 "shasum": ""
             },
             "require": {
-                "idealistsoft/framework-social": "~1.0",
+                "infuse/social": "~1.0",
                 "php": ">=5.4.0",
                 "ruudk/twitter-oauth": "dev-master"
             },
             "require-dev": {
-                "idealistsoft/framework-auth": "~1.0",
-                "idealistsoft/framework-bootstrap": "~1.0",
+                "infuse/auth": "~1.0",
+                "infuse/bootstrap": "~1.1",
                 "mockery/mockery": "0.9.1",
                 "robmorgan/phinx": "~0.3",
                 "satooshi/php-coveralls": "0.6.1"
@@ -1154,26 +1086,27 @@
                     "homepage": "http://jaredtking.com"
                 }
             ],
-            "description": "Twitter integration for Idealist Framework",
+            "description": "Twitter integration for Infuse Framework",
             "keywords": [
                 "framework",
-                "idealist",
+                "infuse",
                 "social",
                 "twitter"
             ],
-            "time": "2014-09-25 18:48:52"
+            "abandoned": "infuse/twitter",
+            "time": "2015-02-03 05:27:20"
         },
         {
             "name": "infuse/libs",
             "version": "0.2.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jaredtking/infuse-libs.git",
+                "url": "https://github.com/infusephp/libs.git",
                 "reference": "46920eff4fc8942cd16a35e69c1691566c793d47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaredtking/infuse-libs/zipball/46920eff4fc8942cd16a35e69c1691566c793d47",
+                "url": "https://api.github.com/repos/infusephp/libs/zipball/46920eff4fc8942cd16a35e69c1691566c793d47",
                 "reference": "46920eff4fc8942cd16a35e69c1691566c793d47",
                 "shasum": ""
             },
@@ -1210,7 +1143,55 @@
                 "infuse",
                 "libs"
             ],
-            "time": "2014-09-29 16:33:47"
+            "time": "2014-09-29T16:33:47+00:00"
+        },
+        {
+            "name": "infuse/social",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/infusephp/social.git",
+                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/infusephp/social/zipball/6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
+                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "idealistsoft/framework-auth": "dev-master",
+                "idealistsoft/framework-bootstrap": "dev-master",
+                "robmorgan/phinx": "*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "app\\social\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jaredtking",
+                    "email": "j@jaredtking.com",
+                    "homepage": "http://jaredtking.com"
+                }
+            ],
+            "description": "Helper library for social media profiles on Idealist Framework",
+            "keywords": [
+                "framework",
+                "idealist",
+                "social"
+            ],
+            "time": "2014-09-25T16:49:49+00:00"
         },
         {
             "name": "instaphp/instaphp",
@@ -1259,7 +1240,7 @@
                 "instaphp",
                 "library"
             ],
-            "time": "2014-07-29 16:55:04"
+            "time": "2014-07-29T16:55:04+00:00"
         },
         {
             "name": "iron-io/iron_core",
@@ -1353,7 +1334,7 @@
                 "iron",
                 "iron_mq"
             ],
-            "time": "2014-02-19 14:02:39"
+            "time": "2014-02-19T14:02:39+00:00"
         },
         {
             "name": "mandrill/mandrill",
@@ -1361,12 +1342,12 @@
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/mailchimp/mandrill-api-php.git",
-                "reference": "1.0.36"
+                "reference": "ebe85913850530e069d6b3d1f4fa5dbe1d5fb428"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/1.0.36.zip",
-                "reference": "1.0.36",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/ebe85913850530e069d6b3d1f4fa5dbe1d5fb428.zip",
+                "reference": "ebe85913850530e069d6b3d1f4fa5dbe1d5fb428",
                 "shasum": ""
             },
             "require": {
@@ -1396,7 +1377,7 @@
                 "api",
                 "email"
             ],
-            "time": "2013-07-05 18:39:40"
+            "time": "2013-07-05T18:39:40+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1464,19 +1445,19 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-03-23 19:50:26"
+            "time": "2014-03-23T19:50:26+00:00"
         },
         {
             "name": "pimple/pimple",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fabpot/Pimple.git",
+                "url": "https://github.com/silexphp/Pimple.git",
                 "reference": "8156c13d978b98d6b1e6395b9c9f0adc8814c20a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/8156c13d978b98d6b1e6395b9c9f0adc8814c20a",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/8156c13d978b98d6b1e6395b9c9f0adc8814c20a",
                 "reference": "8156c13d978b98d6b1e6395b9c9f0adc8814c20a",
                 "shasum": ""
             },
@@ -1615,12 +1596,12 @@
             "version": "v0.3.7",
             "source": {
                 "type": "git",
-                "url": "https://github.com/robmorgan/phinx.git",
+                "url": "https://github.com/cakephp/phinx.git",
                 "reference": "d918fef14f44bc2e68c6263327ba5b44582313c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/d918fef14f44bc2e68c6263327ba5b44582313c6",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/d918fef14f44bc2e68c6263327ba5b44582313c6",
                 "reference": "d918fef14f44bc2e68c6263327ba5b44582313c6",
                 "shasum": ""
             },
@@ -1665,7 +1646,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2014-08-18 08:15:10"
+            "time": "2014-08-18T08:15:10+00:00"
         },
         {
             "name": "ruudk/twitter-oauth",
@@ -1700,25 +1681,35 @@
             ],
             "description": "PHP 5.3 version of abraham/twitteroauth",
             "homepage": "http://github.com/ruudk/twitteroauth",
+            "abandoned": true,
             "time": "2014-06-10 18:17:38"
         },
         {
             "name": "smarty/smarty",
-            "version": "dev-trunk",
+            "version": "dev-master",
             "source": {
-                "type": "svn",
-                "url": "http://smarty-php.googlecode.com/svn",
-                "reference": "/trunk/@4881"
+                "type": "git",
+                "url": "https://github.com/smarty-php/smarty.git",
+                "reference": "c3b331d2ad79ab378c538aa150aaaf185ea14a33"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smarty-php/smarty/zipball/c3b331d2ad79ab378c538aa150aaaf185ea14a33",
+                "reference": "c3b331d2ad79ab378c538aa150aaaf185ea14a33",
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.2"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
             "autoload": {
-                "classmap": [
-                    "distribution/libs/Smarty.class.php",
-                    "distribution/libs/SmartyBC.class.php",
-                    "distribution/libs/sysplugins/smarty_security.php"
+                "files": [
+                    "libs/bootstrap.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1744,7 +1735,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-10-02 18:08:04"
+            "time": "2017-07-31 21:26:41"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1781,7 +1772,9 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Chris Corbyn"
@@ -1793,7 +1786,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2013-06-17 13:32:32"
+            "time": "2013-06-17T13:32:32+00:00"
         },
         {
             "name": "symfony/class-loader",
@@ -1891,7 +1884,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "http://symfony.com",
-            "time": "2014-09-25 18:11:49"
+            "time": "2014-09-25T18:11:49+00:00"
         },
         {
             "name": "symfony/console",
@@ -1956,12 +1949,12 @@
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/EventDispatcher.git",
+                "url": "https://github.com/symfony/event-dispatcher.git",
                 "reference": "93d237c3da7565a9ad2b4b6a74af73f4e3c0c305"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
                 "reference": "93d237c3da7565a9ad2b4b6a74af73f4e3c0c305",
                 "shasum": ""
             },
@@ -2014,12 +2007,12 @@
             "target-dir": "Symfony/Component/Filesystem",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Filesystem.git",
+                "url": "https://github.com/symfony/filesystem.git",
                 "reference": "7d97789ea01c3c76ecaa59b954d162777033cbd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/7d97789ea01c3c76ecaa59b954d162777033cbd4",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/7d97789ea01c3c76ecaa59b954d162777033cbd4",
                 "reference": "7d97789ea01c3c76ecaa59b954d162777033cbd4",
                 "shasum": ""
             },
@@ -2100,21 +2093,70 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-10-01 05:53:11"
+            "time": "2014-10-01T05:53:11+00:00"
         }
     ],
     "packages-dev": [
+        {
+            "name": "idealistsoft/framework-social",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/infusephp/framework-social.git",
+                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/infusephp/framework-social/zipball/6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
+                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "idealistsoft/framework-auth": "dev-master",
+                "idealistsoft/framework-bootstrap": "dev-master",
+                "robmorgan/phinx": "*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "app\\social\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jaredtking",
+                    "email": "j@jaredtking.com",
+                    "homepage": "http://jaredtking.com"
+                }
+            ],
+            "description": "Helper library for social media profiles on Idealist Framework",
+            "keywords": [
+                "framework",
+                "idealist",
+                "social"
+            ],
+            "abandoned": "infuse/social",
+            "time": "2014-09-25T16:49:49+00:00"
+        },
         {
             "name": "mockery/mockery",
             "version": "0.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
+                "url": "https://github.com/mockery/mockery.git",
                 "reference": "17f63ee40ed14a8afb7ba1f0ae15cc4491d719d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/17f63ee40ed14a8afb7ba1f0ae15cc4491d719d1",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/17f63ee40ed14a8afb7ba1f0ae15cc4491d719d1",
                 "reference": "17f63ee40ed14a8afb7ba1f0ae15cc4491d719d1",
                 "shasum": ""
             },
@@ -2168,12 +2210,10 @@
                 "test double",
                 "testing"
             ],
-            "time": "2014-05-02 12:16:45"
+            "time": "2014-05-02T12:16:45+00:00"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
         "idealistsoft/framework-auth": 20,
@@ -2187,10 +2227,9 @@
         "idealistsoft/framework-twitter": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=5.6.0"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
