@@ -31,6 +31,7 @@
 		"idealistsoft/framework-oauth2": "dev-master",
 
 		"smarty/smarty": "~3.1",
+		"monolog/monolog": "~1.23",
 		"aws/aws-sdk-php": "2.4.1",
 		"mandrill/mandrill": "1.0.36"
 	},
