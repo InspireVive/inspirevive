@@ -37,7 +37,7 @@
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.1",
-		"phpunit/phpunit": "^5.3"
+		"phpunit/phpunit": "5.3.5"
 	},
 	"minimum-stability": "dev"
 }
