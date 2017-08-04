@@ -77,24 +77,6 @@ return  [
   'admin' => [
     'index' => 'statistics',
   ],
-  'facebook' => [
-    'appId' => '',
-    'secret' => '',
-    'callbackUrl' => 'http://example.com/facebook/callback',
-  ],
-  'twitter' => [
-    'consumerKey' => '',
-    'consumerSecret' => '',
-    'callbackUrl' => 'http://example.com/twitter/callback',
-    'accessToken' => '',
-    'accessTokenSecret' => '',
-  ],
-  'instagram' => [
-    'client_id' => '',
-    'client_secret' => '',
-    'redirect_uri' => 'http://example.com/instagram/callback',
-    'scope' => 'basic',
-  ],
   'aws-s3' => [
     'key' => '',
     'secret' => '',
