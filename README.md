@@ -9,7 +9,7 @@ Volunteer management platform to help organizations volunteer more effectively
 
 ## Requirements
 
-- PHP 5.4+
+- PHP 5.6+
 - [Composer](https://getcomposer.org/)
 - MySQL/MariaDB
 - Redis
@@ -18,7 +18,6 @@ Volunteer management platform to help organizations volunteer more effectively
 Third party APIs used:
 
 - [Mandrill](http://mandrill.com) - email
-- [IronMQ](http://iron.io) - hosted message queue
 - Twitter
 - Facebook
 - Instagram
