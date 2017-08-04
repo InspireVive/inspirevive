@@ -14,8 +14,7 @@
 	{foreach from=$app.errors->errors() item=error}
 		<div class="alert alert-danger">
 			{if $error.error == 'user_login_no_match'}
-				We do not have a match for that email address and password.<br/>
-				<a href="/forgot">Did you forget your password?</a>
+				Sorry, we do not have a match for that email address and password.
 			{elseif $error.error == 'user_login_unverified'}
 				You must verify your email address before you can log in.<br/>
 				<a href="/users/verify/{$error.params.uid}">Resend verification email</a>
@@ -39,6 +38,10 @@
 			<button class="btn btn-block btn-success btn-lg">Sign In</button>
 		</div>
 	</form>
+
+	<p>
+		<a href="/forgot">Forgot password?</a>
+	</p>
 </div>
 
 <div class="body skinny minimal container secondary">
