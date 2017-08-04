@@ -24,11 +24,10 @@
 		"idealistsoft/framework-bootstrap": "~1.0",
 		"idealistsoft/framework-auth": "dev-master",
 		"idealistsoft/framework-admin": "dev-master",
-		"idealistsoft/framework-rest-api": "dev-master",
+		"idealistsoft/framework-rest-api": "dev-master#8df68d0fb6f7ebab9541fda0bf806f9d54bff02b",
 		"idealistsoft/framework-cron": "dev-master",
 		"idealistsoft/framework-email": "~1.0",
 		"idealistsoft/framework-statistics": "dev-master",
-		"idealistsoft/framework-oauth2": "dev-master",
 
 		"smarty/smarty": "~3.1",
 		"monolog/monolog": "~1.23",

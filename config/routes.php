@@ -8,9 +8,7 @@
  * @license GNU GPLv3
  */
 
-$apiRoutes = include 'routes_api.php';
-
-return array_merge($apiRoutes, [
+return [
 
   /*
    * Landing
@@ -307,4 +305,4 @@ return array_merge($apiRoutes, [
     'volunteers_admin\Controller',
     'reports',
   ],
-]);
+];

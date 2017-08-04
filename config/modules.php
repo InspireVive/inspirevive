@@ -11,7 +11,6 @@
 return [
     'middleware' => [
         'auth',
-        'oauth2',
         'admin',
         'email',
     ],
@@ -23,7 +22,6 @@ return [
         'cron',
         'email',
         'statistics',
-        'oauth2',
         // inspirevive
         'organizations',
         'pages',
