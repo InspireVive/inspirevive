@@ -55,8 +55,7 @@
 							<span class="ion-navicon"></span>
 						</button>
 						<a class="navbar-brand" href="/">
-							<img src="{$app.view_engine->asset_url('/img/logo.png')}" alt="InspireVive" class="img-responsive lores" />
-							<img src="{$app.view_engine->asset_url('/img/logo@2x.png')}" alt="InspireVive" class="img-responsive hires" />
+							<img src="{$app.view_engine->asset_url('/img/logo.png')}" alt="InspireVive" class="img-responsive" />
 						</a>
 					</div>
 
