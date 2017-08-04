@@ -36,7 +36,7 @@
 			<input type="password" name="password" class="form-control input-lg" placeholder="Password" />
 		</div>
 		<div class="form-group">
-			<button class="btn btn-block btn-success btn-lg">Sign In to InspireVive</button>
+			<button class="btn btn-block btn-success btn-lg">Sign In</button>
 		</div>
 	</form>
 
