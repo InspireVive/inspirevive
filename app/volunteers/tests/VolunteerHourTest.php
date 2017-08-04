@@ -32,8 +32,8 @@ class VolunteerHourTest extends PHPUnit_Framework_TestCase
         // reset counts
         $user = TestBootstrap::app('user');
         $user->set([
-            'volunteer_hours' => 0,
-            'twitter_id' => 100, ]);
+            'volunteer_hours' => 0
+        ]);
 
         $uid = TestBootstrap::app('user')->id();
 

@@ -14,10 +14,6 @@ return [
         'oauth2',
         'admin',
         'email',
-        'facebook',
-        'instagram',
-        'twitter',
-        'iron',
     ],
     'all' => [
         // external
@@ -27,11 +23,7 @@ return [
         'cron',
         'email',
         'statistics',
-        'iron',
         'oauth2',
-        'facebook',
-        'instagram',
-        'twitter',
         // inspirevive
         'organizations',
         'pages',

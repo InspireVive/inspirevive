@@ -44,14 +44,6 @@ return array_merge($apiRoutes, [
     'users\Controller',
     'signup',
   ],
-  'get /signup/finish' => [
-    'users\Controller',
-    'finishSignup',
-  ],
-  'post /signup/finish' => [
-    'users\Controller',
-    'finishSignupPost',
-  ],
   'get /forgot' => [
     'users\Controller',
     'forgotForm',

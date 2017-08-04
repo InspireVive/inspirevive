@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab7f89e1a186a0eac2615b7f5ba9445d",
+    "content-hash": "67a8443536a3e0b67a49dfcfeb275a7c",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -131,53 +131,6 @@
             "time": "2017-05-04 18:15:43"
         },
         {
-            "name": "facebook/php-sdk",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facebookarchive/facebook-php-sdk.git",
-                "reference": "8e7e7951e99d86b68ce1135537d559663d759af0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facebookarchive/facebook-php-sdk/zipball/8e7e7951e99d86b68ce1135537d559663d759af0",
-                "reference": "8e7e7951e99d86b68ce1135537d559663d759af0",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "ext-json": "*",
-                "php": ">=5.2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache2"
-            ],
-            "authors": [
-                {
-                    "name": "Facebook",
-                    "homepage": "https://github.com/facebook/facebook-php-sdk/contributors"
-                }
-            ],
-            "description": "Facebook PHP SDK",
-            "homepage": "https://github.com/facebook/facebook-php-sdk",
-            "keywords": [
-                "facebook",
-                "sdk"
-            ],
-            "abandoned": "facebook/graph-sdk",
-            "time": "2015-01-13 19:27:37"
-        },
-        {
             "name": "guzzle/guzzle",
             "version": "v3.7.4",
             "source": {
@@ -269,177 +222,6 @@
             ],
             "abandoned": "guzzlehttp/guzzle",
             "time": "2013-10-02T20:47:00+00:00"
-        },
-        {
-            "name": "guzzlehttp/guzzle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "8b0990dd75ba59e29805b683dbbf4528a76abacc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8b0990dd75ba59e29805b683dbbf4528a76abacc",
-                "reference": "8b0990dd75ba59e29805b683dbbf4528a76abacc",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/streams": "~2.1",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "~4.0",
-                "psr/log": "~1.0"
-            },
-            "suggest": {
-                "ext-curl": "Guzzle will use specific adapters if cURL is present"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "rest",
-                "web service"
-            ],
-            "time": "2014-10-01 15:01:46"
-        },
-        {
-            "name": "guzzlehttp/log-subscriber",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/log-subscriber.git",
-                "reference": "0b37cd9ab4cb4346ce25cc98b0fea876d61f368e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/log-subscriber/zipball/0b37cd9ab4cb4346ce25cc98b0fea876d61f368e",
-                "reference": "0b37cd9ab4cb4346ce25cc98b0fea876d61f368e",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": ">=4,<6",
-                "php": ">=5.4.0",
-                "psr/log": "~1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Subscriber\\Log\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Logs HTTP requests and responses as they are sent over the wire (Guzzle 4+)",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "Guzzle",
-                "log",
-                "plugin"
-            ],
-            "time": "2014-09-09 05:09:00"
-        },
-        {
-            "name": "guzzlehttp/streams",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/streams.git",
-                "reference": "30d5c8e7646e004768054c4143a433c89bc9ece0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/streams/zipball/30d5c8e7646e004768054c4143a433c89bc9ece0",
-                "reference": "30d5c8e7646e004768054c4143a433c89bc9ece0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Stream\\": "src/"
-                },
-                "files": [
-                    "src/functions.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Provides a simple abstraction over streams of data (Guzzle 4+)",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "Guzzle",
-                "stream"
-            ],
-            "time": "2014-09-15 01:45:40"
         },
         {
             "name": "icanboogie/inflector",
@@ -738,160 +520,6 @@
             "time": "2014-09-25T17:56:16+00:00"
         },
         {
-            "name": "idealistsoft/framework-facebook",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:infusephp/framework-facebook.git",
-                "reference": "49d19da6bf38f54e7fa50540ac3f714ed8bdb9f3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/infusephp/framework-facebook/zipball/49d19da6bf38f54e7fa50540ac3f714ed8bdb9f3",
-                "reference": "49d19da6bf38f54e7fa50540ac3f714ed8bdb9f3",
-                "shasum": ""
-            },
-            "require": {
-                "facebook/php-sdk": "dev-master",
-                "infuse/social": "~1.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "infuse/auth": "~1.0",
-                "infuse/bootstrap": "~1.1",
-                "mockery/mockery": "0.9.1",
-                "robmorgan/phinx": "~0.3",
-                "satooshi/php-coveralls": "0.6.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\facebook\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "Facebook integration for Infuse Framework",
-            "keywords": [
-                "facebook",
-                "framework",
-                "infuse",
-                "social"
-            ],
-            "abandoned": "infuse/facebook",
-            "time": "2015-02-03 04:49:45"
-        },
-        {
-            "name": "idealistsoft/framework-instagram",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:infusephp/framework-instagram.git",
-                "reference": "80c0af2e2bf64592005aeb777de6e3f26b4bd0ef"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/infusephp/framework-instagram/zipball/80c0af2e2bf64592005aeb777de6e3f26b4bd0ef",
-                "reference": "80c0af2e2bf64592005aeb777de6e3f26b4bd0ef",
-                "shasum": ""
-            },
-            "require": {
-                "infuse/social": "~1.0",
-                "instaphp/instaphp": "2.0.10",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "infuse/auth": "~1.0",
-                "infuse/bootstrap": "~1.1",
-                "mockery/mockery": "0.9.1",
-                "robmorgan/phinx": "~0.3",
-                "satooshi/php-coveralls": "0.6.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\instagram\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "Instagram integration for Infuse Framework",
-            "keywords": [
-                "framework",
-                "infuse",
-                "instagram",
-                "social"
-            ],
-            "abandoned": "infuse/instagram",
-            "time": "2015-02-03 04:50:06"
-        },
-        {
-            "name": "idealistsoft/framework-iron-mq",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/infusephp/framework-iron-mq.git",
-                "reference": "1e8bb6975783bb0190e9532cd0432d83bc7855da"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/infusephp/framework-iron-mq/zipball/1e8bb6975783bb0190e9532cd0432d83bc7855da",
-                "reference": "1e8bb6975783bb0190e9532cd0432d83bc7855da",
-                "shasum": ""
-            },
-            "require": {
-                "iron-io/iron_mq": "1.5.1",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\iron\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "IronMQ module for Idealist Framework",
-            "keywords": [
-                "background",
-                "framework",
-                "idealist",
-                "iron.io",
-                "ironmq",
-                "message",
-                "queue"
-            ],
-            "abandoned": "infuse/iron-mq",
-            "time": "2014-09-11T16:19:39+00:00"
-        },
-        {
             "name": "idealistsoft/framework-oauth2",
             "version": "dev-master",
             "source": {
@@ -1044,59 +672,6 @@
             "time": "2014-09-30 13:42:34"
         },
         {
-            "name": "idealistsoft/framework-twitter",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:infusephp/framework-twitter.git",
-                "reference": "a03f68048251958125a1c5353393d5f10749c60b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/infusephp/framework-twitter/zipball/a03f68048251958125a1c5353393d5f10749c60b",
-                "reference": "a03f68048251958125a1c5353393d5f10749c60b",
-                "shasum": ""
-            },
-            "require": {
-                "infuse/social": "~1.0",
-                "php": ">=5.4.0",
-                "ruudk/twitter-oauth": "dev-master"
-            },
-            "require-dev": {
-                "infuse/auth": "~1.0",
-                "infuse/bootstrap": "~1.1",
-                "mockery/mockery": "0.9.1",
-                "robmorgan/phinx": "~0.3",
-                "satooshi/php-coveralls": "0.6.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\twitter\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "Twitter integration for Infuse Framework",
-            "keywords": [
-                "framework",
-                "infuse",
-                "social",
-                "twitter"
-            ],
-            "abandoned": "infuse/twitter",
-            "time": "2015-02-03 05:27:20"
-        },
-        {
             "name": "infuse/libs",
             "version": "0.2.2",
             "source": {
@@ -1144,197 +719,6 @@
                 "libs"
             ],
             "time": "2014-09-29T16:33:47+00:00"
-        },
-        {
-            "name": "infuse/social",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/infusephp/social.git",
-                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/infusephp/social/zipball/6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
-                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "idealistsoft/framework-auth": "dev-master",
-                "idealistsoft/framework-bootstrap": "dev-master",
-                "robmorgan/phinx": "*",
-                "satooshi/php-coveralls": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\social\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "Helper library for social media profiles on Idealist Framework",
-            "keywords": [
-                "framework",
-                "idealist",
-                "social"
-            ],
-            "time": "2014-09-25T16:49:49+00:00"
-        },
-        {
-            "name": "instaphp/instaphp",
-            "version": "2.0.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sesser/Instaphp.git",
-                "reference": "3a97aca59d30d39008411a9ae101ae13f3f25dde"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sesser/Instaphp/zipball/3a97aca59d30d39008411a9ae101ae13f3f25dde",
-                "reference": "3a97aca59d30d39008411a9ae101ae13f3f25dde",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "4.*",
-                "guzzlehttp/log-subscriber": "1.*",
-                "monolog/monolog": "1.8.*",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Instaphp": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Randy Sesser",
-                    "email": "randy@instaphp.com",
-                    "homepage": "http://instaphp.com"
-                }
-            ],
-            "description": "A library for accessing Instagram's API (v2)",
-            "homepage": "http://instaphp.com",
-            "keywords": [
-                "instagram",
-                "instaphp",
-                "library"
-            ],
-            "time": "2014-07-29T16:55:04+00:00"
-        },
-        {
-            "name": "iron-io/iron_core",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/iron-io/iron_core_php.git",
-                "reference": "56ee81e44600ca4d7cc883d2a5035a65207129ee"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/iron-io/iron_core_php/zipball/56ee81e44600ca4d7cc883d2a5035a65207129ee",
-                "reference": "56ee81e44600ca4d7cc883d2a5035a65207129ee",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "IronCore.class.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander S",
-                    "email": "alexander@iron.io",
-                    "homepage": "http://iron.io",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Iron.io",
-                    "email": "support@iron.io",
-                    "homepage": "http://iron.io",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Collection of common functions for all iron.io client libraries",
-            "homepage": "http://github.com/iron-io/iron_core_php",
-            "keywords": [
-                "iron",
-                "iron_core"
-            ],
-            "time": "2014-08-26 10:00:33"
-        },
-        {
-            "name": "iron-io/iron_mq",
-            "version": "1.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/iron-io/iron_mq_php.git",
-                "reference": "82dde27337801a914a5ac88cd5f1ba7739f85f19"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/iron-io/iron_mq_php/zipball/82dde27337801a914a5ac88cd5f1ba7739f85f19",
-                "reference": "82dde27337801a914a5ac88cd5f1ba7739f85f19",
-                "shasum": ""
-            },
-            "require": {
-                "iron-io/iron_core": "*",
-                "php": ">=5.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "IronMQ.class.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Alexander S",
-                    "email": "alexander@iron.io",
-                    "homepage": "http://iron.io",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Client binding for IronMQ (hosted message queue)",
-            "homepage": "http://github.com/iron-io/iron_mq_php",
-            "keywords": [
-                "MQ",
-                "iron",
-                "iron_mq"
-            ],
-            "time": "2014-02-19T14:02:39+00:00"
         },
         {
             "name": "mandrill/mandrill",
@@ -1647,42 +1031,6 @@
                 "phinx"
             ],
             "time": "2014-08-18T08:15:10+00:00"
-        },
-        {
-            "name": "ruudk/twitter-oauth",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ruudk/twitteroauth.git",
-                "reference": "7f5a94eaa1572ddbc7f0a32ba3b865b8ac23712a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ruudk/twitteroauth/zipball/7f5a94eaa1572ddbc7f0a32ba3b865b8ac23712a",
-                "reference": "7f5a94eaa1572ddbc7f0a32ba3b865b8ac23712a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Ruud Kamphuis",
-                    "email": "ruud@1plus1media.nl",
-                    "role": "Developer"
-                }
-            ],
-            "description": "PHP 5.3 version of abraham/twitteroauth",
-            "homepage": "http://github.com/ruudk/twitteroauth",
-            "abandoned": true,
-            "time": "2014-06-10 18:17:38"
         },
         {
             "name": "smarty/smarty",
@@ -2098,6 +1446,272 @@
     ],
     "packages-dev": [
         {
+            "name": "facebook/php-sdk",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebookarchive/facebook-php-sdk.git",
+                "reference": "8e7e7951e99d86b68ce1135537d559663d759af0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebookarchive/facebook-php-sdk/zipball/8e7e7951e99d86b68ce1135537d559663d759af0",
+                "reference": "8e7e7951e99d86b68ce1135537d559663d759af0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/facebook-php-sdk/contributors"
+                }
+            ],
+            "description": "Facebook PHP SDK",
+            "homepage": "https://github.com/facebook/facebook-php-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "abandoned": "facebook/graph-sdk",
+            "time": "2015-01-13 19:27:37"
+        },
+        {
+            "name": "guzzlehttp/guzzle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "8b0990dd75ba59e29805b683dbbf4528a76abacc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/8b0990dd75ba59e29805b683dbbf4528a76abacc",
+                "reference": "8b0990dd75ba59e29805b683dbbf4528a76abacc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/streams": "~2.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "~4.0",
+                "psr/log": "~1.0"
+            },
+            "suggest": {
+                "ext-curl": "Guzzle will use specific adapters if cURL is present"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2014-10-01 15:01:46"
+        },
+        {
+            "name": "guzzlehttp/log-subscriber",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/log-subscriber.git",
+                "reference": "0b37cd9ab4cb4346ce25cc98b0fea876d61f368e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/log-subscriber/zipball/0b37cd9ab4cb4346ce25cc98b0fea876d61f368e",
+                "reference": "0b37cd9ab4cb4346ce25cc98b0fea876d61f368e",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": ">=4,<6",
+                "php": ">=5.4.0",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Subscriber\\Log\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Logs HTTP requests and responses as they are sent over the wire (Guzzle 4+)",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "log",
+                "plugin"
+            ],
+            "time": "2014-09-09 05:09:00"
+        },
+        {
+            "name": "guzzlehttp/streams",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/streams.git",
+                "reference": "30d5c8e7646e004768054c4143a433c89bc9ece0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/streams/zipball/30d5c8e7646e004768054c4143a433c89bc9ece0",
+                "reference": "30d5c8e7646e004768054c4143a433c89bc9ece0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Stream\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Provides a simple abstraction over streams of data (Guzzle 4+)",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "stream"
+            ],
+            "time": "2014-09-15 01:45:40"
+        },
+        {
+            "name": "idealistsoft/framework-iron-mq",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/infusephp/framework-iron-mq.git",
+                "reference": "1e8bb6975783bb0190e9532cd0432d83bc7855da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/infusephp/framework-iron-mq/zipball/1e8bb6975783bb0190e9532cd0432d83bc7855da",
+                "reference": "1e8bb6975783bb0190e9532cd0432d83bc7855da",
+                "shasum": ""
+            },
+            "require": {
+                "iron-io/iron_mq": "1.5.1",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "app\\iron\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jaredtking",
+                    "email": "j@jaredtking.com",
+                    "homepage": "http://jaredtking.com"
+                }
+            ],
+            "description": "IronMQ module for Idealist Framework",
+            "keywords": [
+                "background",
+                "framework",
+                "idealist",
+                "iron.io",
+                "ironmq",
+                "message",
+                "queue"
+            ],
+            "abandoned": "infuse/iron-mq",
+            "time": "2014-09-11T16:19:39+00:00"
+        },
+        {
             "name": "idealistsoft/framework-social",
             "version": "1.0.0",
             "source": {
@@ -2145,6 +1759,197 @@
             ],
             "abandoned": "infuse/social",
             "time": "2014-09-25T16:49:49+00:00"
+        },
+        {
+            "name": "infuse/social",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/infusephp/social.git",
+                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/infusephp/social/zipball/6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
+                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "idealistsoft/framework-auth": "dev-master",
+                "idealistsoft/framework-bootstrap": "dev-master",
+                "robmorgan/phinx": "*",
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "app\\social\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jaredtking",
+                    "email": "j@jaredtking.com",
+                    "homepage": "http://jaredtking.com"
+                }
+            ],
+            "description": "Helper library for social media profiles on Idealist Framework",
+            "keywords": [
+                "framework",
+                "idealist",
+                "social"
+            ],
+            "time": "2014-09-25T16:49:49+00:00"
+        },
+        {
+            "name": "instaphp/instaphp",
+            "version": "2.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sesser/Instaphp.git",
+                "reference": "3a97aca59d30d39008411a9ae101ae13f3f25dde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sesser/Instaphp/zipball/3a97aca59d30d39008411a9ae101ae13f3f25dde",
+                "reference": "3a97aca59d30d39008411a9ae101ae13f3f25dde",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "4.*",
+                "guzzlehttp/log-subscriber": "1.*",
+                "monolog/monolog": "1.8.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Instaphp": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Randy Sesser",
+                    "email": "randy@instaphp.com",
+                    "homepage": "http://instaphp.com"
+                }
+            ],
+            "description": "A library for accessing Instagram's API (v2)",
+            "homepage": "http://instaphp.com",
+            "keywords": [
+                "instagram",
+                "instaphp",
+                "library"
+            ],
+            "time": "2014-07-29T16:55:04+00:00"
+        },
+        {
+            "name": "iron-io/iron_core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iron-io/iron_core_php.git",
+                "reference": "56ee81e44600ca4d7cc883d2a5035a65207129ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iron-io/iron_core_php/zipball/56ee81e44600ca4d7cc883d2a5035a65207129ee",
+                "reference": "56ee81e44600ca4d7cc883d2a5035a65207129ee",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "IronCore.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander S",
+                    "email": "alexander@iron.io",
+                    "homepage": "http://iron.io",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Iron.io",
+                    "email": "support@iron.io",
+                    "homepage": "http://iron.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Collection of common functions for all iron.io client libraries",
+            "homepage": "http://github.com/iron-io/iron_core_php",
+            "keywords": [
+                "iron",
+                "iron_core"
+            ],
+            "time": "2014-08-26 10:00:33"
+        },
+        {
+            "name": "iron-io/iron_mq",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iron-io/iron_mq_php.git",
+                "reference": "82dde27337801a914a5ac88cd5f1ba7739f85f19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iron-io/iron_mq_php/zipball/82dde27337801a914a5ac88cd5f1ba7739f85f19",
+                "reference": "82dde27337801a914a5ac88cd5f1ba7739f85f19",
+                "shasum": ""
+            },
+            "require": {
+                "iron-io/iron_core": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "IronMQ.class.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander S",
+                    "email": "alexander@iron.io",
+                    "homepage": "http://iron.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Client binding for IronMQ (hosted message queue)",
+            "homepage": "http://github.com/iron-io/iron_mq_php",
+            "keywords": [
+                "MQ",
+                "iron",
+                "iron_mq"
+            ],
+            "time": "2014-02-19T14:02:39+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -2211,6 +2016,42 @@
                 "testing"
             ],
             "time": "2014-05-02T12:16:45+00:00"
+        },
+        {
+            "name": "ruudk/twitter-oauth",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ruudk/twitteroauth.git",
+                "reference": "7f5a94eaa1572ddbc7f0a32ba3b865b8ac23712a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ruudk/twitteroauth/zipball/7f5a94eaa1572ddbc7f0a32ba3b865b8ac23712a",
+                "reference": "7f5a94eaa1572ddbc7f0a32ba3b865b8ac23712a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Ruud Kamphuis",
+                    "email": "ruud@1plus1media.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP 5.3 version of abraham/twitteroauth",
+            "homepage": "http://github.com/ruudk/twitteroauth",
+            "abandoned": true,
+            "time": "2014-06-10 18:17:38"
         }
     ],
     "aliases": [],
@@ -2221,10 +2062,7 @@
         "idealistsoft/framework-rest-api": 20,
         "idealistsoft/framework-cron": 20,
         "idealistsoft/framework-statistics": 20,
-        "idealistsoft/framework-oauth2": 20,
-        "idealistsoft/framework-facebook": 20,
-        "idealistsoft/framework-instagram": 20,
-        "idealistsoft/framework-twitter": 20
+        "idealistsoft/framework-oauth2": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

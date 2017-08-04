@@ -41,24 +41,6 @@
 				{/if}
 				<br/>
 			{/if}
-
-			<p>
-				{if $facebookConnected}
-					<a href="{$userObj->facebookProfile()->url()}" target="_blank">
-						<i class="icon-profile-facebook"></i>
-					</a>
-				{/if}
-				{if $twitterConnected}
-					<a href="{$userObj->twitterProfile()->url()}" target="_blank">
-						<i class="icon-profile-twitter"></i>
-					</a>
-				{/if}
-				{if $instagramConnected}
-					<a href="{$userObj->instagramProfile()->url()}" target="_blank">
-						<i class="icon-profile-instagram"></i>
-					</a>
-				{/if}
-			</p>
 		</div>
 	</div>
 {/block}

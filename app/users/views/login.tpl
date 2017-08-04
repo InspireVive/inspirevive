@@ -39,21 +39,6 @@
 			<button class="btn btn-block btn-success btn-lg">Sign In</button>
 		</div>
 	</form>
-
-	<div class="actions bottom">
-		<label>
-			Sign in with:
-		</label>
-		<a class="btn-action" title="Sign In with Facebook" href="/facebook/connect">
-			<span class="ion-social-facebook"></span>
-		</a>
-		<a class="btn-action" title="Sign In with Twitter" href="/twitter/connect">
-			<span class="ion-social-twitter"></span>
-		</a>
-		<a class="btn-action" title="Sign In with Instagram" href="/instagram/connect">
-			<span class="ion-social-instagram"></span>
-		</a>
-	</div>	
 </div>
 
 <div class="body skinny minimal container secondary">

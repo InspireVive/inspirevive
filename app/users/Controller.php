@@ -11,9 +11,6 @@
 namespace app\users;
 
 use infuse\View;
-use app\facebook\models\FacebookProfile;
-use app\instagram\models\InstagramProfile;
-use app\twitter\models\TwitterProfile;
 use app\users\models\User;
 use app\volunteers\models\Volunteer;
 use app\volunteers\models\VolunteerHour;
@@ -326,9 +323,6 @@ class Controller
             'user' => $user->toArray(),
             'userObj' => $user,
             'isMine' => $user->id() == $this->app['user']->id(),
-            'facebookConnected' => $user->facebookConnected(),
-            'twitterConnected' => $user->twitterConnected(),
-            'instagramConnected' => $user->instagramConnected(),
         ]);
     }
 
@@ -382,95 +376,6 @@ class Controller
             'success' => $req->params('success'),
             'title' => 'Account Settings',
             'section' => $req->params('section'),
-            'facebookConnected' => $user->facebookConnected(),
-            'twitterConnected' => $user->twitterConnected(),
-            'instagramConnected' => $user->instagramConnected(), ]);
-    }
-
-    public function finishSignup($req, $res)
-    {
-        $params = [
-            'title' => 'Finish Signup',
-            'userEmail' => $req->request('user_email'),
-            'username_post' => $req->request('username'),
-        ];
-
-        if ($fbid = $req->session('fbid')) {
-            $profile = new FacebookProfile($fbid);
-
-            $profile->load();
-
-            $params['profileUrl'] = $profile->url();
-            $params['profilePic'] = $profile->profilePicture();
-            $params['username'] = $profile->username;
-        } elseif ($tid = $req->session('tid')) {
-            $profile = new TwitterProfile($tid);
-
-            $profile->load();
-
-            $params['profileUrl'] = $profile->url();
-            $params['profilePic'] = $profile->profilePicture();
-            $params['username'] = $profile->username;
-        } elseif ($iid = $req->session('iid')) {
-            $profile = new InstagramProfile($iid);
-
-            $profile->load();
-
-            $params['profileUrl'] = $profile->url();
-            $params['profilePic'] = $profile->profilePicture();
-            $params['username'] = $profile->username;
-        } else {
-            return $res->setCode(404);
-        }
-
-        $params['username'] = preg_replace('/[^a-z0-9]+/i', '', $params['username']);
-
-        return new View('finishSignup', $params);
-    }
-
-    public function finishSignupPost($req, $res)
-    {
-        $params = $req->request();
-        $params['ip'] = $req->ip();
-
-        if ($fbid = $req->session('fbid')) {
-            $params['facebook_id'] = $fbid;
-            $params['profile_picture_preference'] = 'facebook';
-        } elseif ($tid = $req->session('tid')) {
-            $params['twitter_id'] = $tid;
-            $params['profile_picture_preference'] = 'twitter';
-        } elseif ($iid = $req->session('iid')) {
-            $params['instagram_id'] = $iid;
-            $params['profile_picture_preference'] = 'instagram';
-        } else {
-            return $res->setCode(404);
-        }
-
-        // register
-        $user = User::registerUser($params);
-
-        if ($user) {
-            // login
-            $this->app['auth']->login($req->request('user_email'), $req->request('user_password')[0], $req, true);
-
-            // cleanup session
-            $req->setSession([
-                'fbid' => null,
-                'tid' => null,
-                'iid' => null, ]);
-
-            // redirect
-            $redir = ($req->request('redir')) ? $req->request('redir') : $req->cookies('redirect');
-
-            if (!empty($redir)) {
-                $req->setCookie('redirect', '', time() - 86400, '/');
-
-                return $res->redirect($redir);
-            } else {
-                return $res->redirect('/profile');
-            }
-        }
-
-        return $this->finishSignup($req, $res);
+        ]);
     }
 }

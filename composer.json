@@ -28,11 +28,7 @@
 		"idealistsoft/framework-cron": "dev-master",
 		"idealistsoft/framework-email": "~1.0",
 		"idealistsoft/framework-statistics": "dev-master",
-		"idealistsoft/framework-iron-mq": "~1.0",
 		"idealistsoft/framework-oauth2": "dev-master",
-		"idealistsoft/framework-facebook": "dev-master",
-		"idealistsoft/framework-instagram": "dev-master",
-		"idealistsoft/framework-twitter": "dev-master",
 
 		"smarty/smarty": "~3.1",
 		"aws/aws-sdk-php": "2.4.1",

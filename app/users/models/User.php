@@ -13,9 +13,6 @@ namespace app\users\models;
 use infuse\Utility as U;
 use app\auth\models\AbstractUser;
 use app\volunteers\models\VolunteerApplication;
-use app\facebook\models\FacebookProfile;
-use app\twitter\models\TwitterProfile;
-use app\instagram\models\InstagramProfile;
 
 class User extends AbstractUser
 {
@@ -84,27 +81,6 @@ class User extends AbstractUser
             'type' => 'string',
             'default' => 'gravatar',
             'admin_hidden_property' => true,
-        ],
-
-        /* Social Media Profiles */
-
-        'facebook_id' => [
-            'type' => 'number',
-            'null' => true,
-            'default' => null,
-            'relation' => 'app\facebook\models\FacebookProfile',
-        ],
-        'twitter_id' => [
-            'type' => 'number',
-            'null' => true,
-            'default' => null,
-            'relation' => 'app\twitter\models\TwitterProfile',
-        ],
-        'instagram_id' => [
-            'type' => 'number',
-            'null' => true,
-            'default' => null,
-            'relation' => 'app\instagram\models\InstagramProfile',
         ],
 
         /* Stats */
@@ -177,58 +153,12 @@ class User extends AbstractUser
 
     /**
      * Generates the URL for the user's profile picture.
-     * Could use Facebook, Twitter, Instagram, or Gravatar photo.
      *
      * @param int $size size of the picture (it is square, usually)
      *
      * @return string url
      */
-    public function profilePicture($size = 200, $preference = false)
-    {
-        $order = [$preference];
-
-        if (!$preference) {
-            $order = [
-                'facebook',
-                'twitter',
-                'instagram',
-                'gravatar', ];
-
-            if ($this->profile_picture_preference) {
-                array_unshift($order, $this->profile_picture_preference);
-            }
-        }
-
-        $url = false;
-        foreach ($order as $source) {
-            $method = "profilePicture_$source";
-            if ($url = $this->$method($size)) {
-                break;
-            }
-        }
-
-        return $url;
-    }
-
-    private function profilePicture_facebook($size)
-    {
-        return ($this->facebookConnected()) ?
-            $this->facebookProfile()->profilePicture($size) : false;
-    }
-
-    private function profilePicture_twitter($size)
-    {
-        return ($this->twitterConnected()) ?
-            $this->twitterProfile()->profilePicture($size) : false;
-    }
-
-    private function profilePicture_instagram($size)
-    {
-        return ($this->instagramConnected()) ?
-            $this->instagramProfile()->profilePicture($size) : false;
-    }
-
-    private function profilePicture_gravatar($size)
+    public function profilePicture($size = 200)
     {
         $hash = md5(strtolower(trim($this->user_email)));
 
@@ -260,75 +190,6 @@ class User extends AbstractUser
         return $this->volunteerApplication()->exists();
     }
 
-    /////////////////////////
-    // SOCIAL MEDIA PROFILES
-    /////////////////////////
-
-    /**
-     * Checks if the user has a connected Facbeook account
-     * WARNING if you want to check if the user is logged in to facebook,
-     * use facebookProfile()->isLoggedIn().
-     *
-     * @return bool
-     */
-    public function facebookConnected()
-    {
-        return $this->facebook_id > 0;
-    }
-
-    /**
-     * Gets the Facebook profile associated with this user.
-     *
-     * @return InstagramProfile
-     */
-    public function facebookProfile()
-    {
-        return $this->relation('facebook_id');
-    }
-
-    /**
-     * Checks if the user has a connected Twitter account
-     * WARNING if you want to check if the user is logged in to twitter,
-     * use twitterProfile()->isLoggedIn().
-     *
-     * @return bool
-     */
-    public function twitterConnected()
-    {
-        return $this->twitter_id > 0;
-    }
-
-    /**
-     * Gets the Twitter profile associated with this user.
-     *
-     * @return TwitterProfile
-     */
-    public function twitterProfile()
-    {
-        return $this->relation('twitter_id');
-    }
-
-    /**
-     * Checks if the user has a connected Instagram account
-     * WARNING if you want to check if the user is logged in to instagram,
-     * use instagramProfile()->isLoggedIn().
-     *
-     * @return bool
-     */
-    public function instagramConnected()
-    {
-        return $this->instagram_id > 0;
-    }
-
-    /**
-     * Gets the Instagram profile associated with this user.
-     *
-     * @return InstagramProfile
-     */
-    public function instagramProfile()
-    {
-        return $this->relation('instagram_id');
-    }
 
     /////////////////////////
     // STATS
