@@ -36,7 +36,8 @@
 		"mandrill/mandrill": "1.0.36"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.9.1"
+		"mockery/mockery": "0.9.1",
+		"phpunit/phpunit": "~5.3"
 	},
 	"minimum-stability": "dev"
 }
