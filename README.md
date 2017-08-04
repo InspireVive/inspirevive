@@ -18,9 +18,6 @@ Volunteer management platform to help organizations volunteer more effectively
 Third party APIs used:
 
 - [Mandrill](http://mandrill.com) - email
-- Twitter
-- Facebook
-- Instagram
 
 ## Installation
 
