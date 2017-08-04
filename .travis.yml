@@ -1,10 +1,10 @@
 language: php
 php:
+    - 7.1
     - 7.0
     - 5.6
-    - 5.5
-    - 5.4
 
+dist: trusty
 sudo: false
 
 services:
@@ -35,3 +35,6 @@ after_script:
 env:
   global:
     - WKHTMLTOPDF_CMD="xvfb-run --server-args='-screen 0, 640x480x16' --wait=0 --auto-servernum --server-num=1 wkhtmltopdf --print-media-type --disable-javascript  --disable-local-file-access --allow file:///usr/share/fonts/TTF/Arial-Unicode.ttf --margin-top 0.5cm --margin-left 0.5cm --margin-right 0.5cm --margin-bottom 2cm -s letter --encoding utf8 -q - -"
+
+notifications:
+  email: false
