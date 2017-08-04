@@ -10,7 +10,6 @@
 
 return [
     'middleware' => [
-        'logstash',
         'auth',
         'oauth2',
         'admin',
