@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8718bb6a7ab7dd3eb7a246dc44abd78e",
+    "content-hash": "d21bdacf41069ee02bdb960215ed561e",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1507,7 +1507,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14T21:17:01+00:00"
+            "time": "2015-06-14 21:17:01"
         },
         {
             "name": "facebook/php-sdk",
@@ -1726,103 +1726,6 @@
                 "stream"
             ],
             "time": "2014-09-15 01:45:40"
-        },
-        {
-            "name": "idealistsoft/framework-iron-mq",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/infusephp/framework-iron-mq.git",
-                "reference": "1e8bb6975783bb0190e9532cd0432d83bc7855da"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/infusephp/framework-iron-mq/zipball/1e8bb6975783bb0190e9532cd0432d83bc7855da",
-                "reference": "1e8bb6975783bb0190e9532cd0432d83bc7855da",
-                "shasum": ""
-            },
-            "require": {
-                "iron-io/iron_mq": "1.5.1",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\iron\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "IronMQ module for Idealist Framework",
-            "keywords": [
-                "background",
-                "framework",
-                "idealist",
-                "iron.io",
-                "ironmq",
-                "message",
-                "queue"
-            ],
-            "abandoned": "infuse/iron-mq",
-            "time": "2014-09-11T16:19:39+00:00"
-        },
-        {
-            "name": "idealistsoft/framework-social",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/infusephp/framework-social.git",
-                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/infusephp/framework-social/zipball/6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
-                "reference": "6e28fafb9c5f8463c46ccda91c66f6ae5ad95b77",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "idealistsoft/framework-auth": "dev-master",
-                "idealistsoft/framework-bootstrap": "dev-master",
-                "robmorgan/phinx": "*",
-                "satooshi/php-coveralls": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "app\\social\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "jaredtking",
-                    "email": "j@jaredtking.com",
-                    "homepage": "http://jaredtking.com"
-                }
-            ],
-            "description": "Helper library for social media profiles on Idealist Framework",
-            "keywords": [
-                "framework",
-                "idealist",
-                "social"
-            ],
-            "abandoned": "infuse/social",
-            "time": "2014-09-25T16:49:49+00:00"
         },
         {
             "name": "infuse/social",
@@ -2072,7 +1975,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-04-12T18:52:22+00:00"
+            "time": "2017-04-12 18:52:22"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2126,7 +2029,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2017-04-30T11:58:12+00:00"
+            "time": "2017-04-30 11:58:12"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2281,7 +2184,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2017-07-19T07:44:25+00:00"
+            "time": "2017-07-19 07:44:25"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2344,7 +2247,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-04-02T07:44:40+00:00"
+            "time": "2017-04-02 07:44:40"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2391,7 +2294,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2016-10-03T07:40:28+00:00"
+            "time": "2016-10-03 07:40:28"
         },
         {
             "name": "phpunit/php-text-template",
@@ -2481,7 +2384,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-03-07T15:42:04+00:00"
+            "time": "2017-03-07 15:42:04"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -2530,7 +2433,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-08-03T14:21:49+00:00"
+            "time": "2017-08-03 14:21:49"
         },
         {
             "name": "phpunit/phpunit",
@@ -2612,7 +2515,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-07-30T08:14:43+00:00"
+            "time": "2017-07-30 08:14:43"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2671,7 +2574,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2017-06-30T09:13:00+00:00"
+            "time": "2017-06-30 09:13:00"
         },
         {
             "name": "ruudk/twitter-oauth",
@@ -2752,7 +2655,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2017-03-04T10:23:55+00:00"
+            "time": "2017-03-04 10:23:55"
         },
         {
             "name": "sebastian/comparator",
@@ -2816,7 +2719,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2017-03-07T10:34:43+00:00"
+            "time": "2017-03-07 10:34:43"
         },
         {
             "name": "sebastian/diff",
@@ -2868,7 +2771,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-05-22T07:24:03+00:00"
+            "time": "2017-05-22 07:24:03"
         },
         {
             "name": "sebastian/environment",
@@ -2918,7 +2821,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-11-26T07:53:53+00:00"
+            "time": "2016-11-26 07:53:53"
         },
         {
             "name": "sebastian/exporter",
@@ -2985,7 +2888,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2017-03-07T10:36:49+00:00"
+            "time": "2017-03-07 10:36:49"
         },
         {
             "name": "sebastian/global-state",
@@ -3036,7 +2939,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2017-02-23T14:11:06+00:00"
+            "time": "2017-02-23 14:11:06"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -3082,7 +2985,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2017-03-07T10:37:45+00:00"
+            "time": "2017-03-07 10:37:45"
         },
         {
             "name": "sebastian/recursion-context",
@@ -3135,7 +3038,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2017-03-08T08:21:15+00:00"
+            "time": "2017-03-08 08:21:15"
         },
         {
             "name": "sebastian/resource-operations",
@@ -3177,7 +3080,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "time": "2016-10-03T07:43:09+00:00"
+            "time": "2016-10-03 07:43:09"
         },
         {
             "name": "sebastian/version",
@@ -3220,7 +3123,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2016-10-03T07:35:21+00:00"
+            "time": "2016-10-03 07:35:21"
         },
         {
             "name": "webmozart/assert",
@@ -3270,7 +3173,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-11-23T20:04:41+00:00"
+            "time": "2016-11-23 20:04:41"
         }
     ],
     "aliases": [],
