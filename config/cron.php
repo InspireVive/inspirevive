@@ -29,14 +29,4 @@ return [
         'week' => '*',
         'expires' => 3600, // 1 hour
     ],
-    [
-        'module' => 'statistics',
-        'command' => 'capture-metrics',
-        'minute' => '10',
-        'hour' => '1',
-        'day' => '*',
-        'month' => '*',
-        'week' => '*',
-        'expires' => 3600, // 1 hour
-    ],
 ];

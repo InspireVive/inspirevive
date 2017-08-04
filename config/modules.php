@@ -11,17 +11,14 @@
 return [
     'middleware' => [
         'auth',
-        'admin',
         'email',
     ],
     'all' => [
         // external
         'auth',
-        'admin',
         'api',
         'cron',
         'email',
-        'statistics',
         // inspirevive
         'organizations',
         'pages',

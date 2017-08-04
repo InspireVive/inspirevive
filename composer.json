@@ -1,4 +1,4 @@
-{
+	{
 	"name": "inspirevive/inspirevive",
 	"description": "Volunteer management platform to help organizations volunteer more effectively",
 	"type": "project",
@@ -23,11 +23,8 @@
 		"php": ">=5.6.0",
 		"idealistsoft/framework-bootstrap": "~1.0",
 		"idealistsoft/framework-auth": "dev-master",
-		"idealistsoft/framework-admin": "dev-master",
-		"idealistsoft/framework-rest-api": "dev-master#8df68d0fb6f7ebab9541fda0bf806f9d54bff02b",
 		"idealistsoft/framework-cron": "dev-master",
 		"idealistsoft/framework-email": "~1.0",
-		"idealistsoft/framework-statistics": "dev-master",
 
 		"smarty/smarty": "~3.1",
 		"monolog/monolog": "~1.23",
