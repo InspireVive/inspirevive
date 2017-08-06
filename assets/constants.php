@@ -25,6 +25,7 @@ define('VOLUNTEER_PLACE_INTERNAL', 0);
 define('VOLUNTEER_PLACE_EXTERNAL', 1);
 
 // errors
+define('ERROR_NO_PERMISSION', 'no_permission');
 define('ERROR_INVALID_EVENT_DATES', 'invalid_event_dates');
 define('ERROR_NOT_VOLUNTEER', 'must_be_volunteer');
 define('ERROR_VOLUNTEER_PLACE_NAME_TAKEN', 'place_name_taken');

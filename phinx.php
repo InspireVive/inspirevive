@@ -8,36 +8,28 @@
  * @license GNU GPLv3
  */
 
-require_once 'vendor/autoload.php';
-
 $phinxConfig = [
-    'paths' => [],
-    'environments' => [
-        'default_migration_table' => 'Migrations',
-        'default_database' => 'app',],];
+    'environments' => [],
+];
 
 $appConfig = @include 'config.php';
 
-// determine the module's path
-$module = getenv('PHINX_APP_MODULE');
-if ($module) {
-    // determine module directory
-    $controller = 'app\\'.$module.'\Controller';
-
-    if (class_exists($controller)) {
-        $reflection = new ReflectionClass($controller);
-        $modDir = dirname($reflection->getFileName()).'/migrations';
-        $phinxConfig['paths']['migrations'] = $modDir;
-    }
+$migrationPath = getenv('PHINX_MIGRATION_PATH');
+if ($migrationPath) {
+    $phinxConfig['paths'] = ['migrations' => $migrationPath];
 }
 
-// generate environment from config
-$environment = $appConfig['database'];
-$environment['adapter'] = $environment['type'];
-unset($environment['type']);
-$environment['pass'] = $environment['password'];
-unset($environment['password']);
+// generate database environment from config
+foreach ($appConfig['database'] as $k => $environment) {
+    $environment['adapter'] = $environment['type'];
+    $environment['pass'] = $environment['password'];
+    unset($environment['type']);
+    unset($environment['password']);
 
-$phinxConfig['environments']['app'] = $environment;
+    $phinxConfig['environments'][$k] = $environment;
+}
+
+$phinxConfig['environments']['default_migration_table'] = 'Migrations';
+$phinxConfig['environments']['default_database'] = array_keys($appConfig['database'])[0];
 
 return $phinxConfig;

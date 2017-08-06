@@ -41,7 +41,7 @@
 	If you volunteered somewhere not on the list, then you can add it! All you need is the name and address of the place you volunteered and contact information for the volunteer coordinator there. You will immediately be able to report hours at places you add, however, the volunteer coordinator at your school or organization will first have to approve the place you added.
 </p>
 <p>
-	Once the place has been approved, InspireVive will e-mail the volunteer coordinator at the place instead of your school or organization to verify your future hours.
+	Once the place has been approved, InspireVive will email the volunteer coordinator at the place instead of your school or organization to verify your future hours.
 </p>
 <br/>
 
@@ -62,7 +62,7 @@
 <h4>5. Wait for approval</h4>
 
 <p>
-	Once your volunteer hours have been reported, we will contact the appropriate volunteer coordinator for approval. After they approve your hours you will receive an e-mail from InspireVive. Congratulations!
+	Once your volunteer hours have been reported, we will contact the appropriate volunteer coordinator for approval. After they approve your hours you will receive an email from InspireVive. Congratulations!
 </p>
 
 {/block}

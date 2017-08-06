@@ -1,8 +1,8 @@
 language: php
 php:
-    - 7.1
-    - 7.0
-    - 5.6
+  - 7.1
+  - 7.0
+  - 5.6
 
 dist: trusty
 sudo: false
@@ -18,22 +18,26 @@ addons:
       - wkhtmltopdf
       - xvfb
 
+before_install:
+  - mysql -h localhost -V
+  - mysql -e "create database IF NOT EXISTS test;" -uroot
+
 before_script:
-    - composer install
-    - mv config.example.php config.php
-    - mysql -e 'create database mydb;'
-    - php infuse migrate
-    - mkdir -p build/logs
-    - composer require satooshi/php-coveralls:1.0.0
+  - composer install --prefer-source --no-interaction
+  - php infuse migrate
+  - mkdir -p build/logs
 
 script:
-    - vendor/bin/phpunit
+  - vendor/bin/phpunit
 
 after_script:
-    - vendor/bin/coveralls
+  - vendor/bin/coveralls
 
 env:
   global:
+    - MYSQL_USER=root
+    - MYSQL_PASSWORD=
+    - INFUSE_ENV=test
     - WKHTMLTOPDF_CMD="xvfb-run --server-args='-screen 0, 640x480x16' --wait=0 --auto-servernum --server-num=1 wkhtmltopdf --print-media-type --disable-javascript  --disable-local-file-access --allow file:///usr/share/fonts/TTF/Arial-Unicode.ttf --margin-top 0.5cm --margin-left 0.5cm --margin-right 0.5cm --margin-bottom 2cm -s letter --encoding utf8 -q - -"
 
 notifications:

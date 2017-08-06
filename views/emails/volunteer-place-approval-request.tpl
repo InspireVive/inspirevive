@@ -5,14 +5,14 @@ Hi {$orgname}!
 </p>
 
 <p>
-A volunteer from {$orgname} has requested that a new place be added to the list of places your volunteers can report hours at. By approving this volunteer place we can verify future volunteer activity at {$place_name} with the volunteer coordinator listed below over e-mail.
+A volunteer from {$orgname} has requested that a new place be added to the list of places your volunteers can report hours at. By approving this volunteer place we can verify future volunteer activity at {$place_name} with the volunteer coordinator listed below over email.
 </p>
 
 <p>
 Place: <strong>{$place_name}</strong><br>
 Address: {$address|nl2br}<br>
 Volunteer Coordinator Name: {$coordinator_name}<br>
-Volunteer Coordinator E-mail: <a href="mailto:{$coordinator_email}">{$coordinator_email}</a>
+Volunteer Coordinator Email: <a href="mailto:{$coordinator_email}">{$coordinator_email}</a>
 </p>
 
 <p>

@@ -8,301 +8,316 @@
  * @license GNU GPLv3
  */
 
-return [
+$routes = [
 
-  /*
-   * Landing
-   */
+    /*
+     * Landing
+     */
 
-  '/' => [
-    'pages\Controller',
-  ],
+    'GET /' => [
+        'App\Pages\Controller',
+        'index',
+    ],
 
-  /*
-   * Authentication
-   */
+    /*
+     * Authentication
+     */
 
-  'get /login' => [
-    'users\Controller',
-    'loginForm',
-  ],
-  'post /login' => [
-    'users\Controller',
-    'login',
-  ],
-  'get /logout' => [
-    'users\Controller',
-    'logout',
-  ],
-  'get /signup' => [
-    'users\Controller',
-    'signupForm',
-  ],
-  'post /signup' => [
-    'users\Controller',
-    'signup',
-  ],
-  'get /forgot' => [
-    'users\Controller',
-    'forgotForm',
-  ],
-  'post /forgot' => [
-    'users\Controller',
-    'forgotStep1',
-  ],
-  'get /forgot/:id' => [
-    'users\Controller',
-    'forgotForm',
-  ],
-  'post /forgot/:id' => [
-    'users\Controller',
-    'forgotStep2',
-  ],
+    'GET /login' => [
+        'App\Users\Controller',
+        'loginForm',
+    ],
+    'POST /login' => [
+        'App\Users\Controller',
+        'login',
+    ],
+    'GET /logout' => [
+        'App\Users\Controller',
+        'logout',
+    ],
+    'GET /signup' => [
+        'App\Users\Controller',
+        'signupForm',
+    ],
+    'POST /signup' => [
+        'App\Users\Controller',
+        'signup',
+    ],
+    'GET /forgot' => [
+        'App\Users\Controller',
+        'forgotForm',
+    ],
+    'POST /forgot' => [
+        'App\Users\Controller',
+        'forgotStep1',
+    ],
+    'GET /forgot/{id}' => [
+        'App\Users\Controller',
+        'forgotForm',
+    ],
+    'POST /forgot/{id}' => [
+        'App\Users\Controller',
+        'forgotStep2',
+    ],
+    'GET /users/verifyEmail/{id}' => [
+        'App\Users\Controller',
+        'verifyEmail',
+    ],
+    'GET /users/resendVerification' => [
+        'App\Users\Controller',
+        'sendVerifyEmail'
+    ],
+    'GET /users/forgot/{id}' => [
+        'App\Users\Controller',
+        'forgotForm'
+    ],
 
-  /*
-   * My Profile
-   */
+    /*
+     * My Profile
+     */
 
-  'get /profile' => [
-    'users\Controller',
-    'myProfile',
-  ],
-  'get /account/:section' => [
-    'users\Controller',
-    'accountSettings',
-  ],
-  'get /account' => [
-    'users\Controller',
-    'accountSettings',
-  ],
-  'post /account' => [
-    'users\Controller',
-    'editAccountSettings',
-  ],
+    'GET /profile' => [
+        'App\Users\Controller',
+        'myProfile',
+    ],
+    'GET /account/{section}' => [
+        'App\Users\Controller',
+        'accountSettings',
+    ],
+    'GET /account' => [
+        'App\Users\Controller',
+        'accountSettings',
+    ],
+    'POST /account' => [
+        'App\Users\Controller',
+        'editAccountSettings',
+    ],
 
-  /*
-   * Volunteer Applications
-   */
+    /*
+     * User Profiles
+     */
 
-  'get /volunteers/application' => [
-    'volunteers\Controller',
-    'volunteerApplication',
-  ],
-  'post /volunteers/application' => [
-    'volunteers\Controller',
-    'submitVolunteerApplication',
-  ],
-  'get /volunteers/application/thanks' => [
-    'volunteers\Controller',
-    'volunteerApplicationThanks',
-  ],
+    'GET /users/{username}' => [
+        'App\Users\Controller',
+        'userProfile'
+    ],
 
-  /*
-   * Volunteer Hour Reporting
-   */
+    /*
+     * Volunteer Applications
+     */
 
-  'get /organizations/:username/hours/report' => [
-    'volunteers\Controller',
-    'reportHoursStep1',
-  ],
-  'get /organizations/:username/places/add' => [
-    'volunteers\Controller',
-    'addVolunteerPlaceForm',
-  ],
-  'post /organizations/:username/places/add' => [
-    'volunteers\Controller',
-    'addVolunteerPlace',
-  ],
-  'get /organizations/:username/hours/report/2' => [
-    'volunteers\Controller',
-    'reportHoursStep2',
-  ],
-  'post /organizations/:username/hours/report' => [
-    'volunteers\Controller',
-    'reportHoursStep3',
-  ],
-  'get /organizations/:username/hours/thanks' => [
-    'volunteers\Controller',
-    'reportHoursThanks',
-  ],
-  'get /organizations/:username/volunteers/approve/:approval_link' => [
-    'volunteers\Controller',
-    'approveVolunteer',
-  ],
-  'get /organizations/:username/volunteers/reject/:approval_link' => [
-    'volunteers\Controller',
-    'rejectVolunteer',
-  ],
-  'get /organizations/:username/hours/approve/:approval_link' => [
-    'volunteers\Controller',
-    'approveHours',
-  ],
-  'get /organizations/:username/hours/reject/:approval_link' => [
-    'volunteers\Controller',
-    'rejectHours',
-  ],
+    'GET /volunteers/application' => [
+        'App\Volunteers\Controller',
+        'volunteerApplication',
+    ],
+    'POST /volunteers/application' => [
+        'App\Volunteers\Controller',
+        'submitVolunteerApplication',
+    ],
+    'GET /volunteers/application/thanks' => [
+        'App\Volunteers\Controller',
+        'volunteerApplicationThanks',
+    ],
 
-  /*
-   * Volunteer Hub
-   */
+    /*
+     * Volunteer Hour Reporting
+     */
 
-  'get /organizations/:username' => [
-    'volunteers\Controller',
-    'volunteerHub',
-  ],
-  'post /organizations/:username/volunteers' => [
-    'volunteers\Controller',
-    'joinOrganization',
-  ],
-  'delete /organizations/:username/volunteers' => [
-    'volunteers\Controller',
-    'unjoinOrganization',
-  ],
+    'GET /organizations/{username}/hours/report' => [
+        'App\Volunteers\Controller',
+        'reportHoursStep1',
+    ],
+    'GET /organizations/{username}/places/add' => [
+        'App\Volunteers\Controller',
+        'addVolunteerPlaceForm',
+    ],
+    'POST /organizations/{username}/places/add' => [
+        'App\Volunteers\Controller',
+        'addVolunteerPlace',
+    ],
+    'GET /organizations/{username}/hours/report/2' => [
+        'App\Volunteers\Controller',
+        'reportHoursStep2',
+    ],
+    'POST /organizations/{username}/hours/report' => [
+        'App\Volunteers\Controller',
+        'reportHoursStep3',
+    ],
+    'GET /organizations/{username}/hours/thanks' => [
+        'App\Volunteers\Controller',
+        'reportHoursThanks',
+    ],
+    'GET /organizations/{username}/volunteers/approve/{approval_link}' => [
+        'App\Volunteers\Controller',
+        'approveVolunteer',
+    ],
+    'GET /organizations/{username}/volunteers/reject/{approval_link}' => [
+        'App\Volunteers\Controller',
+        'rejectVolunteer',
+    ],
+    'GET /organizations/{username}/hours/approve/{approval_link}' => [
+        'App\Volunteers\Controller',
+        'approveHours',
+    ],
+    'GET /organizations/{username}/hours/reject/{approval_link}' => [
+        'App\Volunteers\Controller',
+        'rejectHours',
+    ],
 
-  /*
-   * Console Commands
-   */
+    /*
+     * Volunteer Hub
+     */
 
-  'get /volunteers/resendVerificationRequests/:org' => [
-    'volunteers\CLI',
-    'resendVerificationRequests',
-  ],
-  'get /volunteers/markInactive' => [
-    'volunteers\CLI',
-    'markInactive',
-  ],
+    'GET /organizations/{username}' => [
+        'App\Volunteers\Controller',
+        'volunteerHub',
+    ],
+    'POST /organizations/{username}/volunteers' => [
+        'App\Volunteers\Controller',
+        'joinOrganization',
+    ],
+    'DELETE /organizations/{username}/volunteers' => [
+        'App\Volunteers\Controller',
+        'unjoinOrganization',
+    ],
 
-  /*
-   * Volunteer Organization Admin
-   */
+    /*
+     * Volunteer Organization Admin
+     */
 
-  // dashboard
-  'get /organizations/:username/admin' => [
-    'volunteers_admin\Controller',
-    'index',
-  ],
+    // dashboard
+    'GET /organizations/{username}/admin' => [
+        'App\Admin\Controller',
+        'index',
+    ],
 
-  // volunteers
-  'get /organizations/:username/admin/volunteers' => [
-    'volunteers_admin\Controller',
-    'volunteersBrowse',
-  ],
-  'get /organizations/:username/admin/volunteers/lookupUsername' => [
-    'volunteers_admin\Controller',
-    'volunteersLookupByUsername',
-  ],
-  'get /organizations/:username/admin/groups' => [
-    'volunteers_admin\Controller',
-    'volunteersBrowse',
-  ],
-  'get /organizations/:username/admin/volunteers/add' => [
-    'volunteers_admin\Controller',
-    'addVolunteerForm',
-  ],
-  'post /organizations/:username/admin/volunteers' => [
-    'volunteers_admin\Controller',
-    'addVolunteer',
-  ],
-  'get /organizations/:username/admin/volunteers/add/import' => [
-    'volunteers_admin\Controller',
-    'addVolunteerImportForm',
-  ],
-  'get /organizations/:username/admin/volunteers/add/group' => [
-    'volunteers_admin\Controller',
-    'addVolunteerGroupForm',
-  ],
-  'get /organizations/:username/admin/volunteers/:id' => [
-    'volunteers_admin\Controller',
-    'volunteersView',
-  ],
-  'get /organizations/:username/admin/groups/:id' => [
-    'volunteers_admin\Controller',
-    'volunteersViewGroup',
-  ],
-  'post /organizations/:username/admin/volunteers/:id' => [
-    'volunteers_admin\Controller',
-    'modelEdit',
-  ],
-  'post /organizations/:username/admin/groups/:id' => [
-    'volunteers_admin\Controller',
-    'modelEdit',
-  ],
-  'delete /organizations/:username/admin/volunteers/:id' => [
-    'volunteers_admin\Controller',
-    'modelDelete',
-  ],
-  'delete /organizations/:username/admin/groups/:id' => [
-    'volunteers_admin\Controller',
-    'modelDelete',
-  ],
+    // volunteers
+    'GET /organizations/{username}/admin/volunteers' => [
+        'App\Admin\Controller',
+        'volunteersBrowse',
+    ],
+    'GET /organizations/{username}/admin/volunteers/lookupUsername' => [
+        'App\Admin\Controller',
+        'volunteersLookupByUsername',
+    ],
+    'GET /organizations/{username}/admin/groups' => [
+        'App\Admin\Controller',
+        'volunteersBrowse',
+    ],
+    'GET /organizations/{username}/admin/volunteers/add' => [
+        'App\Admin\Controller',
+        'addVolunteerForm',
+    ],
+    'POST /organizations/{username}/admin/volunteers' => [
+        'App\Admin\Controller',
+        'addVolunteer',
+    ],
+    'GET /organizations/{username}/admin/volunteers/add/import' => [
+        'App\Admin\Controller',
+        'addVolunteerImportForm',
+    ],
+    'GET /organizations/{username}/admin/volunteers/add/group' => [
+        'App\Admin\Controller',
+        'addVolunteerGroupForm',
+    ],
+    'GET /organizations/{username}/admin/volunteers/{id}' => [
+        'App\Admin\Controller',
+        'volunteersView',
+    ],
+    'GET /organizations/{username}/admin/groups/{id}' => [
+        'App\Admin\Controller',
+        'volunteersViewGroup',
+    ],
+    'POST /organizations/{username}/admin/volunteers/{id}' => [
+        'App\Admin\Controller',
+        'modelEdit',
+    ],
+    'POST /organizations/{username}/admin/groups/{id}' => [
+        'App\Admin\Controller',
+        'modelEdit',
+    ],
+    'DELETE /organizations/{username}/admin/volunteers/{id}' => [
+        'App\Admin\Controller',
+        'modelDelete',
+    ],
+    'DELETE /organizations/{username}/admin/groups/{id}' => [
+        'App\Admin\Controller',
+        'modelDelete',
+    ],
 
-  // hours
-  'get /organizations/:username/admin/hours/add' => [
-    'volunteers_admin\Controller',
-    'recordHoursStep1',
-  ],
-  'get /organizations/:username/admin/hours/add/2' => [
-    'volunteers_admin\Controller',
-    'recordHoursStep2',
-  ],
-  'post /organizations/:username/admin/hours/add' => [
-    'volunteers_admin\Controller',
-    'recordHoursStep3',
-  ],
-  'post /organizations/:username/admin/hours/add/confirm' => [
-    'volunteers_admin\Controller',
-    'recordHoursStep4',
-  ],
-  'get /organizations/:username/admin/hours' => [
-    'volunteers_admin\Controller',
-    'hoursBrowse',
-  ],
-  'get /organizations/:username/admin/hours/:id' => [
-    'volunteers_admin\Controller',
-    'hoursView',
-  ],
-  'post /organizations/:username/admin/hours/:id' => [
-    'volunteers_admin\Controller',
-    'modelEdit',
-  ],
-  'delete /organizations/:username/admin/hours/:id' => [
-    'volunteers_admin\Controller',
-    'modelDelete',
-  ],
+    // hours
+    'GET /organizations/{username}/admin/hours/add' => [
+        'App\Admin\Controller',
+        'recordHoursStep1',
+    ],
+    'GET /organizations/{username}/admin/hours/add/2' => [
+        'App\Admin\Controller',
+        'recordHoursStep2',
+    ],
+    'POST /organizations/{username}/admin/hours/add' => [
+        'App\Admin\Controller',
+        'recordHoursStep3',
+    ],
+    'POST /organizations/{username}/admin/hours/add/confirm' => [
+        'App\Admin\Controller',
+        'recordHoursStep4',
+    ],
+    'GET /organizations/{username}/admin/hours' => [
+        'App\Admin\Controller',
+        'hoursBrowse',
+    ],
+    'GET /organizations/{username}/admin/hours/{id}' => [
+        'App\Admin\Controller',
+        'hoursView',
+    ],
+    'POST /organizations/{username}/admin/hours/{id}' => [
+        'App\Admin\Controller',
+        'modelEdit',
+    ],
+    'DELETE /organizations/{username}/admin/hours/{id}' => [
+        'App\Admin\Controller',
+        'modelDelete',
+    ],
 
-  // places
-  'get /organizations/:username/admin/places' => [
-    'volunteers_admin\Controller',
-    'placesBrowse',
-  ],
-  'get /organizations/:username/admin/places/add' => [
-    'volunteers_admin\Controller',
-    'placesAddForm',
-  ],
-  'post /organizations/:username/admin/places' => [
-    'volunteers_admin\Controller',
-    'placesAdd',
-  ],
-  'get /organizations/:username/admin/places/:id' => [
-    'volunteers_admin\Controller',
-    'placesView',
-  ],
-  'get /organizations/:username/admin/places/:id/edit' => [
-    'volunteers_admin\Controller',
-    'placesEditForm',
-  ],
-  'post /organizations/:username/admin/places/:id' => [
-    'volunteers_admin\Controller',
-    'modelEdit',
-  ],
-  'delete /organizations/:username/admin/places/:id' => [
-    'volunteers_admin\Controller',
-    'modelDelete',
-  ],
+    // places
+    'GET /organizations/{username}/admin/places' => [
+        'App\Admin\Controller',
+        'placesBrowse',
+    ],
+    'GET /organizations/{username}/admin/places/add' => [
+        'App\Admin\Controller',
+        'placesAddForm',
+    ],
+    'POST /organizations/{username}/admin/places' => [
+        'App\Admin\Controller',
+        'placesAdd',
+    ],
+    'GET /organizations/{username}/admin/places/{id}' => [
+        'App\Admin\Controller',
+        'placesView',
+    ],
+    'GET /organizations/{username}/admin/places/{id}/edit' => [
+        'App\Admin\Controller',
+        'placesEditForm',
+    ],
+    'POST /organizations/{username}/admin/places/{id}' => [
+        'App\Admin\Controller',
+        'modelEdit',
+    ],
+    'DELETE /organizations/{username}/admin/places/{id}' => [
+        'App\Admin\Controller',
+        'modelDelete',
+    ],
 
-  // reports
-  'get /organizations/:username/admin/reports' => [
-    'volunteers_admin\Controller',
-    'reports',
-  ],
+    // reports
+    'GET /organizations/{username}/admin/reports' => [
+        'App\Admin\Controller',
+        'reports',
+    ],
+    'POST /reports' => [
+        'App\Reports\Controller',
+        'makeReport',
+    ],
 ];
+
+return ['routes' => $routes];

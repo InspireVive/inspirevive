@@ -1,0 +1,167 @@
+html,body {
+    color: #333;
+    padding: 0;
+    margin: 0;
+}
+
+#title {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1.5em;
+    color: #3a3a3a;
+    text-align: center;
+    margin: 0 0 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.key-value {
+    text-align: left;
+    margin: 15px 0 0;
+}
+
+.key-value .row {
+    padding: 8px 0 0 150px;
+    clear: both;
+    width: 100%;
+}
+
+.key-value .row .key {
+    float: left;
+    width: 135px;
+    margin-left: -150px;
+    color: #777;
+    text-align: left;
+}
+
+.key-value .row .key:after {
+    content: ":";
+}
+
+.key-value .row .value {
+    float: left;
+}
+
+.section {
+    margin: 0 45px 45px;
+    page-break-inside: avoid;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+h3 {
+    margin: 30px 0 0;
+    padding: 0;
+}
+
+.section table {
+    width: 100%;
+    margin: 15px 0 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.section table thead th {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 5px;
+    color: #777;
+    font-size: 14px;
+}
+
+.section table td {
+    padding: 7px 5px;
+    font-size: 14px;
+}
+
+.section table tbody tr, .section table tbody tr td {
+    background: #fff;
+    page-break-inside: avoid;
+}
+
+.section:not(.no-stripe) table tbody tr:nth-child(2n+1):not(.no-stripe), .section:not(.no-stripe) table tbody tr:nth-child(2n+1):not(.no-stripe) td {
+    background: #eee;
+}
+
+.section table tr.border-top td {
+    border-top: 1px solid #ccc;
+}
+
+.section table tfoot td {
+    border-top: 1px solid #999;
+    padding: 15px 5px 0;
+    font-weight: bold;
+}
+
+.currency-amount {
+    line-height: 1;
+}
+
+.negative-sign {
+    margin-right: 2px;
+}
+
+.currency-symbol {
+    font-size: 0.95em;
+    margin-right: 2px;
+}
+
+.currency-decimal {
+    display: inline-block;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+
+.currency-fraction {
+    font-size: 0.8em;
+    vertical-align: text-top;
+    font-weight: normal;
+    margin-left: 0.2em;
+}
+
+.currency-fraction.zero {
+    display: none;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.clearfix {
+    display: inline-block;
+}
+html[xmlns] .clearfix {
+    display: block;
+}
+* html .clearfix {
+    height: 1%;
+}
+
+/* Report-specific styles */
+
+.section.statement-summary table {
+    width: 65%;
+}
+.section.statement-summary tr td:nth-child(2) {
+    text-align: right;
+}
+
+.section.statement-detailed-summary table {
+    width: 65%;
+}
+.section.statement-detailed-summary tr td:nth-child(3),
+.section.statement-detailed-summary tr td:nth-child(4),
+.section.statement-detailed-summary tr th:nth-child(3),
+.section.statement-detailed-summary tr th:nth-child(4) {
+    text-align: right;
+}

@@ -6,7 +6,7 @@
 		<div id="left-navbar" class="drawers scrollable visible-xs">
 			<div class="left-drawer">
 				<div class="person visible-xs">
-					{if $app.user->isLoggedIn()}
+					{if $app.user->isSignedIn()}
 						<div class="name">
 							<img src="{$app.user->profilePicture(30)}" width="30" height="30" class="img-circle" />
 							{$app.user->name(true)}
@@ -61,7 +61,7 @@
 
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
-							{if $app.user->isLoggedIn()}
+							{if $app.user->isSignedIn()}
 								<li class="{if isset($profileTab)}active{/if}">
 									<a href="/profile" title="{$app.user->username}">
 										<img src="{$app.user->profilePicture(30)}" width="30" height="30" class="img-circle" />
