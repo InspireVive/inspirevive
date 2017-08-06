@@ -6,6 +6,7 @@
 {/foreach}
 
 <form method="post" action="{$org->manageUrl()}/places{if isset($place.id)}/{$place.id}{/if}" role="form" class="form-horizontal">
+    {$app.csrf->render($req) nofilter}
 	<div class="form-group">
 		<div class="col-md-8 col-md-offset-4">
 			{if isset($place.id)}

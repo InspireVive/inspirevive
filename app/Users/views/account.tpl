@@ -27,6 +27,7 @@
 		<div class="tab-content">
 			<div class="tab-pane fade {if $section=='profile'||!$section}in active{/if}" id="profile">
 				<form action="/account" method="post" class="form-horizontal" role="form">
+			        {$app.csrf->render($req) nofilter}
 					<input type="hidden" name="profile" value="settings" />
 					<h3>Edit Your Profile</h3>
 					<br/>
@@ -48,6 +49,7 @@
 
 			<div class="tab-pane fade {if $section=='settings'}in active{/if}" id="account">
 				<form action="/account" method="post" class="form-horizontal" rol="form">
+			        {$app.csrf->render($req) nofilter}
 					<input type="hidden" name="section" value="settings" />
 					<h3>Edit Your Account</h3>
 					<br/>

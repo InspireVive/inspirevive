@@ -10,6 +10,7 @@
 </div>
 
 <form action="{$org->manageUrl()}/hours/add/confirm?place={$place->id()}" method="post" class="form-horizontal">
+    {$app.csrf->render($req) nofilter}
 	<input type="hidden" name="json" value='{$json}' />
 
 	<div class="form-group">

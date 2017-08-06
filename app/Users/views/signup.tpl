@@ -18,6 +18,7 @@
 	{/foreach}
 
 	<form action="/signup" method="post" role="form">
+		{$app.csrf->render($req) nofilter}
 		<input type="hidden" name="redir" value="{$redir|htmlspecialchars}" />
 		<div class="form-group">
 			<label class="placeholder">Username (<em>letters and numbers</em> only)</label>

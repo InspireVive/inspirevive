@@ -18,6 +18,7 @@
 	{/if}
 
 	<form action="/login" method="post">
+		{$app.csrf->render($req) nofilter}
 		<input type="hidden" name="redir" value="{$redir|htmlspecialchars}" />
 		<div class="form-group">
 			<label class="placeholder">Email address</label>

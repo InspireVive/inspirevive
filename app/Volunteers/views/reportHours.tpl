@@ -55,6 +55,7 @@
 	</p>
 
 	<form action="{$org->url()}/places/add" method="post" role="form" class="form-horizontal">
+		{$app.csrf->render($req) nofilter}
 		<div class="form-group">
 			<label class="control-label col-md-4">
 				Location Name

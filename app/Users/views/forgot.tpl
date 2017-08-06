@@ -28,6 +28,7 @@
 			<p>Username: <strong>{$user->username}</strong></p>			
 
 			<form action="/forgot/{$id}" method="post">
+			    {$app.csrf->render($req) nofilter}
 				<div class="form-group">
 					<label class="control-label placeholder">New Password</label>
 					<div class="controls">
@@ -68,6 +69,7 @@
 			{/foreach}
 			
 			<form action="/forgot" method="post">
+			    {$app.csrf->render($req) nofilter}
 				<label class="placeholder">Email Address</label>
 				<div class="form-group">
 					<input type="email" name="email" value="{$email}" class="form-control input-lg" placeholder="Your Email Address" autofocus />

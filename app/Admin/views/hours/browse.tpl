@@ -93,6 +93,7 @@
 					<label class="label label-success">Approved</label>
 				{else}
 					<form method="post" action="{$org->manageUrl()}/hours/{$hour->id()}?redir=browse">
+			            {$app.csrf->render($req) nofilter}
 						<input type="hidden" name="approved" value="1" />
 						<button type="submit" class="btn btn-success">
 							Approve

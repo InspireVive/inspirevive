@@ -22,6 +22,7 @@
 	</p>
 {else}
 	<form action="{$org->manageUrl()}/hours/add?place={$place->id()}" method="post" class="form-horizontal">
+        {$app.csrf->render($req) nofilter}
 		<div class="form-group">
 			<label class="control-label col-md-2">
 				Place

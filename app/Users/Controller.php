@@ -52,7 +52,8 @@ class Controller
             'title' => 'Login',
             'loginUsername' => $req->request('username'),
             'loginForm' => true,
-            'error' => $error
+            'error' => $error,
+            'req' => $req
         ]);
     }
 
@@ -104,7 +105,8 @@ class Controller
             'id' => $req->params('id'),
             'email' => $req->request('email'),
             'user' => $user,
-            'error' => $error
+            'error' => $error,
+            'req' => $req
         ]);
     }
 
@@ -172,6 +174,7 @@ class Controller
             'signupUsername' => ($req->request('username')) ? $req->request('username') : $req->query('username'),
             'signupEmail' => ($req->request('email')) ? $req->request('email') : $req->query('email'),
             'signupForm' => true,
+            'req' => $req
         ]);
     }
 
@@ -212,6 +215,7 @@ class Controller
         return new View('verifyEmail', [
             'title' => 'Verify Email',
             'success' => $user,
+            'req' => $req
         ]);
     }
 
@@ -231,7 +235,8 @@ class Controller
         $this->app['auth']->sendVerificationEmail($user);
 
         return new View('verifyEmailSent', [
-            'title' => 'Email Verification Sent', ]);
+            'title' => 'Email Verification Sent',
+        ]);
     }
 
     public function editAccountSettings($req, $res)
@@ -276,6 +281,7 @@ class Controller
             'user' => $user->toArray(),
             'userObj' => $user,
             'isMine' => $user->id() == $this->app['user']->id(),
+            'req' => $req
         ]);
     }
 
@@ -306,6 +312,7 @@ class Controller
             'recentVolunteerHours' => $recentVolunteerHours,
             'volunteersAt' => $volunteersAt,
             'completedApplication' => $currentUser->hasCompletedVolunteerApplication(),
+            'req' => $req
         ]);
     }
 
@@ -326,6 +333,7 @@ class Controller
             'success' => $req->params('success'),
             'title' => 'Account Settings',
             'section' => $req->request('section'),
+            'req' => $req
         ]);
     }
 }

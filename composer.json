@@ -26,6 +26,7 @@
 		"infuse/cron": "~2.0",
 		"infuse/email": "~1.2",
 		"infuse/migrations": "~1.2",
+		"infuse/csrf": "~1.0",
 
 		"pulsar/pulsar": "~0.5",
 		"smarty/smarty": "~3.1",

@@ -90,6 +90,7 @@
 					<td>
 						{if !$place->verify_approved}
 							<form method="post" action="{$org->manageUrl()}/places/{$place->id()}?redir=browse">
+			                    {$app.csrf->render($req) nofilter}
 								<input type="hidden" name="verify_approved" value="1" />
 								<button type="submit" class="btn btn-success">
 									Approve

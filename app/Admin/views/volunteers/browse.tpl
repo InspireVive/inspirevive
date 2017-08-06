@@ -142,6 +142,7 @@
 						{/if}
 					{else}
 						<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer->id()}?redir=browse">
+			                {$app.csrf->render($req) nofilter}
 							<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
 							<button type="submit" class="btn btn-success">
 								Approve

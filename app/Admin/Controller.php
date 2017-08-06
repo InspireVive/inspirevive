@@ -167,7 +167,9 @@ class Controller
             'title' => 'Add Volunteers',
             'volunteersPage' => true,
             'emails' => $req->request('emails'),
-            'numAdded' => $req->params('numAdded'), ]);
+            'numAdded' => $req->params('numAdded'),
+            'req' => $req
+        ]);
     }
 
     public function addVolunteer($req, $res)
@@ -302,7 +304,9 @@ class Controller
             'volunteersPage' => true,
             'error' => $req->params('error'),
             'success' => $req->params('success'),
-            'numAdded' => $req->params('numAdded'), ]);
+            'numAdded' => $req->params('numAdded'),
+            'req' => $req
+        ]);
     }
 
     public function volunteersView($req, $res)
@@ -333,6 +337,7 @@ class Controller
             'title' => $user->name().' :: Volunteers',
             'volunteersPage' => true,
             'hours' => $hours,
+            'req' => $req
         ]);
     }
 
@@ -394,6 +399,7 @@ class Controller
             'title' => 'Add Volunteer Hours',
             'hoursPage' => true,
             'places' => $places,
+            'req' => $req
         ]);
     }
 
@@ -460,6 +466,7 @@ class Controller
             'place' => $place,
             'tags' => array_value($input, 'tags'),
             'availableTags' => $availableTags,
+            'req' => $req
         ]);
     }
 
@@ -546,6 +553,7 @@ class Controller
             'totals' => $totals,
             'place' => $place,
             'tags' => $tags,
+            'req' => $req
         ]);
     }
 
@@ -635,6 +643,7 @@ class Controller
             'place' => $hour->relation('place'),
             'title' => 'Hours Details :: Volunteers',
             'hoursPage' => true,
+            'req' => $req
         ]);
     }
 
@@ -681,7 +690,8 @@ class Controller
             'page' => $page,
             'count' => $count,
             'showApproved' => $showApproved,
-            'success' => $req->query('success'), ]);
+            'success' => $req->query('success'),
+        ]);
     }
 
     public function placesAddForm($req, $res)
@@ -702,6 +712,7 @@ class Controller
             'title' => 'Add Volunteer Places',
             'placesPage' => true,
             'place' => $place,
+            'req' => $req
         ]);
     }
 
@@ -741,7 +752,9 @@ class Controller
             'org' => $org,
             'title' => $place->name.' :: Places',
             'placesPage' => true,
-            'place' => $place->toArray(), ]);
+            'place' => $place->toArray(),
+            'req' => $req
+        ]);
     }
 
     public function placesEditForm($req, $res)
@@ -758,7 +771,9 @@ class Controller
             'org' => $org,
             'title' => $place->name.' :: Places',
             'placesPage' => true,
-            'place' => $place->toArray(), ]);
+            'place' => $place->toArray(),
+            'req' => $req
+        ]);
     }
 
 /*

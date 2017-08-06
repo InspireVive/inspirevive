@@ -11,6 +11,7 @@
 		<div class="col-md-4">
 		{if $volunteer.uid != $app.user->id()}
 			<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+			    {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger pull-right">
 					Remove Volunteer
@@ -134,6 +135,7 @@
 				<span class="label label-danger">Awaiting Approval</span>
 			</p>
 			<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+			    {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
 				<button type="submit" class="btn btn-success">
 					Approve
@@ -154,6 +156,7 @@
 					<span class="label label-success">Volunteer Coordinator</span>
 					{if $volunteer.uid != $app.user->id()}
 						<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+			                {$app.csrf->render($req) nofilter}
 							<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
 							<button type="submit" class="btn btn-danger">
 								Demote to Volunteer
@@ -163,6 +166,7 @@
 				{else}
 					<span class="label label-primary">Volunteer</span>
 					<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+			            {$app.csrf->render($req) nofilter}
 						<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_ADMIN}" />
 						<button type="submit" class="btn btn-success">
 							Promote to Volunteer Coordinator
@@ -188,6 +192,7 @@
 			{/if}
 			</p>
 			<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+			    {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="active" value="{if $volunteer.active}0{else}1{/if}" />
 				<button type="submit" class="btn {if $volunteer.active}btn-danger{else}btn-success{/if}">
 					{if $volunteer.active}Make Inactive{else}Make Active{/if}
@@ -265,6 +270,7 @@
 						<label class="label label-success">Approved</label>
 					{else}
 						<form method="post" action="{$org->manageUrl()}/hours/{$hour->id()}?redir=volunteers,{$volunteer.uid}">
+			                {$app.csrf->render($req) nofilter}
 							<input type="hidden" name="approved" value="1" />
 							<button type="submit" class="btn btn-success">
 								Approve

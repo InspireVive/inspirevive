@@ -30,7 +30,7 @@
 	{/if}
 
 	<form method="post" action="/volunteers/application" role="form" class="form-horizontal" id="charity-application">
-
+		{$app.csrf->render($req) nofilter}
 		<div class="form-group">
 			<div class="col-md-4">
 				<label>First Name</label>

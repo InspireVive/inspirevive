@@ -19,6 +19,7 @@
 		</p>
 
 		<form role="form" method="post" action="{$org->manageUrl()}/volunteers">
+            {$app.csrf->render($req) nofilter}
 			<div class="form-group">
 				<label class="control-label">Email addresses and/or usernames (max. 1 per line)</label>
 				<textarea class="form-control" name="emails" placeholder="One email or username per line..." rows="8">{$emails}</textarea>

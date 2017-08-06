@@ -26,7 +26,7 @@
 {/foreach}
 
 <form action="{$org->url()}/hours/report?place={$place->id()}" method="post" class="form-horizontal">
-
+	{$app.csrf->render($req) nofilter}
 	<div class="form-group">
 		<label class="control-label col-md-2">
 			Volunteer

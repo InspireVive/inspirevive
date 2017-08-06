@@ -151,6 +151,7 @@
 			</p>
 
 			<form method="post" action="{$orgObj->url()}/volunteers" class="form-horizontal">
+			    {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="application_shared" value="1" />
 				<div class="form-group">
 					<div class="col-md-4 col-md-offset-{if $app.user->isSignedIn()}4{else}2{/if}">

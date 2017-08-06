@@ -13,6 +13,7 @@
 				Edit Place
 			</a>
 			<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
+			    {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger">
 					Delete Place
@@ -110,12 +111,14 @@
 			{else}
 				<div class="btn-group-form btn-group">
 					<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
+			            {$app.csrf->render($req) nofilter}
 						<input type="hidden" name="verify_approved" value="1" />
 						<button type="submit" class="btn btn-success">
 							Approve
 						</button>
 					</form>
 					<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
+			            {$app.csrf->render($req) nofilter}
 						<input type="hidden" name="method" value="DELETE" />
 						<button type="submit" class="btn btn-danger">
 							Deny

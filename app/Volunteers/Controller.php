@@ -77,6 +77,7 @@ class Controller
             'months' => $this->months,
             'years' => range(date('Y'), 1900),
             'accept_error' => $req->params('accept_error'),
+            'req' => $req
        ]);
     }
 
@@ -344,7 +345,9 @@ class Controller
         return new View('reportHours', [
             'org' => $org,
             'title' => 'Report Volunteer Hours',
-            'places' => $places, ]);
+            'places' => $places,
+            'req' => $req
+        ]);
     }
 
     public function addVolunteerPlaceForm($req, $res)
@@ -367,7 +370,9 @@ class Controller
         return new View('addPlace', [
             'org' => $org,
             'title' => 'Add Volunteer Place',
-            'place' => $req->request(), ]);
+            'place' => $req->request(),
+            'req' => $req
+        ]);
     }
 
     public function addVolunteerPlace($req, $res)
@@ -458,7 +463,9 @@ class Controller
             'tags' => $req->request('tags'),
             'timestamp' => $dayTs,
             'hours' => $req->request('hours'),
-            'availableTags' => $availableTags, ]);
+            'availableTags' => $availableTags,
+            'req' => $req
+        ]);
     }
 
     public function reportHoursStep3($req, $res)
@@ -541,7 +548,8 @@ class Controller
 
         return new View('reportHoursThanks', [
             'org' => $org,
-            'title' => 'Volunteer Hours Reported', ]);
+            'title' => 'Volunteer Hours Reported',
+        ]);
     }
 
     public function approveHours($req, $res)
@@ -559,7 +567,8 @@ class Controller
         if (!$hour) {
             return new View('hoursNotFound', [
                 'org' => $org,
-                'title' => 'Hours Not Found', ]);
+                'title' => 'Hours Not Found',
+            ]);
         }
 
         $hour->grantAllPermissions();
@@ -577,7 +586,8 @@ class Controller
             'hour' => $h,
             'user' => $user,
             'place' => $place,
-            'approved' => true, ]);
+            'approved' => true,
+        ]);
     }
 
     public function rejectHours($req, $res)
@@ -595,7 +605,8 @@ class Controller
         if (!$hour) {
             return new View('hoursNotFound', [
                 'org' => $org,
-                'title' => 'Hours Not Found', ]);
+                'title' => 'Hours Not Found',
+            ]);
         }
 
         $h = $hour->toArray();
@@ -612,7 +623,8 @@ class Controller
             'hour' => $h,
             'user' => $user,
             'place' => $place,
-            'approved' => false, ]);
+            'approved' => false,
+        ]);
     }
 
 /*

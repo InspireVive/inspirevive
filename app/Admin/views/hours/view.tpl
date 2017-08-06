@@ -10,6 +10,7 @@
 		</div>
 		<div class="col-md-4">
 			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}">
+			    {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger pull-right">
 					Delete Hour Entry
@@ -123,12 +124,14 @@
 	<div class="col-md-6">
 		<div class="btn-group-form btn-group">
 			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}" class="inline">
+			    {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="approved" value="1" />
 				<button type="submit" class="btn btn-success">
 					Approve
 				</button>
 			</form>
 			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}" class="inline">
+			    {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger pull-right">
 					Deny

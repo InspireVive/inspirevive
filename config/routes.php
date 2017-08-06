@@ -317,6 +317,7 @@ $routes = [
     'POST /reports' => [
         'App\Reports\Controller',
         'makeReport',
+        ['no_csrf' => true]
     ],
 ];
 

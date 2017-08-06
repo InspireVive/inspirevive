@@ -38,6 +38,7 @@
 {/foreach}
 
 <form class="form-horizontal" method="post" action="{$org->manageUrl()}/volunteers" enctype="multipart/form-data">
+    {$app.csrf->render($req) nofilter}
 	<div class="form-group">
 		<label class="control-label col-md-2">CSV File to Import</label>
 		<div class="col-md-3 form-control-static">

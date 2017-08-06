@@ -45,6 +45,7 @@
 			<div class="pull-right">
 				{if !$appShared}
 					<form method="post" action="{$org->url()}/volunteers?redir=profile">
+			            {$app.csrf->render($req) nofilter}
 						<input type="hidden" name="application_shared" value="1" />
 						<button type="submit" class="btn btn-inverse">
 							Grant Access
@@ -55,6 +56,7 @@
 		</h3>
 		{if $appShared}
 			<form method="post" action="{$org->url()}/volunteers?redir=profile">
+                {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="application_shared" value="0" />
 				<p class="description">
 					{if $org->getRoleOfUser($app.user) == $smarty.const.ORGANIZATION_ROLE_ADMIN}
@@ -79,6 +81,7 @@
 			<p class="description">
 				Before you are able to join as a volunteer you must grant {$org->name} access to your volunteer application.<br/>
 				<form method="post" action="{$org->url()}/volunteers?redir=profile">
+                    {$app.csrf->render($req) nofilter}
 					<input type="hidden" name="method" value="DELETE" />
 					<p class="description">
 						<button class="btn btn-link" type="submit">

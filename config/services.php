@@ -9,6 +9,8 @@
  */
 
 use Infuse\Auth\Services\Auth;
+use Infuse\Csrf\Csrf;
+use Infuse\Csrf\CsrfTokens;
 use Infuse\Email\MailerService;
 use Infuse\Services\Locale;
 use Infuse\Services\QueueDriver;
@@ -33,6 +35,8 @@ return [
 
         // external modules
         'auth' => Auth::class,
+        'csrf' => Csrf::class,
+        'csrf_tokens' => CsrfTokens::class,
         'mailer' => MailerService::class,
     ],
 ];
