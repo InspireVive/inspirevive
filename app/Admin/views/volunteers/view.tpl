@@ -8,16 +8,22 @@
 				{$name}
 			</h3>
 		</div>
-		<div class="col-md-4">
-		{if $volunteer.uid != $app.user->id()}
-			<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
-			    {$app.csrf->render($req) nofilter}
-				<input type="hidden" name="method" value="DELETE" />
-				<button type="submit" class="btn btn-danger pull-right">
-					Remove Volunteer
-				</button>
-			</form>
-		{/if}
+		<div class="col-md-4 text-right">
+			<div class="btn-toolbar">
+				<a href="{$org->manageUrl()}/hours/add?user={$volunteer.uid}" class="btn btn-link btn-sm">
+					<span class="glyphicon glyphicon-time"></span>
+					Record Hours
+				</a>
+				{if $volunteer.uid != $app.user->id()}
+					<form method="post" class="inline" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+						{$app.csrf->render($req) nofilter}
+						<input type="hidden" name="method" value="DELETE" />
+						<button type="submit" class="btn btn-danger btn-sm">
+							Remove Volunteer
+						</button>
+					</form>
+				{/if}
+			</div>
 		</div>
 	</div>
 </div>

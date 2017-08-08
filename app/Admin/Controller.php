@@ -129,7 +129,8 @@ class Controller
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
             'usernameNotFound' => $req->params('usernameNotFound'),
-            'username' => $req->query('username')
+            'username' => $req->query('username'),
+            'req' => $req
         ]);
     }
 
@@ -379,6 +380,7 @@ class Controller
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
             'numVolunteers' => $req->params('numVolunteers'),
+            'req' => $req
         ]);
     }
 
@@ -390,6 +392,13 @@ class Controller
             return;
         }
 
+        // get the volunteer
+        $uid = $req->query('user');
+        $volunteer = Volunteer::find([$uid, $org->id()]);
+        if (!$volunteer) {
+            return $res->setCode(404);
+        }
+
         $places = VolunteerPlace::where('organization', $org->id())
             ->sort('name ASC')
             ->all();
@@ -399,7 +408,8 @@ class Controller
             'title' => 'Add Volunteer Hours',
             'hoursPage' => true,
             'places' => $places,
-            'req' => $req
+            'req' => $req,
+            'volunteer' => $volunteer
         ]);
     }
 
@@ -411,14 +421,17 @@ class Controller
             return;
         }
 
-        $place = $req->query('place');
-        if ($place) {
-            $place = new VolunteerPlace($place);
-            if (!$place->exists()) {
-                $place = false;
-            }
+        // get the volunteer
+        $uid = $req->query('user');
+        $volunteer = Volunteer::find([$uid, $org->id()]);
+        if (!$volunteer) {
+            return $res->setCode(404);
         }
 
+        $volunteers = [$volunteer];
+
+        // get the place
+        $place = VolunteerPlace::find($req->query('place'));
         if (!$place) {
             return $res->redirect($org->manageUrl().'/hours/add');
         }
@@ -442,10 +455,12 @@ class Controller
             }
         }
 
-        $volunteers = Volunteer::where('organization', $org->id())
-            ->where('role', Volunteer::ROLE_VOLUNTEER, '>=')
-            ->sort('uid ASC')
-            ->all();
+        if (!isset($input['hours'])) {
+            $input['hours'] = [];
+            foreach ($volunteers as $volunteer) {
+                $input['hours'][$volunteer->uid] = [];
+            }
+        }
 
         $db = $this->getApp()['database']->getDefault();
         $availableTags = (array) $db->select('tag')
@@ -478,12 +493,9 @@ class Controller
             return;
         }
 
-        $place = $req->query('place');
-        if ($place) {
-            $place = new VolunteerPlace($place);
-        }
-
-        if (!$place || !$place->exists()) {
+        // get the place
+        $place = VolunteerPlace::find($req->query('place'));
+        if (!$place) {
             return $res->redirect($org->manageUrl().'/hours/add');
         }
 
@@ -691,6 +703,7 @@ class Controller
             'count' => $count,
             'showApproved' => $showApproved,
             'success' => $req->query('success'),
+            'req' => $req
         ]);
     }
 

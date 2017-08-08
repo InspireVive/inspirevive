@@ -27,15 +27,6 @@
 			</li>
 		</ul>
 	</div>
-	<div class="col-md-5">
-
-	</div>
-	<div class="col-md-3 new-btn">
-		<a href="{$org->manageUrl()}/hours/add" class="btn btn-success">
-			<span class="glyphicon glyphicon-time"></span>
-			Record Hours
-		</a>
-	</div>
 </div>
 
 {if count($hours) == 0}

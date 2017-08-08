@@ -21,7 +21,7 @@
 		No volunteers found. <a href="{$org->manageUrl()}/volunteers/add">Add one</a>
 	</p>
 {else}
-	<form action="{$org->manageUrl()}/hours/add?place={$place->id()}" method="post" class="form-horizontal">
+	<form action="{$org->manageUrl()}/hours/add?place={$place->id()}&user={$req->query('user')}" method="post" class="form-horizontal">
         {$app.csrf->render($req) nofilter}
 		<div class="form-group">
 			<label class="control-label col-md-2">
@@ -71,18 +71,18 @@
 					</tr>
 				</thead>
 				<tbody>
-				{if count($volunteers) > 0}
 					{foreach from=$volunteers item=volunteer}
 						{assign var=user value=$volunteer->relation('uid')}
+                        {assign var=volunteerApp value=$user->volunteerApplication()}
 						<tr data-uid="{$user->id()}">
 							<td>
-								{$user->name(true)}<br/>
-								<em>{$user->volunteerApplication()->fullName()}</em>
-								<input type="hidden" name="username[{$user->id()}]" value="{$user->name(true)}" />
+								{$user->name(true)}
+								{if $volunteerApp}<div><em>{$volunteerApp->fullName()}</em></div>{/if}
+								<input type="hidden" name="username[{$volunteer->uid}]" value="{$user->name(true)}" />
 							</td>
 						{foreach from=$days key=k item=day}
 							<td class="day">
-								<input tpye="text" name="hours[{$user->id()}][]" class="form-control" value="{if isset($input.hours[$user->id()][$k])}{$input.hours[$user->id()][$k]}{/if}" />
+								<input tpye="text" name="hours[{$volunteer->uid}][]" class="form-control" value="{if isset($input.hours[$volunteer->uid][$k])}{$input.hours[$volunteer->uid][$k]}{/if}" />
 							</td>
 						{/foreach}
 							<td class="add-day-holder"></td>
@@ -91,7 +91,6 @@
 							</td>
 						</tr>
 					{/foreach}
-				{/if}
 				</tbody>
 			</table>
 		</div>

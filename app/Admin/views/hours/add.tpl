@@ -4,12 +4,13 @@
 <h4>Add Volunteer Hours <small>step 1 of 3</small></h4>
 
 <p class="lead">
-	Which place did the volunteer hours happen?
+	Which place did the volunteer hours happen for {$volunteer->relation('uid')->name(true)}?
 </p>
 <br/>
 
 <div class="well clearfix">
 	<form action="{$org->manageUrl()}/hours/add/2" method="get" role="form">
+		<input type="hidden" name="user" value="{$volunteer.uid}" />
 		<div class="form-group">
 			<h4>Select Place</h4>
 			{if count($places) == 0}

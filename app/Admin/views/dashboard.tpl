@@ -8,10 +8,6 @@
 		<span class="glyphicon glyphicon-user"></span>
 		Add Volunteers
 	</a>
-	<a href="{$org->manageUrl()}/hours/add" class="btn btn-link">
-		<span class="glyphicon glyphicon-time"></span>
-		Record Hours
-	</a>
 	<a href="{$org->manageUrl()}/places/add" class="btn btn-link">
 		<span class="glyphicon glyphicon-map-marker"></span>
 		New Volunteer Place

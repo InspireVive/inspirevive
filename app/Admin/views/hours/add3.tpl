@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-<form action="{$org->manageUrl()}/hours/add/confirm?place={$place->id()}" method="post" class="form-horizontal">
+<form action="{$org->manageUrl()}/hours/add/confirm?place={$place->id()}&user={$req->query('user')}" method="post" class="form-horizontal">
     {$app.csrf->render($req) nofilter}
 	<input type="hidden" name="json" value='{$json}' />
 
@@ -22,22 +22,15 @@
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label class="control-label col-md-2">Tags</label>
-		<div class="col-md-4 form-control-static">
-			{$tags}
+	{if $tags}
+		<div class="form-group">
+			<label class="control-label col-md-2">Tags</label>
+			<div class="col-md-4 form-control-static">
+				{$tags}
+			</div>
 		</div>
-	</div>
-
-	<div class="form-group">
-		<label class="control-label col-md-2">
-			<strong>Total Entries</strong>
-		</label>
-		<div class="col-md-4 form-control-static">
-			{count($input.hours)}
-		</div>
-	</div>
-
+    {/if}
+	
 	<div class="record-hours-holder">
 		<table class="table table-striped record-hours">
 			<thead>
