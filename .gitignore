@@ -1,5 +1,5 @@
 ### Sensitive Files
-secrets.php
+/config/secrets.php
 /jwt_privkey.pem
 /jwt_pubkey.pem
 
