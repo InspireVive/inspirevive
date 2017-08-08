@@ -62,7 +62,7 @@ class Controller
 
         $application = $req->request();
 
-        if (empty($application['first_name']) && $applicationObj->exists()) {
+        if (empty($application['first_name']) && $applicationObj) {
             $application = $applicationObj->toArray();
             $application['day'] = date('d', $application['birth_date']);
             $application['month'] = date('n', $application['birth_date']) - 1;
@@ -106,7 +106,7 @@ class Controller
 
         $application = $currentUser->volunteerApplication();
 
-        if (!$application->exists()) {
+        if (!$application) {
             $application = new VolunteerApplication();
             if ($application->create($input)) {
                 return $res->redirect('/volunteers/application/thanks');
@@ -199,20 +199,19 @@ class Controller
         // application shared by default unless explicitly specified
         $applicationShared = $req->request('application_shared') === null || $req->request('application_shared');
 
-        $volunteer = new Volunteer([$currentUser->id(), $org->id()]);
+        $volunteer = Volunteer::find([$currentUser->id(), $org->id()]);
 
         $uid = $currentUser->id();
 
         // make sure the application has been shared with the org
-        if ($volunteer->exists()) {
+        if ($volunteer) {
             $role = max($volunteer->role, Volunteer::ROLE_VOLUNTEER);
             $volunteer->grantAllPermissions();
             $volunteer->application_shared = $applicationShared;
             $volunteer->role = $role;
             $volunteer->saveOrFail();
-        }
-        // create a new volunteer
-        else {
+        } else {
+            // create a new volunteer
             $volunteer = new Volunteer();
             $volunteer->create([
                 'uid' => $uid,
@@ -432,16 +431,14 @@ class Controller
             return $res->redirect('/login');
         }
 
-        $place = $req->query('place');
-        if ($place) {
-            if ($place == -1) {
-                return $res->redirect($org->url().'/places/add');
-            }
-
-            $place = new VolunteerPlace($place);
+        // find the place
+        $placeId = $req->query('place');
+        if ($placeId == -1) {
+            return $res->redirect($org->url().'/places/add');
         }
 
-        if (!$place || !$place->exists()) {
+        $place = VolunteerPlace::find($placeId);
+        if (!$place) {
             return $res->redirect($org->url().'/hours/add');
         }
 
@@ -485,13 +482,10 @@ class Controller
             return $res->redirect('/login');
         }
 
-        $place = $req->query('place');
-        if ($place) {
-            $place = new VolunteerPlace($place);
-        }
-
-        if (!$place || !$place->exists()) {
-            return $res->redirect($org->manageUrl().'/hours/add');
+        // find the place
+        $place = VolunteerPlace::find($req->query('place'));
+        if (!$place) {
+            return $res->redirect($org->url().'/hours/add');
         }
 
         // validate tags

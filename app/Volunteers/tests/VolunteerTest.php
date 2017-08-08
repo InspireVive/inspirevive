@@ -270,15 +270,15 @@ class VolunteerTest extends PHPUnit_Framework_TestCase
 
     private function createVolunteerApp()
     {
-        $uid = Test::$app['user']->id();
-        if ((new VolunteerApplication($uid))->exists()) {
+        $volunteerApplication = Test::$app['user']->volunteerApplication();
+        if (!$volunteerApplication) {
             return;
         }
 
         self::$app = new VolunteerApplication();
         self::$app->grantAllPermissions();
         self::$app->create([
-            'uid' => $uid,
+            'uid' => Test::$app['user']->id(),
             'first_name' => 'Test',
             'middle_name' => 'meh',
             'last_name' => 'User',

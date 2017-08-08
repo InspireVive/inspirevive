@@ -424,7 +424,7 @@ class OrganizationTest extends PHPUnit_Framework_TestCase
         // check that user exists and is temporary
         self::$tempUser = User::where('email', 'temporary+volunteer@example.com')->first();
         self::$delete[] = self::$tempUser;
-        $this->assertTrue(self::$tempUser->exists());
+        $this->assertTrue(self::$tempUser->persisted());
         $this->assertTrue(self::$tempUser->isTemporary());
         $this->assertEquals(self::$org->id(), self::$tempUser->invited_by);
         $this->assertEquals(Volunteer::ROLE_VOLUNTEER, self::$org->getRoleOfUser(self::$tempUser));

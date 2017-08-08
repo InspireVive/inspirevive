@@ -30,7 +30,7 @@
 			</div>
 		</div>
     {/if}
-	
+
 	<div class="record-hours-holder">
 		<table class="table table-striped record-hours">
 			<thead>

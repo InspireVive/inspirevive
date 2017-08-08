@@ -929,13 +929,13 @@ class Controller
             return false;
         }
 
-        $model = new $modelClass($req->params('id'));
-
         if ($section == 'volunteers') {
-            $model = new $modelClass([$req->params('id'), $org->id()]);
+            $model = $modelClass::find([$req->params('id'), $org->id()]);
+        } else {
+            $model = $modelClass::find($req->params('id'));
         }
 
-        if (!$model->exists()) {
+        if (!$model) {
             $res->setCode(404);
 
             return false;
