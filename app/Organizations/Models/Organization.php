@@ -621,7 +621,7 @@ class Organization extends ACLModel
             $message['from_email'] = $app['config']->get('app.email');
         }
         if (!isset($message['from_name'])) {
-            $message['from_name'] = $app['config']->get('app.name');
+            $message['from_name'] = $app['config']->get('app.title');
         }
 
         return $app['mailer']->queueEmail($template, $message);

@@ -14,7 +14,7 @@ use Pulsar\Driver\DatabaseDriver;
 
 return  [
     'app' => [
-        'name' => 'InspireVive',
+        'title' => 'InspireVive',
         'language' => 'en',
     ],
     'assets' => [

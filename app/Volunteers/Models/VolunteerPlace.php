@@ -167,7 +167,7 @@ class VolunteerPlace extends ACLModel
                 'volunteer-place-approval-request',
                 [
                     'from_email' => $model->getApp()['config']->get('app.email'),
-                    'from_name' => $model->getApp()['config']->get('app.name'),
+                    'from_name' => $model->getApp()['config']->get('app.title'),
                     'to' => [
                         [
                             'name' => $o['name'],
