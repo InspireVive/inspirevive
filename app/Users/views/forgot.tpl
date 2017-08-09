@@ -62,11 +62,11 @@
 		{else}
 			<p>Tell us the email address you registered with and we will send a link to change your password.</p>
 
-			{foreach from=$app.errors->messages() item=error}
+			{if $error}
 				<div class="alert alert-danger">
 					{$error}
 				</div>
-			{/foreach}
+			{/if}
 			
 			<form action="/forgot" method="post">
 			    {$app.csrf->render($req) nofilter}

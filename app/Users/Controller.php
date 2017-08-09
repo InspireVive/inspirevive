@@ -16,7 +16,6 @@ use App\Volunteers\Models\VolunteerHour;
 use Infuse\Auth\Exception\AuthException;
 use Infuse\HasApp;
 use Infuse\View;
-use MongoDB\Driver\Exception\AuthenticationException;
 
 class Controller
 {
@@ -118,7 +117,7 @@ class Controller
 
         try {
             $this->app['auth']->forgotStep1($req->request('email'));
-        } catch (AuthenticationException $e) {
+        } catch (AuthException $e) {
             return $this->forgotForm($req, $res, $e->getMessage());
         }
 
@@ -131,7 +130,7 @@ class Controller
     {
         try {
             $this->app['auth']->forgotStep2($req->params('id'), $req->request('password'));
-        } catch (AuthenticationException $e) {
+        } catch (AuthException $e) {
             return $this->forgotForm($req, $res, $e->getMessage());
         }
 
