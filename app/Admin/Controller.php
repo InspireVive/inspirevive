@@ -24,6 +24,8 @@ class Controller
 {
     use HasApp;
 
+    const PER_PAGE = 100;
+
     public static $viewsDir;
 
     static $sectionModels = [
@@ -90,7 +92,7 @@ class Controller
             return $org;
         }
 
-        $limit = 100;
+        $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
         $showInactive = !!$req->query('inactive');
         $showApproved = $req->query('approved');
@@ -102,15 +104,15 @@ class Controller
             'role >= '.Volunteer::ROLE_VOLUNTEER :
             'role = '.Volunteer::ROLE_AWAITING_APPROVAL;
 
-        $volunteers = Volunteer::where('organization', $org->id())
+        $query = Volunteer::where('organization', $org->id())
             ->where($roleSql)
             ->where('active', !$showInactive)
             ->where('uid IS NOT NULL')
-            ->sort('uid ASC')
-            ->start($page * $limit)
-            ->first($limit);
+            ->sort('uid ASC');
 
-        $count = count($volunteers);
+        $volunteers = $query->start($page * $perPage)
+            ->first($perPage);
+        $count = $query->count();
 
         if ($req->query('error') == 'cannot_delete_self') {
             $this->app['errors']->add('As a volunteer coordinator, you cannot remove yourself.');
@@ -124,7 +126,7 @@ class Controller
             'showApproved' => $showApproved,
             'showInactive' => $showInactive,
             'hasLess' => $page > 0,
-            'hasMore' => $count > $limit * ($page + 1),
+            'hasMore' => $count > $perPage * ($page + 1),
             'page' => $page,
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
@@ -354,19 +356,20 @@ class Controller
             return;
         }
 
-        $limit = 100;
+        $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
         $showApproved = $req->query('approved');
         if ($showApproved === null) {
             $showApproved = true;
         }
 
-        $hours = VolunteerHour::where('organization', $org->id())
+        $query = VolunteerHour::where('organization', $org->id())
             ->where('approved', $showApproved)
-            ->sort($showApproved ? 'timestamp DESC' : 'timestamp ASC')
-            ->start($page * $limit)
-            ->first($limit);
-        $count = count($hours);
+            ->sort($showApproved ? 'timestamp DESC' : 'timestamp ASC');
+
+        $hours = $query->start($page * $perPage)
+            ->first($perPage);
+        $count = $query->count();
 
         return new View('hours/browse', [
             'org' => $org,
@@ -375,7 +378,7 @@ class Controller
             'showApproved' => $showApproved,
             'hours' => $hours,
             'hasLess' => $page > 0,
-            'hasMore' => $count > $limit * ($page + 1),
+            'hasMore' => $count > $perPage * ($page + 1),
             'page' => $page,
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
@@ -671,7 +674,7 @@ class Controller
             return;
         }
 
-        $limit = 100;
+        $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
         $showApproved = $req->query('approved');
         if ($showApproved === null) {
@@ -679,8 +682,7 @@ class Controller
         }
 
         $query = VolunteerPlace::where('organization', $org->id())
-            ->sort('name ASC')
-            ->start($page * $limit);
+            ->sort('name ASC');
 
         if ($showApproved) {
             $query->where('(place_type = '.VolunteerPlace::INTERNAL.' OR (place_type = '.VolunteerPlace::EXTERNAL.' AND verify_approved = 1))');
@@ -689,8 +691,9 @@ class Controller
                   ->where('verify_approved', false);
         }
 
-        $places = $query->first($limit);
-        $count = count($places);
+        $places = $query->start($page * $perPage)
+            ->first($perPage);
+        $count = $query->count();
 
         return new View('places/browse', [
             'org' => $org,
@@ -698,7 +701,7 @@ class Controller
             'placesPage' => true,
             'places' => $places,
             'hasLess' => $page > 0,
-            'hasMore' => $count > $limit * ($page + 1),
+            'hasMore' => $count > $perPage * ($page + 1),
             'page' => $page,
             'count' => $count,
             'showApproved' => $showApproved,

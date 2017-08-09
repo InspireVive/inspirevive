@@ -24,6 +24,7 @@ return [
         ],
     ],
     'email' => [
+        'from_email' => 'inspirevive@example.com',
         'driver' => SwiftDriver::class,
         'host' => 'localhost',
         'port' => 1025
