@@ -21,7 +21,7 @@ Do you approve adding this place to the list of volunteer places for {$orgname}?
 
 <table>
   <tr>
-      <td align="center" width="240" bgcolor="#ee5237" style="background: #ee5237; padding-top: 6px; padding-right: 10px; padding-bottom: 6px; padding-left: 10px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; color: #fff; font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif; display: block;"><a href="{$place_admin_url}" style="color: #fff; text-decoration: none;">Approve on InspireVive</a></td>
+      <td align="center" width="100%" style="padding: 0;"><a style="width: 240px; background: #5aba66; padding-top: 6px; padding-right: 10px; padding-bottom: 6px; padding-left: 10px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; color: #fff; font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif; display: block;" href="{$place_admin_url}" style="color: #fff; text-decoration: none;">Approve on InspireVive</a></td>
   </tr>
 </table>
 
