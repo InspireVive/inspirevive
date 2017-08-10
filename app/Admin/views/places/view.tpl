@@ -1,133 +1,112 @@
-{extends file="$viewsDir//parent.tpl"}
+{extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
-<div class="top-nav">
-	<div class="row">
-		<div class="col-md-8">
-			<h3>
-				{$place.name}
-			</h3>
-		</div>
-		<div class="col-md-4 text-right">
+<div class="object-view">
+	<div class="object-title">
+		<div class="actions">
 			<a href="{$org->manageUrl()}/places/{$place.id}/edit" class="btn btn-default">
 				Edit Place
 			</a>
-			<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
-			    {$app.csrf->render($req) nofilter}
+
+			<form method="post" action="{$org->manageUrl()}/places/{$place.id}">
+                {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="method" value="DELETE" />
 				<button type="submit" class="btn btn-danger">
 					Delete Place
 				</button>
 			</form>
 		</div>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-3 text-right">
-		<p class="text-right">
-			<strong>Name</strong>
-		</p>
-	</div>
-	<div class="col-md-6">
-		<p>
-			{$place.name}
-		</p>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-3 text-right">
-		<p class="text-right">
-			<strong>Type</strong>
-		</p>
-	</div>
-	<div class="col-md-6">
-		<p>
-			{if $place.place_type == $smarty.const.VOLUNTEER_PLACE_EXTERNAL}
-				External
-			{else}
-				Internal
-			{/if}
-		</p>
-	</div>
-</div>
-
-{if $place.address}
-	<div class="row">
-		<div class="col-md-3 text-right">
-			<p class="text-right">
-				<strong>Address</strong>
-			</p>
-		</div>
-		<div class="col-md-6">
-			<p>
-				{$place.address}
-			</p>
-		</div>
-	</div>
-{/if}
-
-{if $place.place_type == $smarty.const.VOLUNTEER_PLACE_EXTERNAL}
-	<div class="row">
-		<div class="col-md-3 text-right">
-			<p class="text-right">
-				<strong>Volunteer Coordinator Name</strong>
-			</p>
-		</div>
-		<div class="col-md-6">
-			<p>
-				{$place.verify_name}
-			</p>
-		</div>
+		<h1>{$place.name}</h1>
 	</div>
 
-	<div class="row">
-		<div class="col-md-3 text-right">
-			<p class="text-right">
-				<strong>Volunteer Coordinator Email</strong>
-			</p>
-		</div>
-		<div class="col-md-6">
-			<p>
-				<a href="mailto:{$place.verify_email}">
-					{$place.verify_email}
-				</a>
-			</p>
-		</div>
-	</div>
+	<div class="two-column clearfix">
+		<div class="left-col details-list">
+			<div class="section">
+				<label class="title">Name</label>
+				<div class="value">
+					{$place.name}
+				</div>
+			</div>
 
-	<div class="row">
-		<div class="col-md-3 text-right">
-			<p class="text-right">
-				<strong>Approved?</strong>
-			</p>
+			<div class="section">
+				<label class="title">Type</label>
+				<div class="value">
+					{if $place.place_type == $smarty.const.VOLUNTEER_PLACE_EXTERNAL}
+						External
+					{else}
+						Internal
+					{/if}
+				</div>
+			</div>
+
+            {if $place.address}
+				<div class="section">
+					<label class="title">Address</label>
+					<div class="value">
+						{$place.address}
+					</div>
+				</div>
+            {/if}
+
+            {if $place.place_type == $smarty.const.VOLUNTEER_PLACE_EXTERNAL}
+				<div class="section">
+					<label class="title">Volunteer Coordinator Name</label>
+					<div class="value">
+						{$place.verify_name}
+					</div>
+				</div>
+
+				<div class="section">
+					<label class="title">Volunteer Coordinator Email</label>
+					<div class="value">
+						<a href="mailto:{$place.verify_email}">
+							{$place.verify_email}
+						</a>
+					</div>
+				</div>
+
+				<div class="section">
+					<label class="title">Status</label>
+					<div class="value">
+						{if $place.verify_approved}
+							<label class="label label-success">Approved</label>
+						{else}
+							<label class="label label-warning">Pending Approval</label>
+						{/if}
+					</div>
+				</div>
+            {/if}
 		</div>
-		<div class="col-md-6">
-			{if $place.verify_approved}
-				<p>
-					<label class="label label-success">Approved</label>
-				</p>
-			{else}
-				<div class="btn-group-form btn-group">
-					<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
-			            {$app.csrf->render($req) nofilter}
-						<input type="hidden" name="verify_approved" value="1" />
-						<button type="submit" class="btn btn-success">
-							Approve
-						</button>
-					</form>
-					<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
-			            {$app.csrf->render($req) nofilter}
-						<input type="hidden" name="method" value="DELETE" />
-						<button type="submit" class="btn btn-danger">
-							Deny
-						</button>
-					</form>
+
+		<div class="right-col">
+			<!-- Action Items -->
+			{if $place.place_type == $smarty.const.VOLUNTEER_PLACE_EXTERNAL && !$place.verify_approved}
+				<div class="action-item">
+					<div class="title">
+						Can this volunteer coordinator verify hours?
+					</div>
+					<p>This volunteer place needs to be approved before <em>{$place.verify_name}</em> can approve hours reported by volunteers.</p>
+					<div class="actions">
+						<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
+							{$app.csrf->render($req) nofilter}
+							<input type="hidden" name="method" value="DELETE" />
+							<button type="submit" class="btn btn-danger">
+								Deny
+							</button>
+						</form>
+						<form method="post" action="{$org->manageUrl()}/places/{$place.id}" class="inline">
+							{$app.csrf->render($req) nofilter}
+							<input type="hidden" name="verify_approved" value="1" />
+							<button type="submit" class="btn btn-success">
+								Approve
+							</button>
+						</form>
+					</div>
 				</div>
 			{/if}
 		</div>
 	</div>
-{/if}
+</div>
 
 {/block}

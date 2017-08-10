@@ -1,4 +1,4 @@
-{extends file="$viewsDir//parent.tpl"}
+{extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
 <p class="lead">

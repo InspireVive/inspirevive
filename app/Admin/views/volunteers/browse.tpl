@@ -1,4 +1,4 @@
-{extends file="$viewsDir//parent.tpl"}
+{extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
 {if $numAdded > 0}
@@ -11,34 +11,30 @@
 	<p class="alert alert-danger">{$error}</p>
 {/foreach}
 
-<div class="row browse-params">
-	<div class="col-md-4">
-		<ul class="nav nav-pills">
-			<li class="{if $showApproved}active{/if}">
-				<a href="?approved=1">
-					Approved
-				</a>
-			</li>
-			<li class="{if !$showApproved}active{/if}">
-				<a href="?approved=0">
-					Awaiting Approval
-					{if $volunteersAwaitingApproval > 0}
-						<span class="badge">
-							{$volunteersAwaitingApproval}
-						</span>
-					{/if}
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="col-md-5">
-	</div>
-	<div class="col-md-3 new-btn">
-		<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-success">
-			<span class="glyphicon glyphicon-user"></span>
-			Add Volunteers
-		</a>
-	</div>
+<div class="browse-params">
+	<ul class="nav nav-tabs browse-tabs">
+		<li class="{if $showApproved}active{/if}">
+			<a href="?approved=1">
+				Approved
+			</a>
+		</li>
+		<li class="{if !$showApproved}active{/if}">
+			<a href="?approved=0">
+				Awaiting Approval
+				{if $volunteersAwaitingApproval > 0}
+					<span class="badge">
+						{$volunteersAwaitingApproval}
+					</span>
+				{/if}
+			</a>
+		</li>
+		<li class="action">
+			<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-success">
+				<span class="glyphicon glyphicon-user"></span>
+				Add Volunteers
+			</a>
+		</li>
+	</ul>
 </div>
 
 <div class="row">

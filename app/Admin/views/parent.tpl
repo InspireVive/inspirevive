@@ -55,8 +55,7 @@
 		</nav>
 		
 		<div class="body">
-			<div id="thebar"></div>
-			<ul class="nav nav-tabs">
+			<ul class="nav nav-tabs main-tabs">
 				<li class="{if isset($dashboardPage)&&$dashboardPage}active{/if}">
 					<a href="{$org->manageUrl()}">
 						<span class="glyphicon glyphicon-heart"></span>

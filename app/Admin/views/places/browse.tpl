@@ -1,4 +1,4 @@
-{extends file="$viewsDir//parent.tpl"}
+{extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
 {if $success}
@@ -7,35 +7,30 @@
 	</p>
 {/if}
 
-<div class="row browse-params">
-	<div class="col-md-4">
-		<ul class="nav nav-pills">
-			<li class="{if $showApproved}active{/if}">
-				<a href="?approved=1">
-					Approved
-				</a>
-			</li>
-			<li class="{if !$showApproved}active{/if}">
-				<a href="?approved=0">
-					Awaiting Approval
-					{if $placesAwaitingApproval > 0}
-						<span class="badge">
-							{$placesAwaitingApproval}
-						</span>
-					{/if}
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="col-md-5">
-
-	</div>
-	<div class="col-md-3 new-btn">
-		<a href="{$org->manageUrl()}/places/add" class="btn btn-success">
-			<span class="glyphicon glyphicon-map-marker"></span>
-			New Place
-		</a>
-	</div>
+<div class="browse-params">
+	<ul class="nav nav-tabs browse-tabs">
+		<li class="{if $showApproved}active{/if}">
+			<a href="?approved=1">
+				Approved
+			</a>
+		</li>
+		<li class="{if !$showApproved}active{/if}">
+			<a href="?approved=0">
+				Awaiting Approval
+				{if $placesAwaitingApproval > 0}
+					<span class="badge">
+						{$placesAwaitingApproval}
+					</span>
+				{/if}
+			</a>
+		</li>
+		<li class="action">
+			<a href="{$org->manageUrl()}/places/add" class="btn btn-success">
+				<span class="glyphicon glyphicon-map-marker"></span>
+				New Place
+			</a>
+		</li>
+	</ul>
 </div>
 
 {if count($places) == 0}
@@ -84,7 +79,7 @@
 						{if $place->verify_approved}
 							<span class="label label-success">Approved</span>
 						{else}
-							<span class="label label-danger">Not Approved</span>
+							<span class="label label-warning">Pending Approval</span>
 						{/if}
 					</td>
 					<td>

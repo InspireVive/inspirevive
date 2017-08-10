@@ -1,4 +1,4 @@
-{extends file="$viewsDir//parent.tpl"}
+{extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
 {if $numAdded > 0 && $numVolunteers > 0}
@@ -7,26 +7,24 @@
 	</p>
 {/if}
 
-<div class="row browse-params">
-	<div class="col-md-4">
-		<ul class="nav nav-pills">
-			<li class="{if $showApproved}active{/if}">
-				<a href="?approved=1">
-					Approved
-				</a>
-			</li>
-			<li class="{if !$showApproved}active{/if}">
-				<a href="?approved=0">
-					Awaiting Approval
-					{if $hoursAwaitingApproval > 0}
-						<span class="badge">
-							{$hoursAwaitingApproval}
-						</span>
-					{/if}
-				</a>
-			</li>
-		</ul>
-	</div>
+<div class="browse-params">
+	<ul class="nav nav-tabs browse-tabs">
+		<li class="{if $showApproved}active{/if}">
+			<a href="?approved=1">
+				Approved
+			</a>
+		</li>
+		<li class="{if !$showApproved}active{/if}">
+			<a href="?approved=0">
+				Awaiting Approval
+				{if $hoursAwaitingApproval > 0}
+					<span class="badge">
+						{$hoursAwaitingApproval}
+					</span>
+				{/if}
+			</a>
+		</li>
+	</ul>
 </div>
 
 {if count($hours) == 0}

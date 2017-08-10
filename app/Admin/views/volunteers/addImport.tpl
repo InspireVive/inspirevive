@@ -1,14 +1,10 @@
-{extends file="$viewsDir//parent.tpl"}
+{extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
 <div class="top-nav">
-	<div class="row">
-		<div class="col-sm-3">
-			<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-link btn-block">
-				&larr; Cancel
-			</a>
-		</div>
-	</div>
+	<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-link">
+		&larr; Cancel
+	</a>
 </div>
 
 <h4>Import Volunteers via CSV</h4>

@@ -1,145 +1,113 @@
-{extends file="$viewsDir//parent.tpl"}
+{extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
-<div class="top-nav">
-	<div class="row">
-		<div class="col-md-8">
-			<h3>
-				Hour Details
-			</h3>
-		</div>
-		<div class="col-md-4">
+<div class="object-view">
+	<div class="object-title">
+		<div class="actions">
 			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}">
-			    {$app.csrf->render($req) nofilter}
+                {$app.csrf->render($req) nofilter}
 				<input type="hidden" name="method" value="DELETE" />
-				<button type="submit" class="btn btn-danger pull-right">
+				<button type="submit" class="btn btn-danger">
 					Delete Hour Entry
 				</button>
 			</form>
 		</div>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-2 text-right">
-		<p class="text-right">
-			<strong>Volunteer</strong>
-		</p>
+		<h1>
+			Volunteer Hours
+		</h1>
+		<h2>
+            {$volunteer->name(true)}
+			@
+            {$place->name}
+		</h2>
 	</div>
-	<div class="col-md-6">
-		<p>
-			<a href="{$org->manageUrl()}/volunteers/{$volunteer->id()}">
-				{$volunteer->name(true)}
-			</a>
-		</p>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-2 text-right">
-		<p class="text-right">
-			<strong>Date</strong>
-		</p>
-	</div>
-	<div class="col-md-6">
-		<p>
-			{$hour.timestamp|date_format:'F j, Y'}
-		</p>
-	</div>
-</div>
+	<div class="two-column clearfix">
+		<div class="left-col details-list">
+			<div class="section">
+				<label class="title">Volunteer</label>
+				<div class="value">
+					<a href="{$org->manageUrl()}/volunteers/{$volunteer->id()}">
+						{$volunteer->name(true)}
+					</a>
+				</div>
+			</div>
 
-<div class="row">
-	<div class="col-md-2 text-right">
-		<p class="text-right">
-			<strong>Place</strong>
-		</p>
-	</div>
-	<div class="col-md-6">
-		<p>
-			<a href="{$org->manageUrl()}/places/{$place->id()}">
-				{$place->name}
-			</a>
-		</p>
-	</div>
-</div>
+			<div class="section">
+				<label class="title">Date</label>
+				<div class="value">
+					{$hour.timestamp|date_format:'F j, Y'}
+				</div>
+			</div>
 
-<div class="row">
-	<div class="col-md-2 text-right">
-		<p class="text-right">
-			<strong>Hours</strong>
-		</p>
-	</div>
-	<div class="col-md-6">
-		<p>
-			{$hour.hours}
-		</p>
-	</div>
-</div>
+			<div class="section">
+				<label class="title">Place</label>
+				<div class="value">
+					<a href="{$org->manageUrl()}/places/{$place->id()}">
+						{$place->name}
+					</a>
+				</div>
+			</div>
 
-<div class="row">
-	<div class="col-md-2 text-right">
-		<p class="text-right">
-			<strong>Approved?</strong>
-		</p>
-	</div>
-	<div class="col-md-6">
-		<p>
-			{if $hour.approved}
-				<label class="label label-success">Approved</label>
-			{else}
-				{if $hour.verification_requested}
-					<label class="label label-primary">Verification Requested from {$place->verify_email}</label>
-				{else}
-					<label class="label label-danger">Not Approved</label>
-				{/if}
-			{/if}
-		</p>
-	</div>
-</div>
+			<div class="section">
+				<label class="title">Hours</label>
+				<div class="value">
+					{$hour.hours}
+				</div>
+			</div>
 
-<div class="row">
-	<div class="col-md-2 text-right">
-		<p class="text-right">
-			<strong>Tags</strong>
-		</p>
-	</div>
-	<div class="col-md-6">
-		<p>
-			{foreach from=$tags item=tag}
-				<span class="label label-default">{$tag}</span>
-			{foreachelse}
-				<em>None</em>
-			{/foreach}
-		</p>
-	</div>
-</div>
+			<div class="section">
+				<label class="title">Status</label>
+				<div class="value">
+					{if $hour.approved}
+						<label class="label label-success">Approved</label>
+					{else}
+						{if $hour.verification_requested}
+							<label class="label label-warning">Verification Requested from {$place->verify_email}</label>
+						{else}
+							<label class="label label-warning">Pending Approval</label>
+						{/if}
+					{/if}
+				</div>
+			</div>
 
-{if !$hour.approved}
-<div class="row">
-	<div class="col-md-2 text-right">
-		<p class="text-right">
-			<strong>Approve</strong>
-		</p>
-	</div>
-	<div class="col-md-6">
-		<div class="btn-group-form btn-group">
-			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}" class="inline">
-			    {$app.csrf->render($req) nofilter}
-				<input type="hidden" name="approved" value="1" />
-				<button type="submit" class="btn btn-success">
-					Approve
-				</button>
-			</form>
-			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}" class="inline">
-			    {$app.csrf->render($req) nofilter}
-				<input type="hidden" name="method" value="DELETE" />
-				<button type="submit" class="btn btn-danger pull-right">
-					Deny
-				</button>
-			</form>
+            {if count($tags) > 0}
+				<div class="section">
+					<label class="title">Tags</label>
+					<div class="value">
+						{foreach from=$tags item=tag}
+							<span class="label label-default">{$tag}</span>
+						{/foreach}
+					</div>
+				</div>
+            {/if}
+		</div>
+		<div class="right-col">
+            {if !$hour.approved}
+				<div class="action-item">
+					<div class="title">Can you verify these volunteer hours?</div>
+					<p>This volunteer activity has not been approved yet. Do you approve this hour entry?</p>
+					<div class="actions">
+						<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}" class="inline">
+                            {$app.csrf->render($req) nofilter}
+							<input type="hidden" name="method" value="DELETE" />
+							<button type="submit" class="btn btn-danger">
+								Deny
+							</button>
+						</form>
+						<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}" class="inline">
+                            {$app.csrf->render($req) nofilter}
+							<input type="hidden" name="approved" value="1" />
+							<button type="submit" class="btn btn-success">
+								Approve
+							</button>
+						</form>
+					</div>
+				</div>
+            {/if}
 		</div>
 	</div>
 </div>
-{/if}
 
 {/block}

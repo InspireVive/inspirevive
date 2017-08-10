@@ -9,6 +9,12 @@
 @footerFont: "Helvetica", Arial, sans-serif;
 
 /* Colors */
+@red: #DC3522;
+@neutral: #D9CB9E;
+@dark3: #374140;
+@dark2: #2A2C2B;
+@dark1: #1E1E20;
+
 @inspireviveGreen: #61c791;
 @inspireVivePureGreen: #5aba66;
 @inspireviveRed: #ee5237;
@@ -17,9 +23,10 @@
 @inspireviveYellow: #dfc936;
 @linkColor: #08c;
 @darkBackground: #3F464D;
+
 /* Header */
 @headerBg: #fff;
-@headerText: #888;
+@headerText: @dark1;
 @headerActiveBg: #403f3f;
 @headerActiveText: #fff;
 @headerTitleText: @inspireviveGreen;
@@ -94,7 +101,7 @@ h1,h2,h3,h4,h5,h6 {
 nav.navbar {
 	margin: 0;
 	padding: 0;
-	border: 0;
+	border: none;
 	background: @headerBg;
 	height: @navbarHeight;
 	border-radius: 0;
@@ -102,6 +109,7 @@ nav.navbar {
 
 	.navbar-header {
 		height: @navbarHeight;
+		border: none;
 
 		.navbar-brand {
 			padding: 20px 18px 0 27px;
@@ -115,7 +123,7 @@ nav.navbar {
 
 	.navbar-collapse {
 		background: #fff;
-		border-bottom: 1px solid #ccc;
+		border: none;
 	}
 
 	ul.nav {
@@ -251,13 +259,6 @@ nav.navbar {
 	}
 }
 
-#thebar {
-	width: 100%;
-	background: @theBarBg;
-	height: 5px;
-	margin: -9px 0 9px;
-}
-
 .body {
 	background: #fff;
 	margin: 0;
@@ -270,7 +271,7 @@ nav.navbar {
 	}
 	
 	h1, h2, h3 {
-		color: @inspireviveGreen;
+		color: @headerText;
 	}
 	
 	h4, h5, h6 {
@@ -407,15 +408,17 @@ hr {
 /* Generic Administration Section */
 
 .organization-admin {
-	#thebar {
-		background: @inspireviveGreen;
+	.body {
+		padding: 0;
+		margin: 0;
 	}
 
-	.nav-tabs {
-		margin: -9px 0 36px;
+	.nav-tabs.main-tabs {
+		margin: 0;
 		background: @inspireviveGreen;
 		border: 0;
-		padding: 0 0 !important;
+		border-top: 5px solid @inspireviveGreen;
+		padding: 0 5px !important;
 
 		li {
 			border: 0;
@@ -425,11 +428,12 @@ hr {
 			a,a:active,a:visited {
 				background: none;
 				color: #fff;
-				border-radius: 0 4px 0 0;
+				border-radius: 4px 4px 0 0;
 				border: 0;
-				padding: 18px 15px;
+				padding: 10px 15px;
 				margin: 0;
 				font-size: 16px;
+				outline: none;
 
 				.glyphicon {
 					color: rgba(255,255,255,.65);
@@ -442,7 +446,7 @@ hr {
 				color: #333;
 
 				.glyphicon {
-					color: rgba(0,0,0,.65);					
+					color: rgba(0,0,0,.65);
 				}
 			}
 		}
@@ -450,7 +454,7 @@ hr {
 		li.active {
 			a,a:active,a:visited {
 				background: #fff;
-				border: 0;
+				border: none;
 				color: #333;
 
 				.glyphicon {
@@ -460,9 +464,196 @@ hr {
 		}
 	}
 
+	.nav-tabs.browse-tabs {
+		margin: 0;
+		background: #fff;
+		border-bottom: 3px solid #eee;
+		padding: 0 20px;
+
+		li {
+			border: 0;
+			padding: 0;
+			margin: 0;
+
+			a,a:active,a:visited {
+				background: none;
+				color: #999;
+				border: 0;
+				padding: 10px 15px;
+				margin: 0 0 -3px;
+				font-size: 16px;
+				outline: none;
+				border-bottom: 3px solid #eee;
+			}
+
+			a:hover,a:focus {
+				color: @dark1;
+				border-color: @dark1;
+
+				.badge {
+					background: @dark1;
+				}
+			}
+		}
+
+		li.active {
+			a,a:active,a:visited {
+				color: #09f;
+				border-color: #09f;
+
+				.badge {
+					background: #09f;
+				}
+			}
+		}
+
+		li.action {
+			float: right;
+
+			a,a:active,a:visited {
+				font-size: 14px;
+				color: @linkColor;
+				border-bottom: 0;
+			}
+			
+			a:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.object-view {
+		padding: 5px 15px;
+
+		.object-title {
+			background: #fff;
+			border-bottom: 3px solid #eee;
+			padding: 30px 30px 20px;
+
+			h1 {
+				padding: 0;
+				margin: 0;
+			}
+
+			h2 {
+				color: @dark3;
+				margin: 0;
+				padding: 5px 5px 0;
+				font-size: 18px;
+			}
+
+			.actions {
+				float: right;
+
+				form {
+					margin: 0;
+					padding: 0;
+					display: inline-block;
+				}
+			}
+		}
+
+		.two-column {
+			margin: 0;
+			padding: 20px 0 20px 250px;
+			position: relative;
+			width: 100%;
+
+			.left-col {
+				width: 250px;
+				float: left;
+				margin-left: -249px;
+				padding: 30px 15px 30px 30px;
+				background: #fff;
+				border-right: 2px solid #eee;
+			}
+
+			.right-col {
+				padding: 30px 15px;
+				border-left: 2px solid #eee;
+				background: #fff;
+			}
+		}
+
+		.details-list {
+			h3 {
+				font-size: 18px;
+				text-align: left;
+				padding: 0;
+				margin: 0 0 10px;
+			}
+
+			.section + h3 {
+				margin-top: 20px;
+			}
+
+			.section + .section {
+				margin-top: 10px;
+			}
+
+			label.title {
+				font-weight: normal;
+				color: #777;
+				font-size: 13px;
+				margin: 0;
+			}
+
+			label.title::after {
+				content: ":";
+			}
+
+			.value {
+				color: @dark2;
+				font-size: 14px;
+			}
+		}
+	}
+
+	.action-item {
+		margin: 0;
+		background: #fff;
+		border-radius: 4px;
+		max-width: 600px;
+		text-align: left;
+		overflow: hidden;
+		border: 1px solid #ddd;
+
+		.title {
+			padding: 15px 20px 10px;
+			font-weight: bold;
+		}
+
+		p {
+			margin: 0 0 15px;
+			padding: 0 20px;
+			font-size: 14px;
+			line-height: 25px;
+			color: @dark3;
+		}
+
+		.actions {
+			background: #f5f5f5;
+			text-align: right;
+			border-top: 1px solid #eee;
+			padding: 7px 15px;
+
+			form {
+				margin: 0;
+			}
+
+			.btn {
+				min-width: 100px;
+			}
+		}
+	}
+
+	.action-item.warning {
+		background: lightyellow;
+	}
+
 	.top-nav {
-		margin: -36px 0 36px;
-		padding: 0 36px;
+		margin: 0 0 36px;
+		padding: 15px 36px 0;
 
 		.row {
 			> div {
@@ -598,15 +789,7 @@ hr {
 
 	.browse-params {
 		margin: 0 0 18px;
-
-		ul.nav {
-			padding: 0;
-		}
-
-		.new-btn {
-			text-align: right;
-			line-height: 40px;
-		}
+		padding: 15px 15px 0;
 	}
 }
 
@@ -642,7 +825,7 @@ hr {
 
 @media (max-width: 992px) {
 	.admin-section {
-		.nav-tabs {
+		.nav-tabs.main-tabs {
 			li {
 				a {
 					.glyphicon {
@@ -658,7 +841,7 @@ hr {
 
 @media (max-width: 767px) {
 	.admin-section {
-		.nav-tabs {
+		.nav-tabs.main-tabs {
 			padding: 0 0 !important;
 
 			li {

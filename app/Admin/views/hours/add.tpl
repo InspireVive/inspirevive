@@ -1,4 +1,4 @@
-{extends file="$viewsDir//parent.tpl"}
+{extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
 <h4>Add Volunteer Hours <small>step 1 of 3</small></h4>
