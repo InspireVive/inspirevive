@@ -23,9 +23,9 @@ Composer manages all PHP dependencies:
 
 	composer install
 
-### config.php
+### secrets.php
 
-A config.php file needs to be created in the project's root directory. See config-exmaple.php for an example setup. *Never commit config.php to version control, for security.*
+A secrets.php file needs to be created in the `config` directory. See secrets.php.example for an example setup. *Never commit secrets.php to version control, for security.*
 
 ### Database Migrations
 
