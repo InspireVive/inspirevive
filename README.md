@@ -15,10 +15,6 @@ Volunteer management platform to help organizations volunteer more effectively
 - Redis
 - wkhtmltopdf
 
-Third party APIs used:
-
-- [Mandrill](http://mandrill.com) - email
-
 ## Installation
 
 ### Composer Dependencies
