@@ -137,13 +137,13 @@
 				</div>
 			</div>
 
-            {if $volunteer.metadata}
+            {if $metadata}
 				<h3>Metadata</h3>
-                {foreach from=$volunteer.metadata key=field item=value}
+                {foreach from=$metadata item=row}
 					<div class="section">
-						<label class="title">{$field}</label>
+						<label class="title">{$row.title}</label>
 						<div class="value">
-							{$value}
+							{$row.value}
 						</div>
 					</div>
 				{/foreach}

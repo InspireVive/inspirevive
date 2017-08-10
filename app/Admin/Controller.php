@@ -16,6 +16,7 @@ use App\Users\Models\User;
 use App\Volunteers\Models\Volunteer;
 use App\Volunteers\Models\VolunteerHour;
 use App\Volunteers\Models\VolunteerPlace;
+use ICanBoogie\Inflector;
 use Infuse\HasApp;
 use Infuse\Utility as U;
 use Infuse\View;
@@ -335,6 +336,13 @@ class Controller
 
         $name = $user->name(true);
 
+        $metadata = [];
+        $inflector = Inflector::get();
+        foreach ($volunteer->metadata as $key => $value) {
+            $title = $inflector->titleize(str_replace(['.', '_'], [' ', ' '], $key));
+            $metadata[] = ['title' => $title, 'value' => $value];
+        }
+
         return new View('volunteers/view', [
             'org' => $org,
             'volunteer' => $volunteer->toArray(),
@@ -344,6 +352,7 @@ class Controller
             'name' => $name,
             'title' => $user->name().' :: Volunteers',
             'volunteersPage' => true,
+            'metadata' => $metadata,
             'hours' => $hours,
             'req' => $req
         ]);
