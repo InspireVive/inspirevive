@@ -18,7 +18,7 @@
 				Approved
 			</a>
 		</li>
-		<li class="{if !$showApproved}active{/if}">
+		<li class="{if $showPending}active{/if}">
 			<a href="?approved=0">
 				Awaiting Approval
 				{if $volunteersAwaitingApproval > 0}
@@ -28,9 +28,14 @@
 				{/if}
 			</a>
 		</li>
+		<li class="{if $showInactive}active{/if}">
+			<a href="?inactive=1">
+				Inactive
+			</a>
+		</li>
 		<li class="action">
 			<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-success">
-				<span class="glyphicon glyphicon-user"></span>
+				<span class="glyphicon glyphicon-plus"></span>
 				Add Volunteers
 			</a>
 		</li>
@@ -60,19 +65,6 @@
 			</div>
 		</form>
 	</div>
-	<div class="col-md-4">
-		{if $showApproved}
-			<div class="show-inactive-toggle">
-				<label>
-					<div class="switch">
-						<input id="switch-show-inactive" class="cmn-toggle cmn-toggle-round" type="checkbox" {if $showInactive}checked="checked"{/if} />
-						<label for="switch-show-inactive"></label>
-					</div>
-					Show Inactive
-				</label>
-			</div>
-		{/if}
-	</div>
 </div>
 
 {if count($volunteers) == 0}
@@ -87,7 +79,7 @@
 			<tr>
 				<th></th>
 				<th>Name</th>
-				<th>Username</th>
+				<th>Email</th>
 				<th>Status</th>
 			</tr>
 		</thead>
@@ -101,42 +93,15 @@
 					</a>
 				</td>
 				<td>
-					{if !$user->hasCompletedVolunteerApplication()}
-						{if $user->isTemporary()}
-							<span class="text-danger">
-								<span class="glyphicon glyphicon-exclamation-sign"></span>
-								Not registered on InspireVive
-							</span>
-						{else}
-							<span class="text-danger">
-								<span class="glyphicon glyphicon-exclamation-sign"></span>
-								Missing volunteer application
-							</span>
-						{/if}
-					{elseif !$volunteer->application_shared}
-						<span class="text-danger">
-							<span class="glyphicon glyphicon-exclamation-sign"></span>
-							Volunteer application not shared
-						</span>
-					{else}
+                    {if $user->hasCompletedVolunteerApplication()}
 						{$user->volunteerApplication()->fullName()}
 					{/if}
 				</td>
 				<td>
-					{if $user->username}
-						{$user->username}
-					{else}
-						{$user->email}
-					{/if}
+                    {$user->email}
 				</td>
 				<td>
-					{if $volunteer->role >= $smarty.const.VOLUNTEER_ROLE_VOLUNTEER}
-						{if $volunteer->active}
-							<span class="label label-success">Active</span>
-						{else}
-							<span class="label label-default">Inactive</span>
-						{/if}
-					{else}
+					{if $volunteer->role == $smarty.const.VOLUNTEER_AWAITING_APPROVAL}
 						<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer->id()}?redir=browse">
 			                {$app.csrf->render($req) nofilter}
 							<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
@@ -144,6 +109,25 @@
 								Approve
 							</button>
 						</form>
+					{else}
+						{if !$user->hasCompletedVolunteerApplication()}
+							{if $user->isTemporary()}
+								<span class="text-danger">
+									<span class="glyphicon glyphicon-exclamation-sign"></span>
+									Not registered on InspireVive
+								</span>
+							{else}
+								<span class="text-danger">
+									<span class="glyphicon glyphicon-exclamation-sign"></span>
+									Missing volunteer application
+								</span>
+							{/if}
+						{elseif !$volunteer->application_shared}
+							<span class="text-danger">
+								<span class="glyphicon glyphicon-exclamation-sign"></span>
+								Volunteer application not shared
+							</span>
+						{/if}
 					{/if}
 				</td>
 			</tr>
@@ -174,14 +158,4 @@
 		</div>
 	</div>
 {/if}
-
-<script type="text/javascript">
-	var showingInactive = {if $showInactive}true{else}false{/if};
-	var showingApproved = {if $showApproved}true{else}false{/if};
-
-	$('#switch-show-inactive').change(function() {
-		showingInactive = !showingInactive;
- 		window.location = '{$org->manageUrl()}/volunteers?inactive='+(showingInactive+0)+'&approved='+(showingApproved+0);
-	});
-</script>
 {/block}

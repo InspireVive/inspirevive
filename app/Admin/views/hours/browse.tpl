@@ -31,7 +31,6 @@
 	<p class="empty">
 		<span class="glyphicon glyphicon-time"></span>
 		None found.
-		<a href="{$org->manageUrl()}/hours/add">Record hours</a>
 	</p>
 {else}
 	<table class="table table-striped">

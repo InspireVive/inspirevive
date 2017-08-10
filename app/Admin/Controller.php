@@ -96,13 +96,17 @@ class Controller
         $page = max(0, $req->query('page'));
         $showInactive = !!$req->query('inactive');
         $showApproved = $req->query('approved');
-        if ($showApproved === null) {
+        if ($showApproved === null && !$showInactive) {
             $showApproved = true;
         }
+        $showPending = !$showApproved && !$showInactive;
 
-        $roleSql = $showApproved ?
-            'role >= '.Volunteer::ROLE_VOLUNTEER :
-            'role = '.Volunteer::ROLE_AWAITING_APPROVAL;
+        $roleSql = '';
+        if ($showApproved) {
+            $roleSql = 'role >= '.Volunteer::ROLE_VOLUNTEER;
+        } else if ($showPending) {
+            $roleSql = 'role = '.Volunteer::ROLE_AWAITING_APPROVAL;
+        }
 
         $query = Volunteer::where('organization', $org->id())
             ->where($roleSql)
@@ -124,6 +128,7 @@ class Controller
             'volunteersPage' => true,
             'volunteers' => $volunteers,
             'showApproved' => $showApproved,
+            'showPending' => $showPending,
             'showInactive' => $showInactive,
             'hasLess' => $page > 0,
             'hasMore' => $count > $perPage * ($page + 1),

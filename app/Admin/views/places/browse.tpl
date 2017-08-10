@@ -26,7 +26,7 @@
 		</li>
 		<li class="action">
 			<a href="{$org->manageUrl()}/places/add" class="btn btn-success">
-				<span class="glyphicon glyphicon-map-marker"></span>
+				<span class="glyphicon glyphicon-plus"></span>
 				New Place
 			</a>
 		</li>
