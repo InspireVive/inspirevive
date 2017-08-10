@@ -117,11 +117,11 @@
 				<label class="title">Role</label>
 				<div class="value">
 		            {if $volunteer.role == $smarty.const.ORGANIZATION_ROLE_AWAITING_APPROVAL}
-						<span class="label label-danger">Awaiting Approval</span>
+						<span class="text-warning">Pending Approval</span>
 		            {elseif $volunteer.role == $smarty.const.ORGANIZATION_ROLE_ADMIN}
-						<span class="label label-success">Volunteer Coordinator</span>
+						<span class="text-success">Volunteer Coordinator</span>
 					{else}
-						<span class="label label-primary">Volunteer</span>
+						Volunteer
 					{/if}
 				</div>
 			</div>
