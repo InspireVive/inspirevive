@@ -177,6 +177,13 @@ class Volunteer extends ACLModel
     static function preUpdateHook(ModelEvent $event)
     {
         $model = $event->getModel();
+
+        // we only need to check the requester permissions
+        // if the role is being changed
+        if ($model->role == $model->ignoreUnsaved()->role) {
+            return;
+        }
+
         $organization = $model->relation('organization');
 
         $currentUser = $model->getApp()['user'];

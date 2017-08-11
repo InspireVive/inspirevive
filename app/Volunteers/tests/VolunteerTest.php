@@ -233,7 +233,7 @@ class VolunteerTest extends PHPUnit_Framework_TestCase
     public function testCannotPromoteBeyondCurrentRole()
     {
         self::$volunteer->enforcePermissions();
-        self::$volunteer->role = Volunteer::ROLE_VOLUNTEER;
+        self::$volunteer->role = Volunteer::ROLE_ADMIN;
         $this->assertFalse(self::$volunteer->save());
     }
 
