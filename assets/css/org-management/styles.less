@@ -545,31 +545,31 @@ hr {
 			.actions {
 				float: right;
 
-				form {
-					margin: 0;
-					padding: 0;
-					display: inline-block;
+				li.danger {
+					a {
+						color: @red;
+					}
 				}
 			}
 		}
 
 		.two-column {
 			margin: 0;
-			padding: 20px 0 20px 300px;
+			padding: 20px 0 20px 250px;
 			position: relative;
 			width: 100%;
 
 			.left-col {
-				width: 300px;
+				width: 250px;
 				float: left;
-				margin-left: -299px;
-				padding: 30px 15px 30px 30px;
+				margin-left: -249px;
+				padding: 15px 15px 30px 20px;
 				background: #fff;
 				border-right: 2px solid #eee;
 			}
 
 			.right-col {
-				padding: 30px 15px;
+				padding: 15px 15px;
 				border-left: 2px solid #eee;
 				background: #fff;
 
@@ -584,8 +584,13 @@ hr {
 			h3 {
 				font-size: 18px;
 				text-align: left;
-				padding: 0;
+				padding: 3px 0 3px 10px;
 				margin: 0 0 10px;
+				border-bottom: 1px solid #eee;
+			}
+
+			.section {
+				padding: 0 0 0 10px;
 			}
 
 			.section + h3 {
@@ -615,7 +620,7 @@ hr {
 	}
 
 	.action-item {
-		margin: 0;
+		margin: 0 0 15px;
 		background: #fff;
 		border-radius: 4px;
 		max-width: 600px;

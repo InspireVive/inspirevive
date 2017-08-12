@@ -4,48 +4,50 @@
 <div class="object-view">
 	<div class="object-title">
 		<div class="actions">
-			<a href="{$org->manageUrl()}/hours/add?user={$volunteer.uid}" class="btn btn-default">
-				<span class="glyphicon glyphicon-time"></span>
-				Record Hours
-			</a>
-
-            {if $volunteer.role == $smarty.const.ORGANIZATION_ROLE_ADMIN && $volunteer.uid != $app.user->id()}
-				<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
-                    {$app.csrf->render($req) nofilter}
-					<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
-					<button type="submit" class="btn btn-danger">
-						Demote to Volunteer
-					</button>
-				</form>
-            {/if}
-
-            {if $volunteer.role == $smarty.const.ORGANIZATION_ROLE_VOLUNTEER}
-				<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
-                    {$app.csrf->render($req) nofilter}
-					<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_ADMIN}" />
-					<button type="submit" class="btn btn-success">
-						Promote to Volunteer Coordinator
-					</button>
-				</form>
-            {/if}
-
-			<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
-				{$app.csrf->render($req) nofilter}
-				<input type="hidden" name="active" value="{if $volunteer.active}0{else}1{/if}" />
-				<button type="submit" class="btn {if $volunteer.active}btn-danger{else}btn-success{/if}">
-					{if $volunteer.active}Make Inactive{else}Make Active{/if}
+			<div class="dropdown">
+				<button type="button" class="btn btn-link btn-lg" data-toggle="dropdown">
+					Options
+					<span class="ion-chevron-down"></span>
 				</button>
-			</form>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li>
+						<a href="{$org->manageUrl()}/hours/add?user={$volunteer.uid}">
+							Record Hours
+						</a>
+					</li>
 
-            {if $volunteer.uid != $app.user->id()}
-				<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
-                    {$app.csrf->render($req) nofilter}
-					<input type="hidden" name="method" value="DELETE" />
-					<button type="submit" class="btn btn-danger">
-						Remove Volunteer
-					</button>
-				</form>
-            {/if}
+                    {if $volunteer.role == $smarty.const.ORGANIZATION_ROLE_ADMIN && $volunteer.uid != $app.user->id()}
+						<li>
+							<a href="#" class="demote-to-volunteer">
+								Demote to Volunteer
+							</a>
+						</li>
+                    {/if}
+
+                    {if $volunteer.role == $smarty.const.ORGANIZATION_ROLE_VOLUNTEER}
+						<li>
+							<a href="#" class="promote-to-admin">
+								Promote to Volunteer Coordinator
+							</a>
+						</li>
+                    {/if}
+
+					<li>
+						<a href="#" class="mark-active">
+							Mark {if $volunteer.active}Inactive{else}Active{/if}
+						</a>
+					</li>
+
+                    {if $volunteer.uid != $app.user->id()}
+						<li class="divider"></li>
+						<li class="danger">
+							<a href="#" class="delete-volunteer">
+								Remove Volunteer
+							</a>
+						</li>
+                    {/if}
+				</ul>
+			</div>
 		</div>
 
 		<h1>
@@ -58,15 +60,9 @@
 			<h3>Details</h3>
             {if $volunteer.application_shared}
 				<div class="section">
-					<label class="title">Username</label>
+					<label class="title">Name</label>
 					<div class="value">
-						{if $user.username}
-							<a href="/users/{$user.username}" target="_blank">
-								{$name}
-							</a>
-						{else}
-							{$name}
-						{/if}
+						{$name}
 					</div>
 				</div>
 
@@ -136,6 +132,17 @@
 					{/if}
 				</div>
 			</div>
+
+			{if $user.username}
+				<div class="section">
+					<label class="title">Username</label>
+					<div class="value">
+						<a href="/users/{$user.username}" target="_blank">
+							{$name}
+						</a>
+					</div>
+				</div>
+            {/if}
 
             {if $metadata}
 				<h3>Metadata</h3>
@@ -258,5 +265,48 @@
 		</div>
 	</div>
 </div>
+
+<form id="deleteVolunteerForm" method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+	{$app.csrf->render($req) nofilter}
+	<input type="hidden" name="method" value="DELETE" />
+</form>
+<form id="markActiveForm" method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+	{$app.csrf->render($req) nofilter}
+	<input type="hidden" name="active" value="{if $volunteer.active}0{else}1{/if}" />
+</form>
+<form id="promoteForm" method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+	{$app.csrf->render($req) nofilter}
+	<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_ADMIN}" />
+</form>
+<form id="demoteForm" method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}">
+	{$app.csrf->render($req) nofilter}
+	<input type="hidden" name="role" value="{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}" />
+</form>
+
+<script type="text/javascript">
+	$(function() {
+		$('.delete-volunteer').click(function(e) {
+			e.preventDefault();
+			if (window.confirm('Are you sure you want to remove this volunteer?')) {
+				$('#deleteVolunteerForm').submit();
+			}
+		});
+
+        $('.promote-to-admin').click(function(e) {
+            e.preventDefault();
+			$('#promoteForm').submit();
+        });
+
+        $('.demote-to-volunteer').click(function(e) {
+            e.preventDefault();
+            $('#demoteForm').submit();
+        });
+
+        $('.mark-active').click(function(e) {
+            e.preventDefault();
+            $('#markActiveForm').submit();
+        });
+	});
+</script>
 
 {/block}

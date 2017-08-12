@@ -4,13 +4,19 @@
 <div class="object-view">
 	<div class="object-title">
 		<div class="actions">
-			<form method="post" action="{$org->manageUrl()}/hours/{$hour.id}">
-                {$app.csrf->render($req) nofilter}
-				<input type="hidden" name="method" value="DELETE" />
-				<button type="submit" class="btn btn-danger">
-					Delete Hour Entry
+			<div class="dropdown">
+				<button type="button" class="btn btn-link btn-lg" data-toggle="dropdown">
+					Options
+					<span class="ion-chevron-down"></span>
 				</button>
-			</form>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li class="danger">
+						<a href="#" class="delete-hour">
+							Delete Hour Entry
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 
 		<h1>
@@ -25,6 +31,7 @@
 
 	<div class="two-column clearfix">
 		<div class="left-col details-list">
+			<h3>Details</h3>
 			<div class="section">
 				<label class="title">Volunteer</label>
 				<div class="value">
@@ -51,7 +58,7 @@
 			</div>
 
 			<div class="section">
-				<label class="title">Hours</label>
+				<label class="title"># Hours</label>
 				<div class="value">
 					{$hour.hours}
 				</div>
@@ -109,5 +116,21 @@
 		</div>
 	</div>
 </div>
+
+<form id="deleteHourForm" method="post" action="{$org->manageUrl()}/hours/{$hour.id}">
+	{$app.csrf->render($req) nofilter}
+	<input type="hidden" name="method" value="DELETE" />
+</form>
+
+<script type="text/javascript">
+	$(function() {
+		$('.delete-hour').click(function(e) {
+			e.preventDefault();
+			if (window.confirm('Are you sure you want to delete this hour entry?')) {
+				$('#deleteHourForm').submit();
+			}
+		});
+	});
+</script>
 
 {/block}

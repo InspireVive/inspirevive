@@ -4,17 +4,25 @@
 <div class="object-view">
 	<div class="object-title">
 		<div class="actions">
-			<a href="{$org->manageUrl()}/places/{$place.id}/edit" class="btn btn-default">
-				Edit Place
-			</a>
-
-			<form method="post" action="{$org->manageUrl()}/places/{$place.id}">
-                {$app.csrf->render($req) nofilter}
-				<input type="hidden" name="method" value="DELETE" />
-				<button type="submit" class="btn btn-danger">
-					Delete Place
+			<div class="dropdown">
+				<button type="button" class="btn btn-link btn-lg" data-toggle="dropdown">
+					Options
+					<span class="ion-chevron-down"></span>
 				</button>
-			</form>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li>
+						<a href="{$org->manageUrl()}/places/{$place.id}/edit">
+							Edit Place
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li class="danger">
+						<a href="#" class="delete-place">
+							Delete Place
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 
 		<h1>{$place.name}</h1>
@@ -22,6 +30,7 @@
 
 	<div class="two-column clearfix">
 		<div class="left-col details-list">
+			<h3>Details</h3>
 			<div class="section">
 				<label class="title">Name</label>
 				<div class="value">
@@ -44,24 +53,18 @@
 				<div class="section">
 					<label class="title">Address</label>
 					<div class="value">
-						{$place.address}
+						{$place.address|nl2br nofilter}
 					</div>
 				</div>
             {/if}
 
             {if $place.place_type == $smarty.const.VOLUNTEER_PLACE_EXTERNAL}
 				<div class="section">
-					<label class="title">Volunteer Coordinator Name</label>
+					<label class="title">Volunteer Coordinator</label>
 					<div class="value">
-						{$place.verify_name}
-					</div>
-				</div>
-
-				<div class="section">
-					<label class="title">Volunteer Coordinator Email</label>
-					<div class="value">
+						{$place.verify_name}<br/>
 						<a href="mailto:{$place.verify_email}">
-							{$place.verify_email}
+                            {$place.verify_email}
 						</a>
 					</div>
 				</div>
@@ -108,5 +111,21 @@
 		</div>
 	</div>
 </div>
+
+<form id="deletePlaceForm" method="post" action="{$org->manageUrl()}/places/{$place.id}">
+	{$app.csrf->render($req) nofilter}
+	<input type="hidden" name="method" value="DELETE" />
+</form>
+
+<script type="text/javascript">
+	$(function() {
+		$('.delete-place').click(function(e) {
+		    e.preventDefault();
+		    if (window.confirm('Are you sure you want to delete this place?')) {
+		        $('#deletePlaceForm').submit();
+            }
+        });
+    });
+</script>
 
 {/block}
