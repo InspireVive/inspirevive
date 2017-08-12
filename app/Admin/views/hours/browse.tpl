@@ -30,90 +30,84 @@
 {if count($hours) == 0}
 	<p class="empty">
 		<span class="glyphicon glyphicon-time"></span>
-		None found.
+		No matching volunteer places were found.
 	</p>
 {else}
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th></th>
-				<th>
-					Volunteer
-				</th>
-				<th>
-					Date
-				</th>
-				<th>
-					Place
-				</th>
-				<th>
-					# Hours
-				</th>
-				<th>
-					Status
-				</th>
-			</tr>
-		</thead>
-	{foreach from=$hours item=hour}
-		<tr>
-			<td>
-				<a href="{$org->manageUrl()}/hours/{$hour->id()}" class="btn btn-default">
-					Details
-				</a>
-			</td>
-			<td>
-				{assign var=user value=$hour->relation('uid')}
-				<a href="{$org->manageUrl()}/volunteers/{$user->id()}">
-					{$user->name(true)}
-				</a>
-			</td>
-			<td>
-				{$hour->timestamp|date_format:'M d, Y'}
-			</td>
-			<td>
-				{$hour->relation('place')->name}
-			</td>
-			<td>
-				{$hour->hours}
-			</td>
-			<td>
-				{if $hour->approved}
-					<label class="label label-success">Approved</label>
-				{else}
-					<form method="post" action="{$org->manageUrl()}/hours/{$hour->id()}?redir=browse">
-			            {$app.csrf->render($req) nofilter}
-						<input type="hidden" name="approved" value="1" />
-						<button type="submit" class="btn btn-success">
-							Approve
-						</button>
-					</form>
-				{/if}
-			</td>
-		</tr>
-	{/foreach}
-	</table>
-
-	<!-- Pagination -->
-	<div class="row">
-		<div class="col-md-3">
-			{if $hasLess}
-				<a href="{$org->manageUrl()}/hours?approved={$showApproved}&amp;page={$page-1}" class="btn btn-default">
-					<span class="glyphicon glyphicon-arrow-left"></span>
-					Previous Page
-				</a>
-			{/if}
-		</div>
-		<div class="col-md-6 text-center">
-			Page: <em>{$page+1}</em>, Total Hours: <em>{$count|number_format}</em>
-		</div>
-		<div class="col-md-3 text-right">
-			{if $hasMore}
-				<a href="{$org->manageUrl()}/hours?approved={$showApproved}&amp;page={$page+1}" class="btn btn-default">
-					Next Page
-					<span class="glyphicon glyphicon-arrow-right"></span>
-				</a>
-			{/if}
-		</div>
+	<div class="browse-table-holder">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>
+						Volunteer
+					</th>
+					<th>
+						Date
+					</th>
+					<th>
+						Place
+					</th>
+					<th>
+						# Hours
+					</th>
+					<th>
+						Status
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+			{foreach from=$hours item=hour}
+				<tr class="clickable" onclick="window.location='{$org->manageUrl()}/hours/{$hour->id()}'">
+					<td>
+						{$hour->relation('uid')->name(true)}
+					</td>
+					<td>
+						{$hour->timestamp|date_format:'M d, Y'}
+					</td>
+					<td>
+						{$hour->relation('place')->name}
+					</td>
+					<td>
+						{$hour->hours}
+					</td>
+					<td>
+						{if $hour->approved}
+							<label class="label label-success">Approved</label>
+						{else}
+							<span class="label label-warning">Pending Approval</span>
+						{/if}
+					</td>
+				</tr>
+			{/foreach}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="5">
+						<!-- Pagination -->
+						<div class="row browse-pagination">
+							<div class="col-md-3">
+								{if $hasLess}
+									<a href="{$org->manageUrl()}/hours?approved={$showApproved}&amp;page={$page-1}" class="btn btn-link">
+										<span class="ion-arrow-left-c"></span>
+										Previous Page
+									</a>
+								{/if}
+							</div>
+							<div class="col-md-6 totals">
+								Total Hour Entries: <strong>{$count|number_format}</strong> &middot; Page: {$page+1}
+							</div>
+							<div class="col-md-3 text-right">
+								{if $hasMore}
+									<a href="{$org->manageUrl()}/hours?approved={$showApproved}&amp;page={$page+1}" class="btn btn-link">
+										Next Page
+										<span class="ion-arrow-right-c"></span>
+									</a>
+								{/if}
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
 	</div>
 {/if}
 

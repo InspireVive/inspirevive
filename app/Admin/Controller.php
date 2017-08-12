@@ -136,31 +136,9 @@ class Controller
             'page' => $page,
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
-            'usernameNotFound' => $req->params('usernameNotFound'),
             'username' => $req->query('username'),
             'req' => $req
         ]);
-    }
-
-    function volunteersLookupByUsername($req, $res)
-    {
-        $org = $this->getOrgForAdmin($req, $res);
-
-        if (!is_object($org)) {
-            return $org;
-        }
-
-        $username = $req->query('username');
-
-        $user = User::where('username', $username)->first();
-
-        if ($user && $org->getRoleOfUser($user) >= Volunteer::ROLE_AWAITING_APPROVAL) {
-            return $res->redirect($org->manageUrl().'/volunteers/'.$user->id());
-        }
-
-        $req->setParams(['usernameNotFound' => true]);
-
-        return $this->volunteersBrowse($req, $res);
     }
 
     public function addVolunteerForm($req, $res)
@@ -337,10 +315,12 @@ class Controller
         $name = $user->name(true);
 
         $metadata = [];
-        $inflector = Inflector::get();
-        foreach ($volunteer->metadata as $key => $value) {
-            $title = $inflector->titleize(str_replace(['.', '_'], [' ', ' '], $key));
-            $metadata[] = ['title' => $title, 'value' => $value];
+        if ($volunteer->metadata) {
+            $inflector = Inflector::get();
+            foreach ($volunteer->metadata as $key => $value) {
+                $title = $inflector->titleize(str_replace(['.', '_'], [' ', ' '], $key));
+                $metadata[] = ['title' => $title, 'value' => $value];
+            }
         }
 
         return new View('volunteers/view', [

@@ -22,7 +22,8 @@
 @inspirevivePurple: #6C3CC3;
 @inspireviveYellow: #dfc936;
 @linkColor: #08c;
-@darkBackground: #3F464D;
+@linkHoverColor: #2a6496;
+@darkBackground: @dark3;
 
 /* Header */
 @headerBg: #fff;
@@ -262,7 +263,7 @@ nav.navbar {
 .body {
 	background: #fff;
 	margin: 0;
-	padding: 9px 0 18px;
+	padding: 0;
 	width: 100%;
 	
 	h1, h2, h3, h4, h5, h6 {
@@ -409,7 +410,7 @@ hr {
 
 .organization-admin {
 	.body {
-		padding: 0;
+		padding: 0 0 30px;
 		margin: 0;
 	}
 
@@ -419,11 +420,12 @@ hr {
 		border: 0;
 		border-top: 5px solid @inspireviveGreen;
 		padding: 0 5px !important;
+		font-family: @headingFont;
 
 		li {
 			border: 0;
 			padding: 0;
-			margin: 0;
+			margin: 0 2px;
 
 			a,a:active,a:visited {
 				background: none;
@@ -467,8 +469,9 @@ hr {
 	.nav-tabs.browse-tabs {
 		margin: 0;
 		background: #fff;
-		border-bottom: 3px solid #eee;
+		border-bottom: 1px solid #ddd;
 		padding: 0 20px;
+		font-family: @headingFont;
 
 		li {
 			border: 0;
@@ -479,30 +482,29 @@ hr {
 				background: none;
 				color: #999;
 				border: 0;
-				padding: 10px 15px;
-				margin: 0 0 -3px;
+				padding: 10px 15px 6px;
+				margin: 0 3px -1px;
 				font-size: 16px;
 				outline: none;
-				border-bottom: 3px solid #eee;
+				border-bottom: 3px solid transparent;
 			}
 
 			a:hover,a:focus {
-				color: @dark1;
-				border-color: @dark1;
+				color: @linkHoverColor;
 
 				.badge {
-					background: @dark1;
+					background: @linkHoverColor;
 				}
 			}
 		}
 
 		li.active {
 			a,a:active,a:visited {
-				color: #09f;
-				border-color: #09f;
+				color: @linkColor;
+				border-color: @linkColor;
 
 				.badge {
-					background: #09f;
+					background: @linkColor;
 				}
 			}
 		}
@@ -515,10 +517,60 @@ hr {
 				color: @linkColor;
 				border-bottom: 0;
 			}
-			
+
 			a:hover {
 				text-decoration: underline;
 			}
+		}
+	}
+
+	.table {
+		thead {
+			tr {
+				th {
+					border-bottom: 1px solid #ddd;
+					font-family: @headingFont;
+				}
+			}
+		}
+
+		tbody {
+			tr {
+				td {
+					border-color: #eee;
+				}
+			}
+
+			tr.clickable:hover {
+				cursor: pointer;
+
+				td {
+					background: #F1F8FF;
+				}
+			}
+		}
+
+		tfoot {
+			tr {
+				td {
+					border-color: #ddd;
+				}
+			}
+		}
+	}
+
+	.browse-table-holder {
+		padding: 0 15px;
+	}
+
+	.browse-pagination {
+		font-size: 13px;
+		color: #777;
+
+		.totals {
+			padding-top: 8px;
+			padding-bottom: 8px;
+			text-align: center;
 		}
 	}
 
@@ -562,7 +614,7 @@ hr {
 			.left-col {
 				width: 250px;
 				float: left;
-				margin-left: -249px;
+				margin-left: -248px;
 				padding: 15px 15px 30px 20px;
 				background: #fff;
 				border-right: 2px solid #eee;
@@ -720,7 +772,7 @@ hr {
 		padding: 90px 0;
 		color: #aaa;
 		font-size: 18px;
-		font-weight: bold;
+		font-weight: 300;
 		text-align: center;
 	}
 

@@ -206,29 +206,24 @@
 				<div class="volunteer-activity">
 					<table class="table table-striped">
 						<thead>
-						<tr>
-							<th></th>
-							<th>
-								Date
-							</th>
-							<th>
-								Place
-							</th>
-							<th>
-								# Hours
-							</th>
-							<th>
-								Status
-							</th>
-						</tr>
-						</thead>
-                        {foreach from=$hours item=hour}
 							<tr>
-								<td>
-									<a href="{$org->manageUrl()}/hours/{$hour->id()}" class="btn btn-default">
-										Details
-									</a>
-								</td>
+								<th>
+									Date
+								</th>
+								<th>
+									Place
+								</th>
+								<th>
+									# Hours
+								</th>
+								<th>
+									Status
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+                        {foreach from=$hours item=hour}
+							<tr class="clickable" onclick="window.location='{$org->manageUrl()}/hours/{$hour->id()}'">
 								<td>
                                     {$hour->timestamp|date_format:'M d, Y'}
 								</td>
@@ -242,23 +237,24 @@
                                     {if $hour->approved}
 										<label class="label label-success">Approved</label>
                                     {else}
-										<form method="post" action="{$org->manageUrl()}/hours/{$hour->id()}?redir=volunteers,{$volunteer.uid}">
-                                            {$app.csrf->render($req) nofilter}
-											<input type="hidden" name="approved" value="1" />
-											<button type="submit" class="btn btn-success">
-												Approve
-											</button>
-										</form>
+										<span class="label label-warning">Pending Approval</span>
                                     {/if}
 								</td>
 							</tr>
-                            {foreachelse}
+						{foreachelse}
 							<tr>
-								<td colspan="3">
+								<td colspan="4">
 									<em>No volunteer activity yet.</em>
 								</td>
 							</tr>
                         {/foreach}
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="4">
+								</td>
+							</tr>
+						</tfoot>
 					</table>
 				</div>
             {/if}
