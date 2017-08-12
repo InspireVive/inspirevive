@@ -94,9 +94,7 @@ class Controller
         }
 
         // build the query
-        $query = Volunteer::where('organization', $org->id())
-            ->where('uid IS NOT NULL')
-            ->sort('uid ASC');
+        $query = Volunteer::where('organization', $org->id());
 
         $role = $req->query('role');
 
@@ -122,6 +120,13 @@ class Controller
             }
         }
 
+        // sorting
+        if ($sort = $req->query('sort')) {
+            $query->sort($sort);
+        } else {
+            $query->sort('uid ASC');
+        }
+
         // pagination
         $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
@@ -131,8 +136,8 @@ class Controller
         }
         $queryStr = http_build_query($queryStr);
 
-        $volunteers = $query->start($page * $perPage)
-            ->first($perPage);
+        // fetch the results
+        $volunteers = $query->start($page * $perPage)->first($perPage);
         $count = $query->count();
 
         if ($req->query('error') == 'cannot_delete_self') {
@@ -368,8 +373,7 @@ class Controller
         }
 
         // build the query
-        $query = VolunteerHour::where('organization', $org->id())
-            ->sort('timestamp DESC');
+        $query = VolunteerHour::where('organization', $org->id());
 
         $showApproved = $req->query('approved');
         if ($showApproved !== null) {
@@ -385,6 +389,13 @@ class Controller
             $tab = 'pending';
         }
 
+        // sorting
+        if ($sort = $req->query('sort')) {
+            $query->sort($sort);
+        } else {
+            $query->sort('timestamp DESC');
+        }
+
         // pagination
         $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
@@ -394,8 +405,8 @@ class Controller
         }
         $queryStr = http_build_query($queryStr);
 
-        $hours = $query->start($page * $perPage)
-            ->first($perPage);
+        // fetch the results
+        $hours = $query->start($page * $perPage)->first($perPage);
         $count = $query->count();
 
         return new View('hours/browse', [
@@ -704,8 +715,7 @@ class Controller
         }
 
         // build the query
-        $query = VolunteerPlace::where('organization', $org->id())
-            ->sort('name ASC');
+        $query = VolunteerPlace::where('organization', $org->id());
 
         $showApproved = $req->query('approved');
         if ($showApproved !== null) {
@@ -722,6 +732,13 @@ class Controller
             $tab = 'pending';
         }
 
+        // sorting
+        if ($sort = $req->query('sort')) {
+            $query->sort($sort);
+        } else {
+            $query->sort('name ASC');
+        }
+
         // pagination
         $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
@@ -731,8 +748,8 @@ class Controller
         }
         $queryStr = http_build_query($queryStr);
 
-        $places = $query->start($page * $perPage)
-            ->first($perPage);
+        // fetch the results
+        $places = $query->start($page * $perPage)->first($perPage);
         $count = $query->count();
 
         return new View('places/browse', [
