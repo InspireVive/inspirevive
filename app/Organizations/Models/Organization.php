@@ -295,8 +295,6 @@ class Organization extends ACLModel
             $end = time();
         }
 
-        $topVolunteers = [];
-
         $where = $this->hourWhereParams();
 
         $where[] = 'timestamp >= '.$start;
@@ -308,7 +306,7 @@ class Organization extends ACLModel
             ->from('VolunteerHours')
             ->where($where)
             ->orderBy('total_hours DESC')
-            ->limit(0, $n)
+            ->limit($n)
             ->groupBy('uid')
             ->all();
 
