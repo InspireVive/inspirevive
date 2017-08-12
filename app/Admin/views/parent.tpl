@@ -63,7 +63,7 @@
 					</a>
 				</li>
 				<li class="{if isset($volunteersPage)&&$volunteersPage}active{/if}">
-					<a href="{$org->manageUrl()}/volunteers{if $volunteersAwaitingApproval > 0}?approved=0{/if}">
+					<a href="{$org->manageUrl()}/volunteers?role={if $volunteersAwaitingApproval > 0}{$smarty.const.ORGANIZATION_ROLE_AWAITING_APPROVAL}{else}{$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}{/if}&amp;inactive=0">
 						<span class="glyphicon glyphicon-user"></span>
 						<span class="title">Volunteers</span>
 						{if $volunteersAwaitingApproval > 0}
@@ -74,7 +74,7 @@
 					</a>
 				</li>
 				<li class="{if isset($hoursPage)&&$hoursPage}active{/if}">
-					<a href="{$org->manageUrl()}/hours{if $hoursAwaitingApproval > 0}?approved=0{/if}">
+					<a href="{$org->manageUrl()}/hours?approved={if $hoursAwaitingApproval > 0}0{else}1{/if}">
 						<span class="glyphicon glyphicon-time"></span>
 						<span class="title">Hours</span>
 						{if $hoursAwaitingApproval > 0}
@@ -85,7 +85,7 @@
 					</a>
 				</li>
 				<li class="{if isset($placesPage)&&$placesPage}active{/if}">
-					<a href="{$org->manageUrl()}/places{if $placesAwaitingApproval > 0}?approved=0{/if}">
+					<a href="{$org->manageUrl()}/places?approved={if $placesAwaitingApproval > 0}0{else}1{/if}">
 						<span class="glyphicon glyphicon-map-marker"></span>
 						<span class="title">Places</span>
 						{if $placesAwaitingApproval > 0}

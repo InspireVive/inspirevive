@@ -9,12 +9,12 @@
 
 <div class="browse-params">
 	<ul class="nav nav-tabs browse-tabs">
-		<li class="{if $showApproved}active{/if}">
+		<li class="{if $tab=='approved'}active{/if}">
 			<a href="?approved=1">
 				Approved
 			</a>
 		</li>
-		<li class="{if !$showApproved}active{/if}">
+		<li class="{if $tab=='pending'}active{/if}">
 			<a href="?approved=0">
 				Awaiting Approval
 				{if $hoursAwaitingApproval > 0}
@@ -24,13 +24,18 @@
 				{/if}
 			</a>
 		</li>
+		<li class="{if $tab=='all'}active{/if}">
+			<a href="?tab=all">
+				All
+			</a>
+		</li>
 	</ul>
 </div>
 
 {if count($hours) == 0}
 	<p class="empty">
 		<span class="glyphicon glyphicon-time"></span>
-		No matching volunteer places were found.
+		No matching hour entries were found.
 	</p>
 {else}
 	<div class="browse-table-holder">
@@ -86,7 +91,7 @@
 						<div class="row browse-pagination">
 							<div class="col-md-3">
 								{if $hasLess}
-									<a href="{$org->manageUrl()}/hours?approved={$showApproved}&amp;page={$page-1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/hours?{$queryStr}&amp;page={$page-1}" class="btn btn-link">
 										<span class="ion-arrow-left-c"></span>
 										Previous Page
 									</a>
@@ -97,7 +102,7 @@
 							</div>
 							<div class="col-md-3 text-right">
 								{if $hasMore}
-									<a href="{$org->manageUrl()}/hours?approved={$showApproved}&amp;page={$page+1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/hours?{$queryStr}&amp;page={$page+1}" class="btn btn-link">
 										Next Page
 										<span class="ion-arrow-right-c"></span>
 									</a>

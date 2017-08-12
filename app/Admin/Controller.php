@@ -93,27 +93,43 @@ class Controller
             return $org;
         }
 
-        $perPage = self::PER_PAGE;
-        $page = max(0, $req->query('page'));
-        $showInactive = !!$req->query('inactive');
-        $showApproved = $req->query('approved');
-        if ($showApproved === null && !$showInactive) {
-            $showApproved = true;
-        }
-        $showPending = !$showApproved && !$showInactive;
-
-        $roleSql = '';
-        if ($showApproved) {
-            $roleSql = 'role >= '.Volunteer::ROLE_VOLUNTEER;
-        } else if ($showPending) {
-            $roleSql = 'role = '.Volunteer::ROLE_AWAITING_APPROVAL;
-        }
-
+        // build the query
         $query = Volunteer::where('organization', $org->id())
-            ->where($roleSql)
-            ->where('active', !$showInactive)
             ->where('uid IS NOT NULL')
             ->sort('uid ASC');
+
+        $role = $req->query('role');
+
+        $showInactive = $req->query('inactive');
+        if ($showInactive !== null) {
+            $showInactive = (bool) $showInactive;
+        }
+
+        if ($showInactive === false) {
+            $query->where('active', true);
+        } else if ($showInactive === true) {
+            $query->where('active', false);
+        }
+
+        $tab = 'all';
+        if ($role !== null) {
+            $query->where('role', $role);
+
+            if ($role == Volunteer::ROLE_VOLUNTEER) {
+                $tab = 'approved';
+            } else if ($role == Volunteer::ROLE_AWAITING_APPROVAL) {
+                $tab = 'pending';
+            }
+        }
+
+        // pagination
+        $perPage = self::PER_PAGE;
+        $page = max(0, $req->query('page'));
+        $queryStr = $req->query();
+        if (isset($queryStr['page'])) {
+            unset($queryStr['page']);
+        }
+        $queryStr = http_build_query($queryStr);
 
         $volunteers = $query->start($page * $perPage)
             ->first($perPage);
@@ -128,16 +144,17 @@ class Controller
             'title' => 'Volunteers',
             'volunteersPage' => true,
             'volunteers' => $volunteers,
-            'showApproved' => $showApproved,
-            'showPending' => $showPending,
             'showInactive' => $showInactive,
+            'tab' => $tab,
+            'role' => $role,
             'hasLess' => $page > 0,
             'hasMore' => $count > $perPage * ($page + 1),
             'page' => $page,
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
             'username' => $req->query('username'),
-            'req' => $req
+            'req' => $req,
+            'queryStr' => $queryStr
         ]);
     }
 
@@ -155,7 +172,7 @@ class Controller
             'volunteersPage' => true,
             'emails' => $req->request('emails'),
             'numAdded' => $req->params('numAdded'),
-            'req' => $req
+            'req' => $req,
         ]);
     }
 
@@ -350,16 +367,32 @@ class Controller
             return;
         }
 
-        $perPage = self::PER_PAGE;
-        $page = max(0, $req->query('page'));
+        // build the query
+        $query = VolunteerHour::where('organization', $org->id())
+            ->sort('timestamp DESC');
+
         $showApproved = $req->query('approved');
-        if ($showApproved === null) {
-            $showApproved = true;
+        if ($showApproved !== null) {
+            $showApproved = (bool) $showApproved;
         }
 
-        $query = VolunteerHour::where('organization', $org->id())
-            ->where('approved', $showApproved)
-            ->sort($showApproved ? 'timestamp DESC' : 'timestamp ASC');
+        $tab = 'all';
+        if ($showApproved === true) {
+            $query->where('approved', true);
+            $tab = 'approved';
+        } else if ($showApproved === false) {
+            $query->where('approved', false);
+            $tab = 'pending';
+        }
+
+        // pagination
+        $perPage = self::PER_PAGE;
+        $page = max(0, $req->query('page'));
+        $queryStr = $req->query();
+        if (isset($queryStr['page'])) {
+            unset($queryStr['page']);
+        }
+        $queryStr = http_build_query($queryStr);
 
         $hours = $query->start($page * $perPage)
             ->first($perPage);
@@ -370,6 +403,7 @@ class Controller
             'title' => 'Volunteer Hours',
             'hoursPage' => true,
             'showApproved' => $showApproved,
+            'tab' => $tab,
             'hours' => $hours,
             'hasLess' => $page > 0,
             'hasMore' => $count > $perPage * ($page + 1),
@@ -377,7 +411,8 @@ class Controller
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
             'numVolunteers' => $req->params('numVolunteers'),
-            'req' => $req
+            'req' => $req,
+            'queryStr' => $queryStr
         ]);
     }
 
@@ -668,22 +703,33 @@ class Controller
             return;
         }
 
-        $perPage = self::PER_PAGE;
-        $page = max(0, $req->query('page'));
-        $showApproved = $req->query('approved');
-        if ($showApproved === null) {
-            $showApproved = true;
-        }
-
+        // build the query
         $query = VolunteerPlace::where('organization', $org->id())
             ->sort('name ASC');
 
-        if ($showApproved) {
-            $query->where('(place_type = '.VolunteerPlace::INTERNAL.' OR (place_type = '.VolunteerPlace::EXTERNAL.' AND verify_approved = 1))');
-        } else {
-            $query->where('place_type', VolunteerPlace::EXTERNAL)
-                  ->where('verify_approved', false);
+        $showApproved = $req->query('approved');
+        if ($showApproved !== null) {
+            $showApproved = (bool) $showApproved;
         }
+
+        $tab = 'all';
+        if ($showApproved === true) {
+            $query->where('(place_type = '.VolunteerPlace::INTERNAL.' OR (place_type = '.VolunteerPlace::EXTERNAL.' AND verify_approved = 1))');
+            $tab = 'approved';
+        } else if ($showApproved === false) {
+            $query->where('place_type', VolunteerPlace::EXTERNAL)
+                ->where('verify_approved', false);
+            $tab = 'pending';
+        }
+
+        // pagination
+        $perPage = self::PER_PAGE;
+        $page = max(0, $req->query('page'));
+        $queryStr = $req->query();
+        if (isset($queryStr['page'])) {
+            unset($queryStr['page']);
+        }
+        $queryStr = http_build_query($queryStr);
 
         $places = $query->start($page * $perPage)
             ->first($perPage);
@@ -694,13 +740,15 @@ class Controller
             'title' => 'Places',
             'placesPage' => true,
             'places' => $places,
+            'tab' => $tab,
             'hasLess' => $page > 0,
             'hasMore' => $count > $perPage * ($page + 1),
             'page' => $page,
             'count' => $count,
             'showApproved' => $showApproved,
             'success' => $req->query('success'),
-            'req' => $req
+            'req' => $req,
+            'queryStr' => $queryStr
         ]);
     }
 

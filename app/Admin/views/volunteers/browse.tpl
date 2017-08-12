@@ -13,13 +13,13 @@
 
 <div class="browse-params">
 	<ul class="nav nav-tabs browse-tabs">
-		<li class="{if $showApproved}active{/if}">
-			<a href="?approved=1">
+		<li class="{if $tab=='approved'}active{/if}">
+			<a href="?role={$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}&amp;inactive=0">
 				Approved
 			</a>
 		</li>
-		<li class="{if $showPending}active{/if}">
-			<a href="?approved=0">
+		<li class="{if $tab=='pending'}active{/if}">
+			<a href="?role={$smarty.const.ORGANIZATION_ROLE_AWAITING_APPROVAL}&amp;inactive=0">
 				Awaiting Approval
 				{if $volunteersAwaitingApproval > 0}
 					<span class="badge">
@@ -28,9 +28,9 @@
 				{/if}
 			</a>
 		</li>
-		<li class="{if $showInactive}active{/if}">
-			<a href="?inactive=1">
-				Inactive
+		<li class="{if $tab=='all'}active{/if}">
+			<a href="?tab=all">
+				All
 			</a>
 		</li>
 		<li class="action">
@@ -105,7 +105,7 @@
 						<div class="row browse-pagination">
 							<div class="col-md-3">
 								{if $hasLess}
-									<a href="{$org->manageUrl()}/volunteers?inactive={$showInactive}&amp;approved={$showApproved}&amp;page={$page-1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/volunteers?{$queryStr}&amp;page={$page-1}" class="btn btn-link">
 										<span class="ion-arrow-left-c"></span>
 										Previous Page
 									</a>
@@ -116,7 +116,7 @@
 							</div>
 							<div class="col-md-3 text-right">
 								{if $hasMore}
-									<a href="{$org->manageUrl()}/volunteers?inactive={$showInactive}&amp;approved={$showApproved}&amp;page={$page+1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/volunteers?{$queryStr}&amp;page={$page+1}" class="btn btn-link">
 										Next Page
 										<span class="ion-arrow-right-c"></span>
 									</a>

@@ -9,12 +9,12 @@
 
 <div class="browse-params">
 	<ul class="nav nav-tabs browse-tabs">
-		<li class="{if $showApproved}active{/if}">
+		<li class="{if $tab=='approved'}active{/if}">
 			<a href="?approved=1">
 				Approved
 			</a>
 		</li>
-		<li class="{if !$showApproved}active{/if}">
+		<li class="{if $tab=='pending'}active{/if}">
 			<a href="?approved=0">
 				Awaiting Approval
 				{if $placesAwaitingApproval > 0}
@@ -22,6 +22,11 @@
 						{$placesAwaitingApproval}
 					</span>
 				{/if}
+			</a>
+		</li>
+		<li class="{if $tab=='all'}active{/if}">
+			<a href="?tab=all">
+				All
 			</a>
 		</li>
 		<li class="action">
@@ -87,7 +92,7 @@
 						<div class="row browse-pagination">
 							<div class="col-md-3">
 								{if $hasLess}
-									<a href="{$org->manageUrl()}/places?approved={$showApproved}&amp;page={$page-1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/places?{$queryStr}&amp;page={$page-1}" class="btn btn-link">
 										<span class="ion-arrow-left-c"></span>
 										Previous Page
 									</a>
@@ -98,7 +103,7 @@
 							</div>
 							<div class="col-md-3 text-right">
 								{if $hasMore}
-									<a href="{$org->manageUrl()}/places?approved={$showApproved}&amp;page={$page+1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/places?{$queryStr}&amp;page={$page+1}" class="btn btn-link">
 										Next Page
 										<span class="ion-arrow-right-c"></span>
 									</a>
