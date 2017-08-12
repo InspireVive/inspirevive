@@ -158,7 +158,15 @@
 		</div>
 		<div class="right-col">
 			<!-- Action Items -->
-            {if !$volunteer.application_shared}
+			{if $user->isTemporary()}
+				<div class="action-item warning">
+					<div class="title">Not registered</div>
+					<p>
+						<span class="glyphicon glyphicon-exclamation-sign"></span>
+                        {$name} has not registered on InspireVive yet.
+					</p>
+				</div>
+            {elseif !$volunteer.application_shared}
 				<div class="action-item warning">
 					<div class="title">Volunteer application not shared</div>
 					<p>

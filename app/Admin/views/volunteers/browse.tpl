@@ -71,26 +71,29 @@
 						{$user->email}
 					</td>
 					<td>
-						{if $volunteer->role == $smarty.const.VOLUNTEER_AWAITING_APPROVAL}
+                        {if $volunteer->role == $smarty.const.ORGANIZATION_ROLE_ADMIN}
+							<span class="label label-success">Admin</span>
+						{elseif $volunteer->role == $smarty.const.ORGANIZATION_ROLE_AWAITING_APPROVAL}
 							<span class="label label-warning">Pending Approval</span>
+                        {elseif !$volunteer->active}
+							<span class="label label-default">Inactive Volunteer</span>
 						{elseif !$user->hasCompletedVolunteerApplication()}
 							{if $user->isTemporary()}
-								<span class="text-danger">
-									<span class="glyphicon glyphicon-exclamation-sign"></span>
-									Not registered on InspireVive
+								<span class="label label-danger">
+									Not registered
 								</span>
 							{else}
-								<span class="text-danger">
-									<span class="glyphicon glyphicon-exclamation-sign"></span>
+								<span class="label label-danger">
 									Missing volunteer application
 								</span>
 							{/if}
 						{elseif !$volunteer->application_shared}
-							<span class="text-danger">
-								<span class="glyphicon glyphicon-exclamation-sign"></span>
+							<span class="label label-danger">
 								Volunteer application not shared
 							</span>
-						{/if}
+						{else}
+							<span class="label label-success">Volunteer</span>
+                        {/if}
 					</td>
 				</tr>
 			{/foreach}

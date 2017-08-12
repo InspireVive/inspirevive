@@ -326,7 +326,7 @@ class Controller
         return new View('volunteers/view', [
             'org' => $org,
             'volunteer' => $volunteer->toArray(),
-            'user' => $user->toArray(),
+            'user' => $user,
             'application' => ($application) ? $application->toArray() : false,
             'completed' => $completed,
             'name' => $name,
