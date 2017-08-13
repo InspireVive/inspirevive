@@ -26,7 +26,7 @@ class Controller
 {
     use HasApp;
 
-    const PER_PAGE = 100;
+    const PER_PAGE = 10;
 
     public static $viewsDir;
 
