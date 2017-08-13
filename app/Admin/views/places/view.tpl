@@ -125,7 +125,7 @@
 								Date
 							</th>
 							<th>
-								Place
+								Volunteer
 							</th>
 							<th>
 								# Hours
@@ -142,7 +142,7 @@
                                     {$hour->timestamp|date_format:'M d, Y'}
 								</td>
 								<td>
-                                    {$hour->relation('place')->name}
+                                    {$hour->relation('uid')->name(true)}
 								</td>
 								<td>
                                     {$hour->hours}
