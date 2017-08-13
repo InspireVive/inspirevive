@@ -59,12 +59,14 @@
 		<div class="left-col details-list">
 			<h3>Details</h3>
             {if $volunteer.application_shared}
-				<div class="section">
-					<label class="title">Name</label>
-					<div class="value">
-						{$name}
+				{if $completed}
+					<div class="section">
+						<label class="title">Name</label>
+						<div class="value">
+							{$name}
+						</div>
 					</div>
-				</div>
+				{/if}
 
 				<div class="section">
 					<label class="title">Email</label>
@@ -76,6 +78,13 @@
 				</div>
 
                 {if $completed}
+					<div class="section">
+						<label class="title">Name</label>
+						<div class="value">
+                            {$name}
+						</div>
+					</div>
+
 					<div class="section">
 						<label class="title">Address</label>
 						<div class="value">
@@ -155,6 +164,14 @@
 					</div>
 				{/foreach}
             {/if}
+
+			<h3>Stats</h3>
+			<div class="section">
+				<label class="title">Total Hours</label>
+				<div class="value">
+                    {$totalHours}
+				</div>
+			</div>
 		</div>
 		<div class="right-col">
 			<!-- Action Items -->

@@ -349,6 +349,7 @@ class Controller
         $query = $org->getHoursQuery()
             ->where('uid', $volunteer->uid);
         $hours = $query->first(10);
+        $totalHours = $query->sum('hours');
         $name = $user->name(true);
 
         $metadata = [];
@@ -371,6 +372,7 @@ class Controller
             'volunteersPage' => true,
             'metadata' => $metadata,
             'hours' => $hours,
+            'totalHours' => $totalHours,
             'req' => $req
         ]);
     }
