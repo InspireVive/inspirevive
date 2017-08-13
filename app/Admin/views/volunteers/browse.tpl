@@ -54,8 +54,11 @@
 			<thead>
 				<tr>
 					<th>
+						Name
+					</th>
+					<th>
 						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.username desc'}Users.username+asc{else}Users.username+desc{/if}">
-							Name
+							Username
                             {if $sort=='Users.username desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>
                             {elseif $sort=='Users.username asc'}
@@ -86,6 +89,9 @@
 						{if $user->hasCompletedVolunteerApplication()}
 							{$user->volunteerApplication()->fullName()}
 						{/if}
+					</td>
+					<td>
+                        {$user->username}
 					</td>
 					<td>
 						{$user->email}
