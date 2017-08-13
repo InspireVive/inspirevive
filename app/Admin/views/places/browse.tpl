@@ -50,7 +50,7 @@
 			<thead>
 				<tr>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='name desc'}name+asc{else}name+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='name asc'}name+desc{else}name+asc{/if}">
 							Name
 							{if $sort=='name desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>
@@ -60,7 +60,7 @@
 						</a>
 					</th>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='verify_name desc'}verify_name+asc{else}verify_name+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='verify_name asc'}verify_name+desc{else}verify_name+asc{/if}">
 							Volunteer Coordinator
                             {if $sort=='verify_name desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>

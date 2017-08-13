@@ -43,7 +43,7 @@
 			<thead>
 				<tr>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.full_name desc'}Users.full_name+asc{else}Users.full_name+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.full_name asc'}Users.full_name+desc{else}Users.full_name+asc{/if}">
 							Volunteer
                             {if $sort=='Users.full_name desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>
@@ -53,7 +53,7 @@
 						</a>
 					</th>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='timestamp desc'}timestamp+asc{else}timestamp+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='timestamp asc'}timestamp+desc{else}timestamp+asc{/if}">
 							Date
                             {if $sort=='timestamp desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>
@@ -63,7 +63,7 @@
 						</a>
 					</th>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='VolunteerPlaces.name desc'}VolunteerPlaces.name+asc{else}VolunteerPlaces.name+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='VolunteerPlaces.name asc'}VolunteerPlaces.name+desc{else}VolunteerPlaces.name+asc{/if}">
 							Place
                             {if $sort=='VolunteerPlaces.name desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>

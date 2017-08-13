@@ -141,8 +141,8 @@ class Controller
         $queryStrNoPage = http_build_query($queryStrNoPage);
 
         $queryStrNoSort = $queryStr;
-        if (isset($queryStrNoSort['page'])) {
-            unset($queryStrNoSort['page']);
+        if (isset($queryStrNoSort['sort'])) {
+            unset($queryStrNoSort['sort']);
         }
         $queryStrNoSort = http_build_query($queryStrNoSort);
 
@@ -426,8 +426,8 @@ class Controller
         $queryStrNoPage = http_build_query($queryStrNoPage);
 
         $queryStrNoSort = $queryStr;
-        if (isset($queryStrNoSort['page'])) {
-            unset($queryStrNoSort['page']);
+        if (isset($queryStrNoSort['sort'])) {
+            unset($queryStrNoSort['sort']);
         }
         $queryStrNoSort = http_build_query($queryStrNoSort);
 
@@ -781,8 +781,8 @@ class Controller
         $queryStrNoPage = http_build_query($queryStrNoPage);
 
         $queryStrNoSort = $queryStr;
-        if (isset($queryStrNoSort['page'])) {
-            unset($queryStrNoSort['page']);
+        if (isset($queryStrNoSort['sort'])) {
+            unset($queryStrNoSort['sort']);
         }
         $queryStrNoSort = http_build_query($queryStrNoSort);
 

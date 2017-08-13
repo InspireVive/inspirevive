@@ -54,7 +54,7 @@
 			<thead>
 				<tr>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.full_name desc'}Users.full_name+asc{else}Users.full_name+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.full_name asc'}Users.full_name+desc{else}Users.full_name+asc{/if}">
 							Name
                             {if $sort=='Users.full_name desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>
@@ -64,7 +64,7 @@
 						</a>
 					</th>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.username desc'}Users.username+asc{else}Users.username+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.username asc'}Users.username+desc{else}Users.username+asc{/if}">
 							Username
                             {if $sort=='Users.username desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>
@@ -74,7 +74,7 @@
 						</a>
 					</th>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.email desc'}Users.email+asc{else}Users.email+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.email asc'}Users.email+desc{else}Users.email+asc{/if}">
 							Email
                             {if $sort=='Users.email desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>
