@@ -281,7 +281,7 @@ class Organization extends ACLModel
      *
      * @param int $n     number of places requested
      * @param int $start begin timestamp
-     * @param int $start end timestamp
+     * @param int $end end timestamp
      *
      * @return array(User)
      */
@@ -313,8 +313,7 @@ class Organization extends ACLModel
         $return = [];
 
         foreach ($topVolunteers as $info) {
-            $volunteer = [
-                'hours' => $info['total_hours'],];
+            $volunteer = ['hours' => $info['total_hours']];
 
             if (isset($info['uid'])) {
                 $volunteer['user'] = User::find($info['uid']);
@@ -500,7 +499,7 @@ class Organization extends ACLModel
      *
      * @param string $email
      *
-     * @throws Exception when the volunteer cannot be invited.
+     * @throws \Exception when the volunteer cannot be invited.
      *
      * @return Volunteer invited volunteer
      */

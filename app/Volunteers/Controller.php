@@ -133,8 +133,7 @@ class Controller
 
     public function volunteerHub($req, $res)
     {
-        $req->setParams([
-            'type' => 'organizations', ]);
+        $req->setParams(['type' => 'organizations']);
 
         $org = $this->getOrg($req, $res);
 
@@ -154,7 +153,9 @@ class Controller
                 'start' => VolunteerHour::timestampToStartOfDay(mktime(0, 0, 0, 1, 1, date('y'))),],
             [
                 'title' => 'All Time',
-                'start' => false,],];
+                'start' => false,
+            ],
+        ];
 
         foreach ($periods as $k => $period) {
             $periods[$k]['hoursVolunteered'] = $org->totalHoursVolunteered($period['start']);
