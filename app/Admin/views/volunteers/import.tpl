@@ -2,19 +2,19 @@
 {block name=content}
 
 <div class="top-nav">
-	<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-link">
+	<a href="{$org->manageUrl()}/volunteers/add">
 		&larr; Cancel
 	</a>
 </div>
 
-<h4>Import Volunteers via CSV</h4>
+<h1>Import Volunteers</h1>
 <p>
 	Volunteers can be imported in bulk from a .CSV (comma-separated values) file. The first line denotes the name of the field so columns may be in any order.
 </p>
 
 <p>
 	The <strong>email</strong> column is the only column required and it can be an email address or username of existing user.
-	Any columns in additonal to <strong>email</strong> will be added as meta-data to the volunteer's profile.
+	Any columns in additonal to <strong>email</strong> will be added as metadata to the volunteer's profile.
 </p>
 
 <p>
@@ -43,7 +43,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-md-4 col-md-offset-2">
-			<button type="submit" class="btn btn-primary btn-lg">
+			<button type="submit" class="btn btn-primary">
 				Import
 			</button>
 		</div>

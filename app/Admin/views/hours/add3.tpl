@@ -1,6 +1,8 @@
 {extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
+<h1>Add Volunteer Hours <small>step 3 of 3</small></h1>
+
 <div class="row">
 	<div class="col-lg-8">
 		<p>
@@ -72,8 +74,8 @@
 
 	<div class="form-group">
 		<div class="col-md-4 col-md-offset-2">
-			<button type="submit" class="btn btn-default btn-lg" name="edit" value="t">Edit</button>
-			<button type="submit" class="btn btn-success btn-lg" name="confirm" value="t">Confirm</button>
+			<button type="submit" class="btn btn-default" name="edit" value="t">Edit</button>
+			<button type="submit" class="btn btn-success" name="confirm" value="t">Confirm</button>
 		</div>
 	</div>
 </form>

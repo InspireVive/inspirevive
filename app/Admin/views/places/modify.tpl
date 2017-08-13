@@ -1,21 +1,18 @@
 {extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
+{if isset($place.id)}
+	<h1>Edit Place</h1>
+{else}
+	<h1>New Place</h1>
+{/if}
+
 {foreach from=$app.errors->messages() item=error}
 	<p class="alert alert-danger">{$error}</p>
 {/foreach}
 
 <form method="post" action="{$org->manageUrl()}/places{if isset($place.id)}/{$place.id}{/if}" role="form" class="form-horizontal">
     {$app.csrf->render($req) nofilter}
-	<div class="form-group">
-		<div class="col-md-8 col-md-offset-4">
-			{if isset($place.id)}
-				<h4>Edit Place</h4>
-			{else}
-				<h4>New Place</h4>
-			{/if}
-		</div>
-	</div>
 
 	<div class="form-group">
 		<label class="control-label col-md-4">

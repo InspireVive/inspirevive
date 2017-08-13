@@ -1,7 +1,7 @@
 {extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
-<h4>Add Volunteer Hours <small>step 2 of 3</small></h4>
+<h1>Add Volunteer Hours <small>step 2 of 3</small></h1>
 
 <div class="row">
 	<div class="col-md-8">
@@ -97,7 +97,7 @@
 
 		<div class="form-group">
 			<div class="col-md-4 col-md-offset-2">
-				<button type="submit" class="btn btn-primary btn-lg">Next &rarr;</button>
+				<button type="submit" class="btn btn-primary">Next &rarr;</button>
 			</div>
 		</div>
 	</form>

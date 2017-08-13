@@ -1,7 +1,7 @@
 {extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
-<h4>Add Volunteer Hours <small>step 1 of 3</small></h4>
+<h1>Add Volunteer Hours <small>step 1 of 3</small></h1>
 
 <p class="lead">
 	Which place did the volunteer hours happen for {$volunteer->relation('uid')->name(true)}?

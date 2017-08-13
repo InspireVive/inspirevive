@@ -1,8 +1,9 @@
 {extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
-<p class="lead">
-	Generate reports to effectively analyze the activity and effectiveness of your volunteer base.
+<h1>Reports</h1>
+<p>
+	Generate reports to analyze the activity and effectiveness of your volunteer base.
 </p>
 
 <form method="post" action="/reports" target="_blank" class="form-horizontal">
@@ -82,7 +83,7 @@
 
 	<div class="form-group">
 		<div class="col-sm-3 col-sm-offset-2">
-			<button type="submit" class="btn btn-lg btn-primary">
+			<button type="submit" class="btn btn-primary">
 				Generate
 			</button>
 		</div>

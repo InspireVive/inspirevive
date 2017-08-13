@@ -1,6 +1,9 @@
 {extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
+<h1>Add Volunteers</h1>
+
+
 {foreach from=$app.errors->messages() item=error}
 	<p class="alert alert-danger">{$error}</p>
 {/foreach}
@@ -11,7 +14,6 @@
 	</p>
 {/if}
 
-<h4>Add Volunteers</h4>
 <div class="row">
 	<div class="col-md-8">
 		<p>

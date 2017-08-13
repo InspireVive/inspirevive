@@ -278,7 +278,7 @@ class Controller
                                 if ($volunteer) {
                                     unset($fields['email']);
 
-                                    // add any meta-data to volunteer
+                                    // add any metadata to volunteer
                                     if (count($fields) > 0) {
                                         $volunteer->metadata = json_encode($fields);
                                         $volunteer->save();
@@ -319,7 +319,7 @@ class Controller
             return;
         }
 
-        return new View('volunteers/addImport', [
+        return new View('volunteers/import', [
             'org' => $org,
             'title' => 'Import Volunteers',
             'volunteersPage' => true,

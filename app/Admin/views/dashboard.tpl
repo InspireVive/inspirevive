@@ -1,7 +1,7 @@
 {extends file="$viewsDir/parent.tpl"}
 {block name=content}
 
-<h2>Welcome, {$org->name}!</h2>
+<h1>Welcome, {$org->name}!</h1>
 
 <div class="btn-toolbar dashboard hidden-xs">
 	<a href="{$org->manageUrl()}/volunteers/add" class="btn btn-link">
