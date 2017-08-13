@@ -113,7 +113,19 @@
 								{/if}
 							</div>
 							<div class="col-md-6 totals">
-								Total Places: <strong>{$count|number_format}</strong> &middot; Page: {$page+1}
+								<div>
+									Total Places: <strong>{$count|number_format}</strong>
+								</div>
+								{if $numPages > 1}
+									<div>
+										Page:
+										<select class="page-selector">
+											{for $i=1 to $numPages}
+												<option value="{$i}" {if $i == $page}selected="selected"{/if}>{$i}</option>
+											{/for}
+										</select>
+									</div>
+                                {/if}
 							</div>
 							<div class="col-md-3 text-right">
 								{if $hasMore}
@@ -130,5 +142,14 @@
 		</table>
 	</div>
 {/if}
+
+<script type="text/javascript">
+	$(function() {
+		var url = "{$org->manageUrl()}/volunteers?" + {$queryStrNoPage|json_encode nofilter};
+		$('.page-selector').change(function() {
+			window.location = url + '&page=' + $(this).val();
+		});
+	});
+</script>
 
 {/block}

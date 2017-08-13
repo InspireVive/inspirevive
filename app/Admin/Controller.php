@@ -131,7 +131,7 @@ class Controller
 
         // pagination
         $perPage = self::PER_PAGE;
-        $page = max(0, $req->query('page'));
+        $page = max(1, $req->query('page'));
         $queryStr = $req->query();
 
         $queryStrNoPage = $queryStr;
@@ -147,8 +147,9 @@ class Controller
         $queryStrNoSort = http_build_query($queryStrNoSort);
 
         // fetch the results
-        $volunteers = $query->start($page * $perPage)->first($perPage);
+        $volunteers = $query->start(($page-1) * $perPage)->first($perPage);
         $count = $query->count();
+        $numPages = ceil($count / $perPage);
 
         if ($req->query('error') == 'cannot_delete_self') {
             $this->app['errors']->add('As a volunteer coordinator, you cannot remove yourself.');
@@ -162,9 +163,10 @@ class Controller
             'showInactive' => $showInactive,
             'tab' => $tab,
             'role' => $role,
-            'hasLess' => $page > 0,
-            'hasMore' => $count > $perPage * ($page + 1),
+            'hasLess' => $page > 1,
+            'hasMore' => $page < $numPages,
             'page' => $page,
+            'numPages' => $numPages,
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
             'username' => $req->query('username'),
@@ -413,7 +415,7 @@ class Controller
 
         // pagination
         $perPage = self::PER_PAGE;
-        $page = max(0, $req->query('page'));
+        $page = max(1, $req->query('page'));
         $queryStr = $req->query();
 
         $queryStrNoPage = $queryStr;
@@ -429,8 +431,9 @@ class Controller
         $queryStrNoSort = http_build_query($queryStrNoSort);
 
         // fetch the results
-        $hours = $query->start($page * $perPage)->first($perPage);
+        $hours = $query->start(($page-1) * $perPage)->first($perPage);
         $count = $query->count();
+        $numPages = ceil($count / $perPage);
 
         return new View('hours/browse', [
             'org' => $org,
@@ -439,9 +442,10 @@ class Controller
             'showApproved' => $showApproved,
             'tab' => $tab,
             'hours' => $hours,
-            'hasLess' => $page > 0,
-            'hasMore' => $count > $perPage * ($page + 1),
+            'hasLess' => $page > 1,
+            'hasMore' => $page < $numPages,
             'page' => $page,
+            'numPages' => $numPages,
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
             'numVolunteers' => $req->params('numVolunteers'),
@@ -766,7 +770,7 @@ class Controller
 
         // pagination
         $perPage = self::PER_PAGE;
-        $page = max(0, $req->query('page'));
+        $page = max(1, $req->query('page'));
         $queryStr = $req->query();
 
         $queryStrNoPage = $queryStr;
@@ -782,8 +786,9 @@ class Controller
         $queryStrNoSort = http_build_query($queryStrNoSort);
 
         // fetch the results
-        $places = $query->start($page * $perPage)->first($perPage);
+        $places = $query->start(($page-1) * $perPage)->first($perPage);
         $count = $query->count();
+        $numPages = ceil($count / $perPage);
 
         return new View('places/browse', [
             'org' => $org,
@@ -791,9 +796,10 @@ class Controller
             'placesPage' => true,
             'places' => $places,
             'tab' => $tab,
-            'hasLess' => $page > 0,
-            'hasMore' => $count > $perPage * ($page + 1),
+            'hasLess' => $page > 1,
+            'hasMore' => $page < $numPages,
             'page' => $page,
+            'numPages' => $numPages,
             'count' => $count,
             'showApproved' => $showApproved,
             'success' => $req->query('success'),
