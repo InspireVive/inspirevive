@@ -108,6 +108,70 @@
 					</div>
 				</div>
 			{/if}
+
+			<!-- Recent Volunteer Activity -->
+			<h3>Recent Volunteer Activity</h3>
+            {if count($hours) == 0}
+				<p class="empty">
+					<span class="glyphicon glyphicon-time"></span>
+					No volunteer hours have been recorded at this place yet.
+				</p>
+            {else}
+				<div class="volunteer-activity">
+					<table class="table table-striped">
+						<thead>
+						<tr>
+							<th>
+								Date
+							</th>
+							<th>
+								Place
+							</th>
+							<th>
+								# Hours
+							</th>
+							<th>
+								Status
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+                        {foreach from=$hours item=hour}
+							<tr class="clickable" onclick="window.location='{$org->manageUrl()}/hours/{$hour->id()}'">
+								<td>
+                                    {$hour->timestamp|date_format:'M d, Y'}
+								</td>
+								<td>
+                                    {$hour->relation('place')->name}
+								</td>
+								<td>
+                                    {$hour->hours}
+								</td>
+								<td>
+                                    {if $hour->approved}
+										<label class="label label-success">Approved</label>
+                                    {else}
+										<span class="label label-warning">Pending Approval</span>
+                                    {/if}
+								</td>
+							</tr>
+                            {foreachelse}
+							<tr>
+								<td colspan="4">
+									<em>No volunteer activity yet.</em>
+								</td>
+							</tr>
+                        {/foreach}
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="4">
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</div>
+            {/if}
 		</div>
 	</div>
 </div>

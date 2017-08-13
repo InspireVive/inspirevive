@@ -107,7 +107,7 @@ class Organization extends ACLModel
 
         $where = [
             $prefix.'uid IN ( SELECT uid FROM Volunteers WHERE organization = "'.$this->id().'" AND role >= '.(string) Volunteer::ROLE_VOLUNTEER.' )',
-       ];
+        ];
 
         $where[$prefix.'organization'] = $this->id();
 
@@ -138,13 +138,31 @@ class Organization extends ACLModel
      * Gets the most recent volunteer hours performed by volunteers
      * or a specific volunteer in this organization.
      *
-     * @param int       $start     optional start timestamp bound
-     * @param int       $end       optional end timestamp bound
+     * @param int|null       $start     optional start timestamp bound
+     * @param int|null       $end       optional end timestamp bound
      * @param Volunteer $volunteer optional volunteer to filter hours with
      *
      * @return \Pulsar\Iterator
      */
-    public function hours($start = false, $end = false, Volunteer $volunteer = null)
+    public function hours($start = null, $end = null, Volunteer $volunteer = null)
+    {
+        $query = $this->getHoursQuery($start, $end);
+
+        if ($volunteer) {
+            $query->where('uid', $volunteer->id());
+        }
+
+        return $query->all();
+    }
+    /**
+     * Gets the query for most recent volunteer hours performed in this organization.
+     *
+     * @param int|null       $start     optional start timestamp bound
+     * @param int|null       $end       optional end timestamp bound
+     *
+     * @return \Pulsar\Query
+     */
+    function getHoursQuery($start = null, $end = null)
     {
         if (!$start) {
             $start = 0;
@@ -156,16 +174,10 @@ class Organization extends ACLModel
 
         $where = $this->hourWhereParams();
 
-        $where[] = 'timestamp >= '.$start;
-        $where[] = 'timestamp <= '.$end;
-
-        if ($volunteer) {
-            $where['uid'] = $volunteer->id();
-        }
-
         return VolunteerHour::where($where)
-            ->sort('timestamp DESC')
-            ->all();
+            ->where('timestamp', $start, '>=')
+            ->where('timestamp', $end, '<=')
+            ->sort('timestamp DESC');
     }
 
     /**

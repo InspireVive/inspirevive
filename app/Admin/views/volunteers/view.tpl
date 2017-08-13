@@ -200,17 +200,15 @@
 				</div>
 			{/if}
 
-			<h4>Volunteer Activity</h4>
-
-			<!-- Volunteer Activity -->
-            {if count($hours) == 0}
+			<!-- Recent Volunteer Activity -->
+			<h3>Recent Volunteer Activity</h3>
+			{if count($hours) == 0}
 				<p class="empty">
 					<span class="glyphicon glyphicon-time"></span>
 					No volunteer hours have been recorded yet for {$name}!
 					<a href="{$org->manageUrl()}/hours/add?user={$volunteer.uid}">Record hours</a>
 				</p>
             {else}
-				<br/>
 				<div class="volunteer-activity">
 					<table class="table table-striped">
 						<thead>

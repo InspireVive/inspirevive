@@ -619,6 +619,10 @@ hr {
 			.actions {
 				float: right;
 
+				.btn {
+					outline: none;
+				}
+
 				li.danger {
 					a {
 						color: @red;
@@ -646,15 +650,8 @@ hr {
 				padding: 15px 15px;
 				border-left: 2px solid #eee;
 				background: #fff;
-
-				h4 {
-					margin: 0;
-					padding: 0;
-				}
 			}
-		}
 
-		.details-list {
 			h3 {
 				font-size: 18px;
 				text-align: left;
@@ -662,7 +659,9 @@ hr {
 				margin: 0 0 10px;
 				border-bottom: 1px solid #eee;
 			}
+		}
 
+		.details-list {
 			.section {
 				padding: 0 0 0 10px;
 			}
@@ -694,7 +693,7 @@ hr {
 	}
 
 	.action-item {
-		margin: 0 0 15px;
+		margin: 0 0 30px;
 		background: #fff;
 		border-radius: 4px;
 		max-width: 600px;

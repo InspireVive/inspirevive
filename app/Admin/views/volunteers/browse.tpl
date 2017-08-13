@@ -126,7 +126,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="3">
+					<td colspan="4">
 						<!-- Pagination -->
 						<div class="row browse-pagination">
 							<div class="col-md-3">

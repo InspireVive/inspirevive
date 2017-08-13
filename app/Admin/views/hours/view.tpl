@@ -112,6 +112,10 @@
 						</form>
 					</div>
 				</div>
+			{else}
+				<p class="empty">
+					Nothing to see here...
+				</p>
             {/if}
 		</div>
 	</div>

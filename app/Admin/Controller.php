@@ -344,8 +344,9 @@ class Controller
         $completed = $user->hasCompletedVolunteerApplication();
         $application = ($completed && $volunteer->application_shared) ? $user->volunteerApplication() : false;
 
-        $hours = $org->hours(false, false, $volunteer);
-
+        $query = $org->getHoursQuery()
+            ->where('uid', $volunteer->uid);
+        $hours = $query->first(10);
         $name = $user->name(true);
 
         $metadata = [];
@@ -857,12 +858,17 @@ class Controller
 
         list($org, $place, $section) = $lookup;
 
+        $query = $org->getHoursQuery()
+            ->where('place', $place->id());
+        $hours = $query->first(10);
+
         return new View('places/view', [
             'org' => $org,
             'title' => $place->name.' :: Places',
             'placesPage' => true,
             'place' => $place->toArray(),
-            'req' => $req
+            'req' => $req,
+            'hours' => $hours
         ]);
     }
 
@@ -1046,7 +1052,8 @@ class Controller
         return [
             $org,
             $model,
-            $section, ];
+            $section,
+        ];
     }
 
 /*
