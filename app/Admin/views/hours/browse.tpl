@@ -123,6 +123,8 @@
 					<td>
 						{if $hour->approved}
 							<label class="label label-success">Approved</label>
+						{elseif $hour->verification_requested}
+							<span class="label label-warning">Verification Requested</span>
 						{else}
 							<span class="label label-warning">Pending Approval</span>
 						{/if}

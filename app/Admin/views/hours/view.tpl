@@ -71,7 +71,8 @@
 						<label class="label label-success">Approved</label>
 					{else}
 						{if $hour.verification_requested}
-							<label class="label label-warning">Verification Requested from {$place->verify_email}</label>
+							<label class="label label-warning">Verification Requested</label>
+							<div>Request sent to {$place->verify_email}</div>
 						{else}
 							<label class="label label-warning">Pending Approval</label>
 						{/if}
