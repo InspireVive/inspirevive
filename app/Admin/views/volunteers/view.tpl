@@ -51,6 +51,9 @@
 		</div>
 
 		<h1>
+			<div class="object-avatar">
+				<img src="{$user->profilePicture(40)}" />
+			</div>
 			{$name}
 		</h1>
 	</div>

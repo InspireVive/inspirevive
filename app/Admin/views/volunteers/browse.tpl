@@ -71,6 +71,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th></th>
 					<th>
 						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.full_name asc'}Users.full_name+desc{else}Users.full_name+asc{/if}">
 							Name
@@ -111,6 +112,9 @@
 				{assign var=user value=$volunteer->relation('uid')}
 				<tr class="clickable" onclick="window.location='{$org->manageUrl()}/volunteers/{$user->id()}'">
 					<td>
+						<img class="avatar" src="{$user->profilePicture(20)}" />
+					</td>
+					<td>
 						{$user->full_name}
 					</td>
 					<td>
@@ -149,7 +153,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="4">
+					<td colspan="5">
 						<!-- Pagination -->
 						<div class="row browse-pagination">
 							<div class="col-md-3">
