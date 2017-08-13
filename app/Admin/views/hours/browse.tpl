@@ -43,16 +43,44 @@
 			<thead>
 				<tr>
 					<th>
-						Volunteer
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.username desc'}Users.username+asc{else}Users.username+desc{/if}">
+							Volunteer
+                            {if $sort=='Users.username desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+                            {elseif $sort=='Users.username asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+                            {/if}
+						</a>
 					</th>
 					<th>
-						Date
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='timestamp desc'}timestamp+asc{else}timestamp+desc{/if}">
+							Date
+                            {if $sort=='timestamp desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+                            {elseif $sort=='timestamp asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+                            {/if}
+						</a>
 					</th>
 					<th>
-						Place
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='VolunteerPlaces.name desc'}VolunteerPlaces.name+asc{else}VolunteerPlaces.name+desc{/if}">
+							Place
+                            {if $sort=='VolunteerPlaces.name desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+                            {elseif $sort=='VolunteerPlaces.name asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+                            {/if}
+						</a>
 					</th>
 					<th>
-						# Hours
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='hours desc'}hours+asc{else}hours+desc{/if}">
+							# Hours
+                            {if $sort=='hours desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+                            {elseif $sort=='hours asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+                            {/if}
+						</a>
 					</th>
 					<th>
 						Status
@@ -91,7 +119,7 @@
 						<div class="row browse-pagination">
 							<div class="col-md-3">
 								{if $hasLess}
-									<a href="{$org->manageUrl()}/hours?{$queryStr}&amp;page={$page-1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/hours?{$queryStrNoPage}&amp;page={$page-1}" class="btn btn-link">
 										<span class="ion-arrow-left-c"></span>
 										Previous Page
 									</a>
@@ -102,7 +130,7 @@
 							</div>
 							<div class="col-md-3 text-right">
 								{if $hasMore}
-									<a href="{$org->manageUrl()}/hours?{$queryStr}&amp;page={$page+1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/hours?{$queryStrNoPage}&amp;page={$page+1}" class="btn btn-link">
 										Next Page
 										<span class="ion-arrow-right-c"></span>
 									</a>

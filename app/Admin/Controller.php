@@ -14,6 +14,7 @@ use App\Organizations\Models\Organization;
 use App\Reports\Libs\Report;
 use App\Users\Models\User;
 use App\Volunteers\Models\Volunteer;
+use App\Volunteers\Models\VolunteerApplication;
 use App\Volunteers\Models\VolunteerHour;
 use App\Volunteers\Models\VolunteerPlace;
 use ICanBoogie\Inflector;
@@ -94,7 +95,8 @@ class Controller
         }
 
         // build the query
-        $query = Volunteer::where('organization', $org->id());
+        $query = Volunteer::where('organization', $org->id())
+            ->join(User::class, 'uid', 'id');
 
         $role = $req->query('role');
 
@@ -121,20 +123,28 @@ class Controller
         }
 
         // sorting
-        if ($sort = $req->query('sort')) {
-            $query->sort($sort);
-        } else {
-            $query->sort('uid ASC');
+        $sort = $req->query('sort');
+        if (!$sort) {
+            $sort = 'Users.username asc';
         }
+        $query->sort($sort);
 
         // pagination
         $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
         $queryStr = $req->query();
-        if (isset($queryStr['page'])) {
-            unset($queryStr['page']);
+
+        $queryStrNoPage = $queryStr;
+        if (isset($queryStrNoPage['page'])) {
+            unset($queryStrNoPage['page']);
         }
-        $queryStr = http_build_query($queryStr);
+        $queryStrNoPage = http_build_query($queryStrNoPage);
+
+        $queryStrNoSort = $queryStr;
+        if (isset($queryStrNoSort['page'])) {
+            unset($queryStrNoSort['page']);
+        }
+        $queryStrNoSort = http_build_query($queryStrNoSort);
 
         // fetch the results
         $volunteers = $query->start($page * $perPage)->first($perPage);
@@ -159,7 +169,9 @@ class Controller
             'numAdded' => $req->params('numAdded'),
             'username' => $req->query('username'),
             'req' => $req,
-            'queryStr' => $queryStr
+            'queryStrNoPage' => $queryStrNoPage,
+            'queryStrNoSort' => $queryStrNoSort,
+            'sort' => $sort
         ]);
     }
 
@@ -373,7 +385,9 @@ class Controller
         }
 
         // build the query
-        $query = VolunteerHour::where('organization', $org->id());
+        $query = VolunteerHour::where('organization', $org->id())
+            ->join(User::class, 'uid', 'id')
+            ->join(VolunteerPlace::class, 'place', 'id');
 
         $showApproved = $req->query('approved');
         if ($showApproved !== null) {
@@ -390,20 +404,28 @@ class Controller
         }
 
         // sorting
-        if ($sort = $req->query('sort')) {
-            $query->sort($sort);
-        } else {
-            $query->sort('timestamp DESC');
+        $sort = $req->query('sort');
+        if (!$sort) {
+            $sort = 'timestamp desc';
         }
+        $query->sort($sort);
 
         // pagination
         $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
         $queryStr = $req->query();
-        if (isset($queryStr['page'])) {
-            unset($queryStr['page']);
+
+        $queryStrNoPage = $queryStr;
+        if (isset($queryStrNoPage['page'])) {
+            unset($queryStrNoPage['page']);
         }
-        $queryStr = http_build_query($queryStr);
+        $queryStrNoPage = http_build_query($queryStrNoPage);
+
+        $queryStrNoSort = $queryStr;
+        if (isset($queryStrNoSort['page'])) {
+            unset($queryStrNoSort['page']);
+        }
+        $queryStrNoSort = http_build_query($queryStrNoSort);
 
         // fetch the results
         $hours = $query->start($page * $perPage)->first($perPage);
@@ -423,7 +445,9 @@ class Controller
             'numAdded' => $req->params('numAdded'),
             'numVolunteers' => $req->params('numVolunteers'),
             'req' => $req,
-            'queryStr' => $queryStr
+            'queryStrNoPage' => $queryStrNoPage,
+            'queryStrNoSort' => $queryStrNoSort,
+            'sort' => $sort
         ]);
     }
 
@@ -733,20 +757,28 @@ class Controller
         }
 
         // sorting
-        if ($sort = $req->query('sort')) {
-            $query->sort($sort);
-        } else {
-            $query->sort('name ASC');
+        $sort = $req->query('sort');
+        if (!$sort) {
+            $sort = 'name asc';
         }
+        $query->sort($sort);
 
         // pagination
         $perPage = self::PER_PAGE;
         $page = max(0, $req->query('page'));
         $queryStr = $req->query();
-        if (isset($queryStr['page'])) {
-            unset($queryStr['page']);
+
+        $queryStrNoPage = $queryStr;
+        if (isset($queryStrNoPage['page'])) {
+            unset($queryStrNoPage['page']);
         }
-        $queryStr = http_build_query($queryStr);
+        $queryStrNoPage = http_build_query($queryStrNoPage);
+
+        $queryStrNoSort = $queryStr;
+        if (isset($queryStrNoSort['page'])) {
+            unset($queryStrNoSort['page']);
+        }
+        $queryStrNoSort = http_build_query($queryStrNoSort);
 
         // fetch the results
         $places = $query->start($page * $perPage)->first($perPage);
@@ -765,7 +797,9 @@ class Controller
             'showApproved' => $showApproved,
             'success' => $req->query('success'),
             'req' => $req,
-            'queryStr' => $queryStr
+            'queryStrNoPage' => $queryStrNoPage,
+            'queryStrNoSort' => $queryStrNoSort,
+            'sort' => $sort
         ]);
     }
 

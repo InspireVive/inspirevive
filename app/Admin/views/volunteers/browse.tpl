@@ -53,9 +53,29 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Status</th>
+					<th>
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.username desc'}Users.username+asc{else}Users.username+desc{/if}">
+							Name
+                            {if $sort=='Users.username desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+                            {elseif $sort=='Users.username asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+                            {/if}
+						</a>
+					</th>
+					<th>
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.email desc'}Users.email+asc{else}Users.email+desc{/if}">
+							Email
+                            {if $sort=='Users.email desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+                            {elseif $sort=='Users.email asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+                            {/if}
+						</a>
+					</th>
+					<th>
+						Status
+					</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -105,7 +125,7 @@
 						<div class="row browse-pagination">
 							<div class="col-md-3">
 								{if $hasLess}
-									<a href="{$org->manageUrl()}/volunteers?{$queryStr}&amp;page={$page-1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/volunteers?{$queryStrNoPage}&amp;page={$page-1}" class="btn btn-link">
 										<span class="ion-arrow-left-c"></span>
 										Previous Page
 									</a>
@@ -116,7 +136,7 @@
 							</div>
 							<div class="col-md-3 text-right">
 								{if $hasMore}
-									<a href="{$org->manageUrl()}/volunteers?{$queryStr}&amp;page={$page+1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/volunteers?{$queryStrNoPage}&amp;page={$page+1}" class="btn btn-link">
 										Next Page
 										<span class="ion-arrow-right-c"></span>
 									</a>

@@ -50,10 +50,24 @@
 			<thead>
 				<tr>
 					<th>
-						Name
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='name desc'}name+asc{else}name+desc{/if}">
+							Name
+							{if $sort=='name desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+							{elseif $sort=='name asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+							{/if}
+						</a>
 					</th>
 					<th>
-						Volunteer Coordinator
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='verify_name desc'}verify_name+asc{else}verify_name+desc{/if}">
+							Volunteer Coordinator
+                            {if $sort=='verify_name desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+                            {elseif $sort=='verify_name asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+                            {/if}
+						</a>
 					</th>
 					<th>
 						Status
@@ -92,7 +106,7 @@
 						<div class="row browse-pagination">
 							<div class="col-md-3">
 								{if $hasLess}
-									<a href="{$org->manageUrl()}/places?{$queryStr}&amp;page={$page-1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/places?{$queryStrNoPage}&amp;page={$page-1}" class="btn btn-link">
 										<span class="ion-arrow-left-c"></span>
 										Previous Page
 									</a>
@@ -103,7 +117,7 @@
 							</div>
 							<div class="col-md-3 text-right">
 								{if $hasMore}
-									<a href="{$org->manageUrl()}/places?{$queryStr}&amp;page={$page+1}" class="btn btn-link">
+									<a href="{$org->manageUrl()}/places?{$queryStrNoPage}&amp;page={$page+1}" class="btn btn-link">
 										Next Page
 										<span class="ion-arrow-right-c"></span>
 									</a>

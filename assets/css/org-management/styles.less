@@ -530,6 +530,20 @@ hr {
 				th {
 					border-bottom: 1px solid #ddd;
 					font-family: @headingFont;
+
+					a,a:active,a:visited {
+						color: inherit;
+						text-decoration: none;
+						outline: none;
+
+						.sort-arrow {
+							margin-left: 3px;
+						}
+					}
+
+					a:hover {
+						color: @linkHoverColor;
+					}
 				}
 			}
 		}
