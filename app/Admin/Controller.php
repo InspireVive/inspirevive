@@ -470,7 +470,7 @@ class Controller
             ->sort('name ASC')
             ->all();
 
-        return new View('hours/add', [
+        return new View('hours/add1', [
             'org' => $org,
             'title' => 'Add Volunteer Hours',
             'hoursPage' => true,
