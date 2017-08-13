@@ -14,13 +14,13 @@ use App\Organizations\Models\Organization;
 use App\Reports\Libs\Report;
 use App\Users\Models\User;
 use App\Volunteers\Models\Volunteer;
-use App\Volunteers\Models\VolunteerApplication;
 use App\Volunteers\Models\VolunteerHour;
 use App\Volunteers\Models\VolunteerPlace;
 use ICanBoogie\Inflector;
 use Infuse\HasApp;
 use Infuse\Utility as U;
 use Infuse\View;
+use Pulsar\Query;
 
 class Controller
 {
@@ -122,6 +122,11 @@ class Controller
             }
         }
 
+        // search
+        $search = $req->query('search');
+        $searchParams = ['Users.full_name', 'Users.username', 'Users.email'];
+        $this->addSearch($search, $searchParams, $query);
+
         // sorting
         $sort = $req->query('sort');
         if (!$sort) {
@@ -141,8 +146,8 @@ class Controller
         $queryStrNoPage = http_build_query($queryStrNoPage);
 
         $queryStrNoSort = $queryStr;
-        if (isset($queryStrNoSort['sort'])) {
-            unset($queryStrNoSort['sort']);
+        if (isset($queryStrNoSort['page'])) {
+            unset($queryStrNoSort['page']);
         }
         $queryStrNoSort = http_build_query($queryStrNoSort);
 
@@ -172,7 +177,8 @@ class Controller
             'req' => $req,
             'queryStrNoPage' => $queryStrNoPage,
             'queryStrNoSort' => $queryStrNoSort,
-            'sort' => $sort
+            'sort' => $sort,
+            'search' => $search,
         ]);
     }
 
@@ -407,6 +413,11 @@ class Controller
             $tab = 'pending';
         }
 
+        // search
+        $search = $req->query('search');
+        $searchParams = ['Users.full_name', 'Users.username', 'Users.email', 'VolunteerPlaces.name'];
+        $this->addSearch($search, $searchParams, $query);
+
         // sorting
         $sort = $req->query('sort');
         if (!$sort) {
@@ -453,7 +464,8 @@ class Controller
             'req' => $req,
             'queryStrNoPage' => $queryStrNoPage,
             'queryStrNoSort' => $queryStrNoSort,
-            'sort' => $sort
+            'sort' => $sort,
+            'search' => $search
         ]);
     }
 
@@ -762,6 +774,11 @@ class Controller
             $tab = 'pending';
         }
 
+        // search
+        $search = $req->query('search');
+        $searchParams = ['name', 'verify_name', 'verify_email'];
+        $this->addSearch($search, $searchParams, $query);
+
         // sorting
         $sort = $req->query('sort');
         if (!$sort) {
@@ -807,7 +824,8 @@ class Controller
             'req' => $req,
             'queryStrNoPage' => $queryStrNoPage,
             'queryStrNoSort' => $queryStrNoSort,
-            'sort' => $sort
+            'sort' => $sort,
+            'search' => $search,
         ]);
     }
 
@@ -1106,5 +1124,24 @@ class Controller
             'today' => date('Ymd') == date('Ymd', $t),
             'yesterday' => date('Ymd', strtotime('yesterday')) == date('Ymd', $t),
             'ts' => $t, ];
+    }
+
+    /**
+     * Adds a search term to a query.
+     *
+     * @param $search
+     * @param array $searchParams
+     * @param Query $query
+     */
+    private function addSearch($search, array $searchParams, Query $query)
+    {
+        if (preg_match('/^[a-z0-9\s@\-\.\+]+$/i', $search)) {
+            $search = trim($search);
+            $conditions = [];
+            foreach ($searchParams as $k) {
+                $conditions[] = "$k LIKE \"%$search%\"";
+            }
+            $query->where('(' . implode(' OR ', $conditions) . ')');
+        }
     }
 }

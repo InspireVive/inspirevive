@@ -38,6 +38,24 @@
 	</ul>
 </div>
 
+{if count($places) > 0 || $search}
+	<div class="browse-search-holder">
+		<div class="input-group">
+			<span class="input-group-addon">
+				<span class="ion-search"></span>
+			</span>
+			<input type="text" class="form-control browse-search input-sm" placeholder="Search..." value="{$search}" />
+            {if $search}
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default btn-sm reset-search">
+						Reset
+					</button>
+				</span>
+            {/if}
+		</div>
+	</div>
+{/if}
+
 {if count($places) == 0}
 	<p class="empty">
 		<span class="glyphicon glyphicon-map-marker"></span>
@@ -145,10 +163,28 @@
 
 <script type="text/javascript">
 	$(function() {
-		var url = "{$org->manageUrl()}/volunteers?" + {$queryStrNoPage|json_encode nofilter};
-		$('.page-selector').change(function() {
-			window.location = url + '&page=' + $(this).val();
-		});
+		var url = "{$org->manageUrl()}/places";
+        var queryParams = {$req->query()|json_encode nofilter};
+
+        $('.browse-search').keypress(function(e) {
+            if (e.keyCode === 13) {
+                search($(this).val());
+            }
+        });
+
+        $('.reset-search').click(function() {
+            search('');
+        });
+
+        $('.page-selector').change(function() {
+            queryParams.page = $(this).val();
+            window.location = url + '?' + $.param(queryParams);
+        });
+
+        function search(query) {
+            queryParams.search = query;
+            window.location = url + '?' + $.param(queryParams);
+        }
 	});
 </script>
 
