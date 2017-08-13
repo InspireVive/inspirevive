@@ -47,7 +47,7 @@
 					<li>
 						<a href="/profile">
 							<img src="{$app.user->profilePicture()}" height="21" width="21" class="img-circle" />
-							{$app.user->username}
+							{$app.user->name(true)}
 						</a>
 					</li>
 				</ul>
