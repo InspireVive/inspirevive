@@ -125,7 +125,7 @@ class Controller
         // sorting
         $sort = $req->query('sort');
         if (!$sort) {
-            $sort = 'Users.username asc';
+            $sort = 'Users.full_name asc';
         }
         $query->sort($sort);
 
@@ -169,7 +169,6 @@ class Controller
             'numPages' => $numPages,
             'count' => $count,
             'numAdded' => $req->params('numAdded'),
-            'username' => $req->query('username'),
             'req' => $req,
             'queryStrNoPage' => $queryStrNoPage,
             'queryStrNoSort' => $queryStrNoSort,
@@ -368,7 +367,7 @@ class Controller
             'application' => ($application) ? $application->toArray() : false,
             'completed' => $completed,
             'name' => $name,
-            'title' => $user->name().' :: Volunteers',
+            'title' => $name.' :: Volunteers',
             'volunteersPage' => true,
             'metadata' => $metadata,
             'hours' => $hours,

@@ -46,7 +46,7 @@ class VolunteerApplicationTest extends PHPUnit_Framework_TestCase
             'uid' => Test::$app['user']->id(),
             'first_name' => 'Test',
             'middle_name' => 'meh',
-            'last_name' => 'User',
+            'last_name' => 'Person',
             'address' => 'abc st',
             'city' => 'Tulsa',
             'state' => 'OK',
@@ -54,7 +54,8 @@ class VolunteerApplicationTest extends PHPUnit_Framework_TestCase
             'phone' => '1234567890',
             'alternate_phone' => '1234567899',
             'birth_date' => strtotime('21 years ago'),
-       ]));
+        ]));
+        $this->assertEquals('Test Person', Test::$app['user']->refresh()->full_name);
     }
 
     /**
@@ -62,15 +63,25 @@ class VolunteerApplicationTest extends PHPUnit_Framework_TestCase
      */
     public function testFullName()
     {
-        $this->assertEquals('Test M. User', self::$app->fullName());
+        $this->assertEquals('Test M. Person', self::$app->fullName());
     }
 
     /**
      * @depends testCreate
      */
-    public function testUserName()
+    public function testUserFullName()
     {
-        $this->assertEquals('Test M. User', Test::$app['user']->name(true));
+        $this->assertEquals('Test Person', Test::$app['user']->name(true));
+    }
+
+    /**
+     * @depends testCreate
+     */
+    function testEdit()
+    {
+        self::$app->first_name = 'Changed';
+        $this->assertTrue(self::$app->save());
+        $this->assertEquals('Changed Person', Test::$app['user']->refresh()->full_name);
     }
 
     /**

@@ -13,6 +13,7 @@ namespace App\Volunteers\Models;
 use App\Users\Models\User;
 use Pulsar\ACLModel;
 use Pulsar\Model;
+use Pulsar\ModelEvent;
 
 class VolunteerApplication extends ACLModel
 {
@@ -107,11 +108,26 @@ class VolunteerApplication extends ACLModel
         return $requester->isAdmin();
     }
 
+    protected function initialize()
+    {
+        parent::initialize();
+
+        self::saved([self::class, 'writeFullName']);
+    }
+
     public function toArrayHook(array &$result, array $exclude, array $include, array $expand)
     {
         if (!in_array('age', $exclude)) {
             $result['age'] = $this->age();
         }
+    }
+
+    static function writeFullName(ModelEvent $event)
+    {
+        $model = $event->getModel();
+        $user = $model->relation('uid');
+        $user->full_name = $model->first_name.' '.$model->last_name;
+        $user->saveOrFail();
     }
 
     /**

@@ -20,7 +20,7 @@ class VolunteerTest extends PHPUnit_Framework_TestCase
     public static $org;
     public static $volunteer;
     public static $volunteer2;
-    public static $app;
+    public static $volunteerApp;
     static $user;
 
     public static function setUpBeforeClass()
@@ -43,6 +43,11 @@ class VolunteerTest extends PHPUnit_Framework_TestCase
         Test::$app['database']->getDefault()
             ->delete('Users')
             ->where('email', 'test+temporary@example.com')
+            ->execute();
+
+        Test::$app['database']->getDefault()
+            ->delete('VolunteerApplications')
+            ->where('uid', Test::$app['user']->id())
             ->execute();
     }
 
@@ -79,13 +84,21 @@ class VolunteerTest extends PHPUnit_Framework_TestCase
             'role' => Volunteer::ROLE_ADMIN, ]));
     }
 
-    public function testName()
+    public function testFullName()
     {
         $this->createVolunteerApp();
         $volunteer = new Volunteer();
         $volunteer->uid = Test::$app['user']->id();
         $volunteer->application_shared = true;
-        $this->assertEquals('Test M. User', $volunteer->name(true));
+        $this->assertEquals('Test Person', $volunteer->name(true));
+    }
+
+    public function testName()
+    {
+        $volunteer = new Volunteer();
+        $volunteer->uid = Test::$app['user']->id();
+        $volunteer->application_shared = true;
+        $this->assertEquals('testuser', $volunteer->name());
     }
 
     public function testStatusCoordinator()
@@ -115,7 +128,7 @@ class VolunteerTest extends PHPUnit_Framework_TestCase
 
     public function testStatusIncompleteApplication()
     {
-        self::$app->delete();
+        self::$volunteerApp->delete();
 
         $volunteer = new Volunteer();
         $volunteer->uid = self::$user->id();
@@ -196,7 +209,7 @@ class VolunteerTest extends PHPUnit_Framework_TestCase
             'role' => Volunteer::ROLE_AWAITING_APPROVAL,
             'last_email_sent_about_hours' => null,
             'metadata' => null,
-            'name' => Test::$app['user']->name(),
+            'name' => 'Test Person',
             'status' => Volunteer::STATUS_AWAITING_APPROVAL,
             'approval_link' => self::$volunteer->approval_link,
             'created_at' => self::$volunteer->created_at,
@@ -270,25 +283,19 @@ class VolunteerTest extends PHPUnit_Framework_TestCase
 
     private function createVolunteerApp()
     {
-        $volunteerApplication = Test::$app['user']->volunteerApplication();
-        if (!$volunteerApplication) {
-            return;
-        }
-
-        self::$app = new VolunteerApplication();
-        self::$app->grantAllPermissions();
-        self::$app->create([
-            'uid' => Test::$app['user']->id(),
-            'first_name' => 'Test',
-            'middle_name' => 'meh',
-            'last_name' => 'User',
-            'address' => 'abc st',
-            'city' => 'Tulsa',
-            'state' => 'OK',
-            'zip_code' => '74104',
-            'phone' => '1234567890',
-            'alternate_phone' => '1234567899',
-            'birth_date' => strtotime('21 years ago'),
-       ]);
+        self::$volunteerApp = new VolunteerApplication();
+        self::$volunteerApp->grantAllPermissions();
+        self::$volunteerApp->setRelation('uid', Test::$app['user']);
+        self::$volunteerApp->first_name = 'Test';
+        self::$volunteerApp->middle_name = 'meh';
+        self::$volunteerApp->last_name = 'Person';
+        self::$volunteerApp->address = 'abc st';
+        self::$volunteerApp->city = 'Tulsa';
+        self::$volunteerApp->state = 'OK';
+        self::$volunteerApp->zip_code = '74104';
+        self::$volunteerApp->phone = '1234567890';
+        self::$volunteerApp->alternate_phone = '1234567899';
+        self::$volunteerApp->birth_date = strtotime('21 years ago');
+        self::$volunteerApp->saveOrFail();
     }
 }

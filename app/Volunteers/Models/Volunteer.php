@@ -228,7 +228,7 @@ class Volunteer extends ACLModel
     protected function toArrayHook(array &$result, array $exclude, array $include, array $expand)
     {
         if (!isset($exclude['name'])) {
-            $result['name'] = $this->name();
+            $result['name'] = $this->name(true);
         }
 
         if (!isset($exclude['status'])) {
@@ -255,7 +255,7 @@ class Volunteer extends ACLModel
      *
      * @return string
      */
-    public function name($full = true)
+    public function name($full = false)
     {
         return $this->relation('uid')->name($full);
     }

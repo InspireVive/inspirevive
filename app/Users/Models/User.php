@@ -34,6 +34,11 @@ class User extends AbstractUser
             'searchable' => true,
             'admin_html' => '<a href="/users/{username}" target="_blank">{username}</a>',
         ],
+        'full_name' => [
+            'type' => Model::TYPE_STRING,
+            'null' => true,
+            'searchable' => true,
+        ],
         'email' => [
             'type' => Model::TYPE_STRING,
             'validate' => 'email',
@@ -141,13 +146,15 @@ class User extends AbstractUser
         if ($this->id() == self::GUEST_USER) {
             return 'Guest';
         } else {
-            if ($full && $this->hasCompletedVolunteerApplication()) {
-                return $this->volunteerApplication()->fullName();
+            if ($full && $name = $this->full_name) {
+                return $name;
             }
 
             if (!empty($this->username)) {
                 return $this->username;
-            } elseif (!empty($this->email)) {
+            }
+
+            if (!empty($this->email)) {
                 return $this->email;
             }
 
@@ -202,7 +209,6 @@ class User extends AbstractUser
     {
         return $this->volunteerApplication() !== null;
     }
-
 
     /////////////////////////
     // STATS

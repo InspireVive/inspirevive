@@ -52,6 +52,13 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(self::$user->save());
     }
 
+    public function testNameFull()
+    {
+        $user = new User();
+        $user->full_name = 'Full Name';
+        $this->assertEquals('Full Name', $user->name(true));
+    }
+
     public function testName()
     {
         $user = new User();

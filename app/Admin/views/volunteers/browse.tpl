@@ -54,7 +54,14 @@
 			<thead>
 				<tr>
 					<th>
-						Name
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.full_name desc'}Users.full_name+asc{else}Users.full_name+desc{/if}">
+							Name
+                            {if $sort=='Users.full_name desc'}
+								<span class="ion-arrow-down-b sort-arrow"></span>
+                            {elseif $sort=='Users.full_name asc'}
+								<span class="ion-arrow-up-b sort-arrow"></span>
+                            {/if}
+						</a>
 					</th>
 					<th>
 						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.username desc'}Users.username+asc{else}Users.username+desc{/if}">
@@ -86,9 +93,7 @@
 				{assign var=user value=$volunteer->relation('uid')}
 				<tr class="clickable" onclick="window.location='{$org->manageUrl()}/volunteers/{$user->id()}'">
 					<td>
-						{if $user->hasCompletedVolunteerApplication()}
-							{$user->volunteerApplication()->fullName()}
-						{/if}
+						{$user->full_name}
 					</td>
 					<td>
                         {$user->username}

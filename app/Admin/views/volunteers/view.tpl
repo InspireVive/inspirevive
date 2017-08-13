@@ -59,11 +59,11 @@
 		<div class="left-col details-list">
 			<h3>Details</h3>
             {if $volunteer.application_shared}
-				{if $completed}
+				{if $user.full_name}
 					<div class="section">
 						<label class="title">Name</label>
 						<div class="value">
-							{$name}
+							{$user.full_name}
 						</div>
 					</div>
 				{/if}

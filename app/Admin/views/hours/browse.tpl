@@ -43,11 +43,11 @@
 			<thead>
 				<tr>
 					<th>
-						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.username desc'}Users.username+asc{else}Users.username+desc{/if}">
+						<a href="?{$queryStrNoSort}&amp;sort={if $sort=='Users.full_name desc'}Users.full_name+asc{else}Users.full_name+desc{/if}">
 							Volunteer
-                            {if $sort=='Users.username desc'}
+                            {if $sort=='Users.full_name desc'}
 								<span class="ion-arrow-down-b sort-arrow"></span>
-                            {elseif $sort=='Users.username asc'}
+                            {elseif $sort=='Users.full_name asc'}
 								<span class="ion-arrow-up-b sort-arrow"></span>
                             {/if}
 						</a>
