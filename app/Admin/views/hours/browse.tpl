@@ -196,6 +196,7 @@
 
         function search(query) {
             queryParams.search = query;
+            delete queryParams.page;
             window.location = url + '?' + $.param(queryParams);
         }
 	});
