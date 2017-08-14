@@ -10,7 +10,9 @@
 
 <table>
   <tr>
-      <td align="center" width="100%" style="padding: 0;"><a style="width: 240px; background: #ee5237; padding-top: 6px; padding-right: 10px; padding-bottom: 6px; padding-left: 10px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; color: #fff; font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif; display: block;" href="{$cta_url}" style="color: #fff; text-decoration: none;">Join {$orgname} on InspireVive</a></td>
+      <td align="center" width="100%" style="padding: 0;">
+          <a style="width: 240px; background: #ee5237; padding-top: 6px; padding-right: 10px; padding-bottom: 6px; padding-left: 10px; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; color: #fff; font-weight: bold; text-decoration: none; font-family: Helvetica, Arial, sans-serif; display: block;" href="{$cta_url}">Join {$orgname} on InspireVive</a>
+      </td>
   </tr>
 </table>
 
