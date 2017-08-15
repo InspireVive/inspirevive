@@ -397,7 +397,9 @@ class Controller
         // build the query
         $query = VolunteerHour::where('organization', $org->id())
             ->join(User::class, 'uid', 'id')
-            ->join(VolunteerPlace::class, 'place', 'id');
+            ->join(VolunteerPlace::class, 'place', 'id')
+            ->with('uid')
+            ->with('place');
 
         $showApproved = $req->query('approved');
         if ($showApproved !== null) {

@@ -140,19 +140,12 @@ class Organization extends ACLModel
      *
      * @param int|null       $start     optional start timestamp bound
      * @param int|null       $end       optional end timestamp bound
-     * @param Volunteer $volunteer optional volunteer to filter hours with
      *
      * @return \Pulsar\Iterator
      */
-    public function hours($start = null, $end = null, Volunteer $volunteer = null)
+    public function hours($start = null, $end = null)
     {
-        $query = $this->getHoursQuery($start, $end);
-
-        if ($volunteer) {
-            $query->where('uid', $volunteer->id());
-        }
-
-        return $query->all();
+        return $this->getHoursQuery($start, $end)->all();
     }
     /**
      * Gets the query for most recent volunteer hours performed in this organization.
@@ -177,7 +170,9 @@ class Organization extends ACLModel
         return VolunteerHour::where($where)
             ->where('timestamp', $start, '>=')
             ->where('timestamp', $end, '<=')
-            ->sort('timestamp DESC');
+            ->sort('timestamp DESC')
+            ->with('uid')
+            ->with('place');
     }
 
     /**
