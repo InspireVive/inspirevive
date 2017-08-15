@@ -96,7 +96,8 @@ class Controller
 
         // build the query
         $query = Volunteer::where('organization', $org->id())
-            ->join(User::class, 'uid', 'id');
+            ->join(User::class, 'uid', 'id')
+            ->with('uid');
 
         $role = $req->query('role');
 
