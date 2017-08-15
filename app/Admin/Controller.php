@@ -135,7 +135,7 @@ class Controller
         $query->sort($sort);
 
         // pagination
-        $perPage = self::PER_PAGE;
+        $perPage = $req->query('per_page') ?? self::PER_PAGE;
         $page = max(1, $req->query('page'));
         $queryStr = $req->query();
 
@@ -428,7 +428,7 @@ class Controller
         $query->sort($sort);
 
         // pagination
-        $perPage = self::PER_PAGE;
+        $perPage = $req->query('per_page') ?? self::PER_PAGE;
         $page = max(1, $req->query('page'));
         $queryStr = $req->query();
 
@@ -789,7 +789,7 @@ class Controller
         $query->sort($sort);
 
         // pagination
-        $perPage = self::PER_PAGE;
+        $perPage = $req->query('per_page') ?? self::PER_PAGE;
         $page = max(1, $req->query('page'));
         $queryStr = $req->query();
 
