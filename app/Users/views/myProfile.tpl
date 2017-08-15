@@ -115,7 +115,7 @@
 			<div class="row">
 		{/if}
 			<div class="col-sm-3">
-				<div class="volunteer-hour {if $hour->approved}approved{/if}">
+				<div class="volunteer-hour {if $hour->approved}approved{else}pending{/if}">
 					<div class="status"></div>
 					<div class="place">
 						<div class="title">
@@ -126,7 +126,7 @@
 						</div>
 					</div>
 					<div class="details">
-						<div class="detail highlight">
+						<div class="hours">
 							<div class="main">
 								{$hour->hours}
 							</div>
@@ -134,13 +134,8 @@
 								{$app.locale->p($hour->hours,'hour','hours')}
 							</div>
 						</div>
-						<div class="detail">
-							<div class="main">
-								{$hour->timestamp|date_format:'M j'}
-							</div>
-							<div class="title">
-								{$hour->timestamp|date_format:'Y'}
-							</div>
+						<div class="date">
+                            {$hour->timestamp|date_format:'M j, Y'}
 						</div>
 						<div class="tags">
 							{foreach from=$hour->tags() item=tag}
@@ -181,7 +176,7 @@
 		<p>
 			<button type="button" class="btn btn-success"></button>
 			Approved&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-danger"></button>
+			<button type="button" class="btn btn-warning"></button>
 			Awaiting Approval
 		</p>
 	</div>

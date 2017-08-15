@@ -1531,50 +1531,51 @@ html.placeholder {
 	max-width: 210px;
 	margin: 0 auto 9px;
 	position: relative;
+	background: #fff;
 
 	.status {
-		background: @inspireviveRed;
+		background: #999;
 		height: 4px;
 	}
 
 	.place {
 		position: relative;
-		background: #fff;
-		padding: 9px 9px 9px;
-		min-height: 56px;
+		padding: 9px 9px 0;
 
 		.title {
 			text-align: center;
-			font-size: 24px;
+			font-size: 18px;
 			font-weight: 300;
 			color: #777;
+			height: 50px;
+			line-height: 25px;
+			overflow: hidden;
 		}
 	}
 
 	.details {
-		background: #fff;
 		padding: 9px 0 15px;
 		position: relative;
 		color: #777;
+		text-align: center;
 
-		.detail.highlight {
-			color: @inspireviveRed;
-		}
-
-		.detail {
-			text-align: center;
-			margin-bottom: 15px;
-
+		.hours {
 			.main {
 				font-size: 30px;
 				line-height: 30px;
-				font-weight: 300;
+				font-weight: bold;
 			}
 
 			.title {
 				font-size: 12px;
 				text-transform: uppercase;
+				color: #aaa;
 			}
+		}
+
+		.date {
+			font-size: 14px;
+			margin: 15px 0 0;
 		}
 	}
 
@@ -1582,8 +1583,7 @@ html.placeholder {
 		margin: 0 15px 0;
 		line-height: 24px;
 		text-align: center;
-		min-height: 24px;
-		clear: both;
+		height: 24px;
 	}
 
 	.organization {
@@ -1592,19 +1592,18 @@ html.placeholder {
 		padding: 5px 15px;
 		text-transform: uppercase;
 		font-size: 12px;
-		background: #fff;
+	}
+}
+
+.volunteer-hour.pending {
+	.status {
+		background: @inspireviveYellow;
 	}
 }
 
 .volunteer-hour.approved {
 	.status {
 		background: @inspireVivePureGreen;
-	}
-
-	.details {
-		.detail.highlight {
-			color: @inspireVivePureGreen;
-		}
 	}
 }
 
@@ -1649,11 +1648,6 @@ html.placeholder {
 			.detail {
 				width: 50%;
 				float: left;
-			}
-
-			.tags {
-				min-height: 0;
-				margin-bottom: 15px;
 			}
 		}
 	}
