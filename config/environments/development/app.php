@@ -30,6 +30,6 @@ return [
         'port' => 1025
     ],
     'logger' => [
-        'enabled' => false,
+        'enabled' => true,
     ]
 ];
