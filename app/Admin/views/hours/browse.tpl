@@ -10,12 +10,12 @@
 <div class="browse-params">
 	<ul class="nav nav-tabs browse-tabs">
 		<li class="{if $tab=='approved'}active{/if}">
-			<a href="?approved=1">
+			<a href="?approved=1&amp;search={$search}">
 				Approved
 			</a>
 		</li>
 		<li class="{if $tab=='pending'}active{/if}">
-			<a href="?approved=0">
+			<a href="?approved=0&amp;search={$search}">
 				Awaiting Approval
 				{if $hoursAwaitingApproval > 0}
 					<span class="badge">
@@ -25,7 +25,7 @@
 			</a>
 		</li>
 		<li class="{if $tab=='all'}active{/if}">
-			<a href="?tab=all">
+			<a href="?tab=all&amp;search={$search}">
 				All
 			</a>
 		</li>

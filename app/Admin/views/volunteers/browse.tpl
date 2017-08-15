@@ -14,12 +14,12 @@
 <div class="browse-params">
 	<ul class="nav nav-tabs browse-tabs">
 		<li class="{if $tab=='approved'}active{/if}">
-			<a href="?role={$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}&amp;inactive=0">
+			<a href="?role={$smarty.const.ORGANIZATION_ROLE_VOLUNTEER}&amp;inactive=0&amp;search={$search}">
 				Approved
 			</a>
 		</li>
 		<li class="{if $tab=='pending'}active{/if}">
-			<a href="?role={$smarty.const.ORGANIZATION_ROLE_AWAITING_APPROVAL}&amp;inactive=0">
+			<a href="?role={$smarty.const.ORGANIZATION_ROLE_AWAITING_APPROVAL}&amp;inactive=0&amp;search={$search}">
 				Awaiting Approval
 				{if $volunteersAwaitingApproval > 0}
 					<span class="badge">
@@ -29,7 +29,7 @@
 			</a>
 		</li>
 		<li class="{if $tab=='all'}active{/if}">
-			<a href="?tab=all">
+			<a href="?tab=all&amp;search={$search}">
 				All
 			</a>
 		</li>
