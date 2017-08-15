@@ -40,13 +40,6 @@
 		</div>
 
 		<div id="page" class="scrollable">
-			{if $app.user->isAdmin()}
-				<div class="alert admin">
-					<a href="/admin" class="btn btn-link" target="_blank">
-						Administration Dashboard
-					</a>
-				</div>
-			{/if}
 			<nav class="navbar navbar-default" role="navigation">
 				<div class="container">
 					<div class="navbar-header">
