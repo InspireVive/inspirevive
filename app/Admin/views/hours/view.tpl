@@ -24,8 +24,9 @@
 		</h1>
 		<h2>
             {$volunteer->name(true)}
-			@
-            {$place->name}
+			{if $place}
+				@ {$place->name}
+            {/if}
 		</h2>
 	</div>
 
@@ -48,14 +49,16 @@
 				</div>
 			</div>
 
-			<div class="section">
-				<label class="title">Place</label>
-				<div class="value">
-					<a href="{$org->manageUrl()}/places/{$place->id()}">
-						{$place->name}
-					</a>
+			{if $place}
+				<div class="section">
+					<label class="title">Place</label>
+					<div class="value">
+						<a href="{$org->manageUrl()}/places/{$place->id()}">
+							{$place->name}
+						</a>
+					</div>
 				</div>
-			</div>
+            {/if}
 
 			<div class="section">
 				<label class="title"># Hours</label>
@@ -71,7 +74,7 @@
 						<label class="label label-success">Approved</label>
 					{else}
 						{if $hour.verification_requested}
-							<label class="label label-warning" data-toggle="tooltip" title="Sent to {$place->verify_email}">Verification Requested</label>
+							<label class="label label-warning" {if $place}data-toggle="tooltip" title="Sent to {$place->verify_email}"{/if}>Verification Requested</label>
 						{else}
 							<label class="label label-warning">Pending Approval</label>
 						{/if}

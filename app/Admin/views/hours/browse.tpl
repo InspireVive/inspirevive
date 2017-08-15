@@ -115,7 +115,7 @@
 						{$hour->timestamp|date_format:'M d, Y'}
 					</td>
 					<td>
-						{$hour->relation('place')->name}
+						{$hour->place()->name}
 					</td>
 					<td>
 						{$hour->hours}

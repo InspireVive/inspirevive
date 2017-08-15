@@ -737,7 +737,7 @@ class Controller
             'hour' => $hour->toArray(),
             'tags' => $hour->tags(),
             'volunteer' => $hour->volunteer(),
-            'place' => $hour->relation('place'),
+            'place' => $hour->place(),
             'title' => 'Hours Details :: Volunteers',
             'hoursPage' => true,
             'req' => $req

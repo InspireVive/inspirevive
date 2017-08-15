@@ -119,7 +119,10 @@
 					<div class="status"></div>
 					<div class="place">
 						<div class="title">
-							{$hour->place()->name}
+							{assign var=place value=$hour->place()}
+							{if $place}
+								{$place->name}
+                            {/if}
 						</div>
 					</div>
 					<div class="details">

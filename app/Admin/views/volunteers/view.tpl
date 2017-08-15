@@ -254,7 +254,10 @@
                                     {$hour->timestamp|date_format:'M d, Y'}
 								</td>
 								<td>
-                                    {$hour->relation('place')->name}
+									{assign var=place value=$hour->place()}
+									{if $place}
+	                                    {$place->name}
+                                    {/if}
 								</td>
 								<td>
                                     {$hour->hours}
