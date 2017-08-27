@@ -22,7 +22,7 @@
 	"require": {
 		"php": ">=7.0.0",
 		"infuse/infuse": "~1.5",
-		"infuse/auth": "~2.0",
+		"infuse/auth": "~2.1",
 		"infuse/cron": "~2.0",
 		"infuse/email": "~1.2",
 		"infuse/migrations": "~1.2",

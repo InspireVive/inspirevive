@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bee31dc41baad2a0e29e2e7ba01e5bdf",
+    "content-hash": "195237d3ca8a0b26237b3571646e11e8",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -217,16 +217,16 @@
         },
         {
             "name": "infuse/auth",
-            "version": "2.0.0",
+            "version": "2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/infusephp/auth.git",
-                "reference": "d6106a626cced658750e613c13d162474415ff5f"
+                "reference": "688978a8b27f3469954a212b5047581cb296273e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/infusephp/auth/zipball/d6106a626cced658750e613c13d162474415ff5f",
-                "reference": "d6106a626cced658750e613c13d162474415ff5f",
+                "url": "https://api.github.com/repos/infusephp/auth/zipball/688978a8b27f3469954a212b5047581cb296273e",
+                "reference": "688978a8b27f3469954a212b5047581cb296273e",
                 "shasum": ""
             },
             "require": {
@@ -243,6 +243,9 @@
                 "pulsar/pulsar": "~0.5",
                 "robmorgan/phinx": "~0.5",
                 "satooshi/php-coveralls": "~1.0"
+            },
+            "suggest": {
+                "ext-redis": "*"
             },
             "type": "library",
             "autoload": {
@@ -269,7 +272,7 @@
                 "framework",
                 "infuse"
             ],
-            "time": "2017-07-03T21:25:09+00:00"
+            "time": "2017-08-27T01:23:32+00:00"
         },
         {
             "name": "infuse/cron",
@@ -1044,16 +1047,16 @@
         },
         {
             "name": "pulsar/pulsar",
-            "version": "0.5.2",
+            "version": "0.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaredtking/pulsar.git",
-                "reference": "70a7e0f2ac9ffa9e265ad8a842ad44351459de4d"
+                "reference": "0b596c3d68a3b091ed00613f979b22a01feb482d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaredtking/pulsar/zipball/70a7e0f2ac9ffa9e265ad8a842ad44351459de4d",
-                "reference": "70a7e0f2ac9ffa9e265ad8a842ad44351459de4d",
+                "url": "https://api.github.com/repos/jaredtking/pulsar/zipball/0b596c3d68a3b091ed00613f979b22a01feb482d",
+                "reference": "0b596c3d68a3b091ed00613f979b22a01feb482d",
                 "shasum": ""
             },
             "require": {
@@ -1097,7 +1100,7 @@
                 "orm",
                 "pulsar"
             ],
-            "time": "2017-08-04T14:53:50+00:00"
+            "time": "2017-08-26T16:16:36+00:00"
         },
         {
             "name": "robmorgan/phinx",

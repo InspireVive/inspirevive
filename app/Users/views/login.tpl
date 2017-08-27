@@ -17,6 +17,12 @@
 		</div>
 	{/if}
 
+	{if $attemptsRemaining > 0 && $attemptsRemaining <= 3}
+		<p class="text-danger">
+			Remaining sign in attempts before your account is locked out temporarily: {$attemptsRemaining}
+		</p>
+    {/if}
+
 	<form action="/login" method="post">
 		{$app.csrf->render($req) nofilter}
 		<input type="hidden" name="redir" value="{$redir|htmlspecialchars}" />

@@ -28,7 +28,7 @@ class Controller
         self::$viewsDir = __DIR__.'/views';
     }
 
-    public function loginForm($req, $res, $error = false)
+    public function loginForm($req, $res, $error = false, $remaining = -1)
     {
         $this->ensureHttps($req, $res);
 
@@ -52,7 +52,8 @@ class Controller
             'loginUsername' => $req->request('username'),
             'loginForm' => true,
             'error' => $error,
-            'req' => $req
+            'req' => $req,
+            'attemptsRemaining' => $remaining,
         ]);
     }
 
@@ -62,7 +63,10 @@ class Controller
             $this->app['auth']->authenticate('traditional');
         } catch (AuthException $e) {
             $message = $e->getMessage();
-            return $this->loginForm($req, $res, $message);
+            $strategy = $this->app['auth']->getStrategy('traditional');
+            $rateLimiter = $strategy->getRateLimiter();
+            $remaining = $rateLimiter->getRemainingAttempts($req->request('username'));
+            return $this->loginForm($req, $res, $message, $remaining);
         }
 
         $redir = ($req->request('redir')) ? $req->request('redir') : $req->cookies('redirect');

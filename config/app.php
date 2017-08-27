@@ -8,6 +8,7 @@
  * @license GNU GPLv3
  */
 
+use Infuse\Auth\Libs\RateLimiter\RedisRateLimiter;
 use Infuse\Queue\Driver\SynchronousDriver;
 use Infuse\ViewEngine\Smarty;
 use Pulsar\Driver\DatabaseDriver;
@@ -16,6 +17,9 @@ return  [
     'app' => [
         'title' => 'InspireVive',
         'language' => 'en',
+    ],
+    'auth' => [
+        'loginRateLimiter' => RedisRateLimiter::class
     ],
     'assets' => [
         'base_url' => '//inspirevive.localhost:1234',
