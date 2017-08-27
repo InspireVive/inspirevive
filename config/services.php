@@ -8,6 +8,7 @@
  * @license GNU GPLv3
  */
 
+use App\Core\MonologHandler;
 use Infuse\Auth\Services\Auth;
 use Infuse\Csrf\Csrf;
 use Infuse\Csrf\CsrfTokens;
@@ -22,6 +23,8 @@ use Pulsar\Services\ErrorStack;
 
 return [
     'services' => [
+        'monolog_handler' => MonologHandler::class,
+
         // infuse
         'redis' => Redis::class,
         'view_engine' => ViewEngine::class,
