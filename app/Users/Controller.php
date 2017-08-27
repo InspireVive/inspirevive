@@ -101,9 +101,9 @@ class Controller
 
         $user = false;
         if (!$req->params('success') && $token = $req->params('id')) {
-            $user = $this->app['auth']->getUserFromForgotToken($token);
-
-            if (!$user) {
+            try {
+                $user = $this->app['auth']->getUserFromForgotToken($token);
+            } catch (AuthException $e) {
                 return $res->setCode(404);
             }
         }
