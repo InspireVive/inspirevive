@@ -57,6 +57,9 @@ class User extends AbstractUser
             'admin_type' => 'password',
             'admin_hidden_property' => true,
         ],
+        'password2' => [
+            'null' => true,
+        ],
         'ip' => [
             'type' => Model::TYPE_STRING,
             'required' => true,
@@ -133,6 +136,29 @@ class User extends AbstractUser
             $result['name'] = $this->name(true);
         }
     }
+
+    protected function setPasswordValue($value)
+    {
+        $password = $value;
+        if (is_array($password)) {
+            $password = $password[0];
+        }
+
+        $this->rehashPassword($password);
+
+        return $value;
+    }
+
+    public function rehashPassword($password)
+    {
+        $this->password2 = password_hash($password, PASSWORD_DEFAULT);
+
+        return $this;
+    }
+
+    ////////////////////////
+    // Getters
+    ////////////////////////
 
     /**
      * Get's the user's name.

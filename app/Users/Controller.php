@@ -69,6 +69,13 @@ class Controller
             return $this->loginForm($req, $res, $message, $remaining);
         }
 
+        $user = $this->app['user'];
+
+        // rehash the password
+        if ($user->id() > 0 && !$user->password2) {
+            $user->rehashPassword($req->request('password'))->grantAllPermissions()->save();
+        }
+
         $redir = ($req->request('redir')) ? $req->request('redir') : $req->cookies('redirect');
 
         if (!empty($redir)) {
@@ -76,8 +83,7 @@ class Controller
             $res->redirect($redir);
         } else {
             // prompt user to fill out volunteer application
-            $currentUser = $this->app['user'];
-            if (!$currentUser->hasCompletedVolunteerApplication() && $currentUser->invited_by) {
+            if (!$user->hasCompletedVolunteerApplication() && $user->invited_by) {
                 $res->redirect('/volunteers/application');
             } else {
                 $res->redirect('/profile');
