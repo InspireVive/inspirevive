@@ -8,6 +8,7 @@
 /vendor
 /node_modules
 /public/node_modules
+/composer.lock
 
 ### Auto-generated Files
 /build
