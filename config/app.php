@@ -25,6 +25,9 @@ return  [
         'base_url' => '//inspirevive.localhost:1234',
         'cacheExtensions' => ['ico','css','js','gif','jpg','jpeg','png','exe','csv','zip','gz','pdf','html','woff','ttf','eot','svg' ],
     ],
+    'cache' => [
+        'namespace' => 'inspirevive',
+    ],
     'i18n' => [
         'locale' => 'en',
     ],
