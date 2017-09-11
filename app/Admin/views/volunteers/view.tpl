@@ -177,6 +177,12 @@
 			</div>
 		</div>
 		<div class="right-col">
+			{if $inviteSent}
+				<div class="alert alert-success">
+					A fresh invite has been sent to <strong>{$user.email}</strong>! Please ask them to check their spam folder if they still have not received the invitation.
+				</div>
+			{/if}
+
 			<!-- Action Items -->
 			{if $user->isTemporary()}
 				<div class="action-item warning">
@@ -185,6 +191,14 @@
 						<span class="glyphicon glyphicon-exclamation-sign"></span>
                         {$name} has not registered on InspireVive yet.
 					</p>
+					<div class="actions">
+						<form method="post" action="{$org->manageUrl()}/volunteers/{$volunteer.uid}/invite">
+                            {$app.csrf->render($req) nofilter}
+							<button type="submit" class="btn btn-link">
+								Resend Invite
+							</button>
+						</form>
+					</div>
 				</div>
             {elseif !$volunteer.application_shared}
 				<div class="action-item warning">

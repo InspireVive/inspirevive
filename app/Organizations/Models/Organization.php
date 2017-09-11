@@ -531,8 +531,6 @@ class Organization extends ACLModel
             throw new \Exception('Could not locate or create user with email address: '.$email);
         }
 
-        $isTemporary = $user->isTemporary();
-
         // look for an existing volunteer
         if ($volunteer = Volunteer::find([$user->id(), $this->id()])) {
             return $volunteer;
@@ -547,10 +545,23 @@ class Organization extends ACLModel
         $volunteer->role = Volunteer::ROLE_VOLUNTEER;
         $volunteer->grantAllPermissions()->saveOrFail();
 
-        $base = $this->getApp()['base_url'];
+        // send the invitation
+        $this->sendInvite($user);
 
+        return $volunteer;
+    }
+
+    /**
+     * Sends an invitation to a volunteer.
+     *
+     * @param User $user
+     */
+    function sendInvite(User $user)
+    {
         $orgName = $this->name;
-        $ctaUrl = ($isTemporary) ?
+
+        $base = $this->getApp()['base_url'];
+        $ctaUrl = ($user->isTemporary()) ?
             $base.'signup?email='.$user->email :
             $base.'profile';
 
@@ -559,9 +570,8 @@ class Organization extends ACLModel
             [
                 'subject' => "$orgName has invited you as a volunteer",
                 'orgname' => $orgName,
-                'cta_url' => $ctaUrl, ]);
-
-        return $volunteer;
+                'cta_url' => $ctaUrl,
+            ]);
     }
 
     //////////////////////

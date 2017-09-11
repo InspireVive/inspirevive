@@ -232,6 +232,10 @@ $routes = [
         'App\Admin\Controller',
         'modelEdit',
     ],
+    'POST /organizations/{username}/admin/volunteers/{id}/invite' => [
+        'App\Admin\Controller',
+        'sendVolunteerInvite',
+    ],
     'POST /organizations/{username}/admin/groups/{id}' => [
         'App\Admin\Controller',
         'modelEdit',

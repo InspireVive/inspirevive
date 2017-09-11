@@ -379,8 +379,27 @@ class Controller
             'metadata' => $metadata,
             'hours' => $hours,
             'totalHours' => $totalHours,
-            'req' => $req
+            'req' => $req,
+            'inviteSent' => $req->params('inviteSent')
         ]);
+    }
+
+    function sendVolunteerInvite($req, $res)
+    {
+        $lookup = $this->getModelForAdmin($req, $res);
+
+        if (!$lookup) {
+            return;
+        }
+
+        list($org, $volunteer, $section) = $lookup;
+
+        $user = $volunteer->relation('uid');
+        $org->sendInvite($user);
+
+        $req->setParams(['inviteSent' => true]);
+
+        return $this->volunteersView($req, $res);
     }
 
 /*
