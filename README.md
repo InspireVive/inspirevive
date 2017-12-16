@@ -9,7 +9,7 @@ Volunteer management platform to help organizations volunteer more effectively
 
 ## Requirements
 
-- PHP 7+
+- PHP 7.1+
 - [Composer](https://getcomposer.org/)
 - MySQL/MariaDB
 - Redis

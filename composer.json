@@ -20,7 +20,7 @@
         "psr-4": {"App\\": "app/"}
     },
 	"require": {
-		"php": ">=7.0.0",
+		"php": ">=7.1.0",
 		"infuse/infuse": "~1.6",
 		"infuse/auth": "~3.0",
 		"infuse/cron": "~2.0",
