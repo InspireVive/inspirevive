@@ -9,7 +9,7 @@
  */
 
 // determine environment
-$env = getenv('INFUSE_ENV');
+$env = getenv('APP_ENV');
 
 // always use test environment for phpunit
 if (getenv('PHPUNIT')) {
@@ -17,7 +17,7 @@ if (getenv('PHPUNIT')) {
 }
 
 if (!$env) {
-    die('INFUSE_ENV not set!');
+    die('APP_ENV not set!');
 }
 
 $settings = [];
