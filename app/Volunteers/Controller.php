@@ -24,8 +24,6 @@ class Controller
 {
     use HasApp;
 
-    public static $viewsDir;
-
     private $months = [
         'January',
         'February',
@@ -38,12 +36,8 @@ class Controller
         'September',
         'October',
         'November',
-        'December',];
-
-    public function __construct()
-    {
-        self::$viewsDir = __DIR__.'/views';
-    }
+        'December',
+    ];
 
     public function volunteerApplication($req, $res)
     {
@@ -69,7 +63,7 @@ class Controller
             $application['year'] = date('Y', $application['birth_date']);
         }
 
-        return new View('application', [
+        return new View('@volunteers/application', [
             'title' => 'Volunteer Application',
             'application' => $application,
             'states' => Locale::$usaStates,
@@ -122,7 +116,7 @@ class Controller
 
     public function volunteerApplicationThanks($req, $res)
     {
-        return new View('applicationThanks', [
+        return new View('@volunteers/applicationThanks', [
             'title' => 'Thank you for completing the volunteer application',
        ]);
     }
@@ -166,7 +160,7 @@ class Controller
 
         $role = $org->getRoleOfUser($this->app['user']);
 
-        return new View('profile', [
+        return new View('@volunteers/profile', [
             'title' => $org->name.' Volunteer Hub',
             'org' => $org->toArray(),
             'orgObj' => $org,
@@ -226,7 +220,7 @@ class Controller
             return $res->redirect('/profile');
         }
 
-        return new View('joinOrganization', [
+        return new View('@volunteers/joinOrganization', [
             'title' => 'Joined '.$org->name,
             'org' => $org->toArray(),
             'orgObj' => $org,
@@ -256,7 +250,7 @@ class Controller
 
         $user = $volunteer->relation('uid');
 
-        return new View('volunteerApprovedThanks', [
+        return new View('@volunteers/volunteerApprovedThanks', [
             'org' => $org,
             'title' => ($success) ? 'Volunteer Approved' : 'Could not approve volunteer',
             'success' => $success,
@@ -286,7 +280,7 @@ class Controller
         $volunteer->grantAllPermissions();
         $success = $volunteer->delete();
 
-        return new View('volunteerApprovedThanks', [
+        return new View('@volunteers/volunteerApprovedThanks', [
             'org' => $org,
             'title' => ($success) ? 'Volunteer Denied' : 'Could not deny volunteer',
             'success' => $success,
@@ -342,7 +336,7 @@ class Controller
             ->sort('name ASC')
             ->all();
 
-        return new View('reportHours', [
+        return new View('@volunteers/reportHours', [
             'org' => $org,
             'title' => 'Report Volunteer Hours',
             'places' => $places,
@@ -367,7 +361,7 @@ class Controller
             return $res->redirect('/login');
         }
 
-        return new View('addPlace', [
+        return new View('@volunteers/addPlace', [
             'org' => $org,
             'title' => 'Add Volunteer Place',
             'place' => $req->request(),
@@ -454,7 +448,7 @@ class Controller
             ->limit(10)
             ->column();
 
-        return new View('reportHours2', [
+        return new View('@volunteers/reportHours2', [
             'org' => $org,
             'title' => 'Report Volunteer Hours',
             'place' => $place,
@@ -541,7 +535,7 @@ class Controller
             return $res->redirect('/login');
         }
 
-        return new View('reportHoursThanks', [
+        return new View('@volunteers/reportHoursThanks', [
             'org' => $org,
             'title' => 'Volunteer Hours Reported',
         ]);
@@ -560,7 +554,7 @@ class Controller
             ->first();
 
         if (!$hour) {
-            return new View('hoursNotFound', [
+            return new View('@volunteers/hoursNotFound', [
                 'org' => $org,
                 'title' => 'Hours Not Found',
             ]);
@@ -574,7 +568,7 @@ class Controller
         $user = $hour->relation('uid');
         $place = $hour->place()->toArray();
 
-        return new View('hoursApprovedThanks', [
+        return new View('@volunteers/hoursApprovedThanks', [
             'org' => $org,
             'title' => ($success) ? 'Volunteer Hours Approved' : 'Could not approve volunteer hours',
             'success' => $success,
@@ -598,7 +592,7 @@ class Controller
             ->first();
 
         if (!$hour) {
-            return new View('hoursNotFound', [
+            return new View('@volunteers/hoursNotFound', [
                 'org' => $org,
                 'title' => 'Hours Not Found',
             ]);
@@ -611,7 +605,7 @@ class Controller
         $hour->grantAllPermissions();
         $success = $hour->delete();
 
-        return new View('hoursApprovedThanks', [
+        return new View('@volunteers/hoursApprovedThanks', [
             'org' => $org,
             'title' => ($success) ? 'Volunteer Hours Denied' : 'Could not reject volunteer hours',
             'success' => $success,

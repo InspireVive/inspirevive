@@ -10,7 +10,7 @@
 
 use Infuse\Auth\Libs\RateLimiter\RedisRateLimiter;
 use Infuse\Queue\Driver\SynchronousDriver;
-use Infuse\ViewEngine\Smarty;
+use Infuse\ViewEngine\Twig;
 use Pulsar\Driver\DatabaseDriver;
 
 return  [
@@ -53,6 +53,9 @@ return  [
         'lifetime' => 86400,
     ],
     'views' => [
-        'engine' => Smarty::class,
+        'engine' => Twig::class,
+        'twigConfig' => [
+            'auto_reload' => true,
+        ],
     ],
 ];

@@ -1,0 +1,86 @@
+{% extends "@admin/parent.twig" %}
+{% block content %}
+
+{% if place.id is defined %}
+	<h1>Edit Place</h1>
+{% else %}
+	<h1>New Place</h1>
+{% endif %}
+
+{% for error in app.errors.messages() %}
+	<p class="alert alert-danger">{{ error }}</p>
+{% endfor %}
+
+<form method="post" action="{{ org.manageUrl() }}/places{% if place.id is defined %}/{{ place.id }}{% endif %}" role="form" class="form-horizontal">
+    {{ app.csrf.render(req)|raw }}
+
+	<div class="form-group">
+		<label class="control-label col-md-4">
+			Name
+		</label>
+		<div class="controls col-md-4">
+			<input class="form-control" name="name" value="{{ place.name }}" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-4">
+			Address
+		</label>
+		<div class="controls col-md-4">
+			<textarea class="form-control" name="address">{{ place.address }}</textarea>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-4">
+			Delegate the approval of hours self-reported here to another volunteer coordinator?
+		</label>
+		<div class="controls col-md-2 form-control-static">
+			<input type="hidden" name="place_type" id="external-place-input" value="{{ place.place_type }}" />
+			<input type="checkbox" id="external-place-toggle" {% if place.place_type == constant('VOLUNTEER_PLACE_EXTERNAL') %}checked="checked"{% endif %} value="{{ constant('VOLUNTEER_PLACE_EXTERNAL') }}" />
+			<label class="inline" for="external-place-toggle">Yes</label>
+		</div>
+	</div>
+
+	<div class="place-external {% if place.place_type != constant('VOLUNTEER_PLACE_EXTERNAL') %}hidden{% endif %}">
+		<div class="form-group">
+			<label class="control-label col-md-4">
+				Volunteer Coordinator's Name
+			</label>
+			<div class="col-md-3">
+				<input type="text" name="verify_name" class="form-control" value="{% if place.verify_name is defined %}{{ place.verify_name }}{% endif %}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-md-4">
+				Volunteer Coordinator's Email Address
+			</label>
+			<div class="col-md-4">
+				<input type="text" name="verify_email" class="form-control" value="{% if place.verify_email is defined %}{{ place.verify_email }}{% endif %}">
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="controls col-md-4 col-md-offset-4">
+			<input type="submit" class="btn btn-primary" value="{% if place.id is defined %}Save Place{% else %}Add Place{% endif %}" />
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+	$(function() {
+		$('#external-place-toggle').change(function() {
+			var external = $(this).is(':checked');
+			if (external)
+				$('.place-external').removeClass('hidden');
+			else
+				$('.place-external').addClass('hidden');
+
+			$('#external-place-input').val((external)?{{ constant('VOLUNTEER_PLACE_EXTERNAL') }}:{{ constant('VOLUNTEER_PLACE_INTERNAL') }});
+		});
+	});
+</script>
+{% endblock %}

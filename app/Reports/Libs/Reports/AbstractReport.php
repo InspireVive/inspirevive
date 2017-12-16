@@ -21,8 +21,6 @@ abstract class AbstractReport
 {
     use HasApp;
 
-    public static $viewsDir;
-
     protected $app;
     protected $organization;
     protected $start;
@@ -37,8 +35,6 @@ abstract class AbstractReport
         $this->start = $start;
         $this->end = $end;
         $this->df = 'M j, Y';
-
-        self::$viewsDir = dirname(dirname(__DIR__)).'/views';
     }
 
     public function baseFilename()
@@ -83,7 +79,7 @@ abstract class AbstractReport
 
             $this->htmlOutput = false;
 
-            $view = new View('report', $data);
+            $view = new View('@reports/report', $data);
 
             return $view->render();
         } elseif ($type == 'pdf') {

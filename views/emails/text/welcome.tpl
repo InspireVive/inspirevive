@@ -1,5 +1,0 @@
-Hey {$username}!
-
-Congratulations on joining InspireVive! As a registered volunteer you can now use InspireVive to track your volunteer activity.
-
-- InspireVive

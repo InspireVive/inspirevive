@@ -21,13 +21,6 @@ class Controller
 {
     use HasApp;
 
-    public static $viewsDir;
-
-    public function __construct()
-    {
-        self::$viewsDir = __DIR__.'/views';
-    }
-
     public function loginForm($req, $res, $error = false, $remaining = -1)
     {
         $this->ensureHttps($req, $res);
@@ -46,7 +39,7 @@ class Controller
             $redir = $req->session('redir');
         }
 
-        return new View('login', [
+        return new View('@users/login', [
             'redir' => $redir,
             'title' => 'Login',
             'loginUsername' => $req->request('username'),
@@ -103,7 +96,7 @@ class Controller
             }
         }
 
-        return new View('forgot', [
+        return new View('@users/forgot', [
             'success' => $req->params('success'),
             'title' => 'Forgot Password',
             'id' => $req->params('id'),
@@ -171,7 +164,7 @@ class Controller
             $redir = $req->session('redir');
         }
 
-        return new View('signup', [
+        return new View('@users/signup', [
             'title' => 'Join',
             'redir' => $redir,
             'name' => $req->request('name'),
@@ -216,7 +209,7 @@ class Controller
             $this->app['auth']->signInUser($user, 'verification_email');
         }
 
-        return new View('verifyEmail', [
+        return new View('@users/verifyEmail', [
             'title' => 'Verify Email',
             'success' => $user,
             'req' => $req
@@ -238,7 +231,7 @@ class Controller
         // send the email
         $this->app['auth']->sendVerificationEmail($user);
 
-        return new View('verifyEmailSent', [
+        return new View('@users/verifyEmailSent', [
             'title' => 'Email Verification Sent',
         ]);
     }
@@ -280,7 +273,7 @@ class Controller
             return $res->setCode(404);
         }
 
-        return new View('profile', [
+        return new View('@users/profile', [
             'title' => $user->username,
             'user' => $user->toArray(),
             'userObj' => $user,
@@ -309,7 +302,7 @@ class Controller
             ->sort('timestamp DESC')
             ->all();
 
-        return new View('myProfile', [
+        return new View('@users/myProfile', [
             'title' => 'My Profile',
             'profileTab' => true,
             'tabClass' => 'profile',
@@ -333,7 +326,7 @@ class Controller
 
         $res->setCookie('redirect', '/account');
 
-        return new View('account', [
+        return new View('@users/account', [
             'success' => $req->params('success'),
             'title' => 'Account Settings',
             'section' => $req->request('section'),

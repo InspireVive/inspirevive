@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ header.Title }}</title>
+	<link rel="stylesheet" type="text/css" href="{{ css }}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+	<div id="title">{{ header.Title }}</div>
+
+	<div class="section header">
+		<div class="key-value">
+		{% for title, value in header %}
+			{% if title != 'Title' %}
+			<div class="row clearfix">
+				<div class="key">
+					{{ title }}
+				</div>
+				<div class="value">
+					{{ value }}
+				</div>
+			</div>
+			{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+
+	{% for section in sections %}
+		<div class="section">
+			{% if section.title %}
+				<h3>{{ section.title }}</h3>
+			{% endif %}
+			{% if section.keyvalue is defined %}
+				<div class="key-value">
+				{% for title, value in section.keyvalue %}
+					<div class="row clearfix">
+						<div class="key">
+							{{ title }}
+						</div>
+						<div class="value">
+							{{ value }}
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			{% endif %}
+			{% if section.rows is defined %}
+			<table>
+				{% if section.header %}
+				<thead>
+					<tr>
+					{% for val in section.header %}
+						<th>{{ val }}</th>
+					{% endfor %}
+					</tr>
+				</thead>
+				{% endif %}
+				<tbody>
+				{% for row in section.rows %}
+					<tr>
+					{% for val in row %}
+						<td>{{ val }}</td>
+					{% endfor %}
+					</tr>
+				{% endfor %}
+				</tbody>
+				{% if section.footer %}
+				<tfoot>
+					<tr>
+					{% for val in section.footer %}
+						<td>{{ val }}</td>
+					{% endfor %}
+					</tr>
+				</tfoot>
+				{% endif %}
+			</table>
+			{% endif %}
+		</div>
+	{% endfor %}
+</body>
+</html>

@@ -9,6 +9,7 @@
  */
 
 use App\Core\MonologHandler;
+use App\Core\TwigLoader;
 use Infuse\Auth\Services\Auth;
 use Infuse\Csrf\Csrf;
 use Infuse\Csrf\CsrfTokens;
@@ -18,8 +19,8 @@ use Infuse\Services\QueueDriver;
 use Infuse\Services\Redis;
 use Infuse\Services\ViewEngine;
 use JAQB\Services\ConnectionManager;
-use Pulsar\Services\ModelDriver;
 use Pulsar\Services\ErrorStack;
+use Pulsar\Services\ModelDriver;
 
 return [
     'services' => [
@@ -41,5 +42,7 @@ return [
         'csrf' => Csrf::class,
         'csrf_tokens' => CsrfTokens::class,
         'mailer' => MailerService::class,
+
+        'twig_loader' => TwigLoader::class,
     ],
 ];

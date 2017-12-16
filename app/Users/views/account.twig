@@ -1,0 +1,100 @@
+{% extends "parent.twig" %}
+{% block content %}
+<br/>
+<div class="row">
+	<div class="col-sm-3">
+		<ul class="nav nav-pills nav-stacked" role="tablist">
+			<li class="{% if section=='profile' or not(section) %}active{% endif %}">
+				<a href="#profile" role="tab" data-toggle="tab">Your Profile</a>
+			</li>
+			<li class="{% if section=='settings' %}active{% endif %}">
+				<a href="#account" role="tab" data-toggle="tab">Account Settings</a>
+			</li>
+		</ul>
+		<br/>
+	</div>
+	<div class="col-sm-9">
+		{% for error in app.errors.messages() %}
+			<div class="alert alert-danger">
+				{{ error }}
+			</div>
+		{% endfor %}
+
+		{% if success %}
+			<div class="alert alert-success">Thank you for updating your account.</div>
+		{% endif %}
+
+		<div class="tab-content">
+			<div class="tab-pane fade {% if section=='profile' or not(section) %}in active{% endif %}" id="profile">
+				<form action="/account" method="post" class="form-horizontal" role="form">
+			        {{ app.csrf.render(req)|raw }}
+					<input type="hidden" name="profile" value="settings" />
+					<h3>Edit Your Profile</h3>
+					<br/>
+
+					<div class="form-group">
+						<label class="control-label col-md-3">Bio</label>
+						<div class="col-md-7">
+							<textarea name="about" class="form-control">{{ app.user.about }}</textarea>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-md-10 col-md-offset-3">
+							<input type="submit" value="Update" class="btn btn-primary btn-lg" />
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="tab-pane fade {% if section=='settings' %}in active{% endif %}" id="account">
+				<form action="/account" method="post" class="form-horizontal" rol="form">
+			        {{ app.csrf.render(req)|raw }}
+					<input type="hidden" name="section" value="settings" />
+					<h3>Edit Your Account</h3>
+					<br/>
+
+					<div class="form-group">
+						<label class="control-label col-md-3">Username</label>
+						<div class="col-md-5 form-control-static">
+							{{ app.user.username }}
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Current Password</label>
+						<div class="col-md-5">
+							<input type="password" name="current_password" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Email Address</label>
+						<div class="col-md-5">
+							<input type="email" name="email" class="form-control" />
+						</div>
+						<div class="col-md-4 form-control-static">
+							<strong>Current: </strong> {{ app.user.email }}
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">New Password</label>
+						<div class="col-md-5">
+							<input type="password" name="password[]" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3">Confirm New Password</label>
+						<div class="col-md-5">
+							<input type="password" name="password[]" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-9 col-md-offset-3">
+							<input type="submit" value="Update" class="btn btn-primary btn-lg" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

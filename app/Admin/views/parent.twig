@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html {% if ngAppModule is defined %}ng-app="{{ ngAppModule }}"{% endif %}>
+	<head>
+		<title>{% if title is defined %}{{ title }} :: {{ org.name }} - InspireVive{% else %}InspireVive{% endif %}</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
+		<link href="{{ app.view_engine.asset_url('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+		<link href="{{ app.view_engine.asset_url('/css/jquery-ui.css') }}" rel="stylesheet"  type="text/css" />
+		<link href="{{ app.view_engine.asset_url('/css/org-management-styles.css') }}" rel="stylesheet" type="text/css" />
+		<link rel="shortcut icon" href="{{ app.view_engine.asset_url('/favicon.ico') }}" type="image/x-icon" />
+
+		<script type="text/javascript" src="{{ app.view_engine.asset_url('/js/jquery.min.js') }}"></script>
+		<script src="{{ app.view_engine.asset_url('/js/bootstrap.min.js') }}"></script>
+		<script type="text/javascript" src="{{ app.view_engine.asset_url('/js/jquery-ui.min.js') }}"></script>
+		<script type="text/javascript" src="{{ app.view_engine.asset_url('/js/org-management-header.js') }}"></script>
+		
+		{% block header %}{% endblock %}
+</head>
+<body class="admin-section organization-admin">
+	<div class="container main-container">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{ org.manageUrl() }}">
+					{{ org.name }}
+					<small>Management</small>
+				</a>
+			</div>
+
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="{{ org.url() }}">
+							<span class="glyphicon glyphicon-home"></span>
+							Volunteer Hub
+						</a>
+					</li>
+					<li>
+						<a href="/profile">
+							<img src="{{ app.user.profilePicture() }}" height="21" width="21" class="img-circle" />
+							{{ app.user.name(true) }}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div class="body">
+			<ul class="nav nav-tabs main-tabs">
+				<li class="{% if dashboardPage is defined and dashboardPage %}active{% endif %}">
+					<a href="{{ org.manageUrl() }}">
+						<span class="glyphicon glyphicon-heart"></span>
+						<span class="title">Pulse</span>
+					</a>
+				</li>
+				<li class="{% if volunteersPage is defined and volunteersPage %}active{% endif %}">
+					<a href="{{ org.manageUrl() }}/volunteers?role={% if volunteersAwaitingApproval > 0 %}{{ constant('ORGANIZATION_ROLE_AWAITING_APPROVAL') }}{% else %}{{ constant('ORGANIZATION_ROLE_VOLUNTEER') }}{% endif %}&amp;inactive=0">
+						<span class="glyphicon glyphicon-user"></span>
+						<span class="title">Volunteers</span>
+						{% if volunteersAwaitingApproval > 0 %}
+							<span class="badge alert-danger">
+								{{ volunteersAwaitingApproval }}
+							</span>
+						{% endif %}
+					</a>
+				</li>
+				<li class="{% if hoursPage is defined and hoursPage %}active{% endif %}">
+					<a href="{{ org.manageUrl() }}/hours?approved={% if hoursAwaitingApproval > 0 %}0{% else %}1{% endif %}">
+						<span class="glyphicon glyphicon-time"></span>
+						<span class="title">Hours</span>
+						{% if hoursAwaitingApproval > 0 %}
+							<span class="badge alert-danger">
+								{{ hoursAwaitingApproval }}
+							</span>
+						{% endif %}
+					</a>
+				</li>
+				<li class="{% if placesPage is defined and placesPage %}active{% endif %}">
+					<a href="{{ org.manageUrl() }}/places?approved={% if placesAwaitingApproval > 0 %}0{% else %}1{% endif %}">
+						<span class="glyphicon glyphicon-map-marker"></span>
+						<span class="title">Places</span>
+						{% if placesAwaitingApproval > 0 %}
+							<span class="badge alert-danger">
+								{{ placesAwaitingApproval }}
+							</span>
+						{% endif %}
+					</a>
+				</li>
+				<li class="{% if reportsPage is defined and reportsPage %}active{% endif %}">
+					<a href="{{ org.manageUrl() }}/reports">
+						<span class="glyphicon glyphicon-file"></span>
+						<span class="title">Reports</span>
+					</a>
+				</li>
+			</ul>
+
+			{% block content %}{% endblock %}
+		</div>
+
+		<footer>
+			<a href="https://github.com/inspirevive/inspirevive">Powered by InspireVive</a>
+		</footer>		
+	</div>
+</body>
+</html>
+<link href='//fonts.googleapis.com/css?family=Titillium+Web:100,200,400,700' rel='stylesheet' type='text/css'>

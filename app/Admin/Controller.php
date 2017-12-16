@@ -28,18 +28,11 @@ class Controller
 
     const PER_PAGE = 10;
 
-    public static $viewsDir;
-
     static $sectionModels = [
-        'volunteers' => 'App\Volunteers\Models\Volunteer',
-        'hours' => 'App\Volunteers\Models\VolunteerHour',
-        'places' => 'App\Volunteers\Models\VolunteerPlace',
+        'volunteers' => Volunteer::class,
+        'hours' => VolunteerHour::class,
+        'places' => VolunteerPlace::class,
     ];
-
-    public function __construct()
-    {
-        self::$viewsDir = __DIR__.'/views';
-    }
 
 /*
 --- Admin: Dashboard ---
@@ -74,7 +67,7 @@ class Controller
             $periods[$k]['topVolunteer'] = (count($topVolunteers) == 1) ? $topVolunteers[0] : false;
         }
 
-        return new View('dashboard', [
+        return new View('@admin/dashboard', [
             'org' => $org,
             'title' => 'Pulse',
             'periods' => $periods,
@@ -161,7 +154,7 @@ class Controller
             $this->app['errors']->add('As a volunteer coordinator, you cannot remove yourself.');
         }
 
-        return new View('volunteers/browse', [
+        return new View('@admin/volunteers/browse', [
             'org' => $org,
             'title' => 'Volunteers',
             'volunteersPage' => true,
@@ -191,7 +184,7 @@ class Controller
             return;
         }
 
-        return new View('volunteers/add', [
+        return new View('@admin/volunteers/add', [
             'org' => $org,
             'title' => 'Add Volunteers',
             'volunteersPage' => true,
@@ -327,7 +320,7 @@ class Controller
             return;
         }
 
-        return new View('volunteers/import', [
+        return new View('@admin/volunteers/import', [
             'org' => $org,
             'title' => 'Import Volunteers',
             'volunteersPage' => true,
@@ -367,7 +360,7 @@ class Controller
             }
         }
 
-        return new View('volunteers/view', [
+        return new View('@admin/volunteers/view', [
             'org' => $org,
             'volunteer' => $volunteer->toArray(),
             'user' => $user,
@@ -469,7 +462,7 @@ class Controller
         $count = $query->count();
         $numPages = ceil($count / $perPage);
 
-        return new View('hours/browse', [
+        return new View('@admin/hours/browse', [
             'org' => $org,
             'title' => 'Volunteer Hours',
             'hoursPage' => true,
@@ -510,7 +503,7 @@ class Controller
             ->sort('name ASC')
             ->all();
 
-        return new View('hours/add1', [
+        return new View('@admin/hours/add1', [
             'org' => $org,
             'title' => 'Add Volunteer Hours',
             'hoursPage' => true,
@@ -578,7 +571,7 @@ class Controller
             ->limit(10)
             ->column();
 
-        return new View('hours/add2', [
+        return new View('@admin/hours/add2', [
             'org' => $org,
             'title' => 'Add Volunteer Hours',
             'hoursPage' => true,
@@ -662,7 +655,7 @@ class Controller
             }
         }
 
-        return new View('hours/add3', [
+        return new View('@admin/hours/add3', [
             'org' => $org,
             'title' => 'Confirm Volunteer Hours',
             'hoursPage' => true,
@@ -754,7 +747,7 @@ class Controller
 
         list($org, $hour, $section) = $lookup;
 
-        return new View('hours/view', [
+        return new View('@admin/hours/view', [
             'org' => $org,
             'hour' => $hour->toArray(),
             'tags' => $hour->tags(),
@@ -830,7 +823,7 @@ class Controller
         $count = $query->count();
         $numPages = ceil($count / $perPage);
 
-        return new View('places/browse', [
+        return new View('@admin/places/browse', [
             'org' => $org,
             'title' => 'Places',
             'placesPage' => true,
@@ -864,7 +857,7 @@ class Controller
             'place_type' => VolunteerPlace::INTERNAL,
             'address' => '', ], $req->request());
 
-        return new View('places/modify', [
+        return new View('@admin/places/modify', [
             'org' => $org,
             'title' => 'Add Volunteer Places',
             'placesPage' => true,
@@ -909,7 +902,7 @@ class Controller
             ->where('place', $place->id());
         $hours = $query->first(10);
 
-        return new View('places/view', [
+        return new View('@admin/places/view', [
             'org' => $org,
             'title' => $place->name.' :: Places',
             'placesPage' => true,
@@ -929,7 +922,7 @@ class Controller
 
         list($org, $place, $section) = $lookup;
 
-        return new View('places/modify', [
+        return new View('@admin/places/modify', [
             'org' => $org,
             'title' => $place->name.' :: Places',
             'placesPage' => true,
@@ -1011,7 +1004,7 @@ class Controller
             return;
         }
 
-        return new View('reports', [
+        return new View('@admin/reports', [
             'org' => $org,
             'title' => 'Reports',
             'reportsPage' => true,

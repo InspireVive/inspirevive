@@ -1,0 +1,65 @@
+{% extends "parent.twig" %}
+{% block content %}
+
+<h1 class="profile-title">
+	{{ org.name }}
+	<small>
+		Add Volunteer Place
+	</small>
+</h1>
+
+<p class="lead">
+	What is the volunteer place you like to add and who is the volunteer coordinator?
+</p>
+<p>
+	<em>All fields are required.</em>
+</p>
+
+{% for message in app.errors.messages() %}
+	<div class="alert alert-danger">
+		{{ message }}
+	</div>
+{% endfor %}
+
+<form action="{{ org.url() }}/places/add" method="post" role="form" class="form-horizontal">
+	{{ app.csrf.render(req)|raw }}
+	<div class="form-group">
+		<label class="control-label col-md-4">
+			Location Name
+		</label>
+		<div class="col-md-3">
+			<input type="text" name="name" class="form-control" value="{% if place.name is defined %}{{ place.name }}{% endif %}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-4">
+			Address
+		</label>
+		<div class="col-md-3">
+			<textarea name="address" class="form-control">{% if place.address is defined %}{{ place.address }}{% endif %}</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-4">
+			Volunteer Coordinator's Name
+		</label>
+		<div class="col-md-3">
+			<input type="text" name="verify_name" class="form-control" value="{% if place.verify_name is defined %}{{ place.verify_name }}{% endif %}">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-4">
+			Volunteer Coordinator's Email Address
+		</label>
+		<div class="col-md-4">
+			<input type="text" name="verify_email" class="form-control" value="{% if place.verify_email is defined %}{{ place.verify_email }}{% endif %}">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-2 col-md-offset-4">
+			<button type="submit" class="btn btn-success">Add</button>
+		</div>
+	</div>
+</form>
+
+{% endblock %}

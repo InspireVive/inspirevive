@@ -1,0 +1,53 @@
+{% extends "@admin/parent.twig" %}
+{% block content %}
+
+<div class="top-nav">
+	<a href="{{ org.manageUrl() }}/volunteers/add">
+		&larr; Cancel
+	</a>
+</div>
+
+<h1>Import Volunteers</h1>
+<p>
+	Volunteers can be imported in bulk from a .CSV (comma-separated values) file. The first line denotes the name of the field so columns may be in any order.
+</p>
+
+<p>
+	The <strong>email</strong> column is the only column required and it can be an email address or username of existing user.
+	Any columns in additonal to <strong>email</strong> will be added as metadata to the volunteer's profile.
+</p>
+
+<p>
+	<a href="{{ app.view_engine.asset_url('/volunteer-import-template.csv') }}" class="btn btn-link">
+		<span class="glyphicon glyphicon-download"></span> Download Import Template
+	</a>
+</p>
+
+{% if numAdded > 0 %}
+	<p class="alert alert-success">
+		<strong>{{ numAdded }} {{ app.locale.p(numAdded, 'volunteer</strong> was', 'volunteers</strong> were') }} added.
+	</p>
+{% endif %}
+
+{% for error in app.errors.messages() %}
+	<div class="alert alert-danger">{{ error }}</div>
+{% endfor %}
+
+<form class="form-horizontal" method="post" action="{{ org.manageUrl() }}/volunteers" enctype="multipart/form-data">
+    {{ app.csrf.render(req)|raw }}
+	<div class="form-group">
+		<label class="control-label col-md-2">CSV File to Import</label>
+		<div class="col-md-3 form-control-static">
+			<input type="file" name="import" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-4 col-md-offset-2">
+			<button type="submit" class="btn btn-primary">
+				Import
+			</button>
+		</div>
+	</div>
+</form>
+
+{% endblock %}
