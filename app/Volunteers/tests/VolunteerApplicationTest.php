@@ -11,8 +11,9 @@
 use App\Users\Models\User;
 use App\Volunteers\Models\VolunteerApplication;
 use Infuse\Test;
+use PHPUnit\Framework\TestCase;
 
-class VolunteerApplicationTest extends PHPUnit_Framework_TestCase
+class VolunteerApplicationTest extends TestCase
 {
     public static $app;
 

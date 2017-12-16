@@ -15,8 +15,9 @@ use App\Volunteers\Models\VolunteerHour;
 use Infuse\Queue\Message;
 use Infuse\Test;
 use Pulsar\Iterator;
+use PHPUnit\Framework\TestCase;
 
-class OrganizationTest extends PHPUnit_Framework_TestCase
+class OrganizationTest extends TestCase
 {
     public static $org;
     public static $org2;

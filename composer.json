@@ -1,4 +1,4 @@
-	{
+{
 	"name": "inspirevive/inspirevive",
 	"description": "Volunteer management platform to help organizations volunteer more effectively",
 	"type": "project",
@@ -21,14 +21,14 @@
     },
 	"require": {
 		"php": ">=7.0.0",
-		"infuse/infuse": "~1.5",
-		"infuse/auth": "~2.1",
+		"infuse/infuse": "~1.6",
+		"infuse/auth": "~3.0",
 		"infuse/cron": "~2.0",
 		"infuse/email": "~1.2",
 		"infuse/migrations": "~1.2",
 		"infuse/csrf": "~1.0",
 
-		"pulsar/pulsar": "~0.5",
+		"pulsar/pulsar": "~0.6",
 		"smarty/smarty": "~3.1",
 		"monolog/monolog": "~1.23",
 		"aws/aws-sdk-php": "2.4.1",
@@ -36,8 +36,7 @@
 		"swiftmailer/swiftmailer": "~v5.4"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.9.8",
-		"phpunit/phpunit": "~5.7",
+		"phpunit/phpunit": "6.0.*",
 		"satooshi/php-coveralls": "~1.0"
 	}
 }

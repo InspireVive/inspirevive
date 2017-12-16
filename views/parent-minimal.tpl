@@ -24,10 +24,7 @@
 		<link href="{$app.view_engine->asset_url('/css/jquery-ui.css')}" rel="stylesheet"  type="text/css" />
 		<link href="{$app.view_engine->asset_url('/css/styles.css')}" rel="stylesheet" type="text/css" />
 		<link rel="shortcut icon" href="{$app.view_engine->asset_url('/favicon.ico')}" type="image/x-icon" />
-		
-		<script type="text/javascript">
-			{if isset($app.user)}var currentUser = {json_encode($app.user->toArray())};{/if}
-		</script>
+
 		<script type="text/javascript" src="{$app.view_engine->asset_url('/js/jquery.min.js')}"></script>
 		<script src="{$app.view_engine->asset_url('/js/bootstrap.min.js')}"></script>
 		<script type="text/javascript" src="{$app.view_engine->asset_url('/js/jquery-ui.min.js')}"></script>

@@ -50,15 +50,12 @@ class User extends AbstractUser
         ],
         'password' => [
             'type' => Model::TYPE_STRING,
-            'validate' => 'matching|password:8',
+            'validate' => 'matching|password_php:8',
             'required' => true,
             'title' => 'Password',
             'hidden' => true,
             'admin_type' => 'password',
             'admin_hidden_property' => true,
-        ],
-        'password2' => [
-            'null' => true,
         ],
         'ip' => [
             'type' => Model::TYPE_STRING,
@@ -135,25 +132,6 @@ class User extends AbstractUser
         if (!isset($exclude['name'])) {
             $result['name'] = $this->name(true);
         }
-    }
-
-    protected function setPasswordValue($value)
-    {
-        $password = $value;
-        if (is_array($password)) {
-            $password = $password[0];
-        }
-
-        $this->rehashPassword($password);
-
-        return $value;
-    }
-
-    public function rehashPassword($password)
-    {
-        $this->password2 = password_hash($password, PASSWORD_DEFAULT);
-
-        return $this;
     }
 
     ////////////////////////

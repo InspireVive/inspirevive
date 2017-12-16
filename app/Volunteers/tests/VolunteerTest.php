@@ -14,8 +14,9 @@ use App\Volunteers\Models\Volunteer;
 use App\Volunteers\Models\VolunteerApplication;
 use Infuse\Queue\Message;
 use Infuse\Test;
+use PHPUnit\Framework\TestCase;
 
-class VolunteerTest extends PHPUnit_Framework_TestCase
+class VolunteerTest extends TestCase
 {
     public static $org;
     public static $volunteer;

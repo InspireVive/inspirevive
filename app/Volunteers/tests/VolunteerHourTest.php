@@ -15,8 +15,9 @@ use App\Volunteers\Models\VolunteerHour;
 use App\Volunteers\Models\VolunteerHourTag;
 use App\Volunteers\Models\VolunteerPlace;
 use Infuse\Test;
+use PHPUnit\Framework\TestCase;
 
-class VolunteerHourTest extends PHPUnit_Framework_TestCase
+class VolunteerHourTest extends TestCase
 {
     public static $org;
     public static $org2;

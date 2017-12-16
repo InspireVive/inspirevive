@@ -11,8 +11,9 @@
 use App\Organizations\Models\Organization;
 use App\Reports\Libs\Report;
 use Infuse\Test;
+use PHPUnit\Framework\TestCase;
 
-class ReportTest extends PHPUnit_Framework_TestCase
+class ReportTest extends TestCase
 {
     public static $org;
 

@@ -16,8 +16,9 @@ use App\Volunteers\Models\VolunteerHour;
 use Infuse\Queue\Message;
 use Infuse\Test;
 use Pulsar\Iterator;
+use PHPUnit\Framework\TestCase;
 
-class UnapprovedHourNotificationsTest extends PHPUnit_Framework_TestCase
+class UnapprovedHourNotificationsTest extends TestCase
 {
     public static $org;
 

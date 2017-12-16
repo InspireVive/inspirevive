@@ -71,11 +71,6 @@ class Controller
 
         $user = $this->app['user'];
 
-        // rehash the password
-        if ($user->id() > 0 && !$user->password2) {
-            $user->rehashPassword($req->request('password'))->grantAllPermissions()->save();
-        }
-
         $redir = ($req->request('redir')) ? $req->request('redir') : $req->cookies('redirect');
 
         if (!empty($redir)) {

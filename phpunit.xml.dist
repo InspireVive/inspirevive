@@ -7,7 +7,6 @@
   <listeners>
     <listener class="Infuse\Test"></listener>
     <listener class="Infuse\Auth\Libs\TestListener"></listener>
-    <listener class="Mockery\Adapter\Phpunit\TestListener"></listener>
   </listeners>
 
   <testsuites>
