@@ -31,7 +31,6 @@
 		"pulsar/pulsar": "~0.6",
 		"smarty/smarty": "~3.1",
 		"monolog/monolog": "~1.23",
-		"mandrill/mandrill": "1.0.36",
 		"swiftmailer/swiftmailer": "~v5.4"
 	},
 	"require-dev": {
